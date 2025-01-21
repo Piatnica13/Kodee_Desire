@@ -1,8 +1,6 @@
 let MainContener = document.querySelector('#Body');
 
-window.addEventListener('load', () => {
-    document.getElementById('loader').style.display = 'none';
-});
+
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch('/static/html/footer.html')
