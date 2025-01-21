@@ -1,0 +1,209 @@
+#FuterConLast1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    max-width: 1500px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%; 
+    align-items: start;
+    margin: 50px 0px;
+}
+.ContenerLast{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    color: rgb(255, 225, 234);
+    background-color: #433739; 
+    height: 230px;
+    margin: 50px 0px 0px 0px;
+}
+.ConLastLogo{
+    width: 140px;
+}
+.FuterCon1DivImg{
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    padding: 20px 0;
+    border-radius: 12px;
+    background-color: #ffd0d9;
+    margin-top: 12px;
+}
+.FuterBlocks{
+    min-width: 100px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    position: relative;
+    padding: 0px 20px;
+}
+.FuterLineBord{
+    align-items: start;
+    box-sizing: border-box;
+}
+.FuterLineBord::before{
+    content: "";
+    left: 0px;
+    position: absolute; /* Привязываем к правой стороне */ /* Смещаем вверх на половину высоты */
+    width: 2px; /* Толщина борта */
+    top: 25px;
+    height: 150px; /* Общая высота борта (50px вверх и 50px вниз от центра) */
+    background-color: #564749; /* Цвет борта */
+}
+.FuterBlockLogoMeseg{
+    display: flex;
+    flex-direction: column;
+}
+.FuterBlocks a{
+    transition: color 0.2s ease-in-out;
+    color: white;
+    text-decoration: none;
+}
+.FuterBlocks a:hover{
+    color: rgb(255, 225, 234);
+}
+.FuterBlocks p{
+    margin: 12px 0px;
+    font-size: 1.5rem;
+}
+.FuterPodBlocks p{
+    margin: 0px 0px 14px 0px;
+}
+.ConLastMesegIcon{
+    width: 25px;
+}
+.MesegIcons{
+    display: flex;
+    gap: 40px;
+    margin-top: 10px;
+}
+.FuterCon1DivsIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color:#fff2f2;
+    border-radius: 8px; 
+    transition: background-color 0.2s ease-in-out;
+}
+.FuterCon1DivsIcon:hover{
+    background-color: #ffd0d9;
+}
+.FuterPodListBlocks{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    gap: 8px;
+}
+.LeftNa50px{
+    position: relative;
+    margin: 0px auto;
+}
+.FuterMarginAuto{
+    margin: 0 auto;
+}
+@media screen and (max-width: 1200px) {
+    .FuterCon1DivImg{
+        width: 100%;
+    } 
+}
+@media screen and (max-width: 1000px) {
+    .FuterLineBord::before{
+        content: "";
+        left: 0px;
+        position: absolute; /* Привязываем к правой стороне */ /* Смещаем вверх на половину высоты */
+        width: 0px; /* Толщина борта */
+        top: 25px;
+        height: 150px; /* Общая высота борта (50px вверх и 50px вниз от центра) */
+        background-color: #564749; /* Цвет борта */
+    }
+    .MesegIcons{
+        gap: 30px;
+    }
+}   
+@media screen and (max-width: 767px) {
+    .ContenerLast{
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        color: rgb(255, 225, 234);
+        background-color: #433739; 
+        height: auto;
+        margin: 50px 0px 0px 0px;
+    }
+    #FuterConLast1{
+        flex-direction: column;
+        margin: 0px
+    }
+    .FuterBlocks{
+        min-width: 100px;
+        width: 100%;
+        max-width: none;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+        flex: 1;
+        position: relative;
+        padding: 0px 0px;
+    }
+    .FuterCon1DivImg{
+        display: flex;
+        justify-content: start;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 0;
+        background-color: #ffd0d9;
+        margin-top: 0px;
+
+    }
+    .MesegIcons{
+        display: flex;
+        position: absolute;
+        gap: 20px;
+        right: 20px;
+        top: 30%;
+        background-color:#fff2f2;
+        border-radius: 8px; 
+    }
+    .FuterCon1DivsIcon{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        background-color:#fff2f2;
+        border-radius: 8px; 
+        transition: background-color 0.2s ease-in-out;
+    }
+    .FuterPodListBlocks{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 0px 0px;
+        overflow: hidden; /* Скрывает содержимое, выходящее за пределы блока */
+        height: 0px; /* Начальная высота */
+        transition: height 0.5s ease-in-out;
+    }
+    .FuterLineBord::before{
+        content: "";
+        left: 3%;
+        position: absolute; /* Привязываем к правой стороне */ /* Смещаем вверх на половину высоты */
+        width: 90%; /* Толщина борта */
+        top: 0px;
+        height: 2px; /* Общая высота борта (50px вверх и 50px вниз от центра) */
+        background-color: #564749; /* Цвет борта */
+    }
+    .FuterMarginAuto{
+        margin: 0 0;
+    }
+    .FuterBlocks p{
+        margin: 20px 0px;
+        font-size: 1.5rem;
+    }
+}

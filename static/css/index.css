@@ -1,0 +1,283 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+}
+
+#Body{
+    opacity: 0;
+    width: 100vw;
+    height: 100%;
+    position: relative;
+    top: -80px;
+    transition: opacity 1s linear;
+}
+/*1 Contener*/
+#Contener1{
+    position: relative;
+    display: flex;
+    width: 100%;
+    background-color: #ffd0d9;
+    opacity: 1;
+    justify-content: center;
+}
+#Con1Img{
+    width: 50%;
+    max-width: 1000px;
+}
+#Con1Img1{
+    width: 1000px;
+    height: 100%;
+    max-width: 100%;
+    display: block;
+}
+#Con1Text{
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+}
+#text1{
+    padding: 50px;
+    font-size: 25px;
+}
+#text2{
+    font-size: 20px;
+}
+/*2 Contener*/
+#Contener2 {
+    position: relative;
+    width: 100%;
+    height: 1000px; /* Пусть слайдер занимает всю высоту */
+    overflow: hidden; /* Скрываем всё, что выходит за пределы слайдера */
+}
+.Con2DivImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.SliderImgs {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Подгоняем изображения под размер контейнера */
+    transition: opacity 1s ease-in-out;
+}
+.Con2ImgsText{
+    position: absolute;
+    bottom: 200px; /* Расположить текст снизу */
+    left: 50%; /* Центруем по горизонтали */
+    transform: translateX(-50%) translateY(20px); /* Исправляем смещение */
+    color: white; /* Цвет текста */
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.OverlayTitle {
+    font-size: 24px;
+    margin: 0;
+}
+
+.OverlayText {
+    font-size: 16px;
+    margin: 0;
+}
+/*Контейнер 3*/
+#Contener3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 50px;
+}
+.Con3grup2, .Con3grup1{
+    background-color: #ffd0d9;
+    max-width: 1100px;
+    min-width: none;
+    width: 80%;
+    max-height: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+.Con3grup1{
+    overflow: hidden;
+    border-radius: 5px 5px 5px 5px;
+    position: relative;
+    right: 50px
+}
+.Con3grup2{
+    overflow: hidden;
+    border-radius: 5px 5px 5px 5px;
+    position: relative;
+    left: 50px
+}
+.Con3Imgs{
+    width: auto;
+    max-height: 250px;
+}
+.Con3Divs{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Con3Text{
+    font-size: 1.3rem
+}
+/*Контейнер 4*/
+#Contener4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#Con4Part1, #Con4Part2{
+    gap: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+#Con4Part1{
+    padding: 25px 0px;
+}
+.Con4Divs{
+    min-width: 280px;
+    width: 300px;
+    height: 450px;
+    border-radius: 20px;
+    background-color: #000; 
+}
+.Con4Imgs{
+    z-index: 0;
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    transition: opacity .2s ease-out;
+    border-radius: 20px;
+}
+.Con4Divs:hover .Con4Imgs{
+    opacity: 1;
+}
+.Con4Divs:hover .Con4Text{
+    color: transparent;
+    user-select: none;
+}
+.Con4Text{
+    position: relative;
+    top: -420px;
+    margin: 0px 20px;
+    z-index: 1;
+    text-align: center;
+    color: rgb(255, 225, 234);
+    transition: color 0.2s ease-in-out;
+}
+.Con4TextGl{
+    font-size: 2.2rem;
+}
+.Con4TextVt{
+    padding-top: 120px;
+    font-size: 1.3rem;    
+}
+.ContenerLast{
+    display: flex; /* Включаем Flexbox */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    color: rgb(255, 225, 234);
+    background-color: #433739; /* Для примера */
+    height: auto;
+    margin: 50px 0px;
+    flex-direction: column;
+}
+.ConLastLogo{
+    width: 135px;
+}
+#ConLast1{
+    max-width: 1500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%; 
+    margin: 50px 0px
+}
+.TestImgs{
+    min-width: 100px;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+.Tests{
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #ffd0d9;
+}
+#ConLast2{
+    margin: 50px 0px;
+}
+@media screen and (max-width: 767px) {
+    #Contener1{
+        flex-direction: column;
+        bottom: 40px;
+    }
+    #Con1Img{
+        width: 100%;
+    }
+    #Con1Text{
+        width: 100%;
+    }
+    #Contener3{
+        margin-top: 0px;
+    }
+    .Con3grup1, .Con3grup2{
+        left: 0px;
+        right: 0px;
+        width: 90%;
+    }
+    .Con4Divs{
+        width: 300px;
+        height: 230px;
+    }
+    .Con4Text{
+        top: -220px;
+        margin: 20px 20px;
+    }
+    .Con4TextVt{
+        padding-top: 20px;        
+    }
+}
+@media screen and (max-width: 550px) {
+    .Con3grup1, .Con3grup2{
+        align-items: center;
+        width: 100%;
+        height: 200px;
+    }
+}
+@media screen and (max-width: 450px) {
+    
+    .Con3Imgs{
+        height: 200px;
+        width: 160px;
+    }
+    .Con4Divs{
+        width: 100%;
+    }
+    #text1{
+        padding: 10px;
+    }
+}

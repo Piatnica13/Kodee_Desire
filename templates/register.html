@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/register.css">
+</head>
+<body>
+    <div id="Contener">
+        <div id="Forma">
+            <a href="/">
+                <div id="ImgLogo">
+                    <img src="/static/image/menu/logo_x2.PNG" alt="" id="Logo">
+                </div>
+            </a>
+            <div>
+                <h1 id="MainText">SIGN UP</h1>
+            </div>
+            <div id="UserInp">
+                <div class="ImgInp">
+                    <img src="/static/image/auth/accoutn-auth.png" alt="Account Image" class="ImgInInput">
+                    <input type="text" alt="Name" placeholder="Name">
+                </div>
+                <div class="ImgInp">
+                    <img src="/static/image/auth/mail.png" alt="Email" class="ImgInInput">
+                    <input type="email" placeholder="Email" id="email">
+                </div>
+                <div class="ImgInp">
+                    <img src="/static/image/auth/pass.png" alt="Password" class="ImgInInput">
+                    <input type="password" placeholder="Password" id="InpPass">
+                    <img src="/static/image/auth/hide.png" alt="Hide Password" id="Hide" class="ImgPass">
+                    <img src="/static/image/auth/show.png" alt="Show Password" id="Show" class="ImgPass">
+                </div>
+                <button id="ButtonSignIn">Sign Up</button>
+            </div>
+            <div>
+                <p>Already have an account? <a href="/login" id="LogIn">Log in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="/static/js/register.js"></script>
+</body>
+</html>

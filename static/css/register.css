@@ -1,0 +1,125 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    background: #ffe4e9;
+}
+#Contener{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+#Forma{
+    width: 330px;
+    height: 550px;
+    box-shadow: 0 0 250px #ffffffd6;
+    text-align: center;
+    padding: 4rem 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(60deg,#ffd5dd,#ffe4e9,#ffc6d1);
+}
+#UserInp{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px;
+    padding-top: 20px;
+}
+#ImgLogo{
+    padding-top: 25px;
+}
+#Logo{
+    width: 200px;
+}
+#MainText{
+    background: linear-gradient(100deg, #ffa7b7, #ffb7c4);
+    background-clip: 0;
+    -webkit-background-clip: text; /* Применяем градиент к тексту */
+    -webkit-text-fill-color: transparent; /* Делаем текст прозрачным */
+    font-size: 40px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top:30px;
+    margin-bottom: 0px;
+}
+p{
+    padding-top: 50px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#LogIn{
+    color:rgb(172, 137, 255);
+}
+/*hover, active*/
+input{
+    width: 293px;
+    height: 25px;
+    border-radius: 999px;
+    border-width: 2px;
+    border-color: #ffb2c0;
+    border-style:solid;
+    background-color: rgb(255, 246, 247);
+    transition: border 0.5s, box-shadow 0.5s;
+    padding-left: 30px;
+}
+input:focus{
+    border-color: #ffb2c0;
+    box-shadow: 0 0 15px rgba(255, 129, 171, 0.826);
+    outline: none; /* Убирает стандартную рамку фокуса */
+}
+button{
+    transition: scale 0.2s linear, transform 0.1s linear, box-shadow 0.1s linear;
+    box-shadow: 1px 3px #ff889e;
+    border-radius: 999px;
+    border-style: none;
+    height: 25px;
+    background: linear-gradient(145deg,   #ffb2c0, #ffc6d0,  #ffb2c0);
+}
+.ImgInInput{
+    width: 20px;
+    position: absolute;
+    left: 7px;
+    opacity: 0.5;
+}
+.ImgInp{
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    align-items: center;
+    position: relative;
+}
+.ImgPass{
+    opacity: 0;
+    width: 20px;
+    position: absolute;
+    left: 297px;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+}
+button:hover{
+    scale: 1.015;
+}
+button:active{
+    transform: translateY(3px) translateX(1px);
+    box-shadow: none;
+}
+@media screen and (max-width: 787px) {
+    #Contener{
+        align-items: start;
+        position: relative;
+    }
+    #Forma{
+        height: 100%;
+        width: 100%;
+        padding: 0rem 0rem;
+    }
+}
+@media screen and (max-height: 680px) {
+    #Contener{
+        height: 100%;
+    }
+}

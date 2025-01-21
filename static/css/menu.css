@@ -1,0 +1,429 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  background-color: #ffe4e9;
+}
+/*Манипуляции с меню*/
+#MenuFixed {
+  width: 100%;
+  position: fixed;
+  color: #ffe4e9;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  transition: all 0.2s ease-in-out, transform 1s ease-in-out;
+  border-bottom: black 2px solid;  
+}
+#MenuFixed.visible {
+  transform: translateY(0); /* Показываем меню */
+}
+#MenuFixed.hidden {
+  transform: translateY(-165%); /* Прячем меню */
+}
+#PodBody{
+  flex: 1;
+  max-width: 2000px;
+  position: relative;
+}
+/*настройки под меню для телефонов*/
+#PodMenuPh{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: -20px;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s linear, transform 0.3s linear;
+  transform: translateY(0px);
+  z-index: -1;
+}
+#PodMenuPh.open{
+  transform: translateY(-20px);
+}
+.PodTextPh{
+  font-size: 40px;
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+}
+.PodTextDiv{
+  margin: 10px;
+}
+
+/*настройки под меню*/
+#PodMenu{
+  background-color: #ffe4e9;
+  position: relative;
+  bottom: 0px;
+  height: 0px;
+  width: 100%;
+  overflow: hidden; /* Скрытие содержимого при уменьшении высоты */
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  display: flex;
+}
+#PodLeft{
+  width: 330px;
+  margin-top: 10px;
+}
+#PodLeft::before {
+  content: "";
+  position: absolute;
+  top: 50%; /* Ставим в центр */
+  left: 330px;/* Привязываем к правой стороне */
+  transform: translateY(-50%); /* Смещаем вверх на половину высоты */
+  width: 1px; /* Толщина борта */
+  height: 100%; /* Общая высота борта (50px вверх и 50px вниз от центра) */
+  background-color: rgb(237, 208, 208); /* Цвет борта */
+}
+.PodNazMenu{
+  width: 310px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.PodNazMenu:hover{
+  background-color: #ffd0d9;
+}
+.PodBox{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.PodText{
+  color: black;
+  font-size: 20;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+.Podimg{
+  width: 30px;
+  position: relative;
+  margin-right: 20px;
+  margin-left: 30px;
+}
+.Gimg{
+  width: 15px;
+  height: 17.5px;
+  position: relative;
+  transform: rotate(-90deg);
+}
+#spisokUl{
+  padding: 0px;
+  margin: 0px;
+}
+
+/*настройки меню*/
+#contenerMenu{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-around; 
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  transition: all 0.2s ease-in-out;
+}
+#rihgt{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 223px;
+  height: 50px;
+}
+#left{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 223px;
+  height: 50px;
+  gap: 28px;
+}
+/*настройки иконок меню*/
+#strelka{
+  position: relative;
+  bottom: -1.3px;
+  transition: all 0.45s ease-in-out;
+  width: 15px;
+}
+
+#checkboxx:hover ~ #strelka{
+  scale: 1.15;
+}
+#divStrelka{
+  position: relative;
+  left: 23px;
+}
+#checkboxx{
+  position: absolute;
+  display: flex;
+  height: 26px;
+  width: 26px;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+#divStrelka input[type="checkbox"]:checked ~ #strelka{
+  transform: rotate(180deg);
+}
+.img{
+  width: 25px;
+  margin: 5px;
+}
+#logo{
+  background-color: #ffe4e9;
+  width: 160px;
+}
+nav ul li{
+  list-style: none;
+}
+#num{
+  color: black;
+  font-size: 18;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  font-size: 23px;
+  position: relative;
+  left: 23px;
+}
+/*БУРГЕР МЕНЮ*/
+
+.nav-container .checkbox {
+  position: absolute;
+  top: 27.5px;
+  display: block;
+  align-items: center;
+  height: 42px;
+  width: 42px;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+.hamburger-lines {
+  display: block;
+  height: 29px;
+  width: 37.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-lines .line  {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 15px;
+  background: #0e2431;
+}
+
+.nav-container .hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+/*выпадающее меню с номером*/
+#strelkaMenuOp{
+  position: absolute;
+  left: 150px;
+  transform: translateY(-20px);
+  width: 240px;
+  height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
+  pointer-events: none;
+}
+#strelkaMenuOp.open{
+  opacity: 1;
+  transform:translateY(0);
+  position: absolute;
+  left: 150px;
+  z-index: 5;
+  pointer-events: auto;
+  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
+}
+#strelkaMenu{
+  width: 210px;
+  background-color: #ffd0d9;
+  position: relative;
+  top: -35px;
+  left: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 1px rgba(201, 153, 153, 0.489);
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+#infoNum{
+  width: 205px;
+  display: flex;
+  flex-direction: column;
+}
+#Podnum{
+  font-size: 23px;
+  text-decoration: none;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#NumPhone{
+  color: black;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+.imgPh{
+  width: 25px;
+}
+#treugol{
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+  border-left: 7.5px solid transparent;
+  border-right: 7.5px solid transparent;
+  border-bottom: 15px solid #ffd0d9;
+  border-radius: 0;
+  position: relative;
+  left: 113px;
+  bottom: 15px;
+  z-index: 2;
+}
+#PodRight{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  position: relative;
+  color: black;
+}
+.PodRDivs{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+.PodRTexts{
+  padding: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  text-align: center;
+}
+#PodRInstagram{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 1920px) {
+  #contenerMenu{
+    width: 100%;
+  }
+  #rihgt, #left{
+    width: 300px;
+  }
+}
+@media screen and (max-width: 1366px){
+  #strelkaMenuOp{
+    left: 125px;
+  }
+  #strelkaMenuOp.open{
+    left: 125px;
+  }
+  #rihgt, #left{
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  #strelkaMenuOp{
+    left: 100px;
+  }
+  #strelkaMenuOp.open{
+    left: 100px;
+  }
+  #left{
+    width: 223px;
+  }
+  #rihgt{
+    width: 223px;
+  }
+}
+@media screen and (max-width: 767px){
+  #left{
+    width: 150px;
+  }
+  #rihgt{
+    width: 150px;
+  }
+  .hi{
+    display: none;
+  }
+  .img{
+    width: 50px;
+  }
+  .nav-container .checkbox {
+    position: absolute;
+    display: block;
+    height: 45px;
+    width: 45px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .hamburger-lines {
+    display: block;
+    height: 39px;
+    width: 50px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hamburger-lines .line  {
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 15px;
+    background: #0e2431;
+  }
+  #PodMenu{
+    display: none;
+  }
+  #left{
+    gap: 10px;
+  }
+}
+@media screen and (max-width: 450px) {
+  #sumka{
+    display: none;
+  }
+  #rihgt, #left{
+    width: 60px;
+    gap: 0px;
+  }
+}

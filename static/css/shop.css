@@ -1,0 +1,390 @@
+body, html{
+    margin: 0px;
+    padding: 0px;
+    font-family:'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикальной полосы */
+    height: 10px; /* Высота горизонтальной полосы */
+}
+/* Цвет фона полосы прокрутки */
+body::-webkit-scrollbar-track {
+    background: #f4f4f4; /* Цвет фона */
+}
+/* Цвет ползунка (скроллбара) */
+body::-webkit-scrollbar-thumb {
+    background-color: #f9d9df; 
+    border-radius: 6px; /* Закругление углов */
+    border: 2px solid #f4f4f4; /* Полоса вокруг ползунка */
+    transition: background-color 0.2s ease-in-out;
+}
+/* Изменение цвета при наведении */
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #ffb3c1; 
+}
+
+#Body{
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    opacity: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#futer-block{
+    width: 100%;
+}
+
+#PodShopBody{
+    max-width: 2000px;
+}
+
+#productGrid{
+    max-width: 2000px;
+    display: grid;
+    grid-template-columns: repeat(4, 16.66%);
+    position: relative;
+    justify-content: center;
+    gap: 25px;
+    transition: grid-template-columns 0.3s ease, justify-content 0.3s ease;
+}
+.product-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 566px;
+    transition: all 0.3s ease;  
+} 
+.product-image{
+    width: 100%;
+    background-color: #ffd0d9;
+    border-radius: 3px;
+}
+.imgs{
+    width: 100vw;
+    max-width: 2000px;
+    height: auto;
+    position: relative;
+    z-index: 10;
+}
+.Contener1{
+    max-width: 2000px;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.Con1Text{
+    position: absolute;
+    width: 50%;
+    max-width: 1000px;
+    text-align: center;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#Con1GlText{
+    font-size: 1.5rem;
+}
+.Con1DivVtText{
+    max-width: 350px;
+}
+.Con2Icon{
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 10px;
+}
+.BthInfo{
+    position: relative;
+    left: 5px;
+    transition: color 0.3s ease-in-out;
+}
+.DivInfo{
+    display: flex;
+    flex-direction: row;
+}
+.DivInfo:hover .BthInfo{
+    color: #ff879d;
+}
+#TablMenu{
+    max-width: 2000px;
+    height: 50px;
+    margin: 20px 0px;
+    border: 1px rgb(237, 208, 208) solid;
+    display: grid;
+    grid-template-columns: repeat(4, 16.66%);
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+.ShopImgControl{
+    width: 30px;
+    height: 30px;
+}
+#Divfiltr{
+    color: black;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    position: relative;
+    cursor: pointer;
+    text-decoration: underline #ff879d;
+    height: 35px;
+    transition: color 0.2s ease-in-out;
+}
+#Divfiltr:hover{
+    color: #ff879d;
+}
+.test{
+    position: relative;
+}
+.product-title{
+    height: 50px;
+    position: relative;
+    margin: 10px 0px 0px 0px;
+}
+
+/*Настройки боковой панели*/
+#BockMenu{
+    width: 25%;
+    min-width: 500px;
+    max-width: 750px;
+    height: 100%;
+    position: relative;
+    background-color: transparent;
+    opacity: 0;
+    padding: 30px 41px;
+    position: fixed; 
+    transform: translateX(-1000px);
+    z-index: 1001;
+    background-color: #f9d9df;
+    box-sizing: border-box;
+    transition: transform 1s ease-in-out, opacity 0.8s ease-in-out;
+}
+#BockMenuTitle{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+}
+#BockMenuDivImg{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+#BockMenuTitleImg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+#BockMenuMain{
+    position: relative;
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+}
+#BockMenuDivFuter{
+    position: relative;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.4rem;
+    margin: 30px 0px;
+}
+#BockMenuDivButtons{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.7rem;
+    flex: 1;
+}
+#BockMenuDivBthShow{
+    background-color: #ff879d;
+    padding: 20px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#BockMenuDivBthShow p{
+    margin: 0px;
+}
+#BockMenuBthSbros{
+    color: black;
+    text-decoration:underline #ff879d;
+    padding: 20px 30px;
+}
+#Darker{
+    position: fixed; /* Фиксированное положение */
+    top: 0;
+    left: 0;
+    width: 100%; /* Полная ширина экрана */
+    height: 100%; /* Полная высота экрана */
+    background: rgba(0, 0, 0, 0); /* Полупрозрачное затемнение */
+    transition: background 0.4s ease-in-out;
+    z-index: 1000; /* Высокий z-index для перекрытия */
+    pointer-events: none; /* Отключение взаимодействия */
+}
+#FilterHeight{
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение */
+    height: 100vh; /* Занимает всю высоту экрана */
+}
+/*Фильтры*/
+.ShopDivFilters{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.ShopDivFilters ul{
+    list-style-type: none;    
+}
+.ShopFiltersTitle{
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+.ShopFiltersTitle::before{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.ShopFiltersDivSpisok{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    display: flex;
+    overflow: hidden; /* Скрывает содержимое, выходящее за пределы блока */
+    height: 0px; /* Начальная высота */
+    transition: height 0.5s ease-in-out;
+    padding: 0px;
+    position: relative;
+}
+.ShopFiltersPodSpisok {
+    font-size: 1.4rem;
+}
+.ShopFiltersItems{
+    position: relative;
+    top: -5px;
+}
+/* Скрываем стандартный чекбокс */
+.customCheckbox input[type="checkbox"] {
+    display: none;
+}
+
+/* Стили контейнера */
+.customCheckbox {
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Стили кастомного чекбокса */
+.customCheckbox span {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff879d; /* Красная рамка */
+    border-radius: 4px;    /* Закругленные углы (если нужно) */
+    background-color: transparent; /* Прозрачный фон */
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Галочка при выборе */
+.customCheckbox input[type="checkbox"]:checked + span::after {
+    content: "✓"; /* Символ галочки */
+    color: black; /* Черный цвет */
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Добавляем hover-эффект */
+.customCheckbox span:hover {
+    border-color: #d56f82; /* Темно-красный цвет при наведении */
+}
+
+/*Полоса прокрутки*/
+/* Общий стиль для всей полосы прокрутки */
+#BockMenuMain::-webkit-scrollbar {
+    width: 15px; /* Ширина вертикальной полосы */
+    height: 10px; /* Высота горизонтальной полосы */
+}
+/* Цвет фона полосы прокрутки */
+#BockMenuMain::-webkit-scrollbar-track {
+    background: #f4f4f4; /* Цвет фона */
+    border-radius: 10px; /* Закругление углов */
+}
+/* Цвет ползунка (скроллбара) */
+#BockMenuMain::-webkit-scrollbar-thumb {
+    background: #ffb3c1; /* Цвет ползунка */
+    border-radius: 10px; /* Закругление углов */
+    border: 2px solid #f4f4f4; /* Полоса вокруг ползунка */
+}
+/* Изменение цвета при наведении */
+#BockMenuMain::-webkit-scrollbar-thumb:hover {
+    background: #ff879d; /* Более темный цвет при наведении */
+}
+
+@media screen and (max-width: 1000px) {
+    #Body{
+        top: 100px;
+    }
+}
+@media screen and (max-width: 767px) {
+    #productGrid{
+        grid-template-columns: repeat(3, 30%);
+        justify-content: center;
+        position: relative;
+    }
+    #BockMenu{
+        min-width: 0px;
+        width: 100%;
+        padding: 20px;
+    }
+    #BockMenuDivBthShow{
+        padding: 20px 10px;
+    }
+    #BockMenuBthSbros{
+        padding: 20px 10px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .imgs{
+        display: none;
+    }
+    .Con1Text{
+        position: relative;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 500px) {
+    #productGrid{
+        grid-template-columns: repeat(2, 35%);
+        justify-content: center;
+        column-gap: 50px
+    }
+}
