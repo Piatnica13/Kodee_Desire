@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kodee</title>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/index.css">
-    <link rel="stylesheet" href="/static/css/menu.css">
-    <link rel="stylesheet" href="/static/css/footer.css">
-</head>
-<body>
-    <div id="menu-placeholder"></div>
+{% extends "base.html" %}
 
+{% block title %}
+    <title>Kodee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ | КАРАГАНДА</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/index.css">
+{% endblock %}
+
+{% block body %} 
+
+<div id ="loader">Загрузка</div>
 
     <div id="Body">
-
-
         <div id="Contener2">
             <div class="Con2DivImg">  
                 <img src="static/image/slider/SImg5.jpg" alt="" class="SliderImgs" id="Con2Imgs5">
@@ -48,7 +44,7 @@
         </div>
 
 
-        <div id="Contener1" data-aos="fade-up" data-aos-delay="40">
+        <div id="Contener1" data-aos="fade-up" data-aos-delay="0">
             <div id="Con1Img">
                 <img src="static/image/body/Starter.jpg" alt="Фото Основателя" id="Con1Img1">
             </div>
@@ -60,25 +56,25 @@
 
 
         <div id="Contener3">
-            <div class="Con3grup1"  data-aos="fade-up" data-aos-delay="40">
+            <div class="Con3grup1" data-aos="fade-up" data-aos-delay="0">
                 <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs">
                 <div class = "Con3Divs">
                     <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
                 </div>
             </div>
-            <div class="Con3grup2"  data-aos="fade-up" data-aos-delay="40">
+            <div class="Con3grup2"  data-aos="fade-up" data-aos-delay="0">
                 <div class = "Con3Divs">
                     <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
                 </div>
                 <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs">
             </div>
-            <div class="Con3grup1"  data-aos="fade-up" data-aos-delay="40">
+            <div class="Con3grup1"  data-aos="fade-up" data-aos-delay="0">
                 <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs">
                 <div class = "Con3Divs">
                     <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
                 </div>
             </div>
-            <div class = "Con3grup2"  data-aos="fade-up" data-aos-delay="40">
+            <div class = "Con3grup2"  data-aos="fade-up" data-aos-delay="0">
                 <div class = "Con3Divs">
                     <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
                 </div>
@@ -89,42 +85,37 @@
 
         <div id="Contener4">
             <div id="Con4Part1">
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="40">
+                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
                     <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
                     <p class="Con4Text Con4TextGl">Комфорт</p>
                     <p class="Con4Text Con4TextVt">Лёгкий и удобный, он не ощущается на запястье, но всегда с тобой</p>
                 </div>
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="40">
+                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
                     <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
                     <p class="Con4Text Con4TextGl">Долговечность</p>
                     <p class="Con4Text Con4TextVt">Мы используем качественные материалы, чтобы браслет радовал вас долгие годы</p>
                 </div>
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="40">
+                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
                     <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
                     <p class="Con4Text Con4TextGl">Минимализм</p>
                     <p class="Con4Text Con4TextVt">Лаконичный дизайн, который подходит к любому образу — от повседневного до вечернего</p>
                 </div>
             </div>
             <div id="Con4Part2">
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="40">
+                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
                     <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
                     <p class="Con4Text Con4TextGl">Символика</p>
                     <p class="Con4Text Con4TextVt">Браслет — это больше, чем украшение. Это история твоих мечтаний и стремлений</p>
                 </div>
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="40">
+                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
                     <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
                     <p class="Con4Text Con4TextGl">Надежность</p>
                     <p class="Con4Text Con4TextVt">Каждый браслет создан с заботой, чтобы стать твоим верным спутником в любой ситуации</p>
                 </div>
             </div>
         </div>
+        {% endblock %}
 
-
-    <div id="futer-block"></div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
-    <script src="/static/js/index.js"></script>
-
-</body>
-</html>
+{% block script %} 
+<script src="/static/js/index.js"></script>
+{% endblock %}

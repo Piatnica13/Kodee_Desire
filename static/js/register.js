@@ -23,21 +23,20 @@ document.addEventListener("DOMContentLoaded", () =>{
         });
     });
 
-const emailInput = document.querySelector("#email");
-  
-  // Проверяем, есть ли сохранённый email в Local Storage
- const savedEmail = localStorage.getItem("savedEmail");
-  if (savedEmail) {
-    emailInput.value = savedEmail; // Предзаполняем поле email
-  }
-
-  // Сохраняем email при каждом изменении
-emailInput.addEventListener("input", () => {
-    localStorage.setItem("savedEmail", emailInput.value);
-  });
+    const emailInput = document.querySelector("#email");
+      // Проверяем, есть ли сохранённый email в Local Storage
+    const savedEmail = localStorage.getItem("savedEmail");
+    if (savedEmail) {
+        emailInput.value = savedEmail; // Предзаполняем поле email
+    }
+    
+      // Сохраняем email при каждом изменении
+    emailInput.addEventListener("input", () => {
+        localStorage.setItem("savedEmail", emailInput.value);
+    });
 });
 
-let InpPass = document.querySelector('#InpPass');
+let InpPass = document.querySelector('#password');
 let hide = document.querySelector('#Hide');
 let show = document.querySelector('#Show');
 let isPasswordVisible = false;

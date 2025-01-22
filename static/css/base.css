@@ -1,0 +1,27 @@
+body, html{
+    margin: 0px;
+    padding: 0px;
+    font-family:'Courier New', Courier, monospace;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #ffe4e9;
+}
+html::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикальной полосы */
+    height: 10px; /* Высота горизонтальной полосы */
+}
+/* Цвет фона полосы прокрутки */
+html::-webkit-scrollbar-track {
+    background: #ffe4e9; /* Цвет фона */
+}
+/* Цвет ползунка (скроллбара) */
+html::-webkit-scrollbar-thumb {
+    background-color: #f9d9df; 
+    border-radius: 6px; /* Закругление углов */
+    border: 2px solid #ffe4e9; /* Полоса вокруг ползунка */
+    transition: background-color 0.2s ease-in-out;
+}
+/* Изменение цвета при наведении */
+html::-webkit-scrollbar-thumb:hover {
+    background-color: #ffb3c1; 
+}

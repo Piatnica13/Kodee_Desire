@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/static/css/contact.css">
-    <link rel="stylesheet" href="/static/css/footer.css">
-    <link rel="stylesheet" href="/static/css/menu.css">
-</head>
-<body>
-    <div id="menu-placeholder"></div>
+{% extends "base.html" %}
 
+{% block title %}
+    <title>Contact</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/contact.css">
+{% endblock %}
+
+{% block body %} 
     <div id="Body">
         <div id="Text">
             <p class="InDivText">KoDee Desire <br>Jewellery</p>
@@ -20,10 +17,9 @@
                 <p class="InDivText" id="Instagram">Instagram</p>
             </a>
         </div>
-        <div id="futer-block"></div>
-    </div>
 
+{% endblock %}
 
-    <script src="/static/js/contact.js"></script>
-</body>
-</html>
+{% block script %}
+<script src="/static/js/contact.js"></script>
+{% endblock%}

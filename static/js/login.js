@@ -23,18 +23,17 @@ document.addEventListener("DOMContentLoaded", () =>{
         });     // Тайминг должен совпадать с CSS transition
     });
 
-const emailInput = document.querySelector("#email");
-  
-  // Проверяем, есть ли сохранённый email в Local Storage
- const savedEmail = localStorage.getItem("savedEmail");
-  if (savedEmail) {
-    emailInput.value = savedEmail; // Предзаполняем поле email
-  }
-
-  // Сохраняем email при каждом изменении
-emailInput.addEventListener("input", () => {
-    localStorage.setItem("savedEmail", emailInput.value);
-  });
+    const emailInput = document.querySelector("#email");
+      // Проверяем, есть ли сохранённый email в Local Storage
+    const savedEmail = localStorage.getItem("savedEmail");
+        if (savedEmail) {
+        emailInput.value = savedEmail; // Предзаполняем поле email
+        }
+    
+      // Сохраняем email при каждом изменении
+    emailInput.addEventListener("input", () => {
+        localStorage.setItem("savedEmail", emailInput.value);
+    });
 });
 
 let InpPass = document.querySelector('#InpPass');

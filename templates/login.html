@@ -1,42 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/static/css/login.css">
-</head>
-<body>
-    <div id="Contener">
-        <div id="Forma">
-            <a href="/">
-                <div id="ImgLogo">
-                    <img src="/static/image/menu/logo_x2.PNG" alt="" id="Logo">
-                </div>
-            </a>
-            <div>
-                <h1 id="MainText">LOG IN</h1>
+{% extends "baseForReg.html" %}
+
+{% block title %}
+    <title>Log In</title>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/login.css">
+{% endblock %}
+
+{% block body %} 
+<div id="Contener">
+    <div id="Forma">
+        <a href="/">
+            <div id="ImgLogo">
+                <img src="/static/image/menu/logo_x2.PNG" alt="" id="Logo">
             </div>
-            <div id="UserInp">
-                <div class="ImgInp">
-                    <img src="/static/image/auth/mail.png" alt="Email" class="ImgInInput">
-                    <input type="email" placeholder="Email" class="test" id="email">
-                </div>
-                <div class="ImgInp">
-                    <img src="/static/image/auth/pass.png" alt="Password" class="ImgInInput">
-                    <input type="password" placeholder="Password" class="test" id="InpPass">
-                    <img src="/static/image/auth/hide.png" alt="Hide Password" id="Hide" class="ImgPass">
-                    <img src="/static/image/auth/show.png" alt="Show Password" id="Show" class="ImgPass">
-                </div>
-                <button id="ButtonSignIn">Log in</button>
+        </a>
+        <div>
+            <h1 id="MainText">LOG IN</h1>
+        </div>
+        <div id="UserInp">
+            <div class="ImgInp">
+                <img src="/static/image/auth/mail.png" alt="Email" class="ImgInInput">
+                <input type="email" placeholder="Email" class="test" id="email">
             </div>
-            <div>
-                <p>Don't have an account? <a href="/register" id="LogIn">Sign up</a></p>
+            <div class="ImgInp">
+                <img src="/static/image/auth/pass.png" alt="Password" class="ImgInInput">
+                <input type="password" placeholder="Password" class="test" id="InpPass">
+                <img src="/static/image/auth/hide.png" alt="Hide Password" id="Hide" class="ImgPass">
+                <img src="/static/image/auth/show.png" alt="Show Password" id="Show" class="ImgPass">
             </div>
+            <button id="ButtonSignIn">Log in</button>
+        </div>
+        <div>
+            <p>Don't have an account? <a href="/register" id="LogIn">Sign up</a></p>
         </div>
     </div>
+</div>
+{% endblock %}
 
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="/static/js/login.js"></script>
-</body>
-</html>
+{% block script %} 
+<script src="/static/js/login.js"></script>
+{% endblock %}
