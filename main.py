@@ -2,8 +2,9 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shop.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://Piatnica13:1q2w3ee3w2q1@pythonanywhere.com/Piatnica13$testdatabase'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
 class Person(db.Model):
@@ -18,6 +19,16 @@ class Person(db.Model):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/test-db')
+def test_db():
+    try:
+        db.session.execute('SELECT 1')
+        return "Подключение к базе данных успешно!"
+    except Exception as e:
+        return f"Ошибка подключения: {e}"
+
 
 @app.route('/shop')
 def shop():
