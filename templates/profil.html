@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Профиль</title>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/profil.css">
+{% endblock %}
+
+{% block body %}
+
+<div id="ProfilBody">
+    <div id="ProfilMain">
+        <div id="ProfilTop">
+            <p>Добро пожаловать </p>
+        </div>
+        <div id="ProfilMenuBottom">
+            <div id="ProfilMenu">
+                <div id="ProfilMenuRight">
+                    <a href="">
+                        <div class="ProfilMenuItem Profillinia">
+                            <img src="/static/image/menu/like.png" alt="Избранные товары">
+                            <label for="Избранное">Избранное</label>
+                        </div>
+                    </a>
+                    <div class="ProfilMenuItem">
+                        <img src="/static/image/menu/profil.png" alt="Профиль">
+                        <label for="Профиль">Профиль</label>
+                    </div>
+                    <div class="ProfilMenuItem">
+                        <img src="/static/image/dirProfil/pen.png" alt="Изменить пороль">
+                        <label for="Изменить пороль">Изменить пароль</label>
+                    </div>
+                    <div class="ProfilMenuItem Profillinia">
+                        <img src="/static/image/dirProfil/tochka.png" alt="Адрес">
+                        <label for="Адрес">Адрес доставки</label>
+                    </div>
+                    <a href="/logout">
+                        <div class="ProfilMenuItem ProfilExit">
+                            <label for="Выход">Выйти из аккаунта</label>
+                        </div>
+                    </a>
+                </div>
+                <div id="ProfilMenuLeft">
+                    <div id="ProfilLeftProfil" class="ProfilOb">
+                        <h1>Профиль пользователя</h1>
+                        <div id="ProfilMainInfo">
+                            <a href="">
+                                <div id="ProfilEdit">
+                                    <img src="/static/image/dirProfil/pen.png" alt="Изменить профиль">
+                                    <label for="EditInfo">Изменить</label>
+                                </div>
+                            </a>
+                            <div id="ProfilNameAndSurename">
+                                <label for="NameSurename">Имя Фамилия</label><br>
+                                <label for="userNameSurename"></label>
+                            </div>
+                            <div id="ProfilEmail">
+                                <label for="NameSurename">Email</label><br>
+                                <label for="userNameSurename"></label>
+                            </div>
+                            <div id="ProfilPhone">
+                                <label for="NameSurename">Телефон</label><br>
+                                <label for="userNameSurename"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ProfilLeftChanchPass" class="ProfilOb">
+                        <h1>Пароль</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="/static/js/profil.js"></script>
+{% endblock %}

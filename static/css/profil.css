@@ -1,0 +1,139 @@
+#Body{
+    top: 100px;
+}
+#ProfilBody{
+    position: relative;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+#ProfilMain{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#ProfilTop{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffd0d9;
+}
+#ProfilTop p{
+    font-size: 1.6rem;
+}
+#ProfilMenuBottom{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#ProfilMenu{
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    max-width: 2000px;
+    display: grid;
+    grid-template-columns: 31.5% 51.5%;
+    flex-direction: row;
+}
+#ProfilMenuRight{
+    height: auto;
+    position: relative;
+}
+#ProfilMenuRight::before{
+    content: "";
+    position: absolute;
+    right: 0px;
+    width: 1px;
+    height: 80%;
+    transform: translateY(14%);
+    background-color: rgb(0, 0, 0, 0.3);
+}
+#ProfilMenuRight a{
+    text-decoration: none;
+    color: black;
+}
+.ProfilMenuItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 80%;
+    position: relative;
+    padding: 15px 0px;
+    margin: 15px 0px;
+    cursor: pointer;
+}
+.ProfilMenuItem img{
+    width: 33px;
+    height: 33px;
+}
+.ProfilMenuItem label{
+    font-size: 1.35rem;
+    cursor: pointer;
+}
+.Profillinia::before{
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.3);
+    bottom: 0px;
+    left: 0px;
+}
+.ProfilExit label{
+    font-size: 1.6rem;
+}
+#ProfilMenuLeft{
+    margin: 0px 30px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+#ProfilLeftProfil{
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+#ProfilMainInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    position: relative;
+}
+#ProfilNameAndSurename{
+    width: 100%;
+}
+#ProfilEdit{
+    position: absolute;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+}
+#ProfilEdit label{
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: black;
+    transition: color 0.3s ease-in-out;
+    text-decoration: underline #ff879d 1px;
+}
+#ProfilEdit:hover label{
+    color: #ff879d;
+}
+#ProfilEdit img{
+    width: 20px;
+    height: 20px;
+}
+
+#ProfilLeftChanchPass{
+    position: absolute;
+    opacity: 0;
+}

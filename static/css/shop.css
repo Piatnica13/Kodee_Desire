@@ -1,8 +1,7 @@
-#Body{
+#ShopBody{
     position: relative;
     width: 100vw;
-    height: 100%;
-    opacity: 0; 
+    opacity: 1; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,7 +321,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-    #Body{
+    #ShopBody{
         top: 100px;
     }
 }

@@ -19,19 +19,21 @@
         <div>
             <h1 id="MainText">LOG IN</h1>
         </div>
-        <div id="UserInp">
-            <div class="ImgInp">
-                <img src="/static/image/auth/mail.png" alt="Email" class="ImgInInput">
-                <input type="email" placeholder="Email" class="test" id="email">
+        <form method="post">
+            <div id="UserInp">
+                <div class="ImgInp">
+                    <img src="/static/image/auth/mail.png" alt="Email" class="ImgInInput">
+                    <input type="email" placeholder="Email" class="test" id="email" name="email">
+                </div>
+                <div class="ImgInp">
+                    <img src="/static/image/auth/pass.png" alt="Password" class="ImgInInput">
+                    <input type="password" placeholder="Password" class="test" id="InpPass" name="password">
+                    <img src="/static/image/auth/hide.png" alt="Hide Password" id="Hide" class="ImgPass">
+                    <img src="/static/image/auth/show.png" alt="Show Password" id="Show" class="ImgPass">
+                </div>
+                <button id="ButtonSignIn" type="submit">Log in</button>
             </div>
-            <div class="ImgInp">
-                <img src="/static/image/auth/pass.png" alt="Password" class="ImgInInput">
-                <input type="password" placeholder="Password" class="test" id="InpPass">
-                <img src="/static/image/auth/hide.png" alt="Hide Password" id="Hide" class="ImgPass">
-                <img src="/static/image/auth/show.png" alt="Show Password" id="Show" class="ImgPass">
-            </div>
-            <button id="ButtonSignIn">Log in</button>
-        </div>
+        </form>
         <div>
             <p>Don't have an account? <a href="/register" id="LogIn">Sign up</a></p>
         </div>
