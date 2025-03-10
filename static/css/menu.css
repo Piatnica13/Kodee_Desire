@@ -9,7 +9,7 @@ body{
   width: 100%;
   position: fixed;
   color: #ffe4e9;
-  z-index: 1000;
+  z-index: 1001;
   transform: translateY(-100%);
   transition: transform 1s ease-in-out;
   display: flex;

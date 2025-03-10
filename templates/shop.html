@@ -1,60 +1,67 @@
-{% extends "base.html" %}
-
-{% block title %}
+{% extends "base.html" %} {% block title %}
 <title>Shop</title>
-{% endblock %}
-
-{% block style %}
-<link rel="stylesheet" href="/static/css/shop.css">
-{% endblock %}
-
-{% block body %} 
+{% endblock %} {% block style %}
+<link rel="stylesheet" href="/static/css/shop.css" />
+{% endblock %} {% block body %}
 <div id="Darker"></div>
 <div id="BockMenu">
-
-    <div id="FilterHeight">
-        <div id="BockMenuTitle">
-            <p>Фильтр</p>
-            <div id="BockMenuDivImg"><img src="/static/image/imgShop/Con1/close.png" alt="Выйти" id="BockMenuTitleImg"></div>
-        </div>
-        <div id="BockMenuMain"></div>
-        <div id="BockMenuDivFuter">
-            <p>Выбраны все товары</p>
-            <div id="BockMenuDivButtons">
-                <a href="/" id="BockMenuBthSbros">Сбросить</a>
-                <div id="BockMenuDivBthShow">
-                    <p>Показать</p>
-                </div>
-            </div>
-        </div>
+  <div id="FilterHeight">
+    <div id="BockMenuTitle">
+      <p>Фильтр</p>
+      <div id="BockMenuDivImg">
+        <img
+          src="/static/image/imgShop/Con1/close.png"
+          alt="Выйти"
+          id="BockMenuTitleImg"
+        />
+      </div>
     </div>
-
+    <div id="BockMenuMain"></div>
+    <div id="BockMenuDivFuter">
+      <p>Выбраны все товары</p>
+      <div id="BockMenuDivButtons">
+        <a href="/" id="BockMenuBthSbros">Сбросить</a>
+        <div id="BockMenuDivBthShow">
+          <p>Показать</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="ShopBody">
-    <div id="PodShopBody">
-        <div class="Contener1">
-            <div class="Con1Text">
-                <P id="Con1GlText">Браслеты</P>
-                <div class="Con1DivVtText">
-                    <p id="Con1VtText">Браслеты Kodee – это не только украшения.
-                        Это ваше настроение, чувства и истории,
-                        которые вы будете рассказывать миру именно&nbsp;сегодня. <br>
-                        Наслаждайтесь вашей индивидуальностью каждый день.</p>
-                </div>
-            </div>
-            <img src="/static/image/imgShop/Con1/BrasletsAndEgg.jpg" class="imgs" alt="Фото браслета Kodee">
+  <div id="PodShopBody">
+    <div class="Contener1">
+      <div class="Con1Text">
+        <p id="Con1GlText">Браслеты</p>
+        <div class="Con1DivVtText">
+          <p id="Con1VtText">
+            Браслеты Kodee – это не только украшения. Это ваше настроение,
+            чувства и истории, которые вы будете рассказывать миру
+            именно&nbsp;сегодня. <br />
+            Наслаждайтесь вашей индивидуальностью каждый день.
+          </p>
         </div>
-        <div id="TablMenu">
-            <div id="Divfiltr">
-                <img src="/static/image/imgShop/Con1/control.png" alt="Фильтры" class="ShopImgControl">
-                <p>фильтры</p>
-            </div>
-        </div>
-        <div id="productGrid"></div>
+      </div>
+      <img
+        src="/static/image/imgShop/Con1/BrasletsAndEgg.jpg"
+        class="imgs"
+        alt="Фото браслета Kodee"
+      />
     </div>
-{% endblock %}
-
-{% block script %} 
-<script src="/static/js/shop.js"></script>
-{% endblock %}
+    <div id="TablMenu">
+      <div id="Divfiltr">
+        <img
+          src="/static/image/imgShop/Con1/control.png"
+          alt="Фильтры"
+          class="ShopImgControl"
+        />
+        <p>фильтры</p>
+      </div>
+    </div>
+    <div id="productGrid"></div>
+  </div>
+  {% endblock %} {% block script %}
+  <script src="/static/js/shop.js"></script>
+  {% endblock %}
+</div>

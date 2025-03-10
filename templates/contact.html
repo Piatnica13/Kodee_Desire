@@ -1,25 +1,24 @@
-{% extends "base.html" %}
-
-{% block title %}
-    <title>Contact</title>
-{% endblock %}
-{% block style %}
+{% extends "base.html" %} {% block title %}
+<title>Contact</title>
+{% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/contact.css">
-{% endblock %}
+{% endblock %} {% block body %}
+<div id="Text">
+    <div id="Px100bottom"></div>
+    <p class="InDivText">KoDee Desire <br />Jewellery</p>
+    <p class="InDivText">Karaganda, the Kazahstan</p>
+    <p class="InDivText">+7 (700) 336-00-24</p>
+    <a
+      href="https://www.instagram.com/kodee_jewellery/"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="text-decoration: none"
+    >
+      <p class="InDivText" id="Instagram">Instagram</p>
+    </a>
+  </div>
 
-{% block body %} 
-    <div id="Body">
-        <div id="Text">
-            <p class="InDivText">KoDee Desire <br>Jewellery</p>
-            <p class="InDivText">Karaganda, the Kazahstan</p> 
-            <p class="InDivText">+7 (700) 336-00-24</p> 
-            <a href="https://www.instagram.com/kodee_jewellery/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                <p class="InDivText" id="Instagram">Instagram</p>
-            </a>
-        </div>
-
-{% endblock %}
-
-{% block script %}
-<script src="/static/js/contact.js"></script>
-{% endblock%}
+  {% endblock %} {% block script %}
+  <script src="/static/js/contact.js"></script>
+  {% endblock%}
+</div>

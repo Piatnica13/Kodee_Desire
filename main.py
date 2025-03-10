@@ -12,8 +12,11 @@ app.secret_key = 'SecretKey'
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25), nullable=False)
-    password = db.Column(db.String(25), nullable=False)
+    last_name = db.Column(db.String(40), nullable=True, default="")
+    password = db.Column(db.String(255), nullable=False)
+    phone = db.Column(db.String(11), nullable=True, default="")
     email = db.Column(db.String(75), nullable=False)
+    address = db.Column(db.String(50), nullable=True, default="")
 
     def __repr__(self):
         return f"{self.name}"
@@ -24,12 +27,37 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/profil')
+@app.route('/profil', methods=["POST", "GET"])
 def profil():
-    if 'user_id' not in session:
-        return redirect('/login')
-    user = Person.query.get(session['user_id'])
-    return render_template("profil.html", user=user)
+    if request.method == "POST":
+        user = Person.query.get(session["user_id"])
+        if user:
+            user.name = request.form.get("name")
+            user.last_name = request.form.get("last_name", "")
+            user.phone = request.form.get("phone", "")
+            user.email = request.form.get("email")
+            user.address = request.form.get("address", "")
+
+            try:
+                db.session.commit()
+                return redirect("/profil")
+            except:
+                db.session.rollback()
+                return "Ошибка обновления данных"
+        else:
+            return "Пользователь не найден"
+    else:
+        user_id = session.get('user_id')  # Проверяем, есть ли user_id в сессии
+        if not user_id:
+            return redirect('/login')
+
+        user = Person.query.get(int(user_id))  # Приводим user_id к int
+
+        if not user:  # Если в БД нет пользователя
+            session.pop('user_id', None)  # Очистка невалидной сессии
+            return redirect('/login')
+
+        return render_template("profil.html", user=user)
 
 @app.route('/logout')
 def logout():

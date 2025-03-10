@@ -1,11 +1,17 @@
 #Body{
-    top: 100px;
+    height: 100vh;
+}
+#Px100bottom{
+    width: 100%;
+    height: 100px;
 }
 #ProfilBody{
     position: relative;
     width: 100vw;
+    height: calc(100vh - 230px);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
 }
 #ProfilMain{
     display: flex;
@@ -47,7 +53,7 @@
     position: absolute;
     right: 0px;
     width: 1px;
-    height: 80%;
+    height: 85%;
     transform: translateY(14%);
     background-color: rgb(0, 0, 0, 0.3);
 }
@@ -86,25 +92,35 @@
 .ProfilExit label{
     font-size: 1.6rem;
 }
+.ProfilTitle{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 #ProfilMenuLeft{
     margin: 0px 30px;
     height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 #ProfilLeftProfil{
-    opacity: 1;
-    display: flex;
+    opacity: 0;
+    display: none;
     flex-direction: column;
-    align-items: center;
     position: absolute;
+    width: 45%;
+    max-width: 970px;
 }
-#ProfilMainInfo{
+.ProfilInfo{
     display: flex;
     flex-direction: column;
     gap: 30px;
     width: 100%;
     position: relative;
+}
+#ProfilProfil{
+    gap: 0px
 }
 #ProfilNameAndSurename{
     width: 100%;
@@ -112,6 +128,7 @@
 #ProfilEdit{
     position: absolute;
     right: 0px;
+    top: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -136,4 +153,64 @@
 #ProfilLeftChanchPass{
     position: absolute;
     opacity: 0;
+}
+
+#ProfilLeftChanchInfo{
+    width: 100%;
+}
+#ProfilChangeInfoDivInp{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.ProfilChangeInfoInp{
+    height: 40px;
+    width: 80%;
+    font-size: 20px;
+}
+#ProfilSplit{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+#ProfilChangeInfoDivButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#ProfilChangeInfoButton{
+    width: 200px;
+    height: 100px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ffd0d9;
+    border: none;
+    transition: scale 0.2s;
+}
+#ProfilChangeInfoButton:hover{
+    scale: 1.02;
+}
+#ProfilChangeInfoButton:active{
+    scale: 0.98;
+}
+.ProfilImgs{
+    width: 20px;
+    position: absolute;
+    left: 8px;
+    top: 11.5px;
+    opacity: 0.5;
+}
+.ProfilDivImgs{
+    position: relative;
+}
+#ProfilImgPhone{
+    top: 13px;
+}
+@media screen and (max-height: 830px) {
+    #ProfilBody{
+        position: relative;
+        width: 100vw;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
 }

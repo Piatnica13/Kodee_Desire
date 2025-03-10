@@ -2,9 +2,7 @@ const images = document.querySelectorAll("img");
 let loader = document.querySelector('#loader');
 let loadedImages = 0;
 const totalImages = images.length;
-
 loader.style.opacity = "1";
-
 function checkImagesLoaded() {
     loadedImages++;
     if (loadedImages == totalImages) {
@@ -12,11 +10,11 @@ function checkImagesLoaded() {
             loader.style.opacity = "0";
             setTimeout(()=>{ 
                 loader.style.display = "none";
+                loader.style.zIndex = "0";
             }, 600);
         }, 1000)
     }
 }
-
 images.forEach((img) => {
     if (img.complete) {
         checkImagesLoaded(); // Already loaded
@@ -24,6 +22,7 @@ images.forEach((img) => {
         img.onload = checkImagesLoaded; // Wait for load
     }
 });
+
 
 
 setTimeout(() => {

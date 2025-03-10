@@ -1,22 +1,16 @@
-{% extends "base.html" %}
-
-{% block title %}
+{% extends "base.html" %} {% block title %}
 <title>Basa</title>
-{% endblock %}
-
-{% block body %}
-<div style = "display: flex; flex-direction: column; width: 100vw;">
-{{ data }}
-{% for el in data %}
-<div style = "height: 140px; color: black; position: relative;">
+{% endblock %} {% block body %}
+<div style="display: flex; flex-direction: column; width: 100vw">
+  {{ data }} {% for el in data %}
+  <div style="height: 140px; color: black; position: relative">
     {{el.id}}
     <div>{{el.name}}</div>
     <div>{{el.password}}</div>
     <div>{{el.email}}</div>
+  </div>
+  {% endfor %}
 </div>
-{% endblock %}
-</div>
-
-{% block script %}
-<script src = "/static/js/baseinfo.js"></script>
+{%endblock%} {% block script %}
+<script src="/static/js/baseinfo.js"></script>
 {% endblock %}

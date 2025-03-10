@@ -2,6 +2,7 @@ img{
     will-change: transform, opacity;
 }
 #loader{
+    z-index: 1000;
     position: fixed;
     opacity: 0;
     width: 100vw;
