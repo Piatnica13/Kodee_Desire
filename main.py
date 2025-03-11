@@ -1,42 +1,58 @@
 from werkzeug.security import generate_password_hash, check_password_hash
+
 from flask import Flask, render_template, request, redirect, session
-from flask_sqlalchemy import SQLAlchemy
+from models import db, Address, Person
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shop.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Проверь, что база данных настроена
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+
+db.init_app(app)
 
 app.secret_key = 'SecretKey'
-
-class Person(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(25), nullable=False)
-    last_name = db.Column(db.String(40), nullable=True, default="")
-    password = db.Column(db.String(255), nullable=False)
-    phone = db.Column(db.String(11), nullable=True, default="")
-    email = db.Column(db.String(75), nullable=False)
-    address = db.Column(db.String(50), nullable=True, default="")
-
-    def __repr__(self):
-        return f"{self.name}"
-
 
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/profil', methods=["POST", "GET"])
 def profil():
     if request.method == "POST":
         user = Person.query.get(session["user_id"])
         if user:
-            user.name = request.form.get("name")
-            user.last_name = request.form.get("last_name", "")
-            user.phone = request.form.get("phone", "")
-            user.email = request.form.get("email")
-            user.address = request.form.get("address", "")
+            if "update_info" in request.form:
+                name = request.form.get("name")
+                last_name = request.form.get("last_name", "")
+                phone = request.form.get("phone", "")
+                email = request.form.get("email")
+                address = request.form.get("address", "")
+                
+                user.name = name.strip() if name else user.name
+                user.email = email.strip() if email else user.email
+                user.last_name = last_name.strip() if last_name else user.last_name
+                user.phone = phone.strip() if phone else user.phone
+                user.address = address.strip() if address else user.address
+                
+            elif "update_password" in request.form:
+                new_pass = request.form.get("newPass")
+                re_new_pass = request.form.get("reNewPass")
+
+                if new_pass and new_pass == re_new_pass:
+                    heshed_pass = generate_password_hash(request.form.get("newPass"))
+                    user.password = heshed_pass
+                else:
+                    return "Ошибка совпадения паролей"
+            elif "add_address" in request.form:
+                name = request.form.get("name")
+                city = request.form.get("city")
+                street = request.form.get("street")
+                home = request.form.get("home")
+                flat = request.form.get("flat")
+                person_id = session["user_id"]
+
+                new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
+                db.session.add(new_address)
+                db.session.commit()
 
             try:
                 db.session.commit()
@@ -78,7 +94,8 @@ def contact():
 @app.route('/basainfo')
 def basainfo():
     person = Person.query.order_by(Person.id).all()
-    return render_template('basainfo.html', data=person)
+    address = Address.query.order_by(Address.id).all()
+    return render_template('basainfo.html', data=person, add=address)
 
 
 @app.route('/register', methods=['POST', 'GET'])

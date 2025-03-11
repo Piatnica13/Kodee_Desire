@@ -19,15 +19,15 @@
               <label for="Избранное">Избранное</label>
             </div>
           </a>
-          <div class="ProfilMenuItem">
+          <div class="ProfilMenuItem" id="ProfilMenuItemProfil">
             <img src="/static/image/menu/profil.png" alt="Профиль" />
             <label for="Профиль">Профиль</label>
           </div>
-          <div class="ProfilMenuItem">
+          <div class="ProfilMenuItem" id="ProfilMenuItemPassword">
             <img src="/static/image/dirProfil/pen.png" alt="Изменить пороль" />
             <label for="Изменить пороль">Изменить пароль</label>
           </div>
-          <div class="ProfilMenuItem Profillinia">
+          <div class="ProfilMenuItem Profillinia" id="ProfilMenuItemAddress">
             <img src="/static/image/dirProfil/tochka.png" alt="Адрес" />
             <label for="Адрес">Адрес доставки</label>
           </div>
@@ -42,41 +42,55 @@
             <div id="ProfilLeftProfilTitle" class="ProfilTitle"><h1>Профиль пользователя</h1></div>
             <div>
               <div class="ProfilInfo" id="ProfilProfil">
-                <a href="">
-                  <div id="ProfilEdit">
-                    <img
-                      src="/static/image/dirProfil/pen.png"
-                      alt="Изменить профиль"
-                    />
-                    <label for="EditInfo">Изменить</label>
-                  </div>
-                </a>
+                <div id="ProfilEdit">
+                  <img src="/static/image/dirProfil/pen.png" alt="Изменить профиль" />
+                  <label for="EditInfo">Изменить</label>
+                </div>
                 <div id="ProfilMainInfo" class="ProfilInfo">
-                  <label style="font-size: 30px">Основные данные</label>
+                  <label style="font-size: 30px; width: 300px">Основные данные</label>
                   <div id="ProfilNameAndSurename">
-                    <label for="NameSurename">Имя и фамилия</label><br />
-                    <label for="userNameSurename"
-                      >{{user.last_name}} {{user.name}}</label
-                    >
+                    <label for="NameSurename" class = "labelForNameSurename">Фамилия и имя</label><br />
+                    <label for="userNameSurename" class="otherLabelForNameSurename">{{user.last_name}} {{user.name}}</label>
                   </div>
                   <div id="ProfilEmail">
-                    <label for="NameSurename">Email</label><br />
-                    <label for="userNameSurename">{{user.email}}</label>
+                    <label for="NameSurename" class = "labelForNameSurename">Email</label><br />
+                    <label for="userNameSurename" class="otherLabelForNameSurename">{{user.email}}</label>
                   </div>
                   <div id="ProfilPhone">
-                    <label for="NameSurename">Телефон</label><br />
-                    <label for="userNameSurename">{{user.phone}}</label>
+                    <label for="NameSurename" class = "labelForNameSurename">Телефон</label><br />
+                    <label for="userNameSurename" class="otherLabelForNameSurename">{{user.phone}}</label>
                   </div>
                   <div id="ProfilAdres">
-                    <label for="NameSurename">Адрес</label><br />
-                    <label for="userNameSurename">{{user.address}}</label>
+                    <label for="NameSurename" class = "labelForNameSurename">Адрес</label><br />
+                    <label for="userNameSurename" class="otherLabelForNameSurename">{{user.address}}</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div id="ProfilLeftChanchPass" class="ProfilOb">
-            <h1>Пароль</h1>
+            <div class="ProfilTitle"><h1>Изменение пароля</h1></div>
+            <form id="ProfilMainPass" method="POST">
+              <div id="ProfilInpsPass">
+                <div id="ProfilFInpPass" class="ProfilInpPass">
+                  <label for="" class = "ProfilLabels">Новый пароль</label>
+                  <div>
+                    <img src="/static/image/auth/pass.png" class="ProfilImgsS" alt="Password">
+                    <input type="password" name="newPass" class="ProfilTextInp">
+                  </div>
+                </div>
+                <div id="ProfilSInpPass" class="ProfilInpPass">
+                  <label for="" class = "ProfilLabels">Подтверждение нового пароля</label>
+                  <div>
+                    <img src="/static/image/auth/pass.png" class="ProfilImgsS" alt="">
+                    <input type="password" name="reNewPass" class="ProfilTextInp">
+                  </div>
+                </div>
+              </div>
+              <div id="ProfilBthPass">
+                <button type="submit" name="update_password" value="1" id="ProfilBth">Сохранить</button>
+              </div>
+            </form>
           </div>
           <div id="ProfilLeftChanchInfo" class="ProfilOb">
             <div class="ProfilTitle"><h1>Изменение информации</h1></div>
@@ -104,9 +118,53 @@
                 </div>
               </div>
               <div id="ProfilChangeInfoDivButton">
-                <button id="ProfilChangeInfoButton" type="submit">Сохранить</button>
+                <button id="ProfilChangeInfoButton" name="update_info" value="1" type="submit">Сохранить</button>
               </div>
             </form>
+          </div>
+          <div id="ProfilLeftAddAddress">
+            <div class="ProfilTitle"><h1>Адреса доставки</h1></div>
+            <div id="ProfilAddAdd"><button id="ProfilBthAddAdd">Добавить</button></div>
+            <div id="PrfilMatch">
+              <div id="ProfilAddMain">
+                {% for address in user.addresses %}
+                  <div id="ProfilAddDivMain">
+                    <input type="radio" name="addresses" class="ProfilAddRadio">
+                    <div id="ProfilAddDiv">
+                      <label>{{ address.name }}</label>
+                      <label>г.{{ address.city }} ул.{{ address.street }} д.{{ address.home }} кв.{{ address.flat }}</label>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <form method="POST" id="ProfilAddSplit">
+                <div id="ProfilAddInps">
+                  <div class="ProfilAddDivInps">
+                    <img src="/static/image/dirProfil/tochka.png" class="ProfilAddImgs" alt="Имя">
+                    <input type="text" placeholder="Наименование" class="ProfilAddInp" name="name">
+                  </div>
+                  <div class="ProfilAddDivInps">
+                    <img src="/static/image/dirProfil/tochka.png" class="ProfilAddImgs" alt="Город">
+                    <input type="text" placeholder="Город" class="ProfilAddInp" name="city">
+                  </div>
+                  <div class="ProfilAddDivInps">
+                    <img src="/static/image/dirProfil/tochka.png" class="ProfilAddImgs" alt="Улица">
+                    <input type="text" placeholder="Улица" class="ProfilAddInp" name="street">
+                  </div>
+                  <div class="ProfilAddDivInps">
+                    <img src="/static/image/dirProfil/tochka.png" class="ProfilAddImgs" alt="Дом">
+                    <input type="text" placeholder="Дом" class="ProfilAddInp" name="home">
+                  </div>
+                  <div class="ProfilAddDivInps">
+                    <img src="/static/image/dirProfil/tochka.png" class="ProfilAddImgs" alt="Квартира">
+                    <input type="text" placeholder="Квартира (не обязательно)" class="ProfilAddInp" name="flat">
+                  </div>
+                </div>
+                <div id="ProfilAddDivBth">
+                  <button id="ProfilAddBth" name="add_address" value="1" type="submit">Добавить</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

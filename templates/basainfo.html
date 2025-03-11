@@ -2,13 +2,23 @@
 <title>Basa</title>
 {% endblock %} {% block body %}
 <div style="display: flex; flex-direction: column; width: 100vw">
+  <div style="height: 100px; width: 100%"></div>
   {{ data }} {% for el in data %}
   <div style="height: 140px; color: black; position: relative">
     {{el.id}}
     <div>{{el.name}}</div>
     <div>{{el.password}}</div>
     <div>{{el.email}}</div>
+    <div>{{el.phone}}</div>
+    <div>{{el.last_name}}</div>
   </div>
+  {% endfor %} {%for el in add%}
+  <div>{{el.person_id}}</div>
+  <div>{{el.name}}</div>
+  <div>{{el.city}}</div>
+  <div>{{el.street}}</div>
+  <div>{{el.home}}</div>
+  <div>{{el.flat}}</div>
   {% endfor %}
 </div>
 {%endblock%} {% block script %}
