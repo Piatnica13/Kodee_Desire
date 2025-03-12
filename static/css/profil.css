@@ -275,7 +275,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-
+    padding: 15px 0px 15px 15px;
 }
 .ProfilAddInp{
     height: 40px;
@@ -334,17 +334,70 @@
 #ProfilAddMain{
     display: flex;
     flex-direction: column;
+    padding-top: 5px;
 }
 #PrfilMatch{
     overflow-y: auto;
-    max-height: 325px;
+    max-height: 355px;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
+#PrfilMatch::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикальной полосы */
+    height: 10px; /* Высота горизонтальной полосы */
+}
+/* Цвет фона полосы прокрутки */
+#PrfilMatch::-webkit-scrollbar-track {
+    background: #ffe4e9; /* Цвет фона */
+}
+/* Цвет ползунка (скроллбара) */
+#PrfilMatch::-webkit-scrollbar-thumb {
+    background-color: #f9d9df; 
+    border-radius: 6px; /* Закругление углов */
+    border: 2px solid #ffe4e9; /* Полоса вокруг ползунка */
+    transition: background-color 0.2s ease-in-out;
+}
+/* Изменение цвета при наведении */
+#PrfilMatch::-webkit-scrollbar-thumb:hover {
+    background-color: #ffb3c1; 
+}
 .ProfilAddRadio{
+    z-index: 10;
+    opacity: 0;
     width: 25px;
     height: 25px;
+}
+.ProfilAddRadio:focus{
+    box-shadow: none;
+}
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff879d; /* Красная рамка */
+    border-radius: 4px;    /* Закругленные углы (если нужно) */
+    background-color: transparent; /* Прозрачный фон */
+    display: inline-block;
+    position: relative;
+    right: 27.2px;
+    top: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Галочка при выборе */
+.ProfilAddRadio[type="radio"]:checked + .checkmark::after {
+    content: "✓"; /* Символ галочки */
+    color: black; /* Черный цвет */
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Добавляем hover-эффект */
+.checkmark:hover {
+    border-color: #d56f82; /* Темно-красный цвет при наведении */
 }
 #ProfilAddDivMain{
     display: flex;
@@ -361,6 +414,44 @@
     opacity: 0.3;
     background-color: black;
     bottom: 0px;
+}
+#ProfilDivButtonAdd{
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    width: 80%;
+    justify-content: center;
+    padding: 5px 0px;
+}
+#ProfilButtonAdd{
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+}
+#ProfilDelImgs{
+    position: absolute;
+    right: 20%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    opacity: 0.8;
+}
+.loginError{
+    border-color: red;
+    background-color: rgb(255, 122, 122);
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.826);
+}
+.message-box {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: white;
+    background-color: red; /* Красный фон для ошибок */
+    text-align: center;
+}
+#DivError{
+    width: 100%;
+    height: 50px;
 }
 @media screen and (max-height: 830px) {
     #ProfilBody{

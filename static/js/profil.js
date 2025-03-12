@@ -78,6 +78,58 @@ bthAddAddresses.addEventListener("click", () => {
     }, 300);
 })
 
+
+function saveAddress(addressId) {
+    fetch('/select_address', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'selected_address=' + addressId
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
+
+let buttonSave = document.querySelector("#ProfilDivButtonAdd");
+let deletedAddresses = [];
+
+function showButton() {
+    if (buttonSave) {
+        buttonSave.style.display = "flex";
+        setTimeout(() => {
+            buttonSave.style.opacity = "1";
+        }, 1);
+    } else {
+        console.error("Кнопка сохранения не найдена!");
+    }
+}
+
+function markForDeletion(addressId) {
+    
+    let addressElement = document.getElementById(`address-${addressId}`);
+    
+    if (addressElement) {
+        addressElement.remove();
+
+        if (!deletedAddresses.includes(addressId)) {
+            deletedAddresses.push(addressId);
+        }
+
+        let hiddenInput = document.getElementById("deletedAddresses");
+        if (hiddenInput) {
+            hiddenInput.value = deletedAddresses.join(",");
+        } else {
+            console.error("Скрытое поле deletedAddresses не найдено!");
+        }
+
+        showButton();
+    } else {
+        console.error(`Элемент #address-${addressId} не найден!`);
+    }
+}
+
 // Сделал на Flask 
 // class Address{
 //     constructor(name, sity, street, home, flat){
