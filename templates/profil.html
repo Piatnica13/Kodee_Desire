@@ -12,28 +12,41 @@
     </div>
     <div id="ProfilMenuBottom">
       <div id="ProfilMenu">
+        <div></div>
         <div id="ProfilMenuRight">
           <a href="">
             <div class="ProfilMenuItem Profillinia">
               <img src="/static/image/menu/like.png" alt="Избранные товары" />
-              <label for="Избранное">Избранное</label>
+              <label for="Избранное" class="ProfilForPhone">Избранное</label>
             </div>
           </a>
           <div class="ProfilMenuItem" id="ProfilMenuItemProfil">
             <img src="/static/image/menu/profil.png" alt="Профиль" />
-            <label for="Профиль">Профиль</label>
+            <label for="Профиль" class="ProfilForPhone">Профиль</label>
+          </div>
+          <div class="ProfilMenuItem ProfilMenuItemPass" id="ProfilEdit">
+            <img src="/static/image/dirProfil/pen.png" alt="Изменить профиль" />
+            <label for="Изменить профиль" class="ProfilForPhone"
+              >Изменить профиль</label
+            >
           </div>
           <div class="ProfilMenuItem" id="ProfilMenuItemPassword">
-            <img src="/static/image/dirProfil/pen.png" alt="Изменить пороль" />
-            <label for="Изменить пороль">Изменить пароль</label>
+            <img src="/static/image/dirProfil/rotation-lock.png" alt="Изменить пароль" />
+            <label for="Изменить пароль" class="ProfilForPhone">Изменить пароль</label>
           </div>
           <div class="ProfilMenuItem Profillinia" id="ProfilMenuItemAddress">
             <img src="/static/image/dirProfil/tochka.png" alt="Адрес" />
-            <label for="Адрес">Адрес доставки</label>
+            <label for="Адрес" class="ProfilForPhone">Адрес доставки</label>
           </div>
           <a href="/logout">
             <div class="ProfilMenuItem ProfilExit">
-              <label for="Выход">Выйти из аккаунта</label>
+              <img
+                src="/static/image/dirProfil/logout.png"
+                class="ProfilInvisibolImg"
+              />
+              <label for="Выход" class="ProfilForPhone"
+                >Выйти из аккаунта</label
+              >
             </div>
           </a>
         </div>
@@ -44,7 +57,7 @@
             </div>
             <div>
               <div class="ProfilInfo" id="ProfilProfil">
-                <div id="ProfilEdit">
+                <div class="ProfilEdit" id="ProfilEditt">
                   <img
                     src="/static/image/dirProfil/pen.png"
                     alt="Изменить профиль"
@@ -52,7 +65,7 @@
                   <label for="EditInfo">Изменить</label>
                 </div>
                 <div id="ProfilMainInfo" class="ProfilInfo">
-                  <label style="font-size: 30px; width: 300px"
+                  <label style="font-size: 30px; width: 100%"
                     >Основные данные</label
                   >
                   <div id="ProfilNameAndSurename">
@@ -220,10 +233,10 @@
           </div>
           <div id="ProfilLeftAddAddress">
             <div class="ProfilTitle"><h1>Адреса доставки</h1></div>
-            <div id="ProfilAddAdd">
-              <button id="ProfilBthAddAdd">Добавить</button>
-            </div>
             <div id="PrfilMatch">
+              <div id="ProfilAddAdd">
+                <button id="ProfilBthAddAdd">Добавить</button>
+              </div>
               <form id="ProfilAddMain" method="POST">
                 {% for address in user.addresses %}
                 <div id="address-{{ address.id }}">

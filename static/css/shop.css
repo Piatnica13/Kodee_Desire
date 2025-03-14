@@ -1,6 +1,6 @@
 #ShopBody{
     position: relative;
-    width: 100vw;
+    width: 100%;
     opacity: 1; 
     display: flex;
     justify-content: center;
@@ -319,7 +319,16 @@
 #BockMenuMain::-webkit-scrollbar-thumb:hover {
     background: #ff879d; /* Более темный цвет при наведении */
 }
-
+#shopDivBthMore{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#shopBthMore{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+}
 @media screen and (max-width: 1000px) {
     #ShopBody{
         top: 100px;

@@ -1,5 +1,5 @@
 #Body{
-    height: 100vh;
+    height: auto;
 }
 #Px100bottom{
     width: 100%;
@@ -8,7 +8,7 @@
 #ProfilBody{
     position: relative;
     width: 100vw;
-    height: calc(100vh - 230px);
+    height: calc(100% - 230px);
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -41,7 +41,7 @@
     height: auto;
     max-width: 2000px;
     display: grid;
-    grid-template-columns: 31.5% 51.5%;
+    grid-template-columns: 8.5% 31.5% 60%;
     flex-direction: row;
 }
 #ProfilMenuRight{
@@ -126,7 +126,7 @@
 #ProfilNameAndSurename{
     width: 100%;
 }
-#ProfilEdit{
+.ProfilEdit{
     position: absolute;
     right: 0px;
     top: 5px;
@@ -138,17 +138,17 @@
     cursor: pointer;
     z-index: 10;
 }
-#ProfilEdit label{
+.ProfilEdit label{
     cursor: pointer;
     font-size: 1.2rem;
     color: black;
     transition: color 0.3s ease-in-out;
     text-decoration: underline #ff879d 1px;
 }
-#ProfilEdit:hover label{
+.ProfilEdit:hover label{
     color: #ff879d;
 }
-#ProfilEdit img{
+.ProfilEdit img{
     width: 20px;
     height: 20px;
 }
@@ -213,6 +213,7 @@
 }
 .otherLabelForNameSurename{
     font-size: 18px;
+    overflow-wrap:  break-word;
 }
 
 #ProfilLeftChanchPass{
@@ -275,7 +276,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    padding: 15px 0px 15px 15px;
+    padding: 15px 15px 15px 15px;
 }
 .ProfilAddInp{
     height: 40px;
@@ -287,6 +288,11 @@
     grid-template-columns: 70% 30%;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+}
+#ProfilAddDiv label{
+    overflow-wrap:  break-word;
+    width: 90%;
+    display: block;
 }
 #ProfilAddDivBth{
     display: flex;
@@ -336,6 +342,9 @@
     flex-direction: column;
     padding-top: 5px;
 }
+#ProfilAddMain span{
+    flex-shrink: 0;
+}
 #PrfilMatch{
     overflow-y: auto;
     max-height: 355px;
@@ -367,6 +376,7 @@
     opacity: 0;
     width: 25px;
     height: 25px;
+    flex-shrink: 0;
 }
 .ProfilAddRadio:focus{
     box-shadow: none;
@@ -402,7 +412,7 @@
 #ProfilAddDivMain{
     display: flex;
     flex-direction: row;
-    height: 50px;
+    height: 100px;
     align-items: center;
     position: relative;
 }
@@ -410,7 +420,7 @@
     content: "";
     position: absolute;
     height: 1px;
-    width: 80%;
+    width: 100%;
     opacity: 0.3;
     background-color: black;
     bottom: 0px;
@@ -419,7 +429,7 @@
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    width: 80%;
+    width: 100%;
     justify-content: center;
     padding: 5px 0px;
 }
@@ -430,7 +440,7 @@
 }
 #ProfilDelImgs{
     position: absolute;
-    right: 20%;
+    right: 0;
     cursor: pointer;
     width: 25px;
     height: 25px;
@@ -453,12 +463,125 @@
     width: 100%;
     height: 50px;
 }
-@media screen and (max-height: 830px) {
+.ProfilInvisibolImg{
+    display: none;
+}
+.ProfilForPhone{
+    display: flex;
+}
+@media screen and (max-height: 920px) {
     #ProfilBody{
         position: relative;
         width: 100vw;
         height: auto;
         display: flex;
         justify-content: center;
+    }
+}
+@media screen and (max-width: 1200px) {
+    #ProfilInpsPass{
+        position: relative;
+        flex-direction: column;
+        align-items: start;
+        gap: 25px;
+        height: 174px;
+    }
+}
+@media screen and (max-width: 860px) {
+    #ProfilAddDivBth{
+        margin-top: 25px;
+    }
+    .ProfilAddInp{
+        height: 40px;
+        width: 88%;
+        font-size: 20px;
+    }
+    #ProfilAddSplit{
+        display: none;
+        grid-template-rows: 70% 30%;
+        grid-template-columns: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    #ProfilAddDivMain{
+        height: 150px;
+    }
+    #ProfilMainPass{
+        height: 304px;
+    }
+    #ProfilBthPass{
+        padding: 25px;
+        position: relative;
+    }
+    .ProfilInpPass{
+        width: 100%;
+    }
+    #ProfilBth{
+        width: 150px;
+        height: 75px;
+        font-size: 20px;
+    }
+    .ProfilTextInp{
+        width: 90%;
+    }
+    #ProfilChangeInfoDivButton{
+        margin-top: 25px;
+    }
+    #ProfilChangeInfoButton{
+        width: 150px;
+        height: 75px;
+        font-size: 20px;
+    }
+    .ProfilInfo{
+        gap: 20px;
+    }
+    .ProfilChangeInfoInp{
+        width: 88%;
+    }
+    #ProfilSplit{
+        display: flex;
+        flex-direction: column;
+    }
+    .ProfilForPhone{
+        display: none;
+    }
+    .ProfilTitle{
+        text-align: center;
+    }
+    #ProfilBody{
+        position: relative;
+        width: 100vw;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .ProfilInvisibolImg{
+        display: block;
+    }
+    #ProfilMenu{
+        grid-template-columns: 0% 15% 85%;
+    }
+    #ProfilMenuRight::before{
+        display: none;
+    }
+    .ProfilMenuItem{
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    #ProfilMenuRight{
+        justify-self: center;
+        width: 50px;
+    }
+    #ProfilLeftProfil{
+        width: 80%;
+    }
+    #ProfilMenuLeft{
+        margin: 0px;
+    }
+}
+@media screen and (max-width: 630px) {
+    .ProfilEdit{
+        display: none;
     }
 }

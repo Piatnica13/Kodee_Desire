@@ -1,3 +1,6 @@
+html{
+    overflow: hidden;
+}
 body{
     margin: 0px;
     padding: 0px;
@@ -45,7 +48,7 @@ body{
     font-size: 40px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-p{
+#loginP{
     padding-top: 50px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -53,8 +56,11 @@ p{
     color:rgb(172, 137, 255);
 }
 /*hover, active*/
-input{
-    width: 293px;
+#loginForm{
+    width: 100%;
+}
+#loginForm input{
+    width: 100%;
     height: 25px;
     border-radius: 999px;
     border-width: 2px;
@@ -64,12 +70,12 @@ input{
     transition: border 0.5s, box-shadow 0.5s;
     padding-left: 30px;
 }
-input:focus{
+#loginForm input:focus{
     border-color: #ffb2c0;
     box-shadow: 0 0 15px rgba(255, 129, 171, 0.826);
     outline: none; /* Убирает стандартную рамку фокуса */
 }
-button{
+#loginForm button{
     transition: scale 0.2s linear, transform 0.1s linear, box-shadow 0.1s linear;
     box-shadow: 1px 3px #ff889e;
     border-radius: 999px;
@@ -94,7 +100,8 @@ button{
     opacity: 0;
     width: 20px;
     position: absolute;
-    left: 297px;
+    top: 20%;
+    right: 3%;
     cursor: pointer;
     transition: opacity 0.2s linear;
 }
@@ -104,10 +111,10 @@ button{
     box-shadow: 0 0 15px rgba(255, 0, 85, 0.826);
 }
 
-button:hover{
+#loginForm button:hover{
     scale: 1.015;
 }
-button:active{
+#loginForm button:active{
     transform: translateY(3px) translateX(1px);
     box-shadow: none;
 }
@@ -117,9 +124,10 @@ button:active{
         position: relative;
     }
     #Forma{
-        height: 100%;
-        width: 100%;
+        height: 100vh;
+        width: 100vh;
         padding: 0rem 0rem;
+        border-radius: 0px;
     }
 }
 @media screen and (max-height: 680px) {

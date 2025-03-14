@@ -1,6 +1,6 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, url_for
 from models import db, Address, Person
 
 app = Flask(__name__)
@@ -17,10 +17,10 @@ def index():
 
 @app.route('/profil', methods=["POST", "GET"])
 def profil():
+    user = Person.query.get(session['user_id']) 
     errors={}
     #проверям работать нам с бд или отобразить страницу
     if request.method == "POST":
-        user = Person.query.get(session["user_id"])
         #авторизован ли пользователь
         if user:
             #обновления информации в базе данных
@@ -165,7 +165,7 @@ def login():
         # Проверяем данные в базе:
         if user and check_password_hash(user.password, password):  # Сравниваем хэш
             session['user_id'] = user.id
-            return render_template('profil.html', user=user, errors=errors) # Перенаправляем на защищенную страницу
+            return redirect(url_for('profil')) # Перенаправляем на защищенную страницу
         else:
             errors["comparisons"] = "Ошибка ввода, не правильно введен пароль или email"
             return render_template("login.html", errors=errors)

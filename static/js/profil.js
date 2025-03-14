@@ -1,6 +1,7 @@
 let bthProfil = document.querySelector("#ProfilMenuItemProfil");
 let profil = document.querySelector("#ProfilLeftProfil");
 let bthRechange = document.querySelector("#ProfilEdit");
+let bthRechangee = document.querySelector("#ProfilEditt");
 let rechange = document.querySelector("#ProfilLeftChanchInfo");
 let bthPassword = document.querySelector("#ProfilMenuItemPassword");
 let password = document.querySelector("#ProfilLeftChanchPass");
@@ -31,6 +32,18 @@ bthProfil.addEventListener("click", () => {
 })
 
 bthRechange.addEventListener("click", () => {
+    profil.style.opacity = "0";
+    password.style.opacity = "0";
+    address.style.opacity = "0";
+    rechange.style.display = "block";
+    setTimeout(() => {
+        address.style.display = "none"
+        profil.style.display = "none";
+        password.style.display = "none";
+        rechange.style.opacity = "1";
+    }, 500)
+})
+bthRechangee.addEventListener("click", () => {
     profil.style.opacity = "0";
     password.style.opacity = "0";
     address.style.opacity = "0";
