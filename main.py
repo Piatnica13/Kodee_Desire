@@ -17,7 +17,9 @@ def index():
 
 @app.route('/profil', methods=["POST", "GET"])
 def profil():
-    user = Person.query.get(session['user_id']) 
+    user_id = session.get('user_id')  # Проверяем, есть ли user_id в сессии
+    if not user_id:
+        return redirect('/login')
     errors={}
     #проверям работать нам с бд или отобразить страницу
     if request.method == "POST":
@@ -47,7 +49,6 @@ def profil():
                 else:
                     errors['comparisons'] = "Ошибка, пароли не совпадают или пароль меньше 6 символов"
                     flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error")
-                    print(34)
                     return render_template("profil.html", user=user, errors=errors)
             #добавления адресов
             elif "add_address" in request.form:
@@ -86,10 +87,6 @@ def profil():
         else:
             return "Пользователь не найден"
     else:
-        user_id = session.get('user_id')  # Проверяем, есть ли user_id в сессии
-        if not user_id:
-            return redirect('/login')
-
         user = Person.query.get(int(user_id))  # Приводим user_id к int
 
         if not user:  # Если в БД нет пользователя
