@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -27,3 +28,46 @@ class Address(db.Model):
 
     def __repr__(self):
         return f"<Address {self.name}, {self.city}, {self.street}>"
+
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    price = db.Column(db.Integer)
+    concept = db.Column(db.String(20))
+    category = db.Column(db.String(20))
+    descriptions = db.Column(db.String(510))
+    slug = db.Column(db.String(100), unique=True, nullable=False)
+    images = relationship("Product_image", backref="product", lazy=True)
+    
+    def __init__(self, name, price, concept, category, descriptions, slug):
+        self.name = name
+        self.price = price
+        self.concept = concept
+        self.category = category
+        self.descriptions = descriptions
+        self.slug = slug
+        
+
+    def __repr__(self):
+        return f"<Product {self.name}, {self.price}>"
+
+class Product_image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey("product.id"), nullable=False)
+    img1 = db.Column(db.String(255), nullable=False)
+    img2 = db.Column(db.String(255), nullable=True)
+    img3 = db.Column(db.String(255), nullable=True)
+    img4 = db.Column(db.String(255), nullable=True)
+    img_silver = db.Column(db.String(255), nullable=True)
+    
+    def __init__(self, product_id, img1, img2, img3, img4, img_silver):
+        self.product_id = product_id
+        self.img1 = img1
+        self.img2 = img2
+        self.img3 = img3
+        self.img4 = img4
+        self.img_silver = img_silver
+    
+    def __repr__(self):
+        return f"<Image {self.product_id}>"

@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}
+<title>{{ product.name }} - Kodee Desire</title>
+{% endblock %} {% block style %}
+<link rel="stylesheet" href="/static/css/shop.css" />
+{% endblock %} {% block body%}
+<div id="productMainDiv">
+  <div id="productImgsDiv">
+    {% for image in product.image %}
+    <img src="{{ image.img1 }}" alt="Продукция" />
+    {% if image.img2 %}
+    <img src="{{ image.img2 }}" alt="Продукция" />
+    <img src="{{ image.img3 }}" alt="Продукция" />
+    <img src="{{ image.img4 }}" alt="Продукция" />
+    {% endif %} {% if image.img_silver %}
+    <img src="{{ image.img_silver }}" alt="Продукция " />
+    {% endif %} {% endfor %}
+  </div>
+  <div id="productMenuDiv">
+    {{ product.name }}
+    {{ product.price }}
+  </div>
+</div>
+<div id="productPodDiv">
+  <div id="productDescriptions">
+    <h2>Описание</h2>
+    {{ product.descriptions }}
+  </div>
+  <div id="productCharacter">
+    <h2>Характеристики</h2>
+    <div>
+        <div>
+            <h3>Артикул</h3>
+            {{ product.id }}
+        </div>
+        <div>
+            <h3>Концепция</h3>
+            {{ product.concept}}
+        </div>
+        <div>
+            <h3>Категория</h3>
+            {{ product.category }}
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="/static/js/shop.js"></script>
+{% endblock %}
