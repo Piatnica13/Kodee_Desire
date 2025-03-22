@@ -1,49 +1,140 @@
 {% extends "base.html" %} {% block title %}
 <title>{{ product.name }} - Kodee Desire</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" href="/static/css/shop.css" />
+<link rel="stylesheet" href="/static/css/product.css" />
 {% endblock %} {% block body%}
-<div id="productMainDiv">
-  <div id="productImgsDiv">
-    {% for image in product.image %}
-    <img src="{{ image.img1 }}" alt="Продукция" />
-    {% if image.img2 %}
-    <img src="{{ image.img2 }}" alt="Продукция" />
-    <img src="{{ image.img3 }}" alt="Продукция" />
-    <img src="{{ image.img4 }}" alt="Продукция" />
-    {% endif %} {% if image.img_silver %}
-    <img src="{{ image.img_silver }}" alt="Продукция " />
-    {% endif %} {% endfor %}
-  </div>
-  <div id="productMenuDiv">
-    {{ product.name }}
-    {{ product.price }}
-  </div>
-</div>
-<div id="productPodDiv">
-  <div id="productDescriptions">
-    <h2>Описание</h2>
-    {{ product.descriptions }}
-  </div>
-  <div id="productCharacter">
-    <h2>Характеристики</h2>
-    <div>
-        <div>
-            <h3>Артикул</h3>
-            {{ product.id }}
+<div id="productBody">
+  <div id="product100Px"></div>
+  <div id="productMainDiv">
+    <div id="productImgsDiv">
+      <div id="productGalochkas">
+        <img
+          src="/static/image/menu/galochka.png"
+          style="width: 50px; height: 50px"
+          alt="Назад"
+          id="profilGalochka1"
+        />
+        <img
+          src="/static/image/menu/galochka.png"
+          style="width: 50px; height: 50px"
+          alt="Вперед"
+          id="profilGalochka2"
+        />
+      </div>
+      {% for image in product.images %}
+      <img
+        src="{{ image.img1 }}"
+        class="productFotos"
+        alt="Продукция"
+        id="productImg{{ image.num }}"
+      />
+      {% endfor %}
+    </div>
+    <div id="productMenuDiv">
+      <div id="productMenuUp">
+        <h1>{{ product.name }}</h1>
+        <h4>{{ product.id }}</h4>
+        <h1>{{ product.price }} тг</h1>
+      </div>
+      <div id="productMenuMidle">
+        <div id="productDivSize">
+          <div id="productDivPodSize">
+            <div id="productHowSize">
+              <h3>Как определить размер?</h3>
+              <img
+                src="/static/image/productImgs/question.png"
+                style="width: 25px; height: 25px"
+                alt="Вопрос"
+              />
+            </div>
+            <h2>Размер</h2>
+            <div id="productChooseSize">
+              <h2 id="productChoose1">1</h2>
+              <h2 id="productChoose2">2</h2>
+              <h2 id="productChoose3">3</h2>
+            </div>
+          </div>
         </div>
-        <div>
-            <h3>Концепция</h3>
-            {{ product.concept}}
+        <div id="productDivColor">
+          <h2>Цвет нити</h2>
+          <select id="productColor">
+            <option>Красный</option>
+            <option>Черный</option>
+          </select>
         </div>
-        <div>
-            <h3>Категория</h3>
-            {{ product.category }}
+        <div id="productDivSaleBth">
+          <div id="productHeard">
+            <img
+              src="/static/image/productImgs/heart.png"
+              alt="Нравиться"
+              class="productHeardImgs"
+            />
+            <img
+              src="/static/image/productImgs/blackHeart.png"
+              alt="Поставить Нравиться"
+              class="productHeardImgs"
+            />
+          </div>
+          <div id="productDivBth">
+            <button
+              id="productBth"
+              onclick="urlBth('{{product.name}}', '{{user.name}}', '{{address.city}}', '{{address.street}}', '{{address.home}}')"
+            >
+              Купить
+            </button>
+          </div>
         </div>
+        <div id="CharactersRight">
+          <div id="productDescriptions">
+            <h2>Описание</h2>
+            <p style="font-size: 1.25rem">{{ product.descriptions }}</p>
+          </div>
+          <div id="productCharacter">
+            <h2>Характеристики</h2>
+            <div id="productAllCharacter">
+              <div>
+                <h3>Артикул</h3>
+                <p>{{ product.id }}</p>
+              </div>
+              <div>
+                <h3>Концепция</h3>
+                <p>{{ product.concept}}</p>
+              </div>
+              <div>
+                <h3>Категория</h3>
+                <p>{{ product.category }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div id="CharactersBottom">
+    <div id="productDescriptions">
+      <h2>Описание</h2>
+      <p style="font-size: 1.25rem">{{ product.descriptions }}</p>
+    </div>
+    <div id="productCharacter">
+      <h2>Характеристики</h2>
+      <div id="productAllCharacter">
+        <div>
+          <h3>Артикул</h3>
+          <p>{{ product.id }}</p>
+        </div>
+        <div>
+          <h3>Концепция</h3>
+          <p>{{ product.concept}}</p>
+        </div>
+        <div>
+          <h3>Категория</h3>
+          <p>{{ product.category }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="productPodDiv"></div>
 </div>
-{% endblock %}
-{% block script %}
-<script src="/static/js/shop.js"></script>
+{% endblock %} {% block script %}
+<script src="/static/js/product.js"></script>
 {% endblock %}

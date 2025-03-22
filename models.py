@@ -50,24 +50,18 @@ class Product(db.Model):
         
 
     def __repr__(self):
-        return f"<Product {self.name}, {self.price}>"
+        return f"<{self.slug}>"
 
 class Product_image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    num = db.Column(db.Integer)
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"), nullable=False)
     img1 = db.Column(db.String(255), nullable=False)
-    img2 = db.Column(db.String(255), nullable=True)
-    img3 = db.Column(db.String(255), nullable=True)
-    img4 = db.Column(db.String(255), nullable=True)
-    img_silver = db.Column(db.String(255), nullable=True)
     
-    def __init__(self, product_id, img1, img2, img3, img4, img_silver):
+    def __init__(self, num, product_id, img1):
+        self.num = num
         self.product_id = product_id
         self.img1 = img1
-        self.img2 = img2
-        self.img3 = img3
-        self.img4 = img4
-        self.img_silver = img_silver
     
     def __repr__(self):
         return f"<Image {self.product_id}>"

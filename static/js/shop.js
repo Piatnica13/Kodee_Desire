@@ -15,61 +15,61 @@ setTimeout(() => {
 }, 300);
 
 const allProducts = [
-  { name: "Кулон «Бесконечность»",  price:28500, concept: "", category: "Кулон", image: "", slug: "beskonechnost" },
-  { name: "Кулон «Голубь»", price: 30500, concept: "", category: "Кулон", image: "", slug: "golub" },
-  { name: "Кулон «Бесконечность love»", price: 31500, concept: "", category: "Кулон", image: "", slug: "beskonechnost-love" },
-  { name: "Кулон «Бриллиант»", price: 33000, concept: "", category: "Кулон", image: "", slug: "brilliant" },
-  { name: "Кулон «Пульс»", price: 33000, concept: "", category: "Кулон", image: "", slug: "puls" },
-  { name: "Кулон «Пацифик»", price: 33000, concept: "", category: "Кулон", image: "", slug: "pacifik" },
-  { name: "Кулон «Клевер»", price: 33000, concept: "", category: "Кулон", image: "", slug: "klever" },
-  { name: "Кулон «Горы»", price: 33500, concept: "", category: "Кулон", image: "", slug: "gory" },
-  { name: "Кулон «Дерево»", price: 33500, concept: "", category: "Кулон", image: "", slug: "derevo" },
-  { name: "Кулон «Крестик»", price: 34000, concept: "", category: "Кулон", image: "", slug: "krestik" },
-  { name: "Кулон Звезда Давида»", price: 34000, concept: "", category: "Кулон", image: "", slug: "zvezda-davida" },
-  { name: "Кулон «Корона»", price: 34500, concept: "", category: "Кулон", image: "", slug: "korona" },
-  { name: "Кулон «Сердце контур»", price: 35000, concept: "", category: "Кулон", image: "", slug: "serdce-kontur" },
-  { name: "Кулон «Сердце пульс»", price: 35500, concept: "", category: "Кулон", image: "", slug: "serdce-puls" },
-  { name: "Кулон «Мальчик»", price: 36000, concept: "", category: "Кулон", image: "", slug: "malchik" },
-  { name: "Кулон «Девочка»", price: 36000, concept: "", category: "Кулон", image: "", slug: "devochka" },
-  { name: "Кулон «Солнце»", price: 36000, concept: "", category: "Кулон", image: "", slug: "solnce" },
-  { name: "Кулон «Крыло»", price: 37000, concept: "", category: "Кулон", image: "", slug: "krylo" },
-  { name: "Кулон «Роза ветров»", price: 37500, concept: "", category: "Кулон", image: "", slug: "roza-vetrov" },
-  { name: "Кулон «Ангел»", price: 37500, concept: "", category: "Кулон", image: "", slug: "angel" },
-  { name: "Кулон «Ракетка»", price: 37500, concept: "", category: "Кулон", image: "", slug: "raketka" },
-  { name: "Кулон «Лапка»", price: 38000, concept: "", category: "Кулон", image: "", slug: "lapka" },
-  { name: "Кулон «Полумесяц»", price: 39000, concept: "", category: "Кулон", image: "", slug: "polumesyac" },
-  { name: "Кулон «Сердце на пульсе»", price: 39000, concept: "", category: "Кулон", image: "", slug: "serdce-na-pulse" },
-  { name: "Кулон «Снежинка»", price: 39500, concept: "", category: "Кулон", image: "", slug: "snezhinka" },
-  { name: "Кулон «Скрипичный ключ»", price: 39500, concept: "", category: "Кулон", image: "", slug: "skripochnyj-klyuch" },
-  { name: "Кулон «Якорь»", price: 41000, concept: "", category: "Кулон", image: "", slug: "yakor" },
-  { name: "Кулон «Олимпийские кольца»", price: 42500, concept: "", category: "Кулон", image: "", slug: "olimpijskie-kolca" },
-  { name: "Кулон «Рука Фатимы»", price: 45500, concept: "", category: "Кулон", image: "", slug: "ruka-fatimy" },
-  { name: "Кулон «Самолёт»", price: 46500, concept: "", category: "Кулон", image: "", slug: "samolet" },
-  { name: "Кулон «Штурвал»", price: 48000, concept: "", category: "Кулон", image: "", slug: "shturval" },
-  { name: "Кулон «Планета»", price: 48000, concept: "", category: "Кулон", image: "", slug: "planeta" },
-  { name: "Бегунок мини", price: 28500, concept: "", category: "Бегунок", image: "", slug: "begunok-mini" },
-  { name: "Бегунок", price: 55000, concept: "", category: "Бегунок", image: "", slug: "begunok" },
-  { name: "Колье-невидимка без кулона", price: 28500, concept: "", category: "Колье", image: "", slug: "kole-nevidimka-bez-kulona" },
-  { name: "Колье-неведимка с мини сердечком", price: 45000, concept: "", category: "Колье", image: "", slug: "kole-nevidimka-s-mini-serdechkom" },
-  { name: "Колье-неведимка с бегунком мини", price: 44000, concept: "", category: "Колье", image: "", slug: "kole-nevidimka-s-begunkom-mini" },
-  { name: "Колье-неведимка с бегунком", price: 64000, concept: "", category: "Колье", image: "", slug: "kole-nevidimka-s-begunkom" },
-  { name: 'Кулон Знак зодиака «Овен»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "oven" },
-  { name: 'Кулон Знак зодиака «Телец»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "telec" },
-  { name: 'Кулон Знак зодиака «Близнецы»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "bliznecy" },
-  { name: 'Кулон Знак зодиака «Рак»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "rak" },
-  { name: 'Кулон Знак зодиака «Лев»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "lev" },
-  { name: 'Кулон Знак зодиака «Дева»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "deva" },
-  { name: 'Кулон Знак зодиака «Весы»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "vesy" },
-  { name: 'Кулон Знак зодиака «Скорпион»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "skorpion" },
-  { name: 'Кулон Знак зодиака «Стрелец»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "strelec" },
-  { name: 'Кулон Знак зодиака «Козерог»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "kozerog" },
-  { name: 'Кулон Знак зодиака «Водолей»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "vodolej" },
-  { name: 'Кулон Знак зодиака «Рыбы»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "", slug: "ryby" },
-  { name: "Монеточка", price: 173000, concept: "", category: "Монеточка", image: "", slug: "monetochka" },
-  { name: "Гравировка монетки 0.7г", price: 47000, concept: "", category: "Монеточка", image: "", slug: "gravirovka-monetki-07g" },
-  { name: "Гравировка монетки 1.1г", price: 68000, concept: "", category: "Монеточка", image: "", slug: "gravirovka-monetki-11g" },
-  { name: "Кулон из серебра", price: 10000, concept: "", category: "Кулон", image: "", slug: "kulon-iz-serebra" },
-  { name: "Гравировка в серебре", price: 15000, concept: "", category: "Монеточка", image: "", slug: "gravirovka-v-serebre" }
+  { name: "Кулон «Бес&shy;конеч&shy;ность»",  price:28500, concept: "Мир и свобода", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "beskonechnost" },
+  { name: "Кулон «Голубь»", price: 30500, concept: "Мир и свобода", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "golub" },
+  { name: "Кулон «Бес&shy;конеч&shy;ность love»", price: 31500, concept: "Любовь и романтика", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "beskonechnost-love" },
+  { name: "Кулон «Бриллиант»", price: 33000, concept: "Сила и успех", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "brilliant" },
+  { name: "Кулон «Пульс»", price: 33000, concept: "Любовь и романтика", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "puls" },
+  { name: "Кулон «Пацифик»", price: 33000, concept: "Мир и свобода", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "patsifik" },
+  { name: "Кулон «Клевер»", price: 33000, concept: "Жизнь и процветание", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "klever" },
+  { name: "Кулон «Горы»", price: 33500, concept: "Путешествия и приключения", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "gory" },
+  { name: "Кулон «Дерево»", price: 33500, concept: "Жизнь и процветание", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "derevo" },
+  { name: "Кулон «Крестик»", price: 34000, concept: "Духовность и вера", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "krestik" },
+  { name: "Кулон «Звезда Давида»", price: 34000, concept: "Духовность и вера", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "zvezda-davida" },
+  { name: "Кулон «Корона»", price: 34500, concept: "Сила и успех", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "korona" },
+  { name: "Кулон «Сердце контур»", price: 35000, concept: "Любовь и романтика", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "serdtse-kontur" },
+  { name: "Кулон «Сердце пульс»", price: 35500, concept: "Любовь и романтика", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "serdtse-puls" },
+  { name: "Кулон «Мальчик»", price: 36000, concept: "Любовь и семья", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "malchik" },
+  { name: "Кулон «Девочка»", price: 36000, concept: "Любовь и семья", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "devochka" },
+  { name: "Кулон «Солнце»", price: 36000, concept: "Природа", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "solntse" },
+  { name: "Кулон «Крыло»", price: 37000, concept: "Мир и свобода", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "krylo" },
+  { name: "Кулон «Роза ветров»", price: 37500, concept: "Путешествия и приключения", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "roza-vetrov" },
+  { name: "Кулон «Ангел»", price: 37500, concept: "Духовность и вера", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "angel" },
+  { name: "Кулон «Ракетка»", price: 37500, concept: "Спорт", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "raketka" },
+  { name: "Кулон «Лапка»", price: 38000, concept: "Любовь к животным", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "lapka" },
+  { name: "Кулон «Полумесяц»", price: 39000, concept: "Духовность и вера", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "polumesiats" },
+  { name: "Кулон «Сердце на пульсе»", price: 39000, concept: "Любовь и романтика", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "serdtse-na-pulse" },
+  { name: "Кулон «Снежинка»", price: 39500, concept: "Природа", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "snezhinka" },
+  { name: "Кулон «Скрипичный ключ»", price: 39500, concept: "Музыка и искусство", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "skripichnyi-kliuch" },
+  { name: "Кулон «Якорь»", price: 41000, concept: "Путешествия и приключения", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "iakor" },
+  { name: "Кулон «Олимпийские кольца»", price: 42500, concept: "Спорт", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "olimpiiskie-koltsa" },
+  { name: "Кулон «Рука Фатимы»", price: 45500, concept: "Духовность и вера", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "ruka-fatimy" },
+  { name: "Кулон «Самолёт»", price: 46500, concept: "Путешествия и приключения", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "samolet" },
+  { name: "Кулон «Штурвал»", price: 48000, concept: "Путешествия и приключения", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "shturval" },
+  { name: "Кулон «Планета»", price: 48000, concept: "Путешествия и приключения", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "planeta" },
+  { name: "Бегунок мини", price: 28500, concept: "Минимализм и красота", category: "Бегунок", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "begunok-mini" },
+  { name: "Бегунок", price: 55000, concept: "Минимализм и красота", category: "Бегунок", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "begunok" },
+  { name: "Колье-невидимка без кулона", price: 28500, concept: "Минимализм и красота", category: "Колье", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "kole-nevidimka-bez-kulona" },
+  { name: "Колье-неведимка с мини сердечком", price: 45000, concept: "Любовь и романтика", category: "Колье", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "kole-nevidimka-s-mini-serdechkom" },
+  { name: "Колье-неведимка с бегунком мини", price: 44000, concept: "Минимализм и красота", category: "Колье", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "kole-nevidimka-s-begunkom-mini" },
+  { name: "Колье-неведимка с бегунком", price: 64000, concept: "Минимализм и красота", category: "Колье", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "kole-nevidimka-s-begunkom" },
+  { name: 'Кулон Знак зодиака «Овен»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "oven" },
+  { name: 'Кулон Знак зодиака «Телец»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "telets" },
+  { name: 'Кулон Знак зодиака «Близнецы»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "bliznetsy" },
+  { name: 'Кулон Знак зодиака «Рак»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "rak" },
+  { name: 'Кулон Знак зодиака «Лев»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "lev" },
+  { name: 'Кулон Знак зодиака «Дева»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "deva" },
+  { name: 'Кулон Знак зодиака «Весы»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "vesy" },
+  { name: 'Кулон Знак зодиака «Скорпион»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "skorpion" },
+  { name: 'Кулон Знак зодиака «Стрелец»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "strelets" },
+  { name: 'Кулон Знак зодиака «Козерог»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "kozerog" },
+  { name: 'Кулон Знак зодиака «Водолей»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "vodolei" },
+  { name: 'Кулон Знак зодиака «Рыбы»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "ryby" },
+  { name: "Монеточка", price: 173000, concept: "Минимализм и красота", category: "Монеточка", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "monetochka" },
+  { name: "Гравировка монетки 0.7г", price: 47000, concept: "Минимализм и красота", category: "Монеточка", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "gravirovka-monetki-0-7g" },
+  { name: "Гравировка монетки 1.1г", price: 68000, concept: "Минимализм и красота", category: "Монеточка", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "gravirovka-monetki-1-1g" },
+  { name: "Кулон из серебра", price: 10000, concept: "Минимализм и красота", category: "Кулон", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "kulon-iz-serebra" },
+  { name: "Гравировка в серебре", price: 15000, concept: "Минимализм и красота", category: "Монеточка", image: "/static/image/productImgs/beskonechonst-love/img1.jpeg", slug: "gravirovka-v-serebre" }
 ];
 
 let filteredProducts = allProducts;
@@ -149,7 +149,8 @@ function renderProducts(products, bool) {
   const productContainer = document.querySelector("#productGrid");
   productContainer.innerHTML = ""; // Очистка контейнера перед рендерингом
   if (bool == true){
-    for (let i = 0; i < 12; i++){
+    for (let i = 0; i < products.length && i < 12; i++){
+      
       const productCard = `
       <div class="product-card">
         <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
@@ -170,6 +171,7 @@ function renderProducts(products, bool) {
   }
   else{
     for (let i = 0; i < products.length; i++){
+      
       const productCard = `
       <div class="product-card">
         <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
@@ -233,9 +235,9 @@ class BockMenuTabs {
 
 // Пример использования
 const myMenus = [
-  new BockMenuTabs("Концепция", ["Знаки зодиака", "Путешествия"], [1, 2, 3]),
-  new BockMenuTabs("Категория", ["Кулон", "Колье", "Бегунок", "Монеточка"], [4, 5, 6, 7]),
-  new BockMenuTabs("Цена", ["10000тг - 40000тг", "40000тг - 64000тг", "Больше 64000тг"], [8, 9, 10]),
+  new BockMenuTabs("Концепция", ["Путешествия и приключения", "Любовь и романтика", "Мир и свобода", "Сила и успех",  "Жизнь и процветание", "Духовность и вера", "Знаки зодиака", "Любовь и семья", "Спорт", "Любовь к животным", "Природа", "Музыка и искусство", "Минимализм и красота"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
+  new BockMenuTabs("Категория", ["Кулон", "Колье", "Бегунок", "Монеточка"], [14, 15, 16, 17]),
+  new BockMenuTabs("Цена", ["10000тг - 40000тг", "40000тг - 64000тг", "Больше 64000тг"], [18, 19, 20]),
 ];
 
 // Рендеринг вкладок
@@ -295,6 +297,10 @@ SbrosBth.addEventListener('click', () => {
   BockMenu.style.opacity = "0";
   Darker.style.background = "rgba(0, 0, 0, 0)";
 
+  document.querySelectorAll(".ShopFiltersRadio:checked").forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+
   FuncFilters(true);
 })
 
@@ -319,6 +325,7 @@ function bthOpacity(bool) {
     OpacityBth.style.display = "flex";
     DivOpacityBth.style.opacity = "1";
     DivOpacityBth.style.display = "flex";
+    
   }
   else{
     if (filteredProducts.length >= 12){
@@ -337,7 +344,6 @@ function bthOpacity(bool) {
 }
 
 FuncFilters(true);
-bthOpacity(true)
 ReHeight()
 
 window.addEventListener('resize', ReHeight);
