@@ -6,7 +6,7 @@ setTimeout(() => {
   }, 1001);
 }, 300);
 
-let user_size = 1;
+let user_size = 0;
 
 let size1 = document.querySelector("#productChoose1")
 size1.addEventListener("click", () => {
@@ -32,11 +32,34 @@ size3.addEventListener("click", () => {
 
 
 function urlBth(product, user_name, city, street, home) {
-  let user_color = document.querySelector("#productColor").value.toLowerCase();
-  const phoneNumber = "77003360024";  
-  const message = `Здравствуйте! Меня зовут ${user_name}. Интересуюсь позицией - ${product}, цвет нити - ${user_color}, размер - ${user_size}. Доставка на адрес: г.${city}, ул.${street}, д.${home}. Спасибо!`;  
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+  if (user_size == 0) {
+    size3.style.color = "red";
+    size2.style.color = "red";
+    size1.style.color = "red";
+
+    size1.classList.add("shake");
+    size2.classList.add("shake");
+    size3.classList.add("shake");
+
+    setTimeout(() => {
+      size1.classList.remove("shake");
+      size2.classList.remove("shake");
+      size3.classList.remove("shake");
+    }, 500)
+  }
+  else{
+    if (city == "" || street == "" || home == ""){
+      sessionStorage.setItem("needAddressCheck", "true"); // Флаг, что нужно проверять адрес
+      window.location.href = "/profil";
+    }
+    else{
+      let user_color = document.querySelector("#productColor").value.toLowerCase();
+      const phoneNumber = "77003360024";  
+      const message = `Здравствуйте! Меня зовут ${user_name}. Интересуюсь позицией - ${product}, цвет нити - ${user_color}, размер - ${user_size}. Доставка на адрес: г.${city}, ул.${street}, д.${home}. Спасибо!`;  
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+  }
 }
 
 
@@ -127,7 +150,7 @@ left.addEventListener('click', () => {
 })
 
 window.addEventListener("resize", resize);
-cheked = false;
+let cheked = false;
 function resize() {
   console.log(34);
   
@@ -148,5 +171,68 @@ function resize() {
       img3.style.opacity = "1";
       img4.style.opacity = "1";
     }
-};
+  };
+  let f = document.querySelector("#f");
+  let d = document.querySelector("#d");  
+
+  let BthLike = document.querySelector("#productLike")
+  let BthGetLike = document.querySelector("#productGetLike");
+BthGetLike.addEventListener("click", BthLikes)
+function BthLikes() {
+  fetch("/add_favorite", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({product_id: parseInt(d.value)})
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success){
+      console.log("Товар");
+    }
+    else{
+      console.log("Ошибка: " + data.error);
+    }
+  })
+  if (BthLike.style.display == "flex"){
+    FuncBthLike();
+  }
+  else{
+    FuncBthGetLike();
+  }
+}
+
+BthLike.addEventListener('click', BthLikes)
+
+function FuncBthGetLike(){
+  BthLike.style.display = "flex";
+  setTimeout(() => {
+    BthLike.style.opacity = "1";
+  }, 1);
+  BthGetLike.style.opacity = "0";
+  setTimeout(() => {
+    BthGetLike.style.display = "none";
+  }, 200);
+}
+
+function FuncBthLike() {
+  BthLike.style.opacity = "0";
+  BthGetLike.style.display = "flex";
+  setTimeout(() => {
+    BthGetLike.style.opacity = "1";
+  }, 1);
+  setTimeout(() => {
+    BthLike.style.display = "none";
+  }, 300);
+}
+
+function chek(){
+  let value = f.value.slice(1).slice(0, -1).split(', '); 
+  
+  for(let i = 0; i < value.length; i++){
+    if (d.value == value[i]){
+      FuncBthGetLike()
+    }
+  }
+}
+chek();
 resize();

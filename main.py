@@ -1,7 +1,8 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, render_template, request, redirect, session, flash, url_for
+from flask import Flask, render_template, request, redirect, session, flash, url_for, jsonify
 from models import db, Address, Person, Product, Product_image
 from slugify import slugify
+import json
 
 
 app = Flask(__name__)
@@ -23,7 +24,8 @@ def profil():
         return redirect('/login')
     errors={}
     #проверям работать нам с бд или отобразить страницу
-    user = Person.query.get(int(user_id))  # Приводим user_id к int
+    user = Person.query.get(int(user_id)) 
+    favorite_products = Product.query.filter(Product.id.in_(user.favourites)).all()
     if request.method == "POST":
         #авторизован ли пользователь
         if user:
@@ -51,7 +53,7 @@ def profil():
                 else:
                     errors['comparisons'] = "Ошибка, пароли не совпадают или пароль меньше 6 символов"
                     flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error")
-                    return render_template("profil.html", user=user, errors=errors)
+                    return render_template("profil.html", user=user, errors=errors, favorite_products = favorite_products)
             #добавления адресов
             elif "add_address" in request.form:
                 name = request.form.get("name")
@@ -82,7 +84,7 @@ def profil():
             #пробуем занести информацю в бд и выводим страницу профиля
             try:
                 db.session.commit()
-                return render_template("profil.html", errors=errors, user=user)
+                return render_template("profil.html", errors=errors, user=user, favorite_products = favorite_products)
             except:
                 db.session.rollback()
                 return "Ошибка обновления данных"
@@ -94,7 +96,7 @@ def profil():
             session.pop('user_id', None)  # Очистка невалидной сессии
             return redirect('/login')
 
-        return render_template("profil.html", user=user, errors=errors)
+        return render_template("profil.html", user=user, errors=errors, favorite_products = favorite_products)
 
 @app.route('/logout')
 def logout():
@@ -103,15 +105,53 @@ def logout():
 
 @app.route('/product/<slug>')
 def product(slug):
-    product = Product.query.filter_by(slug=slug).first()
     user_id = session.get('user_id')
+    if not user_id:
+        return redirect('/login')
+    product = Product.query.filter_by(slug=slug).first()
     person = Person.query.get(int(user_id))
     address = Address.query.filter_by(person_id = person.id).first()
+    
+    
     
     if not product:
         return "Товар не найден", 404
     
-    return render_template('product.html', product=product, user=person, address=address)
+    return render_template('product.html', product=product, user=person, address=address, favarite=person.favourites)
+
+
+@app.route('/add_favorite', methods=['POST'])
+def add_favorite():
+    data = request.get_json()  
+    print("Полученные данные:", data)  # Для отладки
+
+    product_id = data.get("product_id")
+    user_id = session.get('user_id')
+    
+    if not user_id:
+        return jsonify({"success": False, "error": "Пользователь не авторизован"})
+
+    user = Person.query.get(int(user_id))
+
+    if not user:
+        return jsonify({"success": False, "error": "Пользователь не найден"})
+
+    if product_id in user.favourites:
+        new_favorites = [pid for pid in user.favourites if pid != product_id]
+        print("Удаляю из избранного")
+    else:
+        new_favorites = user.favourites + [product_id]  
+        print("Добавляю в избранное")
+
+    user.favourites = new_favorites  # Полностью заменяем список
+
+    print("Перед коммитом:", user.favourites)
+    db.session.add(user)  # Добавляем объект обратно в сессию
+    db.session.commit()  # Сохраняем изменения
+
+    print("После коммита:", Person.query.get(user.id).favourites)
+    
+    return jsonify({"success": True, "favorites": user.favourites})
 
 
 @app.route('/shop')

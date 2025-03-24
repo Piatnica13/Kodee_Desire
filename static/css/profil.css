@@ -268,7 +268,7 @@
 #ProfilLeftAddAddress{
     width: 100%;
     opacity: 0;
-    display: none;
+    display: flex;
     transition: opacity 0.5s ease-in-out;
     flex-direction: column;
 }
@@ -469,6 +469,93 @@
 .ProfilForPhone{
     display: flex;
 }
+#ProfilLeftFavorites{
+    opacity: 0;
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+}
+.product-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 566px;
+    transition: all 0.3s ease;  
+} 
+.product-image{
+    width: 100%;
+    background-color: #ffd0d9;
+    border-radius: 3px;
+}
+.Con2Icon{
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 10px;
+}
+.BthInfo{
+    position: relative;
+    left: 5px;
+    transition: color 0.3s ease-in-out;
+}
+.DivInfo{
+    display: flex;
+    flex-direction: row;
+}
+.DivInfo:hover .BthInfo{
+    color: #ff879d;
+}
+.test{
+    position: relative;
+}
+.product-title{
+    height: 50px;
+    position: relative;
+    margin: 10px 0px 0px 0px;
+}
+.productFotos{
+    position: absolute;
+    width: 250px;
+    aspect-ratio: 1 / 1;
+    opacity: 0;
+    display: none;
+    border-radius: 3px;
+}
+#ProfilLeftFavorites{
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    width: 50%;
+}
+#prodilGridCard{
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+#prodilGridCard::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикальной полосы */
+    height: 10px; /* Высота горизонтальной полосы */
+}
+/* Цвет фона полосы прокрутки */
+#prodilGridCard::-webkit-scrollbar-track {
+    background: #ffe4e9; /* Цвет фона */
+}
+/* Цвет ползунка (скроллбара) */
+#prodilGridCard::-webkit-scrollbar-thumb {
+    background-color: #f9d9df; 
+    border-radius: 6px; /* Закругление углов */
+    border: 2px solid #ffe4e9; /* Полоса вокруг ползунка */
+    transition: background-color 0.2s ease-in-out;
+}
+/* Изменение цвета при наведении */
+#prodilGridCard::-webkit-scrollbar-thumb:hover {
+    background-color: #ffb3c1; 
+}
+.productImg1{
+    opacity: 1;
+    display: flex;
+}
 @media screen and (max-height: 920px) {
     #ProfilBody{
         position: relative;
@@ -577,11 +664,21 @@
         width: 80%;
     }
     #ProfilMenuLeft{
-        margin: 0px;
+        margin: 0px ;
     }
 }
 @media screen and (max-width: 630px) {
     .ProfilEdit{
         display: none;
     }
+    .productFotos{
+        width: 190px;
+    }
+    .product-card{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        max-height: 366px;
+        transition: all 0.3s ease;  
+    } 
 }

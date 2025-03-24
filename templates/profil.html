@@ -14,12 +14,10 @@
       <div id="ProfilMenu">
         <div></div>
         <div id="ProfilMenuRight">
-          <a href="">
-            <div class="ProfilMenuItem Profillinia">
-              <img src="/static/image/menu/like.png" alt="Избранные товары" />
-              <label for="Избранное" class="ProfilForPhone">Избранное</label>
-            </div>
-          </a>
+          <div class="ProfilMenuItem Profillinia" id="ProdilMenuItemFavorites">
+            <img src="/static/image/menu/like.png" alt="Избранные товары" />
+            <label for="Избранное" class="ProfilForPhone">Избранное</label>
+          </div>
           <div class="ProfilMenuItem" id="ProfilMenuItemProfil">
             <img src="/static/image/menu/profil.png" alt="Профиль" />
             <label for="Профиль" class="ProfilForPhone">Профиль</label>
@@ -31,8 +29,13 @@
             >
           </div>
           <div class="ProfilMenuItem" id="ProfilMenuItemPassword">
-            <img src="/static/image/dirProfil/rotation-lock.png" alt="Изменить пароль" />
-            <label for="Изменить пароль" class="ProfilForPhone">Изменить пароль</label>
+            <img
+              src="/static/image/dirProfil/rotation-lock.png"
+              alt="Изменить пароль"
+            />
+            <label for="Изменить пароль" class="ProfilForPhone"
+              >Изменить пароль</label
+            >
           </div>
           <div class="ProfilMenuItem Profillinia" id="ProfilMenuItemAddress">
             <img src="/static/image/dirProfil/tochka.png" alt="Адрес" />
@@ -51,6 +54,42 @@
           </a>
         </div>
         <div id="ProfilMenuLeft">
+          <div id="ProfilLeftFavorites" class="ProfilOb">
+            <div class="ProfilTitle">
+              <h1>Избранные товары</h1>
+            </div>
+            <div id="prodilGridCard">
+              {% if favorite_products == []%}
+              <h1>товары пока не добавлены</h1>
+              {% else %} {% for product in favorite_products %}
+              <div class="product-card">
+                <div style="width: 250px; height: 250px">
+                  {% for image in product.images %}
+                  <img
+                    src="{{ image.img1 }}"
+                    class="productFotos productImg{{ image.num }}"
+                    alt="Продукция"
+                  />
+                  {% endfor %}
+                </div>
+                <p class="product-title">{{product.name}}</p>
+                <div class="test">
+                  <p class="product-price">{{product.price}}тг</p>
+                  <a href="/product/{{product.slug}}" style="color: black">
+                    <div class="DivInfo">
+                      <img
+                        src="/static/image/menu/sumka.png"
+                        class="Con2Icon"
+                        alt="Сумка"
+                      />
+                      <p class="BthInfo"><ins>Подробнее</ins></p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              {% endfor %} {% endif %}
+            </div>
+          </div>
           <div id="ProfilLeftProfil" class="ProfilOb">
             <div id="ProfilLeftProfilTitle" class="ProfilTitle">
               <h1>Профиль пользователя</h1>

@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
+from sqlalchemy import JSON
 
 db = SQLAlchemy()
 
@@ -11,7 +12,8 @@ class Person(db.Model):
     phone = db.Column(db.String(11), nullable=True, default="")
     email = db.Column(db.String(75), nullable=False)
     address = db.Column(db.String(50), nullable=True, default="")
-    addresses = db.relationship('Address', backref='person', lazy=True, cascade="all, delete") 
+    addresses = db.relationship('Address', backref='person', lazy=True, cascade="all, delete")
+    favourites = db.Column(JSON, default=[])
 
     def __repr__(self):
         return f"{self.name}"

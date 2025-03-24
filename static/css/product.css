@@ -80,6 +80,7 @@
     width: 50px;
     height: 50px;
     position: absolute;
+    transition: opacity 0.3s ease-in-out;
 }
 #productDivSaleBth{
     position: relative;
@@ -154,7 +155,7 @@
 #productGalochkas{
     position: absolute;
     height: 50%;
-    bottom: 0px;
+    top: 45%;
     width: 100%;
     align-items: center;
     display: none;
@@ -172,6 +173,14 @@
     position: absolute;
     z-index: 10;
     right: 30px;
+}
+.shake{
+    display: inline-block;
+    animation: shake 0.5s ease-in-out;
+}
+#productLike{
+    display: none;
+    opacity: 0;
 }
 @media screen and (max-width: 1500px) {
     #productImgsDiv{
@@ -224,7 +233,7 @@
         max-width: 600px;
         aspect-ratio: 1 / 1;
         position: absolute;
-        margin-top: 50px;
+        margin-top: 0px;
     }
     #productMainDiv{
         display: flex;
@@ -246,7 +255,7 @@
         max-width: 400px;
     }
     #productImgsDiv{
-        height: 450px;
+        height: 350px;
     }
     #productAllCharacter{
         justify-content: space-between;
@@ -255,4 +264,16 @@
     #productHowSize{
         font-size: 14px;
     }
+    #productGalochkas{
+        top: 50%;
+        bottom: none;
+    }
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
 }

@@ -9,6 +9,16 @@ let bthAddress = document.querySelector("#ProfilMenuItemAddress");
 let address = document.querySelector("#ProfilLeftAddAddress");
 let formToAddAddresses = document.querySelector("#ProfilAddSplit")
 let bthAddAddresses = document.querySelector("#ProfilBthAddAdd");
+let bthFavorite = document.querySelector("#ProdilMenuItemFavorites");
+let favorite = document.querySelector("#ProfilLeftFavorites");
+
+let needCheck = sessionStorage.getItem("needAddressCheck");
+
+let ChekProfilOpacity = true;
+if (needCheck === "true") {
+    sessionStorage.removeItem("needAddressCheck"); // Удаляем, чтобы не срабатывало всегда
+    PageAddress(); // Вызываем нужную функцию
+}
 
 setTimeout(() => {
     MainContener.style.transition = `opacity 1s ease-in-out`;
@@ -18,27 +28,56 @@ setTimeout(() => {
     }, 1001);
 }, 300);
 
-bthProfil.addEventListener("click", () => {
+try{
+    let CardImg = document.querySelector("#productImg1")
+    CardImg.style.opacity = "1";
+    CardImg.style.display = "flex";
+}
+catch{}
+
+bthFavorite.addEventListener("click", () => {
     rechange.style.opacity = "0";
     password.style.opacity = "0";
     address.style.opacity = "0";
+    profil.style.opacity = "0";
+    favorite.style.display = "flex";
+    setTimeout(() => {
+        address.style.display = "none"
+        rechange.style.display = "none";
+        password.style.display = "none";
+        profil.style.display = "none";
+        favorite.style.opacity = "1";
+    }, 500);
+})
+
+bthProfil.addEventListener("click", OpacityOfProfil)
+function OpacityOfProfil() {
+    rechange.style.opacity = "0";
+    password.style.opacity = "0";
+    address.style.opacity = "0";
+    favorite.style.opacity = "0";
     profil.style.display = "flex";
     setTimeout(() => {
         address.style.display = "none"
         rechange.style.display = "none";
         password.style.display = "none";
+        favorite.style.display = "none";
         profil.style.opacity = "1";
+        console.log(999);
+        
     }, 500);
-})
+}
 
 bthRechange.addEventListener("click", () => {
     profil.style.opacity = "0";
     password.style.opacity = "0";
     address.style.opacity = "0";
+    favorite.style.opacity = "0";
     rechange.style.display = "block";
     setTimeout(() => {
         address.style.display = "none"
         profil.style.display = "none";
+        favorite.style.display = "none";
         password.style.display = "none";
         rechange.style.opacity = "1";
     }, 500)
@@ -46,9 +85,11 @@ bthRechange.addEventListener("click", () => {
 bthRechangee.addEventListener("click", () => {
     profil.style.opacity = "0";
     password.style.opacity = "0";
+    favorite.style.opacity = "0";
     address.style.opacity = "0";
     rechange.style.display = "block";
     setTimeout(() => {
+        favorite.style.display = "none";
         address.style.display = "none"
         profil.style.display = "none";
         password.style.display = "none";
@@ -59,9 +100,11 @@ bthRechangee.addEventListener("click", () => {
 bthPassword.addEventListener("click", () => {
     profil.style.opacity = "0";
     address.style.opacity = "0";
+    favorite.style.opacity = "0";
     rechange.style.opacity = "0";
     password.style.display = "flex";
     setTimeout(() => {
+        favorite.style.display = "none";
         address.style.display = "none"
         profil.style.display = "none";
         rechange.style.display = "none";
@@ -69,18 +112,24 @@ bthPassword.addEventListener("click", () => {
     }, 500);
 })
 
-bthAddress.addEventListener("click", () => {
+bthAddress.addEventListener("click", PageAddress);
+function PageAddress(){
     profil.style.opacity = "0";
     password.style.opacity = "0";
+    favorite.style.opacity = "0";
     rechange.style.opacity = "0";
     address.style.display = "flex";
+    ChekProfilOpacity = false;
+    console.log(888);
     setTimeout(() => {
         profil.style.display = "none";
+        favorite.style.display = "none";
         password.style.display = "none";
         rechange.style.display = "none";
         address.style.opacity = "1";
+        
     }, 500);
-})
+}
 
 bthAddAddresses.addEventListener("click", () => {
     bthAddAddresses.style.opacity = "0";
@@ -142,59 +191,6 @@ function markForDeletion(addressId) {
         console.error(`Элемент #address-${addressId} не найден!`);
     }
 }
-
-// Сделал на Flask 
-// class Address{
-//     constructor(name, sity, street, home, flat){
-//         this.name = name;
-//         this.sity = sity;
-//         this.street = street;
-//         this.home = home;
-//         this.flat = flat;
-//     }
-//     toHTML(){
-//         return`
-//         <div class="ProfilAddress">
-//         <h2 class = "ProfilAddressTitle">${this.name}</h2>
-//         <p class = "ProfilAddressText">Доставка г. ${this.sity} ул. ${this.street} д.${this.home} кв.${this.flat}</p>
-//         <button class = "ProfilAddressBth">Удалить</button>
-//         </div>
-//         `;
-//     }
-//     show(){
-//         console.log(`Название: ${this.name}`);
-//     }
-// }
-// const addresses = [];
-// const space = document.querySelector("#ProfilAddMain");
-// const bthSpace = document.querySelector("#ProfilAddBth");
-// const addressForm = document.querySelector("#");
-
-// form.addEventListener("submit", function (event) {
-//     event.preventDefault();
-
-//     const name = document.getElementById("name").value;
-//     const city = document.getElementById("city").value;
-//     const street = document.getElementById("street").value;
-//     const home = document.getElementById("home").value;
-//     const flat = document.getElementById("flat").value;
-
-//     const newAddress = new Address(name, city, street, home, flat);
-//     addresses.push(newAddress);
-
-//     renderAddresses();
-// });
-
-// function renderAddresses() {
-//     space.innerHTML = ""; // Очищаем перед обновлением
-//     addresses.forEach((address, index) => {
-//         const div = document.createElement("div");
-//         div.innerHTML = address.toHTML();
-//         div.querySelector(".delete-btn").addEventListener("click", () => {
-//             addresses.splice(index, 1);
-//             renderAddresses();
-//         });
-//         space.appendChild(div);
-//     });
-//     show();
-// }
+if (ChekProfilOpacity == true){
+    OpacityOfProfil() 
+}

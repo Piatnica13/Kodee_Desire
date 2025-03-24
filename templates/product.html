@@ -68,12 +68,17 @@
               src="/static/image/productImgs/heart.png"
               alt="Нравиться"
               class="productHeardImgs"
+              id="productLike"
+              style="display: none"
             />
             <img
               src="/static/image/productImgs/blackHeart.png"
               alt="Поставить Нравиться"
               class="productHeardImgs"
+              id="productGetLike"
             />
+            <input type="hidden" id="d" value="{{ product.id }}">
+            <input type="hidden" id="f" value="{{ favarite }}">
           </div>
           <div id="productDivBth">
             <button
