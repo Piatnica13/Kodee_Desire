@@ -1,6 +1,50 @@
 let MainContener = document.querySelector('#Body');
 
-document.addEventListener("DOMContentLoaded", () => {
+showMainContainer();
+
+function showMainContainer() {
+    setTimeout(() => {
+        let menu = document.querySelector("#MenuFixed");
+        menu.classList.remove("hidden");
+        menu.classList.add("visible");
+        MainContener.style.opacity = "1";
+        MainContener.style.transition = `opacity 1s ease-in-out`;
+        setTimeout(() => {
+            MainContener.style.transition = `opacity 0.3s ease-in-out`;
+        }, 1001);
+    }, 600);
+}
+
+function inShowPage(){
+    let menu = document.querySelector("#MenuFixed");    
+    MainContener.style.transition = `opacity 0.3s ease-in-out`;
+    MainContener.style.opacity = "0";
+    menu.classList.remove("visible");
+    menu.classList.add("hidden");
+}
+
+window.addEventListener('beforeunload', () => {
+    inShowPage()
+});
+
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) { 
+        showMainContainer();
+    }
+});
+
+document.addEventListener("click", function(e){
+    let link = e.target.closest("a");
+    if(link && link.href && link.target !== "_blank" && link.href.indexOf("javascript:") !== 0){
+        e.preventDefault();
+        inShowPage();
+        setTimeout(() => {
+            window.location.href = link.href;
+        }, 500);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {   
     fetch('/static/html/footer.html')
     .then(response => response.text())
     .then(html => {
@@ -10,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(script);
     })
     .catch(error => console.error('Ошибка загрузки futer:', error));
-
+    
     fetch('/static/html/menu.html')
     .then(response => response.text())
     .then(html => {
@@ -19,57 +63,63 @@ document.addEventListener("DOMContentLoaded", () => {
         const script = document.createElement('script');
         script.src = '/static/js/menu.js';
         document.body.appendChild(script);
-        //меню
-        let menu = document.querySelector("#MenuFixed");
         
-        setTimeout(() => {
-            menu.classList.add("visible");
-        }, 300);
-
-        const links = document.querySelectorAll("a");
-        links.forEach(link => {
-            link.addEventListener("click", (e) => {
-                e.preventDefault(); // Отключаем мгновенный переход
-                const href = link.getAttribute("href");
-                
-                // Прячем меню
-                MainContener.style.transition = `opacity 0.6s linear`;
-                MainContener.style.opacity = "0";
-                menu.classList.remove("visible");
-                menu.classList.add("hidden");
-                // Ждем окончания анимации и затем переходим
-                setTimeout(() => {
-                    MainContener.style.transition = `opacity 0.3s linear`;
-                    window.location.href = href; // Переход на новую страницу
-                }, 600);
-            });
-        });
-
         script.onload = () => {
             // Этот код выполнится после загрузки script.js
             let ContenerMenu = document.querySelector("#MenuFixed");
             let Logo = document.querySelector("#logo");
             let checkBox = document.querySelector("#checkboxMain");
-            checkBox.addEventListener('click', ()=>{
-                if (checkBox.checked && window.scrollY === 0){
-                    ContenerMenu.style.backgroundColor = ' #ffe4e9';
+            let poiskImgOnMenu = document.querySelector("#poisk");
+            let PlaseForPoisk = document.querySelector("#menuPlaseForPoiskk");
+            let chetchik = true;
+            poiskImgOnMenu.addEventListener("click", PoiskImgOn)
+            function PoiskImgOn(){
+                if(window.innerWidth > 767){
+                    if (checkboxMain.checked == false){
+                        checkboxMain.checked = true;
+                        checkboxmainn()
+                        handleScroll()
+                    }
                 }
-                else if(!checkBox.checked && window.scrollY === 0){
-                    ContenerMenu.style.backgroundColor = 'transparent';
-                    Logo.style.backgroundColor = 'transparent';
+                else if(window.innerWidth <= 767){
+                    if (chetchik == true && !checkBox.checked){   
+                        PlaseForPoisk.style.display = "flex";
+                        setTimeout(() => {
+                            PlaseForPoisk.style.opacity = "1";
+                        }, 1);
+                        chetchik = false;
+                        ContenerMenu.style.backgroundColor = '#ffe4e9';
+                    }
+                    else if(chetchik == false){
+                        PlaseForPoisk.style.opacity = "0";
+                        setTimeout(() => {
+                            PlaseForPoisk.style.display = "none";
+                        }, 300);
+                        if (chetchik ==false){
+                            chetchik = true;
+                            ContenerMenu.style.backgroundColor = 'transparent';
+                            Logo.style.backgroundColor = 'transparent';
+                        }   
+                    }
                 }
-            });
-            const handleScroll = () => {
-                if (window.scrollY === 0) {
-                    // Если в начале страницы
-                    ContenerMenu.style.backgroundColor = 'transparent';
-                    Logo.style.backgroundColor = 'transparent';
+            }
+
+            checkBox.addEventListener('click', handleScroll)
+            function handleScroll(){
+                
+                if (checkBox.checked && window.scrollY === 0 || !checkBox.checked && window.scrollY != 0){
+                    ContenerMenu.style.backgroundColor = '#ffe4e9';
+                }
+                else if(!checkBox.checked && window.scrollY === 0 && chetchik == true){
                     
-                } else {
-                    // Если страница прокручена
-                    ContenerMenu.style.backgroundColor = ' #ffe4e9';
+                    ContenerMenu.style.backgroundColor = 'transparent';
+                    Logo.style.backgroundColor = 'transparent';
                 }
-            };
+                if(window.innerWidth < 767 && chetchik == false){
+                    chetchik = false;
+                    PoiskImgOn()
+                }
+            }
             // Отслеживаем скролл
             window.addEventListener('scroll', handleScroll);
             
@@ -79,4 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
         AOS.init();
     })
     .catch(error => console.error('Ошибка загрузки меню:', error));
+
 });

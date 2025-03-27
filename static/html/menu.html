@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menu</title>
     <link rel="stylesheet" href="/static/css/menu.css">
 </head>
 <body>
@@ -38,7 +38,7 @@
                             <img src="/static/image/menu/poisk.png" alt="Search Icon" class="img">
                         </div>
                         <div id="izbranoe" class="flex-item">
-                            <img src="/static/image/menu/like.png" alt="Favorite Icon" class="img hi">
+                            <img src="/static/image/menu/like.png" alt="Favorite Icon" class="img" id="sumka">
                         </div>
                         <div id="profil" class="flex-item">
                             <a href="/profil">
@@ -46,7 +46,7 @@
                             </a>
                         </div>
                         <div id="moiPokupki" class="flex-item">
-                            <img src="/static/image/menu/sumka.png" alt="Purchases Icon" class="img" id="sumka">
+                            <img src="/static/image/productImgs/question.png" alt="Purchases Icon" class="img hi">
                         </div>
                     </div>
                 </div>
@@ -123,6 +123,11 @@
                         </ul>
                     </div>
                     <div id="PodRight">
+                        <div id="menuPlaseForPoisk">
+                            <img src="/static/image/menu/poisk.png" alt="Изображения Поиска" id="menuPoiskImg">
+                            <input type="text" id="menuPoisk">
+                            <div id="menuPlaseForResult"></div>
+                        </div>
                         <div id="PodRNovinki" class="PodRDivs">
                             <div class="PodRTexts">
                                 <p>Знаки зодиака - афигенная новинка, я скорпион кстати!!!</p>
@@ -164,6 +169,13 @@
                     </div>
                     <div class="PodTextDiv">
                         <a href = "/contact" class="PodTextPh">Contact</a>
+                    </div>
+                </div>
+                <div id="PodPoiskPh">
+                    <div id="menuPlaseForPoiskk">
+                        <img src="/static/image/menu/poisk.png" alt="Изображения Поиска" id="menuPoiskImgg">
+                        <input type="text" id="menuPoiskk">
+                        <div id="menuPlaseForResultt"></div>
                     </div>
                 </div>
             </div>

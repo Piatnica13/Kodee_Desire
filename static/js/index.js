@@ -3,6 +3,7 @@ let loader = document.querySelector('#loader');
 let loadedImages = 0;
 const totalImages = images.length;
 loader.style.opacity = "1";
+loader.style.backgroundColor = "#ffd0d9";
 function checkImagesLoaded() {
     loadedImages++;
     if (loadedImages == totalImages) {
@@ -22,16 +23,6 @@ images.forEach((img) => {
         img.onload = checkImagesLoaded; // Wait for load
     }
 });
-
-
-
-setTimeout(() => {
-    MainContener.style.transition = `opacity 1s ease-in-out`;
-    setTimeout(()=>{
-        MainContener.style.opacity = "1";
-        MainContener.style.transition = `opacity 0.8s ease-in-out`;
-    }, 1001);
-}, 300);
 
 function slider() {
     let Img1 = document.querySelector('#Con2Imgs1');

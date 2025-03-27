@@ -1,6 +1,6 @@
+let body = document.querySelector("#Contener");
 document.addEventListener("DOMContentLoaded", () =>{
 
-    let body = document.querySelector("#Contener");
 
     setTimeout(() => {
         body.style.transition = `opacity 0.6s linear, background 2s linear`;
@@ -34,6 +34,18 @@ document.addEventListener("DOMContentLoaded", () =>{
     emailInput.addEventListener("input", () => {
         localStorage.setItem("savedEmail", emailInput.value);
     });
+});
+
+form = document.querySelector("#loginForm")
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault(); // Останавливаем обычную отправку
+    body.style.transition = "opacity 0.5s ease"; 
+    body.style.opacity = "0"; // например, плавно исчезает
+
+    setTimeout(() => {
+        form.submit(); // теперь форма реально отправится после анимации
+    }, 500); // дожидаемся окончания анимации
 });
 
 let InpPass = document.querySelector('#InpPass');

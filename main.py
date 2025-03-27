@@ -154,6 +154,29 @@ def add_favorite():
     return jsonify({"success": True, "favorites": user.favourites})
 
 
+@app.route("/search")
+def search():
+    query = request.args.get("query", "").strip()
+    
+    if not query:
+        return jsonify([])  # Если пустой запрос, возвращаем пустой список
+
+    # Убираем ilike для id
+    products = Product.query.filter(
+        (Product.id.ilike(f"%{query}%")) |
+        (Product.name.ilike(f"%{query.capitalize()}%"))
+    ).limit(10).all()
+    
+    results = [{
+        "id": p.id,
+        "name": p.name,
+        "price": p.price,
+        "slug": p.slug,
+        "image": p.image()
+    } for p in products]
+
+    return jsonify(results)
+
 @app.route('/shop')
 def shop():
     return render_template('shop.html')
@@ -230,10 +253,10 @@ def addProducts(product):
         else:
             db.session.add(product)
             db.session.commit()
-            imagePak1 = Product_image(1 ,product.id, f"/static/image/productImgs/beskonechonst-love/img1.jpeg")
-            imagePak2 = Product_image(2 ,product.id, f"/static/image/productImgs/beskonechonst-love/img2.jpeg")
-            imagePak3 = Product_image(3 ,product.id, f"/static/image/productImgs/beskonechonst-love/img3.jpeg")
-            imagePak4 = Product_image(4 ,product.id, f"/static/image/productImgs/beskonechonst-love/img4.JPG")
+            imagePak1 = Product_image(1 ,product.id, f"/static/image/productImgs/{ product.slug }/img1.jpg")
+            imagePak2 = Product_image(2 ,product.id, f"/static/image/productImgs/{ product.slug }/img2.jpg")
+            imagePak3 = Product_image(3 ,product.id, f"/static/image/productImgs/{ product.slug }/img3.jpg")
+            imagePak4 = Product_image(4 ,product.id, f"/static/image/productImgs/{ product.slug }/img4.jpg")
             db.session.add(imagePak1)
             db.session.add(imagePak2)
             db.session.add(imagePak3)
@@ -254,6 +277,7 @@ addProducts(Product(name="Кулон «Звезда Давида»", price=34000
 addProducts(Product(name="Кулон «Корона»", price=34500, concept="Сила и успех", category="Кулон", descriptions="Кулон «Корона» - Корона — это знак власти, силы и благородства. Она символизирует лидерство, достоинство и успех. Этот кулон подчеркнёт вашу уверенность и поможет раскрыть внутренний потенциал.", slug=slugify("Корона")))
 addProducts(Product(name="Кулон «Сердце контур»", price=35000, concept="Любовь и романтика", category="Кулон", descriptions="Кулон «Сердце контур» - Лаконичный и изящный символ любви и искренних чувств. Этот кулон подойдёт тем, кто хочет носить с собой напоминание о тёплых эмоциях, важных людях и романтических моментах.", slug=slugify("Сердце контур")))
 addProducts(Product(name="Кулон «Сердце пульс»", price=35500, concept="Любовь и романтика", category="Кулон", descriptions="Кулон «Сердце пульс» - Объединение символа сердца и пульса создаёт особенный знак, который отражает страсть, энергию и силу любви. Этот кулон станет напоминанием о том, что настоящие чувства делают нашу жизнь ярче.", slug=slugify("Сердце пульс")))
+addProducts(Product(name="Кулон «Пустышка»", price=35500, concept="Любовь и семья", category="Кулон", descriptions="Кулон «Пустышка» – трогательный символ детства, нежности и заботы. Этот миниатюрный кулон напоминает о самых светлых моментах жизни, первых годах малыша, безграничной любви родителей и семейном тепле. Он станет особенным украшением для молодых мам, заботливых бабушек или тех, кто хочет сохранить в сердце теплые воспоминания о детстве.", slug=slugify("Пустышка")))
 addProducts(Product(name="Кулон «Мальчик»", price=36000, concept="Любовь и семья", category="Кулон", descriptions="Кулон «Мальчик» - Этот кулон символизирует защиту и любовь к сыну, брату или любимому человеку. Он олицетворяет заботу, теплоту и радость, связанную с семьёй и детством.", slug=slugify("Мальчик")))
 addProducts(Product(name="Кулон «Девочка»", price=36000, concept="Любовь и семья", category="Кулон", descriptions="Кулон «Девочка» - Очаровательный кулон, который станет символом любви к дочери, сестре или подруге. Он напоминает о нежности, счастье и бесконечной связи между близкими.", slug=slugify("Девочка")))
 addProducts(Product(name="Кулон «Солнце»", price=36000, concept="Природа", category="Кулон", descriptions="Кулон «Солнце» - Солнце — источник жизни, тепла и света. Этот кулон заряжает энергией, приносит радость и помогает раскрыть внутренний потенциал. Он подойдёт тем, кто стремится быть ярким и вдохновлять окружающих.", slug=slugify("Солнце")))

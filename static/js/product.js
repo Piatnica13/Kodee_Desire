@@ -1,11 +1,3 @@
-setTimeout(() => {
-  MainContener.style.transition = `opacity 1s ease-in-out`;
-  MainContener.style.opacity = "1";
-  setTimeout(()=>{
-    MainContener.style.transition = `opacity 0.3s ease-in-out`;
-  }, 1001);
-}, 300);
-
 let user_size = 0;
 
 let size1 = document.querySelector("#productChoose1")
@@ -50,7 +42,16 @@ function urlBth(product, user_name, city, street, home) {
   else{
     if (city == "" || street == "" || home == ""){
       sessionStorage.setItem("needAddressCheck", "true"); // Флаг, что нужно проверять адрес
-      window.location.href = "/profil";
+      let menu = document.querySelector("#MenuFixed");
+      MainContener.style.transition = `opacity 0.6s linear`;
+      MainContener.style.opacity = "0";
+      menu.classList.remove("visible");
+      menu.classList.add("hidden");
+      
+      setTimeout(() => {
+          MainContener.style.transition = `opacity 0.3s linear`;
+          window.location.href = "/profil";
+      }, 600);
     }
     else{
       let user_color = document.querySelector("#productColor").value.toLowerCase();

@@ -12,21 +12,18 @@ let bthAddAddresses = document.querySelector("#ProfilBthAddAdd");
 let bthFavorite = document.querySelector("#ProdilMenuItemFavorites");
 let favorite = document.querySelector("#ProfilLeftFavorites");
 
-let needCheck = sessionStorage.getItem("needAddressCheck");
+let needCheckForAddress = sessionStorage.getItem("needAddressCheck");
+let needCheckForFavorite = sessionStorage.getItem("needFavoriteCheck");
 
 let ChekProfilOpacity = true;
-if (needCheck === "true") {
+if (needCheckForAddress === "true") {
     sessionStorage.removeItem("needAddressCheck"); // Удаляем, чтобы не срабатывало всегда
     PageAddress(); // Вызываем нужную функцию
 }
-
-setTimeout(() => {
-    MainContener.style.transition = `opacity 1s ease-in-out`;
-    MainContener.style.opacity = "1";
-    setTimeout(()=>{
-        MainContener.style.transition = `opacity 0.3s ease-in-out`;
-    }, 1001);
-}, 300);
+if (needCheckForFavorite === "true"){
+    sessionStorage.removeItem("needFavoriteCheck");
+    PageFavorite();
+}
 
 try{
     let CardImg = document.querySelector("#productImg1")
@@ -35,12 +32,14 @@ try{
 }
 catch{}
 
-bthFavorite.addEventListener("click", () => {
+bthFavorite.addEventListener("click", PageFavorite)
+function PageFavorite() {
     rechange.style.opacity = "0";
     password.style.opacity = "0";
     address.style.opacity = "0";
     profil.style.opacity = "0";
     favorite.style.display = "flex";
+    ChekProfilOpacity = false;
     setTimeout(() => {
         address.style.display = "none"
         rechange.style.display = "none";
@@ -48,7 +47,7 @@ bthFavorite.addEventListener("click", () => {
         profil.style.display = "none";
         favorite.style.opacity = "1";
     }, 500);
-})
+}
 
 bthProfil.addEventListener("click", OpacityOfProfil)
 function OpacityOfProfil() {
@@ -63,8 +62,6 @@ function OpacityOfProfil() {
         password.style.display = "none";
         favorite.style.display = "none";
         profil.style.opacity = "1";
-        console.log(999);
-        
     }, 500);
 }
 
@@ -120,7 +117,6 @@ function PageAddress(){
     rechange.style.opacity = "0";
     address.style.display = "flex";
     ChekProfilOpacity = false;
-    console.log(888);
     setTimeout(() => {
         profil.style.display = "none";
         favorite.style.display = "none";

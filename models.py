@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, object_session
 from sqlalchemy import JSON
 
 db = SQLAlchemy()
@@ -42,6 +42,16 @@ class Product(db.Model):
     slug = db.Column(db.String(100), unique=True, nullable=False)
     images = relationship("Product_image", backref="product", lazy=True)
     
+    def image(self):
+        """Возвращает путь к первому изображению (где num=1) или стандартное"""
+        first_image = (
+            object_session(self)
+            .query(Product_image)
+            .filter_by(product_id=self.id, num=1)
+            .first()
+        )
+        return first_image.img1 if first_image else "/static/image/defaultt.jpg"
+    
     def __init__(self, name, price, concept, category, descriptions, slug):
         self.name = name
         self.price = price
@@ -49,7 +59,6 @@ class Product(db.Model):
         self.category = category
         self.descriptions = descriptions
         self.slug = slug
-        
 
     def __repr__(self):
         return f"<{self.slug}>"
