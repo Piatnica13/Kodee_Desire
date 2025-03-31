@@ -147,18 +147,18 @@ function renderProducts(products, bool) {
       
       const productCard = `
       <div class="product-card">
-        <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
-        <p class="product-title">${products[i].name}</p>
-        <div class="test">
-          <p class="product-price">${products[i].price}тг</p>
-          <a href="/product/${products[i].slug}" style="color: black">
-          <div class="DivInfo">
-            <img src = "/static/image/menu/sumka.png" class = "Con2Icon" alt = "Сумка">
-            <p class="BthInfo"><ins>Подробнее</ins></p>
+        <a href="/product/${products[i].slug}" style="color: black; text-decoration: none;">
+          <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
+          <p class="product-title">${products[i].name}</p>
+          <div class="test">
+            <p class="product-price">${products[i].price}тг</p>
+            <div class="DivInfo">
+              <img src = "/static/image/menu/sumka.png" class = "Con2Icon" alt = "Сумка">
+              <p class="BthInfo"><ins style="text-decoration: line">Подробнее</ins></p>
+            </div>
           </div>
           </a>
         </div>
-      </div>
       `;
       productContainer.innerHTML += productCard;
     }
@@ -206,8 +206,8 @@ class BockMenuTabs {
       html += `
       <li class="ShopFiltersPodSpisok">
       <label class="customCheckbox">
-      <input class="ShopFiltersRadio" type="checkbox" data-category="${this.MainTabsName}" data-value="${PodName}" id="FiltersCheckBox${PodId}">
-      <span></span>
+        <input class="ShopFiltersRadio" type="checkbox" data-category="${this.MainTabsName}" data-value="${PodName}" id="FiltersCheckBox${PodId}">
+        <span></span>
       </label>
       <label for="FiltersCheckBox${PodId}" class="ShopFiltersItems">${PodName}</label>
       </li>`;

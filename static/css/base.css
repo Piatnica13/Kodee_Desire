@@ -44,7 +44,7 @@ button:active{
     transform: translateY(3px) translateX(1px);
     box-shadow: none;
 }
-input{
+input[type="text"]{
     width: 100%;
     height: 25px;
     border-radius: 999px;
@@ -55,7 +55,7 @@ input{
     transition: border 0.5s, box-shadow 0.5s;
     padding-left: 30px;
 }
-input:focus{
+input[type="text"]:focus{
     border-color: #ffb2c0;
     box-shadow: 0 0 15px rgba(255, 129, 171, 0.826);
     outline: none; /* Убирает стандартную рамку фокуса */
@@ -107,6 +107,54 @@ input:focus{
     text-align: center;
     background-color: #ffb3c1;
 }
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Стили контейнера */
+.customCheckbox {
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Стили кастомного чекбокса */
+.customCheckbox span {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff879d; /* Красная рамка */
+    border-radius: 4px;    /* Закругленные углы (если нужно) */
+    background-color: transparent; /* Прозрачный фон */
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Галочка при выборе */
+.customCheckbox input[type="checkbox"]:checked + span::after {
+    content: "✓"; /* Символ галочки */
+    color: black; /* Черный цвет */
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Добавляем hover-эффект */
+.customCheckbox span:hover {
+    border-color: #d56f82; /* Темно-красный цвет при наведении */
+}
+
+/*
+        <label class="customCheckbox">
+          <input type="checkbox" class="basketCheckbox">
+          <span></span>
+        </label>
+ */
 @media screen and (max-width: 1000px) {
     #divMessegeBox{
         position: absolute;

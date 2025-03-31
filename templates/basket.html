@@ -8,10 +8,27 @@
   <div id="basketLeft">
     <div id="basketBasket">
       <h2>Корзина</h2>
-      {% for product in basket %} Название: {{ product.name }} {%for desc in
-      description %} {%if product.id == desc[0] %} Цвет нити: {{ desc[1] }}
-      Размер: {{ desc[2] }} Материал: {{ desc[3] }} {% endif %} {% endfor %} {%
-      endfor %}
+      {% for product in basket %}
+      <div class="basketProduct">
+        <label class="customCheckbox basketCheckbox">
+          <input type="checkbox" >
+          <span ></span>
+        </label>
+        <img src="/static/image/productImgs/{{ product.slug }}/img1.jpg" style="width: 150px; margin: 0px 20px" alt="Продукция">
+        <div class="basketNoCheckboxImg">
+          {{ product.name }}
+          <div class="productDescript">
+            {%for desc in
+              description %} {%if product.id == desc[0] %} Цвет нити: {{ desc[1] }}
+              Размер: {{ desc[2] }} Материал: {{ desc[3] }} {% endif %} {% endfor %}
+          </div>
+          <div class="productImgs">
+            <img src="/static/image/menu/like.png"  style="width: 50px;" alt="">
+            <img src="/static/image/dirProfil/delete.png" style="width: 50px;"  alt="">
+          </div>
+        </div>
+      </div>
+      {%endfor %}
     </div>
     <div id="basketSys">
       <h2>Система лояльности</h2>
