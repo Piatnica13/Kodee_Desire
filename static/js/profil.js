@@ -137,18 +137,18 @@ bthAddAddresses.addEventListener("click", () => {
 })
 
 
-function saveAddress(addressId) {
-    fetch('/select_address', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'selected_address=' + addressId
-    })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-}
+// function saveAddress(addressId) {
+//     fetch('/select_address', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded'
+//         },
+//         body: 'selected_address=' + addressId
+//     })
+//     .then(response => response.text())
+//     .then(data => showToast(data.message))
+//     .catch(error => console.error('Error:', error));
+// }
 
 let buttonSave = document.querySelector("#ProfilDivButtonAdd");
 let deletedAddresses = [];

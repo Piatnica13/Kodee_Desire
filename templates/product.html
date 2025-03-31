@@ -39,15 +39,17 @@
       <div id="productMenuMidle">
         <div id="productDivSize">
           <div id="productDivPodSize">
-            <div id="productHowSize">
-              <h3>Как определить размер?</h3>
-              <img
-                src="/static/image/productImgs/question.png"
-                style="width: 25px; height: 25px"
-                alt="Вопрос"
-              />
+            <div id="productDivHowSize">
+              <div id="productHowSize">
+                <h3>Как определить размер?</h3>
+                <img
+                  src="/static/image/productImgs/question.png"
+                  style="width: 25px; height: 25px"
+                  alt="Вопрос"
+                />
+              </div>
+              <h2>Размер</h2>
             </div>
-            <h2>Размер</h2>
             <div id="productChooseSize">
               <h2 id="productChoose1">1</h2>
               <h2 id="productChoose2">2</h2>
@@ -55,9 +57,18 @@
             </div>
           </div>
         </div>
-        <div id="productDivColor">
+        <div id="productDivMaterial" class="productInputs">
+          <h2>Материал изделия</h2>
+          <select id="productMaterial" class="productSelects">
+            <option>Золото 585 (Красное)</option>
+            <option>Серебро 925</option>
+            <option>Золото 585 (Белое)</option>
+            <option>Золото 585 (Жёлтое)</option>
+          </select>
+        </div>
+        <div id="productDivColor" class="productInputs">
           <h2>Цвет нити</h2>
-          <select id="productColor">
+          <select id="productColor" class="productSelects">
             <option>Красный</option>
             <option>Черный</option>
           </select>
@@ -77,15 +88,16 @@
               class="productHeardImgs"
               id="productGetLike"
             />
-            <input type="hidden" id="d" value="{{ product.id }}">
-            <input type="hidden" id="f" value="{{ favarite }}">
+            <input type="hidden" id="d" value="{{ product.id }}" />
+            <input type="hidden" id="f" value="{{ favarite }}" />
+            <input type="hidden" id="b" value="{{ basket }}" />
           </div>
           <div id="productDivBth">
             <button
               id="productBth"
               onclick="urlBth('{{product.name}}', '{{user.name}}', '{{address.city}}', '{{address.street}}', '{{address.home}}')"
             >
-              Купить
+              Добавить
             </button>
           </div>
         </div>
@@ -95,17 +107,16 @@
             <p style="font-size: 1.25rem">{{ product.descriptions }}</p>
           </div>
           <div id="productCharacter">
-            <h2>Характеристики</h2>
             <div id="productAllCharacter">
-              <div>
+              <div class="DivsCharacters">
                 <h3>Артикул</h3>
                 <p>{{ product.id }}</p>
               </div>
-              <div>
+              <div class="DivsCharacters">
                 <h3>Концепция</h3>
                 <p>{{ product.concept}}</p>
               </div>
-              <div>
+              <div class="DivsCharacters">
                 <h3>Категория</h3>
                 <p>{{ product.category }}</p>
               </div>

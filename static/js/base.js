@@ -1,6 +1,9 @@
 let MainContener = document.querySelector('#Body');
+const footerBlock = document.querySelector('#futer-block');
+const toast = document.getElementById('divMessegeBox');
+let messageQueue = [];
+let isMessageShowing = false;
 
-showMainContainer();
 
 function showMainContainer() {
     setTimeout(() => {
@@ -9,6 +12,7 @@ function showMainContainer() {
         menu.classList.add("visible");
         MainContener.style.opacity = "1";
         MainContener.style.transition = `opacity 1s ease-in-out`;
+        footerBlock.style.opacity = "1";
         setTimeout(() => {
             MainContener.style.transition = `opacity 0.3s ease-in-out`;
         }, 1001);
@@ -21,6 +25,7 @@ function inShowPage(){
     MainContener.style.opacity = "0";
     menu.classList.remove("visible");
     menu.classList.add("hidden");
+    footerBlock.style.opacity = "0";
 }
 
 window.addEventListener('beforeunload', () => {
@@ -45,6 +50,8 @@ document.addEventListener("click", function(e){
 });
 
 document.addEventListener("DOMContentLoaded", () => {   
+    showMainContainer();
+
     fetch('/static/html/footer.html')
     .then(response => response.text())
     .then(html => {
@@ -131,3 +138,75 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(error => console.error('Ошибка загрузки меню:', error));
 
 });
+
+
+
+function updateSecondBlockPosition() {
+    const firstBlockHeight = MainContener.offsetHeight;
+    const windowHeight = window.innerHeight;
+    
+    if (windowHeight - 280 > firstBlockHeight) {
+        footerBlock.style.position = 'fixed';
+        footerBlock.style.bottom = '0';
+        footerBlock.style.left = '0';
+        footerBlock.style.right = '0';
+    } else {
+        footerBlock.style.position = 'relative';
+        footerBlock.style.bottom = 'auto';
+    }
+}
+
+
+function showToast(text, timeForLoad = 10, timeForLook=2500) {
+
+    messageQueue.push({text, timeForLoad, timeForLook});
+    if (!isMessageShowing) {
+        processQueue();
+    }
+}
+
+function processQueue() {
+    if (messageQueue.length === 0) {
+        isMessageShowing = false;
+        return;
+    }
+    
+    isMessageShowing = true;
+    const {text, timeForLoad, timeForLook} = messageQueue.shift();
+    toast.style.position = `fixed`;
+    toast.style.display = `block`;
+    
+    message = document.createElement('div')
+    message.style.opacity = "0";
+    message.style.transform = `translateX(400px)`;
+    message.style.transition = `opacity 0.5s ease-in-out, transform 0.5s ease-in-out`;
+    message.innerHTML = `
+    <div class="message">
+    <h3>${text}</h3>
+    </div>`;
+    
+    toast.appendChild(message)
+    setTimeout(() => {
+        message.style.opacity = `1`;
+        message.style.transform = `translateX(0px)`;
+    }, timeForLoad);
+
+    // Прячем и удаляем сообщение
+    setTimeout(() => {
+        message.style.opacity = '0';
+        message.style.transform = `translateX(400px)`;
+        
+        setTimeout(() => {
+            toast.style.display = `none`;
+            message.remove();
+            processQueue();
+        }, 500);
+    }, timeForLook + timeForLoad);
+}
+
+
+window.addEventListener('load', updateSecondBlockPosition);
+window.addEventListener('resize', updateSecondBlockPosition);
+
+const observer = new MutationObserver(updateSecondBlockPosition);
+observer.observe(MainContener, { attributes: true, childList: true, subtree: true });

@@ -130,7 +130,8 @@
     min-width: 500px;
     max-width: 750px;
     height: 100%;
-    position: relative;
+    position: absolute;
+    left: 0;
     background-color: transparent;
     opacity: 0;
     padding: 30px 41px;
@@ -320,6 +321,7 @@
     background: #ff879d; /* Более темный цвет при наведении */
 }
 #shopDivBthMore{
+    margin-top: 50px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -345,7 +347,7 @@
     }
 }
 @media screen and (max-width: 1000px) {
-    #ShopBody{
+    #Body{
         top: 100px;
     }
 }

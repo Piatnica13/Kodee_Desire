@@ -14,6 +14,7 @@ class Person(db.Model):
     address = db.Column(db.String(50), nullable=True, default="")
     addresses = db.relationship('Address', backref='person', lazy=True, cascade="all, delete")
     favourites = db.Column(JSON, default=[])
+    basket = db.Column(JSON, default=[])
 
     def __repr__(self):
         return f"{self.name}"

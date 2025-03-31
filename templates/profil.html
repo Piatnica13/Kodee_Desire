@@ -60,7 +60,9 @@
             </div>
             <div id="prodilGridCard">
               {% if favorite_products == []%}
-              <h1>товары пока не добавлены</h1>
+              <div id="productNoProduct">
+                <h1>товары пока не добавлены</h1>
+              </div>
               {% else %} {% for product in favorite_products %}
               <div class="product-card">
                 <div style="width: 250px; height: 250px">

@@ -1,6 +1,3 @@
-#Body{
-    height: auto;
-}
 #Px100bottom{
     width: 100%;
     height: 100px;
@@ -555,6 +552,15 @@
 .productImg1{
     opacity: 1;
     display: flex;
+}
+#productNoProduct{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#productNoProduct h1{
+    text-align: center;
 }
 @media screen and (max-height: 920px) {
     #ProfilBody{

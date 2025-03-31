@@ -1,8 +1,3 @@
-#Body{
-    display: flex;
-    align-items: center;
-    position: relative;
-}
 #productBody{
     width: 100%;
     max-width: 1416.69px;
@@ -114,15 +109,20 @@
 }
 #productAllCharacter p{
     font-size: 1.25rem;
+    text-align: center;
 }
-#productDivColor{
+#productAllCharacter h3{
+    text-align: center;
+
+}
+.productInputs{
     display: flex;
     flex-direction: row;
     margin: 0px 0px 25px 0px;
     align-items: center;
     justify-content: space-between;
 }
-#productColor{
+.productSelects{
     width: 50%;
     height: 40px;
     background: #ffc6d0;
@@ -131,7 +131,7 @@
     border-radius: 50px;
     transition: border 0.5s, box-shadow 0.5s;
 }
-#productColor:focus{
+.productSelects:focus{
     border-color: #ffb2c0;
     box-shadow: 0 0 15px rgba(255, 181, 206, 0.826);
     outline: none;
@@ -154,9 +154,8 @@
 }
 #productGalochkas{
     position: absolute;
-    height: 50%;
-    top: 45%;
     width: 100%;
+    height: 100%;
     align-items: center;
     display: none;
 }
@@ -165,14 +164,16 @@
     transform: rotate(90deg) scaleX(-1);
     position: absolute;
     z-index: 10;
-    left: 30px;
+    left: 2.5%;
+    top: 40%;
 }
 #profilGalochka2{
     opacity: 0.5;
     transform: rotate(270deg) scaleX(-1);
     position: absolute;
     z-index: 10;
-    right: 30px;
+    right: 2.5%;
+    top: 40%;
 }
 .shake{
     display: inline-block;
@@ -196,12 +197,14 @@
         grid-template-columns: 50% 50%;
         height: auto;
         gap: 50px;
+        margin: 0px 50px;
     }
     #CharactersRight{
         display: none;
     }
     #CharactersBottom{
         display: block;
+        margin: 0px 50px;
     }
     #productAllCharacter{
         justify-content: start;
@@ -225,13 +228,12 @@
         justify-content: center;
         align-items: start;
         width: 100%;
-        height: 650px;
+        height: auto;
         aspect-ratio: auto auto;
     }
     .productFotos{
         width: 100%;
-        max-width: 600px;
-        aspect-ratio: 1 / 1;
+        max-width: none;
         position: absolute;
         margin-top: 0px;
     }
@@ -251,12 +253,6 @@
     }
 }
 @media screen and (max-width: 600px) {
-    .productFotos{
-        max-width: 400px;
-    }
-    #productImgsDiv{
-        height: 350px;
-    }
     #productAllCharacter{
         justify-content: space-between;
         gap: 20px;
@@ -264,9 +260,29 @@
     #productHowSize{
         font-size: 14px;
     }
-    #productGalochkas{
-        top: 50%;
-        bottom: none;
+    #productMainDiv{
+        margin: 0px 25px;
+    }
+    #CharactersBottom{
+        margin: 0px 25px;
+    }
+    #productHowSize h3{
+        opacity: 0;
+    }
+    #productDivHowSize{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 355px) {
+    #productAllCharacter{
+        flex-direction: column;
+    }
+    .DivsCharacters{
+        display: flex;
+        flex-direction: row;
+        gap: 30%;
     }
 }
 @keyframes shake {

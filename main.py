@@ -1,11 +1,18 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, redirect, session, flash, url_for, jsonify
+from sqlalchemy.orm.attributes import flag_modified
 from models import db, Address, Person, Product, Product_image
 from slugify import slugify
 import json
 
 
 app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+#     username="Piatnica13",
+#     password="Dima2014",
+#     hostname="Piatnica13.mysql.pythonanywhere-services.com",
+#     databasename="Piatnica13$Kodee_Desire",
+# )
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Проверь, что база данных настроена
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -66,6 +73,8 @@ def profil():
                 new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
                 db.session.add(new_address)
                 db.session.commit()
+                
+                
             #выбор или удаления адресов
             elif "work_with_address" in request.form:
                 deleted_addresses = request.form.get("deleted_addresses")
@@ -75,6 +84,7 @@ def profil():
 
                     # Удаляем только те адреса, которые принадлежат текущему пользователю
                     Address.query.filter(Address.id.in_(deleted_ids), Address.person_id == user.id).delete(synchronize_session=False)
+                    
                     
                 addressFromForm = request.form.get("addresses")
                 if addressFromForm != None:
@@ -119,6 +129,49 @@ def product(slug):
     
     return render_template('product.html', product=product, user=person, address=address, favarite=person.favourites)
 
+@app.route('/basket')
+def basket():
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect('/login')
+    user = Person.query.get(int(user_id))
+    products = []
+    for i in user.basket:
+        product = Product.query.filter_by(id = i[0]).first()
+        products.append(product)
+    return render_template('basket.html', basket=products, description=user.basket)
+
+@app.route('/add_basket', methods=['POST'])
+def add_basket():
+    data = request.get_json()
+    print("Полученные данные: ", data)
+    
+    user_id = session.get('user_id')
+    product_id = data.get('product_id')
+    color = data.get('color')
+    size = data.get('size')
+    material = data.get('material')
+    chek = True
+    
+    if not user_id:
+        return jsonify({"success": False, "error": "Пользователь не авторизован"})
+    
+    user = Person.query.get(int(user_id))
+    if not user:
+        return jsonify({"success": False, "error": "Пользователь не найден"})
+    for i in user.basket:
+        if product_id == i[0]:
+            chek = False
+        
+    if chek == True:
+        user.basket.append([product_id, color, size, material])
+        flag_modified(user, "basket")  # Форсируем обновление поля
+        db.session.commit()
+        print(user.basket)
+
+        return jsonify({"success": True, "message": "Товар успешно добавлен в корзину"})
+    return jsonify({"success": False, "error": "Товар уже в корзине"})
+
 
 @app.route('/add_favorite', methods=['POST'])
 def add_favorite():
@@ -135,10 +188,11 @@ def add_favorite():
 
     if not user:
         return jsonify({"success": False, "error": "Пользователь не найден"})
-
+    check = True
     if product_id in user.favourites:
         new_favorites = [pid for pid in user.favourites if pid != product_id]
         print("Удаляю из избранного")
+        check = False
     else:
         new_favorites = user.favourites + [product_id]  
         print("Добавляю в избранное")
@@ -150,8 +204,10 @@ def add_favorite():
     db.session.commit()  # Сохраняем изменения
 
     print("После коммита:", Person.query.get(user.id).favourites)
-    
-    return jsonify({"success": True, "favorites": user.favourites})
+    if check == True:
+        return jsonify({"success": True, "message": "Товар добавлен в избранные"})
+    else:
+        return jsonify({"success": True, "message": "Товар удален из избранных"})
 
 
 @app.route("/search")
@@ -201,10 +257,18 @@ def register():
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
+        emails = db.session.query(Person.email).all()
+        emails = [email[0] for email in emails]
         #проверка на ошибки
         if len(password) < 6:
             errors['len'] = "Пароль меньше 6 символов"
             return render_template('register.html', errors=errors)
+        for i in emails:
+            print(i, email)
+            if email == i:
+                errors['have'] = "Аккаунт с данным Email уже зарегестрирован"
+                return render_template('register.html', errors=errors)
+        
         hashed_password = generate_password_hash(password)  # Хэшируем пароль
         
         person = Person(name=name, email=email, password=hashed_password)
@@ -214,11 +278,12 @@ def register():
             user = Person.query.filter_by(email=email).first()
             if user and check_password_hash(user.password, password):  # Сравниваем хэш
                 session['user_id'] = user.id
-            return redirect('/')
+            return render_template("index.html", messageForReg = True)
         except:
-            return "Ошибка занесения в Базу данных"
+            return render_template("index.html", messageNoReg = True)
+
     else:
-        return render_template('register.html', errors=errors)
+        return render_template('register.html', errors=errors, messageNoReg = True)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -236,13 +301,13 @@ def login():
             errors["len"] = "Ошибка, длина пароля меньше 6 символов"
         
         # Проверяем данные в базе:
-        if user and check_password_hash(user.password, password):  # Сравниваем хэш
+        if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
-            return redirect(url_for('profil')) # Перенаправляем на защищенную страницу
+            return render_template("index.html", messageForLog = True)
         else:
             errors["comparisons"] = "Ошибка ввода, не правильно введен пароль или email"
-            return render_template("login.html", errors=errors)
-    return render_template('login.html', errors=errors)
+            return render_template("login.html", errors=errors, messageForNoLog = True)
+    return render_template('login.html', errors=errors, messageForNoLog = True)
 
 def addProducts(product):
     with app.app_context():

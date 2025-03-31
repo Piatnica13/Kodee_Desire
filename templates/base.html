@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="/static/css/footer.css" />
   </head>
   <body>
+    <div id="divMessegeBox"></div>
     <div id="menu-placeholder"></div>
-    <div id="Body">
-      {% block body %} {% endblock %}
-      <div id="futer-block"></div>
-    </div>
+    <div id="Body">{% block body %} {% endblock %}</div>
+    <div id="futer-block"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/static/js/base.js" defer></script>

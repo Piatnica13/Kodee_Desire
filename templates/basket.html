@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title%}
+<title>Корзина</title>
+{% endblock %} {% block style %}
+<link rel="stylesheet" href="/static/css/basket.css" />
+{% endblock style %} {% block body %}
+<div id="basket100px"></div>
+<div id="bodyBasket">
+  <div id="basketLeft">
+    <div id="basketBasket">
+      <h2>Корзина</h2>
+      {% for product in basket %} Название: {{ product.name }} {%for desc in
+      description %} {%if product.id == desc[0] %} Цвет нити: {{ desc[1] }}
+      Размер: {{ desc[2] }} Материал: {{ desc[3] }} {% endif %} {% endfor %} {%
+      endfor %}
+    </div>
+    <div id="basketSys">
+      <h2>Система лояльности</h2>
+      <h3>Пока нету</h3>
+    </div>
+  </div>
+  <div id="basketRight">
+    <div id="basketProductsPay"></div>
+    <div id="basketPay"></div>
+    <div id="basketCertificate">
+      <h3>Код сертификата</h3>
+      <input type="text" />
+    </div>
+    <div>
+      <button type="">Оформить заказ</button>
+    </div>
+  </div>
+</div>
+{% endblock body %} {% block script %}
+<script src="/static/js/basket.js"></script>
+{% endblock script %}

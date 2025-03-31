@@ -1,4 +1,8 @@
 let body = document.querySelector("#Contener");
+const toast = document.getElementById('divMessegeBox');
+let messageQueue = [];
+let isMessageShowing = false;
+
 document.addEventListener("DOMContentLoaded", () =>{
 
 
@@ -76,3 +80,74 @@ show.addEventListener('mousedown', (event) => {
 });
 
 let Button = document.querySelector('#ButtonSignIn');
+
+if (document.querySelector("#messageForErrorLen")){
+    showToast("Ошибка входа, длина пароля меньше 6 символов", 2000)
+}
+if (document.querySelector("#messageForErrorError")){
+    showToast("Ошибка входа, обязательные поля пустые", 2000)
+}
+if (document.querySelector("#messageForErrorComparisons")){
+    showToast("Ошибка входа, не правильно введен пароль или email", 2000)
+}
+if (document.querySelector("#messageForNoLog")){
+    showToast("Ошибка входа, пожалуйста войдите в свой аккаунт!", 2000)
+}
+
+function showToast(text, timeForLoad = 10, timeForLook=2500) {
+
+    messageQueue.push({text, timeForLoad, timeForLook});
+    if (!isMessageShowing) {
+        processQueue();
+    }
+}
+
+function processQueue() {
+    if (messageQueue.length === 0) {
+        isMessageShowing = false;
+        return;
+    }
+    
+    isMessageShowing = true;
+    const {text, timeForLoad, timeForLook} = messageQueue.shift();
+    toast.style.position = `fixed`;
+    toast.style.display = `block`;
+    
+    message = document.createElement('div')
+    message.style.opacity = "0";
+    message.style.transform = `translateX(400px)`;
+    message.style.transition = `opacity 0.5s ease-in-out, transform 0.5s ease-in-out`;
+    message.innerHTML = `
+    <div class="message">
+    <h3>${text}</h3>
+    </div>`;
+    
+    toast.appendChild(message)
+    setTimeout(() => {
+        message.style.opacity = `1`;
+        message.style.transform = `translateX(0px)`;
+    }, timeForLoad);
+
+    // Прячем и удаляем сообщение
+    setTimeout(() => {
+        message.style.opacity = '0';
+        message.style.transform = `translateX(400px)`;
+        
+        setTimeout(() => {
+            toast.style.display = `none`;
+            message.remove();
+            processQueue();
+        }, 500);
+    }, timeForLook + timeForLoad);
+}
+
+function removeMessage(message) {
+    message.style.opacity = '0';
+    message.style.transform = `translateX(400px)`;
+    
+    setTimeout(() => {
+        message.remove();
+        processQueue(); // Показываем следующее сообщение
+        toast.style.display = `none`;
+    }, 500);
+}

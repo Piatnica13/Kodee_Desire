@@ -1,24 +1,20 @@
 #Px100bottom{
     width: 100%;
     height: 100px;
-}
-#Body{
-    position: relative;
-    width: 100vw;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    flex-shrink: 0;
 }
 #Text{
-    top: 100px;
+    flex-shrink: 0;
     width: 100vw;
-    height: calc(100% - 230px);
+    height: calc(100vh - 100px);
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 1.2rem;
-    margin: 50px 0px 0px 0px;
+    bottom: 10%;
 }
 #Instagram{
     font-style: italic;
@@ -30,9 +26,4 @@
 }
 .InDivText{
     margin: 2.5px;
-}
-@media screen and (max-height: 450px) {
-    #Text{
-        height: auto;
-    }
 }

@@ -1,120 +1,170 @@
-{% extends "baseindex.html" %}
+{% extends "baseindex.html" %} {% block title %}
+<title>
+  Kodee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ |
+  КАРАГАНДА
+</title>
+{% endblock %} {% block style %}
+<link rel="stylesheet" href="/static/css/index.css" />
+{% endblock %} {% block body %} 
 
-{% block title %}
-    <title>Kodee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ | КАРАГАНДА</title>
-{% endblock %}
+{% if messageForReg == True %} <div id="messageForReg"></div> {% endif %}
+{% if messageForLog == True %} <div id="messageForLog"></div> {% endif %}
+{% if messageForNoReg == True %} <div id="messageForNoReg"></div>{% endif %}
 
-{% block style %}
-    <link rel="stylesheet" href="/static/css/index.css">
-{% endblock %}
+<div id="MainBody">
+  <div id="Contener2">
+    <div class="Con2DivImg">
+      <img
+        src="static/image/slider/SImg5.jpg"
+        alt=""
+        class="SliderImgs"
+        id="Con2Imgs5"
+      />
+      <div id="Con2Img4" class="Con2ImgsText">
+        <h2 class="OverlayTitle">Браслетики во льду</h2>
+        <p class="OverlayText">Ну это да конечно</p>
+      </div>
+    </div>
+    <div class="Con2DivImg">
+      <img
+        src="static/image/slider/SImg6.jpg"
+        alt=""
+        class="SliderImgs"
+        id="Con2Imgs2"
+      />
+      <div id="Con2Img2" class="Con2ImgsText">
+        <h2 class="OverlayTitle">Опять что ли</h2>
+        <p class="OverlayText">Ну красиво все таки</p>
+      </div>
+    </div>
+    <div class="Con2DivImg">
+      <img
+        src="static/image/slider/SImg7.jpg"
+        alt=""
+        class="SliderImgs"
+        id="Con2Imgs3"
+      />
+      <div id="Con2Img3" class="Con2ImgsText">
+        <h2 class="OverlayTitle">Ой да поновой браслетики</h2>
+        <p class="OverlayText">НУ по новой так по новой</p>
+      </div>
+    </div>
+    <div class="Con2DivImg">
+      <img
+        src="static/image/slider/SImg11.jpg"
+        alt=""
+        class="SliderImgs"
+        id="Con2Imgs1"
+      />
+      <div id="Con2Img1" class="Con2ImgsText">
+        <h2 class="OverlayTitle">Браслетики</h2>
+        <p class="OverlayText">У красивые какие</p>
+      </div>
+    </div>
+  </div>
 
-{% block body %} 
+  <div id="Contener1" data-aos="fade-up" data-aos-delay="0">
+    <div id="Con1Img">
+      <img
+        src="static/image/body/Starter.jpg"
+        alt="Фото Основателя"
+        id="Con1Img1"
+      />
+    </div>
+    <div id="Con1Text">
+      <p id="text1">
+        “Каждый браслет, который мы создаем, — это не просто украшение. Это
+        напоминание о ваших мечтах и вере в то, что они сбудутся„
+      </p>
+      <p id="text2"><em>-Юлия, Основатель</em></p>
+    </div>
+  </div>
 
-    <div id="MainBody">
-        <div id="Contener2">
-            <div class="Con2DivImg">  
-                <img src="static/image/slider/SImg5.jpg" alt="" class="SliderImgs" id="Con2Imgs5">
-                <div id="Con2Img4" class="Con2ImgsText">
-                    <h2 class="OverlayTitle">Браслетики во льду</h2>
-                    <p class="OverlayText">Ну это да конечно</p>
-                </div>
-            </div>
-            <div class="Con2DivImg">
-                <img src="static/image/slider/SImg6.jpg" alt="" class="SliderImgs" id="Con2Imgs2">
-                <div id="Con2Img2" class="Con2ImgsText">
-                    <h2 class="OverlayTitle">Опять что ли</h2>
-                    <p class="OverlayText">Ну красиво все таки</p>
-                </div>
-            </div>
-            <div class="Con2DivImg">
-                <img src="static/image/slider/SImg7.jpg" alt="" class="SliderImgs" id="Con2Imgs3">
-                <div id="Con2Img3" class="Con2ImgsText">
-                    <h2 class="OverlayTitle">Ой да поновой браслетики</h2>
-                    <p class="OverlayText">НУ по новой так по новой</p>
-                </div>
-            </div>
-            <div class="Con2DivImg">
-                <img src="static/image/slider/SImg11.jpg" alt="" class="SliderImgs" id="Con2Imgs1">
-                <div id="Con2Img1" class="Con2ImgsText">
-                    <h2 class="OverlayTitle">Браслетики</h2>
-                    <p class="OverlayText">У красивые какие</p>
-                </div>
-            </div>
-        </div>
+  <div id="Contener3">
+    <div class="Con3grup1" data-aos="fade-up" data-aos-delay="0">
+      <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs" />
+      <div class="Con3Divs">
+        <p class="Con3Text">
+          Описание дон конкретное дон какое нибудь есть же дон <br />
+          Фотка тоже другой будет дон
+        </p>
+      </div>
+    </div>
+    <div class="Con3grup2" data-aos="fade-up" data-aos-delay="0">
+      <div class="Con3Divs">
+        <p class="Con3Text">
+          Описание дон конкретное дон какое нибудь есть же дон <br />
+          Фотка тоже другой будет дон
+        </p>
+      </div>
+      <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs" />
+    </div>
+    <div class="Con3grup1" data-aos="fade-up" data-aos-delay="0">
+      <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs" />
+      <div class="Con3Divs">
+        <p class="Con3Text">
+          Описание дон конкретное дон какое нибудь есть же дон <br />
+          Фотка тоже другой будет дон
+        </p>
+      </div>
+    </div>
+    <div class="Con3grup2" data-aos="fade-up" data-aos-delay="0">
+      <div class="Con3Divs">
+        <p class="Con3Text">
+          Описание дон конкретное дон какое нибудь есть же дон <br />
+          Фотка тоже другой будет дон
+        </p>
+      </div>
+      <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs" />
+    </div>
+  </div>
 
-
-        <div id="Contener1" data-aos="fade-up" data-aos-delay="0">
-            <div id="Con1Img">
-                <img src="static/image/body/Starter.jpg" alt="Фото Основателя" id="Con1Img1">
-            </div>
-            <div id="Con1Text">
-                <p id="text1">“Каждый браслет, который мы создаем, — это не просто украшение. Это напоминание о ваших мечтах и вере в то, что они сбудутся„</p>
-                <p id="text2"><em>-Юлия, Основатель</em></p>
-            </div>
-        </div>
-
-
-        <div id="Contener3">
-            <div class="Con3grup1" data-aos="fade-up" data-aos-delay="0">
-                <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs">
-                <div class = "Con3Divs">
-                    <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
-                </div>
-            </div>
-            <div class="Con3grup2"  data-aos="fade-up" data-aos-delay="0">
-                <div class = "Con3Divs">
-                    <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
-                </div>
-                <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs">
-            </div>
-            <div class="Con3grup1"  data-aos="fade-up" data-aos-delay="0">
-                <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs">
-                <div class = "Con3Divs">
-                    <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
-                </div>
-            </div>
-            <div class = "Con3grup2"  data-aos="fade-up" data-aos-delay="0">
-                <div class = "Con3Divs">
-                    <p class="Con3Text">Описание дон конкретное дон какое нибудь есть же дон <br> Фотка тоже другой будет дон</p>
-                </div>
-                <img src="static/image/con3/1000030645.jpg" alt="" class="Con3Imgs"> 
-            </div>
-        </div>
-
-
-        <div id="Contener4">
-            <div id="Con4Part1">
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
-                    <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
-                    <p class="Con4Text Con4TextGl">Комфорт</p>
-                    <p class="Con4Text Con4TextVt">Лёгкий и удобный, он не ощущается на запястье, но всегда с тобой</p>
-                </div>
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
-                    <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
-                    <p class="Con4Text Con4TextGl">Долговечность</p>
-                    <p class="Con4Text Con4TextVt">Мы используем качественные материалы, чтобы браслет радовал вас долгие годы</p>
-                </div>
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
-                    <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
-                    <p class="Con4Text Con4TextGl">Минимализм</p>
-                    <p class="Con4Text Con4TextVt">Лаконичный дизайн, который подходит к любому образу — от повседневного до вечернего</p>
-                </div>
-            </div>
-            <div id="Con4Part2">
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
-                    <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
-                    <p class="Con4Text Con4TextGl">Символика</p>
-                    <p class="Con4Text Con4TextVt">Браслет — это больше, чем украшение. Это история твоих мечтаний и стремлений</p>
-                </div>
-                <div class="Con4Divs"  data-aos="fade-up" data-aos-delay="0">
-                    <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs">
-                    <p class="Con4Text Con4TextGl">Надежность</p>
-                    <p class="Con4Text Con4TextVt">Каждый браслет создан с заботой, чтобы стать твоим верным спутником в любой ситуации</p>
-                </div>
-            </div>
-        </div>
-        {% endblock %}
-
-{% block script %} 
-<script src="/static/js/index.js"></script>
-{% endblock %}
+  <div id="Contener4">
+    <div id="Con4Part1">
+      <div class="Con4Divs" data-aos="fade-up" data-aos-delay="0">
+        <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs" />
+        <p class="Con4Text Con4TextGl">Комфорт</p>
+        <p class="Con4Text Con4TextVt">
+          Лёгкий и удобный, он не ощущается на запястье, но всегда с тобой
+        </p>
+      </div>
+      <div class="Con4Divs" data-aos="fade-up" data-aos-delay="0">
+        <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs" />
+        <p class="Con4Text Con4TextGl">Долговечность</p>
+        <p class="Con4Text Con4TextVt">
+          Мы используем качественные материалы, чтобы браслет радовал вас долгие
+          годы
+        </p>
+      </div>
+      <div class="Con4Divs" data-aos="fade-up" data-aos-delay="0">
+        <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs" />
+        <p class="Con4Text Con4TextGl">Минимализм</p>
+        <p class="Con4Text Con4TextVt">
+          Лаконичный дизайн, который подходит к любому образу — от повседневного
+          до вечернего
+        </p>
+      </div>
+    </div>
+    <div id="Con4Part2">
+      <div class="Con4Divs" data-aos="fade-up" data-aos-delay="0">
+        <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs" />
+        <p class="Con4Text Con4TextGl">Символика</p>
+        <p class="Con4Text Con4TextVt">
+          Браслет — это больше, чем украшение. Это история твоих мечтаний и
+          стремлений
+        </p>
+      </div>
+      <div class="Con4Divs" data-aos="fade-up" data-aos-delay="0">
+        <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs" />
+        <p class="Con4Text Con4TextGl">Надежность</p>
+        <p class="Con4Text Con4TextVt">
+          Каждый браслет создан с заботой, чтобы стать твоим верным спутником в
+          любой ситуации
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endblock %} {% block script %}
+  <script src="/static/js/index.js"></script>
+  {% endblock %}
+</div>

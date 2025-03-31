@@ -1,3 +1,6 @@
+let f = document.querySelector("#f");
+let d = document.querySelector("#d");  
+let b = document.querySelector("#b")
 let user_size = 0;
 
 let size1 = document.querySelector("#productChoose1")
@@ -33,6 +36,8 @@ function urlBth(product, user_name, city, street, home) {
     size2.classList.add("shake");
     size3.classList.add("shake");
 
+    showToast("Выберете пожалуйста размер")
+
     setTimeout(() => {
       size1.classList.remove("shake");
       size2.classList.remove("shake");
@@ -40,26 +45,42 @@ function urlBth(product, user_name, city, street, home) {
     }, 500)
   }
   else{
-    if (city == "" || street == "" || home == ""){
-      sessionStorage.setItem("needAddressCheck", "true"); // Флаг, что нужно проверять адрес
-      let menu = document.querySelector("#MenuFixed");
-      MainContener.style.transition = `opacity 0.6s linear`;
-      MainContener.style.opacity = "0";
-      menu.classList.remove("visible");
-      menu.classList.add("hidden");
+    fetch('/add_basket', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({product_id: parseInt(d.value), color: document.querySelector("#productColor").value.toLowerCase(), size: user_size, material: document.querySelector("#productMaterial").value.toLowerCase()})
+    })
+      .then(response =>response.json())
+      .then(data => {
+        if(data.success){
+          showToast(data.message);
+        }
+        else{
+          showToast(data.error)
+        }
+      })
+
+
+    // if (city == "" || street == "" || home == ""){
+    //   sessionStorage.setItem("needAddressCheck", "true"); // Флаг, что нужно проверять адрес
+    //   let menu = document.querySelector("#MenuFixed");
+    //   MainContener.style.transition = `opacity 0.6s linear`;
+    //   MainContener.style.opacity = "0";
+    //   menu.classList.remove("visible");
+    //   menu.classList.add("hidden");
       
-      setTimeout(() => {
-          MainContener.style.transition = `opacity 0.3s linear`;
-          window.location.href = "/profil";
-      }, 600);
-    }
-    else{
-      let user_color = document.querySelector("#productColor").value.toLowerCase();
-      const phoneNumber = "77003360024";  
-      const message = `Здравствуйте! Меня зовут ${user_name}. Интересуюсь позицией - ${product}, цвет нити - ${user_color}, размер - ${user_size}. Доставка на адрес: г.${city}, ул.${street}, д.${home}. Спасибо!`;  
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
-    }
+    //   setTimeout(() => {
+    //       MainContener.style.transition = `opacity 0.3s linear`;
+    //       window.location.href = "/profil";
+    //   }, 600);
+    // }
+    // else{
+    //   let user_color = document.querySelector("#productColor").value.toLowerCase();
+    //   const phoneNumber = "77003360024";  
+    //   const message = `Здравствуйте! Меня зовут ${user_name}. Интересуюсь позицией - ${product}, цвет нити - ${user_color}, размер - ${user_size}. Доставка на адрес: г.${city}, ул.${street}, д.${home}. Спасибо!`;  
+    //   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    //   window.open(url, "_blank");
+    // }
   }
 }
 
@@ -153,8 +174,6 @@ left.addEventListener('click', () => {
 window.addEventListener("resize", resize);
 let cheked = false;
 function resize() {
-  console.log(34);
-  
     width = window.innerWidth;
     if (width <= 1000){
       if(cheked == false){
@@ -173,8 +192,6 @@ function resize() {
       img4.style.opacity = "1";
     }
   };
-  let f = document.querySelector("#f");
-  let d = document.querySelector("#d");  
 
   let BthLike = document.querySelector("#productLike")
   let BthGetLike = document.querySelector("#productGetLike");
@@ -188,10 +205,10 @@ function BthLikes() {
   .then(response => response.json())
   .then(data => {
     if (data.success){
-      console.log("Товар");
+      showToast(data.message)
     }
     else{
-      console.log("Ошибка: " + data.error);
+      showToast(data.error)
     }
   })
   if (BthLike.style.display == "flex"){
@@ -237,3 +254,17 @@ function chek(){
 }
 chek();
 resize();
+
+document.querySelector("#productMaterial").addEventListener('change', function(){
+
+  const selectedValue = this.value;
+  console.log(selectedValue);
+  
+
+  if (selectedValue === "Золото 585 (Белое)") {
+    showToast("Изделия из белого золота 585 изготавливается на заказ, до 2 недель", 10, 5000)
+  }
+  else if(selectedValue === "Золото 585 (Жёлтое)"){
+    showToast("Изделия из жёлтого золота 585 изготавливается на заказ, до 2 недель", 10, 5000)
+  }
+})

@@ -3,6 +3,9 @@
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/login.css" />
 {% endblock %} {% block body %}
+
+{% if messageForNoLog == True %}<div id="messageForNoLog"></div>{% endif %}
+
 <div id="Contener">
   <div id="Forma">
     <a href="/">
@@ -56,11 +59,11 @@
           />
         </div>
         {% if errors.get('error') %}
-        <div>{{ errors['error'] }}</div>
+        <div id="messageForErrorError">{{ errors['error'] }}</div>
         {% elif errors.get('len') %}
-        <div>{{ errors['len'] }}
+        <div id="messageForErrorLen">{{ errors['len'] }}
         {% elif errors.get('comparisons') %}
-        <div>{{ errors['comparisons'] }}</div>
+        <div id="messageForErrorComparisons">{{ errors['comparisons'] }}</div>
         {% endif %}
         <button id="ButtonSignIn" type="submit" style="width: 100%">Log in</button>
       </div>

@@ -84,3 +84,14 @@ function slider() {
     }
 }
 slider();
+
+if (document.querySelector('#messageForReg')){
+    showToast("Вы успешно зарегистрировались!", 2000)
+}
+if (document.querySelector('#messageForLog')){
+    showToast("Вы успешно вошли в аккаунт!", 2000)
+}
+if (document.querySelector('#messageForNoReg')){
+    showToast("Ошибка авторизации, повторите позже!", 2000)
+}
+

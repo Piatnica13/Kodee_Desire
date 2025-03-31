@@ -2,7 +2,10 @@
 <title>Sign Up</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/register.css" />
-{% endblock %} {% block body %}
+{% endblock %} {% block body %} {% if messageForNoReg %}
+<div id="messageForNoReg"></div>
+{% endif %}
+
 <div id="Contener">
   <div id="Forma">
     <a href="/">
@@ -54,7 +57,7 @@
             id="password"
             name="password"
             placeholder="Password"
-            class="{% if errors.get('len') %}loginError{% endif %}"
+            class="{% if errors.get('len') or errors.get('have') %}loginError{% endif %}"
           />
           <img
             src="/static/image/auth/hide.png"
@@ -70,7 +73,9 @@
           />
         </div>
         {% if errors.get('len') %}
-        <div>{{ errors['len'] }}</div>
+        <div id="messageForErrorLen">{{ errors['len'] }}</div>
+        {% elif errors.get('have') %}
+        <div id="messageForErrorHave">{{ errors['have'] }}</div>
         {% endif %}
         <button type="submit" id="ButtonSignIn">Sign Up</button>
       </div>
