@@ -44,7 +44,7 @@ const allProducts = [
   { name: "Бегунок мини", price: 28500, concept: "Минимализм и красота", category: "Бегунок", image: "/static/image/productImgs/begunok-mini/img1.jpg", slug: "begunok-mini" },
   { name: "Бегунок", price: 55000, concept: "Минимализм и красота", category: "Бегунок", image: "/static/image/productImgs/begunok/img1.jpg", slug: "begunok" },
   { name: "Колье-невидимка без кулона", price: 28500, concept: "Минимализм и красота", category: "Колье", image: "/static/image/productImgs/kole-nevidimka-bez-kulona/img1.jpg", slug: "kole-nevidimka-bez-kulona" },
-  { name: "Колье-неведимка с мини сердечком", price: 45000, concept: "Любовь и романтика", category: "Колье", image: "/static/image/productImgs/kole-nevidimka-s-mini-serdechkom/img1.jpg", slug: "kole-nevidimka-s-mini-serdechkom" },
+  { name: "Колье-неведимка с мини сердечком", price: 45000, concept: "Любовь и романтика", category: "Колье", image: "/static/image/productImgs/kole-nevidimka-s-mini-serdechkom/img1.jpg", slug: "kole-nevidimka-s-mini-serdechkoк" },
   { name: "Колье-неведимка с бегунком мини", price: 44000, concept: "Минимализм и красота", category: "Колье", image: "/static/image/productImgs/kole-nevidimka-s-begunkom-mini/img1.jpg", slug: "kole-nevidimka-s-begunkom-mini" },
   { name: "Колье-неведимка с бегунком", price: 64000, concept: "Минимализм и красота", category: "Колье", image: "/static/image/productImgs/kole-nevidimka-s-begunkom/img1.jpg", slug: "kole-nevidimka-s-begunkom" },
   { name: 'Кулон Знак зодиака «Овен»', price: 36000, concept: "Знаки зодиака", category: "Кулон", image: "/static/image/productImgs/oven/img1.jpg", slug: "oven" },
@@ -157,8 +157,8 @@ function renderProducts(products, bool) {
               <p class="BthInfo"><ins style="text-decoration: line">Подробнее</ins></p>
             </div>
           </div>
-          </a>
-        </div>
+        </a>
+      </div>
       `;
       productContainer.innerHTML += productCard;
     }
@@ -168,17 +168,18 @@ function renderProducts(products, bool) {
       
       const productCard = `
       <div class="product-card">
+        <a href="/product/${products[i].slug}" style="color: black; text-decoration: none;">
         <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
         <p class="product-title">${products[i].name}</p>
         <div class="test">
           <p class="product-price">${products[i].price}тг</p>
-          <a href="/product/${products[i].slug}" style="color: black">
           <div class="DivInfo">
             <img src = "/static/image/menu/sumka.png" class = "Con2Icon" alt = "Сумка">
             <p class="BthInfo"><ins>Подробнее</ins></p>
           </div>
           </a>
         </div>
+        </a>
       </div>
       `;
       productContainer.innerHTML += productCard;

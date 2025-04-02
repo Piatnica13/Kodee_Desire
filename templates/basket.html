@@ -11,20 +11,20 @@
       {% for product in basket %}
       <div class="basketProduct">
         <label class="customCheckbox basketCheckbox">
-          <input type="checkbox" >
-          <span ></span>
+          <input type="checkbox" style="width: 40px;height: 40px; flex-shrink: 0;">
+          <span style="width: 40px;height: 40px; flex-shrink: 0;"></span>
+          <div class="productImgs">
+            <img src="/static/image/menu/like.png" class="productImg"alt="">
+            <img src="/static/image/dirProfil/delete.png" class="productImg" alt="">
+          </div>
         </label>
-        <img src="/static/image/productImgs/{{ product.slug }}/img1.jpg" style="width: 150px; margin: 0px 20px" alt="Продукция">
+        <img src="/static/image/productImgs/{{ product.slug }}/img1.jpg" style="width: 75%; margin: 0px 20px; aspect-ratio: 1 / 1;" alt="Продукция">
         <div class="basketNoCheckboxImg">
           {{ product.name }}
-          <div class="productDescript">
+          <div class="basketProductDescript">
             {%for desc in
-              description %} {%if product.id == desc[0] %} Цвет нити: {{ desc[1] }}
-              Размер: {{ desc[2] }} Материал: {{ desc[3] }} {% endif %} {% endfor %}
-          </div>
-          <div class="productImgs">
-            <img src="/static/image/menu/like.png"  style="width: 50px;" alt="">
-            <img src="/static/image/dirProfil/delete.png" style="width: 50px;"  alt="">
+              description %} {%if product.id == desc[0] %} Цвет нити: {{ desc[1] }} <br>
+              Размер: {{ desc[2] }} <br> Материал: {{ desc[3] }} <br> {% endif %} {% endfor %}
           </div>
         </div>
       </div>
