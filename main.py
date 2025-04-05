@@ -59,7 +59,7 @@ def profil():
                     user.password = heshed_pass
                 else:
                     errors['comparisons'] = "Ошибка, пароли не совпадают или пароль меньше 6 символов"
-                    flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error")
+                    flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error") 
                     return render_template("profil.html", user=user, errors=errors, favorite_products = favorite_products)
             #добавления адресов
             elif "add_address" in request.form:

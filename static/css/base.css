@@ -10,6 +10,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 html::-webkit-scrollbar {
     width: 10px; /* Ширина вертикальной полосы */
     height: 10px; /* Высота горизонтальной полосы */

@@ -10,21 +10,26 @@
       <h2>Корзина</h2>
       {% for product in basket %}
       <div class="basketProduct">
-        <label class="customCheckbox basketCheckbox">
-          <input type="checkbox" style="width: 40px;height: 40px; flex-shrink: 0;">
-          <span style="width: 40px;height: 40px; flex-shrink: 0;"></span>
-          <div class="productImgs">
-            <img src="/static/image/menu/like.png" class="productImg"alt="">
-            <img src="/static/image/dirProfil/delete.png" class="productImg" alt="">
+        <div class="basketFirstDiv">
+          <label class="basketCheckbox customCheckbox">
+            <input type="checkbox" class="basketcheckboxItem">
+            <span class="basketcheckboxItem"></span>
+              <img src="/static/image/menu/like.png" class="productImg" alt="">
+              <img src="/static/image/dirProfil/delete.png" class="productImg" alt=""> 
+          </label>
+          <div class="basketproductImg">
+            <img src="/static/image/productImgs/{{ product.slug }}/img1.jpg" class="basketproductImgs" alt="Продукция">
           </div>
-        </label>
-        <img src="/static/image/productImgs/{{ product.slug }}/img1.jpg" style="width: 75%; margin: 0px 20px; aspect-ratio: 1 / 1;" alt="Продукция">
+        </div>
         <div class="basketNoCheckboxImg">
-          {{ product.name }}
+          <p class="productName" style="margin: 0px;">{{ product.name }}</p>
           <div class="basketProductDescript">
-            {%for desc in
-              description %} {%if product.id == desc[0] %} Цвет нити: {{ desc[1] }} <br>
-              Размер: {{ desc[2] }} <br> Материал: {{ desc[3] }} <br> {% endif %} {% endfor %}
+            {%for desc in description %} {%if product.id == desc[0] %} 
+              <div class="basketProductDescriptions"><b>Цена</b> <br> {{ product.price }}тг </div>
+              <div class="basketProductDescriptions"><b>Цвет нити</b> <br> {{ desc[1] }}</div>
+              <div class="basketProductDescriptions"><b>Размер</b> <br>{{ desc[2] }}</div> 
+              <div class="basketProductDescriptions"><b>Материал</b> <br> {{ desc[3] }}</div> 
+              {% endif %} {% endfor %}
           </div>
         </div>
       </div>
@@ -40,7 +45,7 @@
     <div id="basketPay"></div>
     <div id="basketCertificate">
       <h3>Код сертификата</h3>
-      <input type="text" />
+      <input type="text" id="basketInputSert"/>
     </div>
     <div>
       <button type="">Оформить заказ</button>
