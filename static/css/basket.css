@@ -100,6 +100,8 @@
 .productImg{
     width: 50px;
     opacity: 0.8;
+    z-index: 10;
+    cursor: pointer;
 }
 .basketproductImg{
     width: 100%;
@@ -114,7 +116,9 @@
 .customCheckbox span{
     width: 40px;
     height: 40px;
-    flex-shrink: 0;
+}
+.customCheckbox input[type="checkbox"]:checked + span::after {
+    font-size: 35px;
 }
 .basketproductImgs{
     width: 100%; 
@@ -126,6 +130,19 @@
     grid-template-rows: 100%;
     grid-template-columns: 20% 80%;
     justify-content: center;
+}
+.productName{
+    font-size: 2rem;
+}
+@media screen and (max-width: 1450px) {
+    .productName{
+        font-size: 1.4rem;
+    }
+}
+@media screen and (max-width: 1250px) {
+    .productName{
+        font-size: 1.2rem;
+    }
 }
 @media screen and (max-width: 1023px) {
     #bodyBasket{
@@ -144,10 +161,14 @@
         grid-template-columns: 40% 60%;
         position: relative; 
         height: 150px;
+        overflow-x: visible;
     }
     .basketProductDescript{
         display: flex;
-        align-items: center;
+        align-items: none;
+        justify-content: center;
+        flex-direction: row;
+        gap: 25px;
     }
     .basketProductDescriptions{
         max-width: 150px;
@@ -156,11 +177,11 @@
     }
     .basketNoCheckboxImg{
         text-align: center;
-        max-height: 100px;
+        max-height: 140px;
         margin-left: 10px;
     }
     .productName{
-        font-family: 1.2rem;
+        font-size: 1rem;
     }
     .productImg{
         width: 25px;
@@ -174,14 +195,37 @@
     .customCheckbox{
         flex-direction: row;
         grid-row: 2;
-        gap: 10px;
+        gap: 30px;
+        justify-content: center;
+
     }
     .basketproductImgs{
-        max-width: 140px;
+        max-width: 120px;
+        display: flex;
+        justify-content: start;
+        aspect-ratio: 1 / 1;
+    }
+    .basketproductImg{
+        display: flex;
+        align-items: start;
     }
     .basketFirstDiv{
+        height: 150px;;
         display: grid;
         grid-template-rows: 80% 20%;
         grid-template-columns: 100%;
+        justify-content: space-between;
+    }
+    .customCheckbox input[type="checkbox"]:checked + span::after {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .basketProductDescript{
+        display: flex;
+        justify-content: none;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
     }
 }
