@@ -62,7 +62,7 @@ img{
 #Contener2 {
     position: relative;
     width: 100%;
-    height: 1000px; /* Пусть слайдер занимает всю высоту */
+    height: 100vh; /* Пусть слайдер занимает всю высоту */
     overflow: hidden; /* Скрываем всё, что выходит за пределы слайдера */
 }
 .Con2DivImg{
@@ -243,7 +243,6 @@ img{
 @media screen and (max-width: 767px) {
     #Contener1{
         flex-direction: column;
-        bottom: 40px;
     }
     #Con1Img{
         width: 100%;
@@ -252,7 +251,7 @@ img{
         width: 100%;
     }
     #Contener3{
-        margin-top: 0px;
+        margin-top: 25px;
     }
     .Con3grup1, .Con3grup2{
         left: 0px;

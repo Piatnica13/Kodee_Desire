@@ -278,6 +278,7 @@
 @media screen and (max-width: 355px) {
     #productAllCharacter{
         flex-direction: column;
+        gap: 0px;
     }
     .DivsCharacters{
         display: flex;

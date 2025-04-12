@@ -102,6 +102,7 @@
     opacity: 0.8;
     z-index: 10;
     cursor: pointer;
+    position: absolute;
 }
 .basketproductImg{
     width: 100%;
@@ -131,8 +132,29 @@
     grid-template-columns: 20% 80%;
     justify-content: center;
 }
+.basketDivLabel{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
 .productName{
     font-size: 2rem;
+}
+.basketLabelPodImgs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+.basketLike{
+    opacity: 0;
+    transition: opcity 0.3s ease-in-out
+}
+.basketNoLike{
+    opacity: 1;
+    transition: opcity 0.3s ease-in-out
 }
 @media screen and (max-width: 1450px) {
     .productName{
@@ -144,7 +166,7 @@
         font-size: 1.2rem;
     }
 }
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1025px) {
     #bodyBasket{
         flex-direction: column;
     }
@@ -179,6 +201,7 @@
         text-align: center;
         max-height: 140px;
         margin-left: 10px;
+        overflow-x: auto;
     }
     .productName{
         font-size: 1rem;
@@ -186,6 +209,7 @@
     .productImg{
         width: 25px;
         opacity: 0.8;
+        
     }
     .customCheckbox span{
         width: 20px;
@@ -219,6 +243,20 @@
     .customCheckbox input[type="checkbox"]:checked + span::after {
         font-size: 16px;
     }
+    .basketDivLabel{
+        flex-direction: row;
+        grid-row: 2;
+        gap: 85px;
+        justify-content: center;
+        align-items: center;
+    }
+    .basketLabelPodImgs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+    }
 }
 @media screen and (max-width: 700px) {
     .basketProductDescript{
@@ -227,5 +265,8 @@
         align-items: center;
         flex-direction: column;
         gap: 5px;
+    }
+    .basketDivLabel{
+        gap: 50px;
     }
 }

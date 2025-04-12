@@ -54,42 +54,47 @@
           </a>
         </div>
         <div id="ProfilMenuLeft">
-          <div id="ProfilLeftFavorites" class="ProfilOb">
+          <div id="ProfilLeftFavoritess" class="ProfilOb">
             <div class="ProfilTitle">
               <h1>Избранные товары</h1>
             </div>
-            <div id="prodilGridCard">
-              {% if favorite_products == []%}
-              <div id="productNoProduct">
-                <h1>товары пока не добавлены</h1>
-              </div>
-              {% else %} {% for product in favorite_products %}
-              <div class="product-card">
-                <div style="width: 250px; height: 250px">
-                  {% for image in product.images %}
-                  <img
-                    src="{{ image.img1 }}"
-                    class="productFotos productImg{{ image.num }}"
-                    alt="Продукция"
-                  />
-                  {% endfor %}
+            <div id="prodictObertka2">
+              <div id="prodilGridCardd">
+                {% if favorite_products == []%}
+                <div id="productNoProduct">
+                  <h1>товары пока не добавлены</h1>
                 </div>
-                <p class="product-title">{{product.name}}</p>
-                <div class="test">
-                  <p class="product-price">{{product.price}}тг</p>
-                  <a href="/product/{{product.slug}}" style="color: black">
-                    <div class="DivInfo">
+                {% else %} {% for product in favorite_products %}
+                <a
+                  href="/product/{{product.slug}}"
+                  style="color: black; text-decoration: none"
+                >
+                  <div class="product-card">
+                    <div style="width: 250px; height: 250px">
+                      {% for image in product.images %}
                       <img
-                        src="/static/image/menu/sumka.png"
-                        class="Con2Icon"
-                        alt="Сумка"
+                        src="{{ image.img1 }}"
+                        class="productFotos productImg{{ image.num }}"
+                        alt="Продукция"
                       />
-                      <p class="BthInfo"><ins>Подробнее</ins></p>
+                      {% endfor %}
                     </div>
-                  </a>
-                </div>
+                    <p class="product-title">{{product.name}}</p>
+                    <div class="test">
+                      <p class="product-price">{{product.price}}тг</p>
+                      <div class="DivInfo">
+                        <img
+                          src="/static/image/menu/sumka.png"
+                          class="Con2Icon"
+                          alt="Сумка"
+                        />
+                        <p class="BthInfo"><ins>Подробнее</ins></p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% endfor %} {% endif %}
               </div>
-              {% endfor %} {% endif %}
             </div>
           </div>
           <div id="ProfilLeftProfil" class="ProfilOb">
@@ -236,7 +241,7 @@
                   <img
                     src="/static/image/menu/phone.png"
                     id="ProfilImgPhone"
-                    alt=""
+                    alt="Номер телефона"
                     class="ProfilImgs"
                   />
                   <input
@@ -249,7 +254,7 @@
                 <div class="ProfilDivImgs">
                   <img
                     src="/static/image/auth/pass.png"
-                    alt=""
+                    alt="Емаил"
                     class="ProfilImgs"
                   />
                   <input
@@ -274,150 +279,152 @@
           </div>
           <div id="ProfilLeftAddAddress">
             <div class="ProfilTitle"><h1>Адреса доставки</h1></div>
-            <div id="PrfilMatch">
-              <div id="ProfilAddAdd">
-                <button id="ProfilBthAddAdd">Добавить</button>
-              </div>
-              <form id="ProfilAddMain" method="POST">
-                {% for address in user.addresses %}
-                <div id="address-{{ address.id }}">
-                  <div id="ProfilAddDivMain">
-                    {% set full_address = "г." ~ address.city ~ " ул." ~
-                    address.street ~ " д." ~ address.home ~ " кв." ~
-                    address.flat %} {% set user_address = user.address.strip()
-                    if user.address else "" %} {% if full_address ==
-                    user_address %}
-                    <input
-                      type="radio"
-                      name="addresses"
-                      class="ProfilAddRadio"
-                      value="г.{{ address.city }} ул.{{ address.street }} д.{{
-                        address.home }} кв.{{ address.flat }}"
-                      onchange="ShowButton()"
-                      checked
-                    />
-                    {% else %}
-                    <input
-                      type="radio"
-                      name="addresses"
-                      class="ProfilAddRadio"
-                      value="г.{{ address.city }} ул.{{ address.street }} д.{{
-                        address.home }} кв.{{ address.flat }}"
-                      onchange="showButton()"
-                    />
-                    {% endif %}
-                    <span class="checkmark"></span>
-                    <div id="ProfilAddDiv">
-                      <label>{{ address.name }}</label><br />
-                      <label
-                        >г.{{ address.city }} ул.{{ address.street }} д.{{
-                        address.home }} кв.{{ address.flat }}</label
-                      >
+            <div id="ProfilObertka1">
+              <div id="PrfilMatch">
+                <div id="ProfilAddAdd">
+                  <button id="ProfilBthAddAdd">Добавить</button>
+                </div>
+                <form id="ProfilAddMain" method="POST">
+                  {% for address in user.addresses %}
+                  <div id="address-{{ address.id }}">
+                    <div id="ProfilAddDivMain">
+                      {% set full_address = "г." ~ address.city ~ " ул." ~
+                      address.street ~ " д." ~ address.home ~ " кв." ~
+                      address.flat %} {% set user_address = user.address.strip()
+                      if user.address else "" %} {% if full_address ==
+                      user_address %}
+                      <input
+                        type="radio"
+                        name="addresses"
+                        class="ProfilAddRadio"
+                        value="г.{{ address.city }} ул.{{ address.street }} д.{{
+                          address.home }} кв.{{ address.flat }}"
+                        onchange="ShowButton()"
+                        checked
+                      />
+                      {% else %}
+                      <input
+                        type="radio"
+                        name="addresses"
+                        class="ProfilAddRadio"
+                        value="г.{{ address.city }} ул.{{ address.street }} д.{{
+                          address.home }} кв.{{ address.flat }}"
+                        onchange="showButton()"
+                      />
+                      {% endif %}
+                      <span class="checkmark"></span>
+                      <div id="ProfilAddDiv">
+                        <label>{{ address.name }}</label><br />
+                        <label
+                          >г.{{ address.city }} ул.{{ address.street }} д.{{
+                          address.home }} кв.{{ address.flat }}</label
+                        >
+                      </div>
+                      <img
+                        src="/static/image/dirProfil/delete.png"
+                        id="ProfilDelImgs"
+                        onclick="markForDeletion({{ address.id }})"
+                      />
                     </div>
-                    <img
-                      src="/static/image/dirProfil/delete.png"
-                      id="ProfilDelImgs"
-                      onclick="markForDeletion({{ address.id }})"
-                    />
                   </div>
-                </div>
-                {% endfor %}
-                <input
-                  type="hidden"
-                  name="deleted_addresses"
-                  id="deletedAddresses"
-                  value=""
-                />
-                <div id="ProfilDivButtonAdd">
-                  <button
-                    type="submit"
-                    id="ProfilButtonAdd"
-                    name="work_with_address"
-                    value="1"
-                  >
-                    Сохранить
-                  </button>
-                </div>
-              </form>
-              <form method="POST" id="ProfilAddSplit">
-                <div id="ProfilAddInps">
-                  <div class="ProfilAddDivInps">
-                    <img
-                      src="/static/image/dirProfil/tochka.png"
-                      class="ProfilAddImgs"
-                      alt="Имя"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Название (можете видеть только вы)"
-                      class="ProfilAddInp"
-                      name="name"
-                    />
+                  {% endfor %}
+                  <input
+                    type="hidden"
+                    name="deleted_addresses"
+                    id="deletedAddresses"
+                    value=""
+                  />
+                  <div id="ProfilDivButtonAdd">
+                    <button
+                      type="submit"
+                      id="ProfilButtonAdd"
+                      name="work_with_address"
+                      value="1"
+                    >
+                      Сохранить
+                    </button>
                   </div>
-                  <div class="ProfilAddDivInps">
-                    <img
-                      src="/static/image/dirProfil/tochka.png"
-                      class="ProfilAddImgs"
-                      alt="Город"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Город"
-                      class="ProfilAddInp"
-                      name="city"
-                    />
+                </form>
+                <form method="POST" id="ProfilAddSplit">
+                  <div id="ProfilAddInps">
+                    <div class="ProfilAddDivInps">
+                      <img
+                        src="/static/image/dirProfil/tochka.png"
+                        class="ProfilAddImgs"
+                        alt="Имя"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Название (можете видеть только вы)"
+                        class="ProfilAddInp"
+                        name="name"
+                      />
+                    </div>
+                    <div class="ProfilAddDivInps">
+                      <img
+                        src="/static/image/dirProfil/tochka.png"
+                        class="ProfilAddImgs"
+                        alt="Город"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Город"
+                        class="ProfilAddInp"
+                        name="city"
+                      />
+                    </div>
+                    <div class="ProfilAddDivInps">
+                      <img
+                        src="/static/image/dirProfil/tochka.png"
+                        class="ProfilAddImgs"
+                        alt="Улица"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Улица"
+                        class="ProfilAddInp"
+                        name="street"
+                      />
+                    </div>
+                    <div class="ProfilAddDivInps">
+                      <img
+                        src="/static/image/dirProfil/tochka.png"
+                        class="ProfilAddImgs"
+                        alt="Дом"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Дом"
+                        class="ProfilAddInp"
+                        name="home"
+                      />
+                    </div>
+                    <div class="ProfilAddDivInps">
+                      <img
+                        src="/static/image/dirProfil/tochka.png"
+                        class="ProfilAddImgs"
+                        alt="Квартира"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Квартира (не обязательно)"
+                        class="ProfilAddInp"
+                        name="flat"
+                      />
+                    </div>
                   </div>
-                  <div class="ProfilAddDivInps">
-                    <img
-                      src="/static/image/dirProfil/tochka.png"
-                      class="ProfilAddImgs"
-                      alt="Улица"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Улица"
-                      class="ProfilAddInp"
-                      name="street"
-                    />
+                  <div id="ProfilAddDivBth">
+                    <button
+                      id="ProfilAddBth"
+                      name="add_address"
+                      value="1"
+                      type="submit"
+                    >
+                      Добавить
+                    </button>
                   </div>
-                  <div class="ProfilAddDivInps">
-                    <img
-                      src="/static/image/dirProfil/tochka.png"
-                      class="ProfilAddImgs"
-                      alt="Дом"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Дом"
-                      class="ProfilAddInp"
-                      name="home"
-                    />
-                  </div>
-                  <div class="ProfilAddDivInps">
-                    <img
-                      src="/static/image/dirProfil/tochka.png"
-                      class="ProfilAddImgs"
-                      alt="Квартира"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Квартира (не обязательно)"
-                      class="ProfilAddInp"
-                      name="flat"
-                    />
-                  </div>
-                </div>
-                <div id="ProfilAddDivBth">
-                  <button
-                    id="ProfilAddBth"
-                    name="add_address"
-                    value="1"
-                    type="submit"
-                  >
-                    Добавить
-                  </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>

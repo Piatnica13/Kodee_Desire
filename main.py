@@ -139,7 +139,7 @@ def basket():
     for i in user.basket:
         product = Product.query.filter_by(id = i[0]).first()
         products.append(product)
-    return render_template('basket.html', basket=products, description=user.basket)
+    return render_template('basket.html', basket=products, description=user.basket, favorite = user.favourites)
 
 @app.route('/add_basket', methods=['POST'])
 def add_basket():
@@ -387,6 +387,6 @@ addProducts(Product(name="Гравировка в серебре", price=15000, 
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
     with app.app_context():
         db.create_all()
+    app.run(debug=True, port=5000)

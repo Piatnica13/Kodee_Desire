@@ -10,7 +10,7 @@ let address = document.querySelector("#ProfilLeftAddAddress");
 let formToAddAddresses = document.querySelector("#ProfilAddSplit")
 let bthAddAddresses = document.querySelector("#ProfilBthAddAdd");
 let bthFavorite = document.querySelector("#ProdilMenuItemFavorites");
-let favorite = document.querySelector("#ProfilLeftFavorites");
+let favorite = document.querySelector("#ProfilLeftFavoritess");
 
 let needCheckForAddress = sessionStorage.getItem("needAddressCheck");
 let needCheckForFavorite = sessionStorage.getItem("needFavoriteCheck");
@@ -34,6 +34,7 @@ catch{}
 
 bthFavorite.addEventListener("click", PageFavorite)
 function PageFavorite() {
+    NotTach()
     rechange.style.opacity = "0";
     password.style.opacity = "0";
     address.style.opacity = "0";
@@ -46,11 +47,14 @@ function PageFavorite() {
         password.style.display = "none";
         profil.style.display = "none";
         favorite.style.opacity = "1";
+        StilDobro();
     }, 500);
+
 }
 
 bthProfil.addEventListener("click", OpacityOfProfil)
 function OpacityOfProfil() {
+    NotTach()
     rechange.style.opacity = "0";
     password.style.opacity = "0";
     address.style.opacity = "0";
@@ -62,10 +66,12 @@ function OpacityOfProfil() {
         password.style.display = "none";
         favorite.style.display = "none";
         profil.style.opacity = "1";
+        StilDobro()
     }, 500);
 }
 
 bthRechange.addEventListener("click", () => {
+    NotTach()
     profil.style.opacity = "0";
     password.style.opacity = "0";
     address.style.opacity = "0";
@@ -77,9 +83,11 @@ bthRechange.addEventListener("click", () => {
         favorite.style.display = "none";
         password.style.display = "none";
         rechange.style.opacity = "1";
+        StilDobro()
     }, 500)
 })
 bthRechangee.addEventListener("click", () => {
+    NotTach()
     profil.style.opacity = "0";
     password.style.opacity = "0";
     favorite.style.opacity = "0";
@@ -91,10 +99,12 @@ bthRechangee.addEventListener("click", () => {
         profil.style.display = "none";
         password.style.display = "none";
         rechange.style.opacity = "1";
+        StilDobro()
     }, 500)
 })
 
 bthPassword.addEventListener("click", () => {
+    NotTach()
     profil.style.opacity = "0";
     address.style.opacity = "0";
     favorite.style.opacity = "0";
@@ -106,11 +116,13 @@ bthPassword.addEventListener("click", () => {
         profil.style.display = "none";
         rechange.style.display = "none";
         password.style.opacity = "1";
+        StilDobro()
     }, 500);
 })
 
 bthAddress.addEventListener("click", PageAddress);
 function PageAddress(){
+    NotTach()
     profil.style.opacity = "0";
     password.style.opacity = "0";
     favorite.style.opacity = "0";
@@ -123,7 +135,7 @@ function PageAddress(){
         password.style.display = "none";
         rechange.style.display = "none";
         address.style.opacity = "1";
-        
+        StilDobro()
     }, 500);
 }
 
@@ -189,4 +201,31 @@ function markForDeletion(addressId) {
 }
 if (ChekProfilOpacity == true){
     OpacityOfProfil() 
+}
+function StilDobro(){
+    let Dobro = document.querySelector("#ProfilTop");
+    if (profil.style.display == `flex`){
+        Dobro.style.display = `flex`;
+    }
+    else if(profil.style.display == `none`){
+        Dobro.style.display = `none`;
+    }
+}
+function NotTach() {
+    try{
+        clearTimeout(interval);
+    }
+    catch{}
+    bthProfil.style.pointerEvents = `none`;
+    bthPassword.style.pointerEvents = `none`;
+    bthFavorite.style.pointerEvents = `none`;
+    bthRechange.style.pointerEvents = `none`;
+    bthAddress.style.pointerEvents = `none`;
+    interval = setTimeout(() => {
+        bthProfil.style.pointerEvents = `auto`;
+        bthPassword.style.pointerEvents = `auto`;
+        bthFavorite.style.pointerEvents = `auto`;
+        bthRechange.style.pointerEvents = `auto`;
+        bthAddress.style.pointerEvents = `auto`;
+    }, 600);
 }

@@ -11,25 +11,66 @@
       {% for product in basket %}
       <div class="basketProduct">
         <div class="basketFirstDiv">
-          <label class="basketCheckbox customCheckbox">
-            <input type="checkbox" class="basketcheckboxItem">
-            <span></span>
-              <img src="/static/image/menu/like.png" class="productImg" alt="">
-              <img src="/static/image/dirProfil/delete.png" class="productImg" alt=""> 
-          </label>
-          <div class="basketproductImg">
-            <img src="/static/image/productImgs/{{ product.slug }}/img1.jpg" class="basketproductImgs" alt="Продукция">
+          <div class="basketDivLabel">
+            <label class="basketCheckbox customCheckbox">
+              <input type="checkbox" class="basketcheckboxItem" />
+              <span></span>
+            </label>
+            <div class="basketLabelPodImgs">
+              <img
+                src="/static/image/productImgs/blackHeart.png"
+                class="productImg basketNoLike"
+                id="basketNoLike{{product.id}}"
+                alt="Поставить лайк"
+                data-id="{{ product.id }}"
+              />
+              <img
+                src="/static/image/productImgs/heart.png"
+                class="productImg basketLike"
+                alt="Лайк"
+                data-id="{{product.id}}"
+                id="basketLike{{product.id}}"
+              />
+            </div>
+            <img
+              src="/static/image/dirProfil/delete.png"
+              class="productImg"
+              alt=""
+            />
           </div>
+          <div class="basketproductImg">
+            <img
+              src="/static/image/productImgs/{{ product.slug }}/img1.jpg"
+              class="basketproductImgs"
+              alt="Продукция"
+            />
+          </div>
+          <input
+            type="hidden"
+            id="basketFavoriteProduct"
+            value="{{ favorite }}"
+          />
         </div>
         <div class="basketNoCheckboxImg">
-          <p class="productName" style="margin: 0px;">{{ product.name }}</p>
+          <p class="productName" style="margin: 0px">{{ product.name }}</p>
           <div class="basketProductDescript">
-            {%for desc in description %} {%if product.id == desc[0] %} 
-              <div class="basketProductDescriptions"><b>Цена</b> <br> {{ product.price }}тг </div>
-              <div class="basketProductDescriptions"><b>Цвет нити</b> <br> {{ desc[1] }}</div>
-              <div class="basketProductDescriptions"><b>Размер</b> <br>{{ desc[2] }}</div> 
-              <div class="basketProductDescriptions"><b>Материал</b> <br> {{ desc[3] }}</div> 
-              {% endif %} {% endfor %}
+            {%for desc in description %} {%if product.id == desc[0] %}
+            <div class="basketProductDescriptions">
+              <b>Цена</b> <br />
+              {{ product.price }}тг
+            </div>
+            <div class="basketProductDescriptions">
+              <b>Цвет нити</b> <br />
+              {{ desc[1] }}
+            </div>
+            <div class="basketProductDescriptions">
+              <b>Размер</b> <br />{{ desc[2] }}
+            </div>
+            <div class="basketProductDescriptions">
+              <b>Материал</b> <br />
+              {{ desc[3] }}
+            </div>
+            {% endif %} {% endfor %}
           </div>
         </div>
       </div>
@@ -45,7 +86,7 @@
     <div id="basketPay"></div>
     <div id="basketCertificate">
       <h3>Код сертификата</h3>
-      <input type="text" id="basketInputSert"/>
+      <input type="text" id="basketInputSert" />
     </div>
     <div>
       <button type="">Оформить заказ</button>

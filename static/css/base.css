@@ -45,8 +45,8 @@ button:active{
     transform: translateY(3px) translateX(1px);
     box-shadow: none;
 }
-input[type="text"]{
-    width: 100%;
+input[type="text"], input[type="number"], input[type="password"], input[type="email"]{
+    width: calc(100% - 32px);
     height: 25px;
     border-radius: 999px;
     border-width: 2px;

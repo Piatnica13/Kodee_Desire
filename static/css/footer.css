@@ -207,3 +207,8 @@
         font-size: 1.5rem;
     }
 }
+@media screen and (max-width: 340px) {
+    .MesegIcons{
+        gap: 3px;
+    }
+}

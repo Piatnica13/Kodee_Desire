@@ -1,3 +1,4 @@
+let px100Height = document.querySelector("#menuHeightPh");
 let line1 = document.querySelector(".line1");
 let line2 = document.querySelector(".line2");
 let line3 = document.querySelector(".line3");
@@ -91,6 +92,18 @@ function checkWidth() {
         checkboxmainn()
         chetPodMenu = false;
     }
+
+    let docHeight = window.innerHeight;
+    if(docHeight >= 800){
+        px100Height.style.height = '50px';
+    }
+    else if(docHeight > 500 && docHeight < 800){
+        px100Height.style.height = '100px';
+    }
+    else if (docHeight <=500){
+        px100Height.style.height = '125px';
+    }
+
     WidthPoisk();
 }
 function WidthPoisk(){
@@ -287,3 +300,5 @@ menuInpp.addEventListener("input", () => {
 
 // Проверка при изменении размера окна
 window.addEventListener('resize', checkWidth);
+
+
