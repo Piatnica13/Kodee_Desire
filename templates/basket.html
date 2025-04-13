@@ -13,7 +13,11 @@
         <div class="basketFirstDiv">
           <div class="basketDivLabel">
             <label class="basketCheckbox customCheckbox">
-              <input type="checkbox" class="basketcheckboxItem" />
+              <input
+                type="checkbox"
+                data-id="{{ product.id }}"
+                class="basketcheckboxItem"
+              />
               <span></span>
             </label>
             <div class="basketLabelPodImgs">
@@ -81,6 +85,7 @@
       <h3>Пока нету</h3>
     </div>
   </div>
+
   <div id="basketRight">
     <div id="basketProductsPay"></div>
     <div id="basketPay"></div>

@@ -1,3 +1,40 @@
+document.addEventListener("DOMContentLoaded", () => {
+    let checkboxs = document.querySelectorAll(".basketcheckboxItem");
+    let local = JSON.parse(localStorage.getItem(`localItems`));
+
+    //если первый заход, то выбираем все в массив local
+    if(!local){
+        local = Array.from(checkboxs).map((cb) =>{
+            cb.dataset.id;
+            cb.checked = true;
+        } ) //map то же самое что и forEach. Для каждого элемента я вытащил id
+        localStorage.setItem("selectedItems", JSON.stringify(local));
+    }
+    checkboxs.forEach(checkbox => {
+        let id = checkbox.dataset.id;
+        checkbox.checked = local.includes(id);
+        
+        checkbox.addEventListener('click', () => {
+            
+        })
+    });
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let like = document.querySelectorAll(".basketLike")
 let nolike = document.querySelectorAll(".basketNoLike")
 
