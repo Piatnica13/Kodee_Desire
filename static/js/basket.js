@@ -53,7 +53,7 @@ function Like(event){
         setTimeout(() => {
             productNoLike.style.display = 'none';
         }, 300);
-    }
+    } 
 
     fetch('/add_favorite', {
         method: "POST",
@@ -76,4 +76,32 @@ like.forEach(element => {
 });
 nolike.forEach(element => {
     element.addEventListener("click", Like)
+});
+
+let delete_product= document.querySelectorAll(".basketDelete");
+function deleteFunc(){
+    let element = event.currentTarget;
+    let Id = element.dataset.id; 
+
+    fetch("/delete_basket", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({product_id: parseInt(Id)})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success){
+            removeDiv = document.querySelector(`#card-${Id}`)
+            
+            removeDiv.remove();
+            showToast(data.message)
+
+        }
+        else{
+            showToast(data.error)
+        }
+    })
+}
+delete_product.forEach(element => {
+    element.addEventListener("click", deleteFunc)
 });

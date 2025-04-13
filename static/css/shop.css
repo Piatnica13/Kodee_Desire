@@ -180,6 +180,25 @@
     flex: 1;
     overflow: auto;
 }
+#BockMenuMain::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикальной полосы */
+    height: 10px; /* Высота горизонтальной полосы */
+}
+/* Цвет фона полосы прокрутки */
+#BockMenuMain::-webkit-scrollbar-track {
+    background: #ffe4e9; /* Цвет фона */
+}
+/* Цвет ползунка (скроллбара) */
+#BockMenuMain::-webkit-scrollbar-thumb {
+    background-color: #f9d9df; 
+    border-radius: 6px; /* Закругление углов */
+    border: 2px solid #ffe4e9; /* Полоса вокруг ползунка */
+    transition: background-color 0.2s ease-in-out;
+}
+/* Изменение цвета при наведении */
+#BockMenuMain::-webkit-scrollbar-thumb:hover {
+    background-color: #ffb3c1; 
+}
 #BockMenuDivFuter::after{
     content: "";
     position: absolute;

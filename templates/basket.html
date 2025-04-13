@@ -9,7 +9,7 @@
     <div id="basketBasket">
       <h2>Корзина</h2>
       {% for product in basket %}
-      <div class="basketProduct">
+      <div class="basketProduct" id="card-{{product.id}}">
         <div class="basketFirstDiv">
           <div class="basketDivLabel">
             <label class="basketCheckbox customCheckbox">
@@ -34,8 +34,10 @@
             </div>
             <img
               src="/static/image/dirProfil/delete.png"
-              class="productImg"
+              class="productImg basketDelete"
               alt=""
+              data-id="{{product.id}}"
+              id="basketDelete{{product.id}}"
             />
           </div>
           <div class="basketproductImg">
@@ -51,26 +53,28 @@
             value="{{ favorite }}"
           />
         </div>
-        <div class="basketNoCheckboxImg">
-          <p class="productName" style="margin: 0px">{{ product.name }}</p>
-          <div class="basketProductDescript">
-            {%for desc in description %} {%if product.id == desc[0] %}
-            <div class="basketProductDescriptions">
-              <b>Цена</b> <br />
-              {{ product.price }}тг
+        <div class="basketObertka3">
+          <div class="basketNoCheckboxImg">
+            <p class="productName" style="margin: 0px">{{ product.name }}</p>
+            <div class="basketProductDescript">
+              {%for desc in description %} {%if product.id == desc[0] %}
+              <div class="basketProductDescriptions">
+                <b>Цена</b> <br />
+                {{ product.price }}тг
+              </div>
+              <div class="basketProductDescriptions">
+                <b>Цвет нити</b> <br />
+                {{ desc[1] }}
+              </div>
+              <div class="basketProductDescriptions">
+                <b>Размер</b> <br />{{ desc[2] }}
+              </div>
+              <div class="basketProductDescriptions">
+                <b>Материал</b> <br />
+                {{ desc[3] }}
+              </div>
+              {% endif %} {% endfor %}
             </div>
-            <div class="basketProductDescriptions">
-              <b>Цвет нити</b> <br />
-              {{ desc[1] }}
-            </div>
-            <div class="basketProductDescriptions">
-              <b>Размер</b> <br />{{ desc[2] }}
-            </div>
-            <div class="basketProductDescriptions">
-              <b>Материал</b> <br />
-              {{ desc[3] }}
-            </div>
-            {% endif %} {% endfor %}
           </div>
         </div>
       </div>
