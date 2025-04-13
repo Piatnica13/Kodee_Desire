@@ -173,6 +173,24 @@ def add_basket():
     return jsonify({"success": False, "error": "Товар уже в корзине"})
 
 
+@app.route('/delete_basket', methods=['POST'])
+def delete_basket():
+    user_id = session.get("user_id")
+    user = Person.query.filter_by(id = user_id).first()
+
+    basket= user.basket
+
+    data = request.get_json()
+    product_id = data.get("product_id")
+    new_basket = [item for item in basket if item[0] != product_id]
+    user.basket = new_basket  # Update the basket
+
+    db.session.add(user)
+    db.session.commit()
+    
+    return jsonify({"success": True, "message": f"Товар успешно удален"})
+
+
 @app.route('/add_favorite', methods=['POST'])
 def add_favorite():
     data = request.get_json()  
