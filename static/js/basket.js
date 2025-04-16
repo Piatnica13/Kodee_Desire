@@ -1,3 +1,34 @@
+document.addEventListener("DOMContentLoaded", () => {
+    let checkboxs = document.querySelectorAll(".basketcheckboxItem");
+    let selected = JSON.parse(localStorage.getItem("selectedItems"));
+    
+    if(!selected){
+        selected = Array.from(checkboxs).map(box => box.dataset.id);
+        localStorage.setItem("selectedItems", JSON.stringify(selected));
+    }
+    
+    checkboxs.forEach(box => {
+        const id = box.dataset.id;
+        box.checked = selected.includes(id);
+        
+        box.addEventListener("click", () => {
+            let update = JSON.parse(localStorage.getItem("selectedItems")) || [];
+            
+            if (box.checked){
+                update.push(id);
+                rightProduct();
+            }
+            else{
+                update = update.filter(item => item !== id);
+                rightProduct();
+            }
+            localStorage.setItem("selectedItems", JSON.stringify(update));
+        })
+    })
+    rightProduct();
+})
+
+
 let like = document.querySelectorAll(".basketLike")
 let nolike = document.querySelectorAll(".basketNoLike")
 
@@ -92,10 +123,12 @@ function deleteFunc(){
     .then(data => {
         if (data.success){
             removeDiv = document.querySelector(`#card-${Id}`)
-            
             removeDiv.remove();
-            showToast(data.message)
 
+            let update = JSON.parse(localStorage.getItem("selectedItems")) || [];
+            update = update.filter(item => item !== Id);
+            localStorage.setItem("selectedItems", JSON.stringify(update));
+            showToast(data.message)
         }
         else{
             showToast(data.error)
@@ -105,3 +138,31 @@ function deleteFunc(){
 delete_product.forEach(element => {
     element.addEventListener("click", deleteFunc)
 });
+
+let divForProduct = document.querySelector("#basketProductsPay");
+function rightProduct() {
+    let basketPay = document.querySelector("#basketPay");
+    let checkboxs = document.querySelectorAll(".basketcheckboxItem");
+    let num = 1;
+    let sum = 0;
+    checkboxs.forEach(box => {
+        const productId = box.dataset.id
+        const product = allProducts.find(item => item.id == productId);
+        
+        try {
+            let productDiv = document.querySelector(`#basketRightProductId${box.dataset.id}`)
+            productDiv.remove();
+        } catch (error) {}
+        if (box.checked == true){
+            let productShow = document.createElement("div");
+            productShow.innerHTML += `<p style = "font-size: 1.2rem">${num}. ${product.name} — ${product.price}тг</p>`;
+            productShow.classList.add("basketRightProducts");
+            productShow.id = `basketRightProductId${productId}`;
+
+            divForProduct.appendChild(productShow)
+            num++;
+            sum += product.price;
+        }
+    });
+    basketPay.innerHTML = `<h3 style = "font-size: 1.5rem">К оплате — ${sum}тг</h3>`;
+}

@@ -3,8 +3,12 @@ from flask import Flask, render_template, request, redirect, session, flash, url
 from sqlalchemy.orm.attributes import flag_modified
 from models import db, Address, Person, Product, Product_image
 from slugify import slugify
+from dotenv import load_dotenv
+from functools import wraps
+import os
 import json
 
+load_dotenv('password.env')
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
@@ -17,8 +21,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Провер�
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
-
 app.secret_key = 'SecretKey'
+
 
 @app.route('/')
 def index():
@@ -318,6 +322,13 @@ def login():
         if len(password) < 6:
             errors["len"] = "Ошибка, длина пароля меньше 6 символов"
         
+        admin_email = os.getenv("ADMIN_EMAIL")
+        admin_password = os.getenv("ADMIN_PASSWORD")
+
+        if email == admin_email and password == admin_password:
+            session['admin'] = True
+            return redirect("/admin/deshboard")
+        
         # Проверяем данные в базе:
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
@@ -402,6 +413,22 @@ addProducts(Product(name="Гравировка монетки 0.7г", price=4700
 addProducts(Product(name="Гравировка монетки 1.1г", price=68000, concept="Минимализм и универсальность", category="Монеточка", descriptions="Гравировка монетки 1.1г – Уникальный штрих в твоём стиле. Гравировка на монетке весом 1.1 г подчеркнёт твою индивидуальность, сделав украшение особенным и личным.", slug=slugify("Гравировка монетки 1.1г")))
 addProducts(Product(name="Кулон из серебра", price=10000, concept="Минимализм и универсальность", category="Кулон", descriptions="Кулон из серебра – Лаконичный и элегантный кулон, который станет отражением твоего характера и стиля. Чистота серебра подчеркнёт изящество и добавит образу утончённости.", slug=slugify("Кулон из серебра")))
 addProducts(Product(name="Гравировка в серебре", price=15000, concept="Минимализм и универсальность", category="Монеточка", descriptions="Гравировка в серебре – Персонализируй своё украшение! Гравировка на серебряной поверхности придаст ему уникальность и сделает символом чего-то важного лично для тебя.", slug=slugify("Гравировка в серебре")))
+
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get('admin'):
+            return redirect('/')
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@app.route('/admin/deshboard')
+@admin_required
+def admin_deshboard():
+    return render_template('admin.html')
 
 
 if __name__ == "__main__":

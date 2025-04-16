@@ -18,8 +18,9 @@
     height: 100px;
     flex-shrink: 0;
 }
-.basketBasket{
+#basketBasket{
     position: relative;
+    min-height: 300px;
 }
 .basketProduct{
     display: grid;

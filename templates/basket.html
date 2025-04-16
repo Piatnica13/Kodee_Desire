@@ -8,12 +8,16 @@
   <div id="basketLeft">
     <div id="basketBasket">
       <h2>Корзина</h2>
-      {% for product in basket %}
+      {% if basket != []%} {% for product in basket %}
       <div class="basketProduct" id="card-{{product.id}}">
         <div class="basketFirstDiv">
           <div class="basketDivLabel">
             <label class="basketCheckbox customCheckbox">
-              <input type="checkbox" class="basketcheckboxItem" />
+              <input
+                type="checkbox"
+                data-id="{{product.id}}"
+                class="basketcheckboxItem"
+              />
               <span></span>
             </label>
             <div class="basketLabelPodImgs">
@@ -78,15 +82,13 @@
           </div>
         </div>
       </div>
-      {%endfor %}
-    </div>
-    <div id="basketSys">
-      <h2>Система лояльности</h2>
-      <h3>Пока нету</h3>
+      {% endfor %} {% else %}
+      <div style="font-size: 1.5rem">Товары пока не добавлены</div>
+      {% endif %}
     </div>
   </div>
   <div id="basketRight">
-    <div id="basketProductsPay"></div>
+    <div id="basketProductsPay"><h2>Товары</h2></div>
     <div id="basketPay"></div>
     <div id="basketCertificate">
       <h3>Код сертификата</h3>
@@ -98,5 +100,5 @@
   </div>
 </div>
 {% endblock body %} {% block script %}
-<script src="/static/js/basket.js"></script>
+<script src="/static/js/basket.js" defer></script>
 {% endblock script %}
