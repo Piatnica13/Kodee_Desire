@@ -5,11 +5,37 @@
 </title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/index.css" />
-{% endblock %} {% block body %} 
-
-{% if messageForReg == True %} <div id="messageForReg"></div> {% endif %}
-{% if messageForLog == True %} <div id="messageForLog"></div> {% endif %}
-{% if messageForNoReg == True %} <div id="messageForNoReg"></div>{% endif %}
+{% endblock %} {% block body %} {% if messageForReg == True %}
+<div id="messageForReg"></div>
+{% endif %} {% if messageForLog == True %}
+<div id="messageForLog"></div>
+{% endif %} {% if messageForNoReg == True %}
+<div id="messageForNoReg"></div>
+{% endif %} {% if admin %}
+<a
+  href="/admin/deshboard"
+  style="
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 30%;
+    right: 10%;
+    z-index: 1000;
+    border-radius: 50%;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 15px 5px pink;
+  "
+>
+  <img
+    src="/static/image/menu/profil.png"
+    style="width: 35px; height: 35px"
+    alt="Admin"
+  />
+</a>
+{% endif %}
 
 <div id="MainBody">
   <div id="Contener2">

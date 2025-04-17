@@ -24,6 +24,11 @@ db.init_app(app)
 app.secret_key = 'SecretKey'
 
 
+@app.context_processor
+def inject_admin_flag():
+    return dict(admin=session.get('admin'))
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -115,6 +120,7 @@ def profil():
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)  # Удаляем ID пользователя из сессии
+    session.pop('admin', None)
     return redirect('/')
 
 @app.route('/product/<slug>')
@@ -327,6 +333,7 @@ def login():
 
         if email == admin_email and password == admin_password:
             session['admin'] = True
+            session['user_id'] = user.id
             return redirect("/admin/deshboard")
         
         # Проверяем данные в базе:
@@ -415,6 +422,15 @@ addProducts(Product(name="Кулон из серебра", price=10000, concept=
 addProducts(Product(name="Гравировка в серебре", price=15000, concept="Минимализм и универсальность", category="Монеточка", descriptions="Гравировка в серебре – Персонализируй своё украшение! Гравировка на серебряной поверхности придаст ему уникальность и сделает символом чего-то важного лично для тебя.", slug=slugify("Гравировка в серебре")))
 
 
+def add_admin():
+    admin = Person.query.filter_by(email=os.getenv("ADMIN_EMAIL")).first()
+
+    if not admin:
+        new_admin = Person(name = "admin", password= generate_password_hash(os.getenv("ADMIN_PASSWORD")), email=os.getenv("ADMIN_EMAIL"))
+        
+        db.session.add(new_admin)
+        db.session.commit()
+
 
 def admin_required(f):
     @wraps(f)
@@ -434,4 +450,5 @@ def admin_deshboard():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+        add_admin()
     app.run(debug=True, port=5000)
