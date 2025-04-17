@@ -2,20 +2,20 @@ body{
   margin: 0px;
   padding: 0px;
   display: flex;
-  background-color: #ffe4e9;
+  background-color: var(--main-bg);
 }
 /*Манипуляции с меню*/
 #MenuFixed {
   width: 100%;
   position: fixed;
-  color: #ffe4e9;
+  color: var(--main-bg);
   z-index: 1001;
   transform: translateY(-100%);
   transition: transform 1s ease-in-out;
   display: flex;
   justify-content: center;
   transition: all 0.2s ease-in-out, transform 1s ease-in-out, opacity 0.6s ease-in-out;
-  border-bottom: black 2px solid;  
+  border-bottom: var(--black) 2px solid;  
 }
 #MenuFixed.visible {
   transform: translateY(0);
@@ -54,7 +54,7 @@ body{
   font-size: 40px;
   margin: 10px;
   text-decoration: none;
-  color: black;
+  color: var(--black);
 }
 .PodTextDiv{
   margin: 10px;
@@ -62,7 +62,7 @@ body{
 
 /*настройки под меню*/
 #PodMenu{
-  background-color: #ffe4e9;
+  background-color: var(--main-bg);
   position: relative;
   bottom: 0px;
   height: 0px;
@@ -83,7 +83,7 @@ body{
   transform: translateY(-50%); /* Смещаем вверх на половину высоты */
   width: 1px; /* Толщина борта */
   height: 100%; /* Общая высота борта (50px вверх и 50px вниз от центра) */
-  background-color: rgb(237, 208, 208); /* Цвет борта */
+  background-color: var(--add-bg); /* Цвет борта */
 }
 .PodNazMenu{
   width: 310px;
@@ -94,7 +94,7 @@ body{
   align-items: center;
 }
 .PodNazMenu:hover{
-  background-color: #ffd0d9;
+  background-color: var(--add-bg);
 }
 .PodBox{
   align-items: center;
@@ -102,7 +102,7 @@ body{
   flex-direction: row;
 }
 .PodText{
-  color: black;
+  color: var(--black);
   font-size: 20;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
@@ -181,14 +181,14 @@ body{
   margin: 5px;
 }
 #logo{
-  background-color: #ffe4e9;
+  background-color: var(--main-bg);
   width: 160px;
 }
 nav ul li{
   list-style: none;
 }
 #num{
-  color: black;
+  color: var(--black);
   font-size: 18;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
@@ -223,7 +223,7 @@ nav ul li{
   height: 3px;
   width: 100%;
   border-radius: 15px;
-  background: #0e2431;
+  background: var(--black);
 }
 
 .nav-container .hamburger-lines .line1 {
@@ -242,12 +242,15 @@ nav ul li{
 /*выпадающее меню с номером*/
 #strelkaMenuOp{
   position: absolute;
-  left: 150px;
+  left: 8.2%;
   transform: translateY(-20px);
-  width: 240px;
+  width: 325px;
   height: 0;
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: end;
   opacity: 0;
   z-index: 5;
   transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
@@ -257,20 +260,19 @@ nav ul li{
   opacity: 1;
   transform:translateY(0);
   position: absolute;
-  left: 150px;
   z-index: 5;
   pointer-events: auto;
   transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
 }
 #strelkaMenu{
   width: 210px;
-  background-color: #ffd0d9;
+  background-color: var(--add-bg);
   position: relative;
   top: -35px;
   left: 5px;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0px 0px 3px 1px rgba(201, 153, 153, 0.489);
+  box-shadow: 0 0 15px 5px var(--grey);
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -283,11 +285,11 @@ nav ul li{
 #Podnum{
   font-size: 23px;
   text-decoration: none;
-  color: black;
+  color: var(--black);
   font-family: Arial, Helvetica, sans-serif;
 }
 #NumPhone{
-  color: black;
+  color: var(--black);
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
@@ -301,11 +303,11 @@ nav ul li{
   background-color: transparent;
   border-left: 7.5px solid transparent;
   border-right: 7.5px solid transparent;
-  border-bottom: 15px solid #ffd0d9;
+  border-bottom: 15px solid var(--add-bg);
   border-radius: 0;
-  position: relative;
-  left: 113px;
-  bottom: 15px;
+  position: absolute;
+  left: 50%;
+  top:-15px;
   z-index: 2;
 }
 #PodRight{
@@ -315,7 +317,7 @@ nav ul li{
   justify-content: start;
   align-items: start;
   position: relative;
-  color: black;
+  color: var(--black);
 }
 .PodRDivs{
   position: absolute;
@@ -371,12 +373,12 @@ nav ul li{
   flex-direction: column;
   max-height: 566px;
   transition: all 0.3s ease;  
-  color: black;
+  color: var(--black);
 } 
 .product-imagee{
   width: 125px;
   aspect-ratio: 1 / 1;
-  background-color: #ffd0d9;
+  background-color: var(--add-bg);
   border-radius: 3px;
 }
 .Con2Icon{
@@ -395,7 +397,7 @@ nav ul li{
   flex-direction: row;
 }
 .DivInfo:hover .BthInfo{
-  color: #ff879d;
+  color: var(--shadow);
 }
 .test{
   position: relative;
@@ -423,18 +425,18 @@ nav ul li{
 }
 /* Цвет фона полосы прокрутки */
 #menuPlaseForResult::-webkit-scrollbar-track {
-  background: #ffe4e9; /* Цвет фона */
+  background: var(--main-bg); /* Цвет фона */
 }
 /* Цвет ползунка (скроллбара) */
 #menuPlaseForResult::-webkit-scrollbar-thumb {
-  background-color: #f9d9df; 
+  background-color: var(--add-bg); 
   border-radius: 6px; /* Закругление углов */
-  border: 2px solid #ffe4e9; /* Полоса вокруг ползунка */
+  border: 2px solid var(--main-bg); /* Полоса вокруг ползунка */
   transition: background-color 0.2s ease-in-out;
 }
 /* Изменение цвета при наведении */
 #menuPlaseForResult::-webkit-scrollbar-thumb:hover {
-  background-color: #ffb3c1; 
+  background-color: var(--border); 
 }
 .productImg1{
   opacity: 1;
@@ -552,7 +554,7 @@ nav ul li{
     height: 5px;
     width: 100%;
     border-radius: 15px;
-    background: #0e2431;
+    background: var(--black);
   }
   #PodMenu{
     display: none;

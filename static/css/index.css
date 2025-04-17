@@ -7,7 +7,7 @@ img{
     opacity: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #ffe4e9;
+    background-color: var(--main-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ img{
     position: relative;
     display: flex;
     width: 100%;
-    background-color: #ffd0d9;
+    background-color: var(--add-bg);
     opacity: 1;
     justify-content: center;
 }
@@ -83,7 +83,7 @@ img{
     bottom: 200px; /* Расположить текст снизу */
     left: 50%; /* Центруем по горизонтали */
     transform: translateX(-50%) translateY(20px); /* Исправляем смещение */
-    color: white; /* Цвет текста */
+    color: var(--white); /* Цвет текста */
     text-align: center;
     opacity: 0;
     transition: opacity 0.4s ease-in-out, transform 0.8s ease-in-out;
@@ -107,7 +107,7 @@ img{
     margin-top: 50px;
 }
 .Con3grup2, .Con3grup1{
-    background-color: #ffd0d9;
+    background-color: var(--add-bg);
     max-width: 1100px;
     min-width: none;
     width: 80%;
@@ -164,7 +164,7 @@ img{
     width: 300px;
     height: 450px;
     border-radius: 20px;
-    background-color: #000; 
+    background-color: var(--black); 
 }
 .Con4Imgs{
     z-index: 0;
@@ -191,7 +191,7 @@ img{
     margin: 0px 20px;
     z-index: 1;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: var(--white);
     transition: color 0.2s ease-in-out;
 }
 .Con4TextGl{
@@ -200,16 +200,6 @@ img{
 .Con4TextVt{
     padding-top: 120px;
     font-size: 1.3rem;    
-}
-.ContenerLast{
-    display: flex; /* Включаем Flexbox */
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center; /* Центрирование по вертикали */
-    color: rgb(255, 255, 255);
-    background-color: #433739; /* Для примера */
-    height: auto;
-    margin: 50px 0px;
-    flex-direction: column;
 }
 .ConLastLogo{
     width: 135px;
@@ -235,7 +225,7 @@ img{
     width: 200px;
     padding: 20px;
     border-radius: 12px;
-    background-color: #ffd0d9;
+    background-color: var(--add-bg);
 }
 #ConLast2{
     margin: 50px 0px;

@@ -18,7 +18,7 @@ let checkboxSubmenu1 = document.querySelector("#checkboxx");
 checkboxSubmenu1.addEventListener('click', () =>{
     divSrtelkaMenu.classList.toggle('open');
     if(chet == true){
-        divSrtelkaMenu.style.height = "110px";
+        divSrtelkaMenu.style.height = "135px";
         chet = false;
     }
     else{
