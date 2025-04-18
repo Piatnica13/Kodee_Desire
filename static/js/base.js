@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             PlaseForPoisk.style.opacity = "1";
                         }, 1);
                         chetchik = false;
-                        ContenerMenu.style.backgroundColor = '#ffe4e9';
+                        ContenerMenu.style.backgroundColor = 'var(--main-bg)';
                     }
                     else if(chetchik == false){
                         PlaseForPoisk.style.opacity = "0";
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
             function handleScroll(){
                 
                 if (checkBox.checked && window.scrollY === 0 || !checkBox.checked && window.scrollY != 0){
-                    ContenerMenu.style.backgroundColor = '#ffe4e9';
+                    ContenerMenu.style.backgroundColor = 'var(--main-bg)';
                 }
                 else if(!checkBox.checked && window.scrollY === 0 && chetchik == true){
                     

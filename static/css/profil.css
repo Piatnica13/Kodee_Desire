@@ -303,10 +303,10 @@ position: absolute;
     left: 0;
     right: 0;
     height: 10px;
-    background-color: #ffe4e9;
+    background-color: var(--main-bg);
     pointer-events: none;
-    box-shadow: 0px 0px 25px 25px #ffe4e9,
-    inset 0px 0px 5px 1px #ffe4e9;
+    box-shadow: 0px 0px 25px 25px var(--main-bg),
+    inset 0px 0px 5px 1px var(--main-bg);
 }
 #ProfilObertka1::before{
     content: "";
@@ -316,10 +316,10 @@ position: absolute;
     left: 0;
     right: 0;
     height: 10px;
-    background-color: #ffe4e9;
+    background-color: var(--main-bg);
     pointer-events: none;
-    box-shadow: 0px 0px 25px 25px #ffe4e9,
-    inset 0px 0px 5px 1px #ffe4e9;
+    box-shadow: 0px 0px 25px 25px var(--main-bg),
+    inset 0px 0px 5px 1px var(--main-bg);
 }
 #ProfilAddDiv label{
     overflow-wrap:  break-word;
@@ -337,7 +337,7 @@ position: absolute;
     height: 100px;
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
-    background-color: #ffd0d9;
+    background-color: var(--add-bg);
     border: none;
     transition: scale 0.2s;
 }
@@ -394,18 +394,18 @@ position: absolute;
 }
 /* Цвет фона полосы прокрутки */
 #PrfilMatch::-webkit-scrollbar-track {
-    background: #ffe4e9; /* Цвет фона */
+    background: var(--main-bg); /* Цвет фона */
 }
 /* Цвет ползунка (скроллбара) */
 #PrfilMatch::-webkit-scrollbar-thumb {
-    background-color: #f9d9df; 
+    background-color: var(--main-bg); 
     border-radius: 6px; /* Закругление углов */
-    border: 2px solid #ffe4e9; /* Полоса вокруг ползунка */
+    border: 2px solid var(--main-bg); /* Полоса вокруг ползунка */
     transition: background-color 0.2s ease-in-out;
 }
 /* Изменение цвета при наведении */
 #PrfilMatch::-webkit-scrollbar-thumb:hover {
-    background-color: #ffb3c1; 
+    background-color: var(--shadow); 
 }
 .ProfilAddRadio{
     z-index: 10;
@@ -420,7 +420,7 @@ position: absolute;
 .checkmark {
     width: 20px;
     height: 20px;
-    border: 2px solid #ff879d; /* Красная рамка */
+    border: 2px solid var(--border); /* Красная рамка */
     border-radius: 4px;    /* Закругленные углы (если нужно) */
     background-color: transparent; /* Прозрачный фон */
     display: inline-block;
@@ -433,7 +433,7 @@ position: absolute;
 /* Галочка при выборе */
 .ProfilAddRadio[type="radio"]:checked + .checkmark::after {
     content: "✓"; /* Символ галочки */
-    color: black; /* Черный цвет */
+    color: var(--black); /* Черный цвет */
     font-size: 16px;
     position: absolute;
     top: 50%;
@@ -443,7 +443,7 @@ position: absolute;
 
 /* Добавляем hover-эффект */
 .checkmark:hover {
-    border-color: #d56f82; /* Темно-красный цвет при наведении */
+    border-color: var(--shadow); /* Темно-красный цвет при наведении */
 }
 #ProfilAddDivMain{
     display: flex;
@@ -458,7 +458,7 @@ position: absolute;
     height: 1px;
     width: 100%;
     opacity: 0.3;
-    background-color: black;
+    background-color: var(--black);
     bottom: 0px;
 }
 #ProfilDivButtonAdd{
@@ -491,7 +491,7 @@ position: absolute;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
-    color: white;
+    color: var(--white);
     background-color: red; /* Красный фон для ошибок */
     text-align: center;
 }
@@ -520,7 +520,7 @@ position: absolute;
 } 
 .product-image{
     width: 100%;
-    background-color: #ffd0d9;
+    background-color: var(--add-bg);
     border-radius: 3px;
 }
 .Con2Icon{
@@ -539,7 +539,7 @@ position: absolute;
     flex-direction: row;
 }
 .DivInfo:hover .BthInfo{
-    color: #ff879d;
+    color: var(--shadow);
 }
 .test{
     position: relative;
@@ -576,18 +576,18 @@ position: absolute;
 }
 /* Цвет фона полосы прокрутки */
 #prodilGridCardd::-webkit-scrollbar-track {
-    background: #ffe4e9; /* Цвет фона */
+    background: var(--main-bg); /* Цвет фона */
 }
 /* Цвет ползунка (скроллбара) */
 #prodilGridCardd::-webkit-scrollbar-thumb {
-    background-color: #f9d9df; 
+    background-color: var(--main-bg); 
     border-radius: 6px; /* Закругление углов */
-    border: 2px solid #ffe4e9; /* Полоса вокруг ползунка */
+    border: 2px solid var(--main-bg); /* Полоса вокруг ползунка */
     transition: background-color 0.2s ease-in-out;
 }
 /* Изменение цвета при наведении */
 #prodilGridCardd::-webkit-scrollbar-thumb:hover {
-    background-color: #ffb3c1; 
+    background-color: var(--shadow); 
 }
 #prodictObertka2{
     width: 100%;
@@ -603,9 +603,9 @@ position: absolute;
     top: 0;
     height: 100%;
     width: 1px;
-    background-color: #ffe4e9;
+    background-color: var(--main-bg);
     pointer-events: none;
-    box-shadow: 0px 0px 5px 25px #ffe4e9;
+    box-shadow: 0px 0px 5px 25px var(--main-bg);
 }
 #prodictObertka2::before{
     content: "";
@@ -614,9 +614,9 @@ position: absolute;
     left: 12;
     height: 100%;
     width: 1px;
-    background-color: #ffe4e9;
+    background-color: var(--main-bg);
     pointer-events: none;
-    box-shadow: 0px 0px 2px 2px #ffe4e9;
+    box-shadow: 0px 0px 2px 2px var(--main-bg);
 }
 .productImg1{
     opacity: 1;

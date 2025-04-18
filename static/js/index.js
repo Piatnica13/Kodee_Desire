@@ -3,7 +3,7 @@ let loader = document.querySelector('#loader');
 let loadedImages = 0;
 const totalImages = images.length;
 loader.style.opacity = "1";
-loader.style.backgroundColor = "#ffd0d9";
+loader.style.backgroundColor = "var(--add-bg)";
 function checkImagesLoaded() {
     loadedImages++;
     if (loadedImages == totalImages) {

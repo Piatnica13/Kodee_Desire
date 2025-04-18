@@ -87,7 +87,7 @@ function renderProducts(products, bool) {
       
       const productCard = `
       <div class="product-card" data-aos="fade-up" data-aos-delay="0">
-        <a href="/product/${products[i].slug}" style="color: black; text-decoration: none;">
+        <a href="/product/${products[i].slug}" style="color: var(--black); text-decoration: none;">
           <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
           <p class="product-title">${products[i].name}</p>
           <div class="test">
@@ -108,7 +108,7 @@ function renderProducts(products, bool) {
       
       const productCard = `
       <div class="product-card" data-aos="fade-up" data-aos-delay="0">
-        <a href="/product/${products[i].slug}" style="color: black; text-decoration: none;">
+        <a href="/product/${products[i].slug}" style="color: var(--black); text-decoration: none;">
         <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
         <p class="product-title">${products[i].name}</p>
         <div class="test">

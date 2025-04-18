@@ -19,10 +19,10 @@
 #Instagram{
     font-style: italic;
     transition: color 0.3s ease-in-out;
-    color: black;
+    color: var(--black);
 }
 #Instagram:hover{
-    color: #ff879d;
+    color: var(--shadow);
 }
 .InDivText{
     margin: 2.5px;

@@ -1,3 +1,15 @@
+:root{
+    --main-bg: #ffe4e9;
+    --add-bg: #ffd0d9;
+    --black: #000;
+    --white: #ffffff;
+    --grey: #ccc;
+    --border: #ffb3c1;
+    --shadow: #ff889e;
+    --gradient: linear-gradient(145deg, #ffb3c1, #ffc6d0, #ffb3c1);
+    --main-footer: #433739;
+    --add-footer: #564749;
+}
 html{
     overflow: hidden;
 }
@@ -5,7 +17,7 @@ body{
     margin: 0px;
     padding: 0px;
     display: flex;
-    background: #ffe4e9;
+    background: var(--main-bg);
 }
 #Contener{
     width: 100%;
@@ -18,14 +30,14 @@ body{
 #Forma{
     width: 330px;
     height: 550px;
-    box-shadow: 0 0 250px #ffffffd6;
+    box-shadow: 0 0 250px var(--white);
     text-align: center;
     padding: 4rem 2rem;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(60deg,#ffd5dd,#ffe4e9,#ffc6d1);
+    background: linear-gradient(60deg,#ffd5dd, #ffe4e9,#ffc6d1);
 }
 #UserInp{
     display: flex;
@@ -63,24 +75,24 @@ body{
     height: 25px;
     border-radius: 999px;
     border-width: 2px;
-    border-color: #ffb2c0;
+    border-color: var(--border);
     border-style:solid;
-    background-color: rgb(255, 246, 247);
+    background-color: var(--white);
     transition: border 0.5s, box-shadow 0.5s;
     padding-left: 30px;
 }
 #regForm input:focus{
-    border-color: #ffb2c0;
-    box-shadow: 0 0 15px rgba(255, 129, 171, 0.826);
+    border-color: var(--border);
+    box-shadow: 0 0 15px var(--shadow);
     outline: none; /* Убирает стандартную рамку фокуса */
 }
 #regForm button{
     transition: scale 0.2s linear, transform 0.1s linear, box-shadow 0.1s linear;
-    box-shadow: 1px 3px #ff889e;
+    box-shadow: 1px 3px var(--shadow);
     border-radius: 999px;
     border-style: none;
     height: 25px;
-    background: linear-gradient(145deg,   #ffb2c0, #ffc6d0,  #ffb2c0);
+    background: var(--gradient);
 }
 .ImgInInput{
     width: 20px;
@@ -135,12 +147,12 @@ body{
     position:fixed;
     border-radius:5px;
     right: 50px;
-    box-shadow:0 0 15px 5px #ccc;
+    box-shadow:0 0 15px 5px var(--grey);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #ffb3c1;
+    background-color: var(--border);
 }
 
 @media screen and (max-width: 1000px) {

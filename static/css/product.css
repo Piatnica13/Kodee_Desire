@@ -125,15 +125,15 @@
 .productSelects{
     width: 50%;
     height: 40px;
-    background: #ffc6d0;
+    background: var(--add-bg);
     color: black;
-    border: 2px solid #ffb6c3;
+    border: 2px solid var(--border);
     border-radius: 50px;
     transition: border 0.5s, box-shadow 0.5s;
 }
 .productSelects:focus{
-    border-color: #ffb2c0;
-    box-shadow: 0 0 15px rgba(255, 181, 206, 0.826);
+    border-color: var(--border);
+    box-shadow: 0 0 15px var(--shadow);
     outline: none;
 }
 #productImgsDiv{

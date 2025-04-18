@@ -6,8 +6,7 @@
     --grey: #ccc;
     --border: #ffb3c1;
     --shadow: #ff889e;
-    --shadow-tm: ;
-    --gradient: linear-gradient(145deg,   var(--border), #ffc6d0,  var(--border));
+    --gradient: linear-gradient(145deg, #ffb3c1, #ffc6d0, #ffb3c1);
     --main-footer: #433739;
     --add-footer: #564749;
 }
@@ -120,7 +119,7 @@ input[type="text"]:focus{
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: var(--add-bg);
+    background-color: var(--border);
 }
 
 input[type="checkbox"] {

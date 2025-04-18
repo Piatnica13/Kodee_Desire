@@ -230,7 +230,7 @@ menuInp.addEventListener("input", () => {
                         <p class="product-title">${product.name}</p>
                         <div class="test">
                           <p class="product-price">${product.price}тг</p>
-                          <a href="/product/${product.slug}" style="color: black">
+                          <a href="/product/${product.slug}" style="color: var(--black)">
                           <div class="DivInfo">
                             <img src="/static/image/menu/sumka.png" class="Con2Icon" alt="Сумка">
                             <p class="BthInfo"><ins>Подробнее</ins></p>
@@ -282,7 +282,7 @@ menuInpp.addEventListener("input", () => {
                         <p class="product-title">${product.name}</p>
                         <div class="test">
                           <p class="product-price">${product.price}тг</p>
-                          <a href="/product/${product.slug}" style="color: black">
+                          <a href="/product/${product.slug}" style="color: var(--black)">
                           <div class="DivInfo">
                             <img src="/static/image/menu/sumka.png" class="Con2Icon" alt="Сумка">
                             <p class="BthInfo"><ins>Подробнее</ins></p>
