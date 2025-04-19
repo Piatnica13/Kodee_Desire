@@ -269,3 +269,37 @@ const allProducts = [
     { id: 55, name: "Кулон из серебра", price: 10000, concept: "Минимализм и красота", category: "Кулон", image: "/static/image/productImgs/kulon-iz-serebra/img1.jpg", slug: "kulon-iz-serebra" },
     { id: 56, name: "Гравировка в серебре", price: 15000, concept: "Минимализм и красота", category: "Монеточка", image: "/static/image/productImgs/gravirovka-v-serebre/img1.jpg", slug: "gravirovka-v-serebre" }
 ];
+
+
+let allColors = [
+    { name: "Pink", "--main-bg": "#ffe4e9", "--add-bg": "#ffd0d9" },
+    { name: "Sky Blue", "--main-bg": "#cceeff", "--add-bg": "#b3daff" },
+    { name: "Mint", "--main-bg": "#ccffe0", "--add-bg": "#b2ffd6" },
+    { name: "Lavender", "--main-bg": "#e6ccff", "--add-bg": "#d1b3ff" },
+    { name: "Peach", "--main-bg": "#ffddb3", "--add-bg": "#ffe6cc" },
+    { name: "Light Gray", "--main-bg": "#f2f2f2", "--add-bg": "#e6e6e6" },
+    { name: "Sand", "--main-bg": "#f5f5dc", "--add-bg": "#e0d9b5" },
+    { name: "Cool Blue", "--main-bg": "#a3c9f1", "--add-bg": "#d1e6ff" },
+    { name: "Coral", "--main-bg": "#ffb3ab", "--add-bg": "#ffcfc7" },
+    { name: "Night Mode", "--main-bg": "#1e1e2f", "--add-bg": "#2e2e3f" }
+  ];
+
+function colorSwitcher() {
+    allColors.forEach(theme => {
+        const btn = document.createElement("button");
+        btn.textContent = theme.name;
+        btn.style.margin = "5px";
+
+        btn.onclick = () => {
+            for (let key in theme) {
+                if (key.startsWith("--")) {
+                    document.documentElement.style.setProperty(key, theme[key]);
+                }
+            }
+        };
+
+        document.body.appendChild(btn); // или MainContener.appendChild(btn), если у тебя есть контейнер
+    });
+}
+
+colorSwitcher();

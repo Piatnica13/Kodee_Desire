@@ -22,7 +22,7 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    background-color: #ffd0d9;
+    background-color: var(--add-bg);
 }
 #ProfilTop p{
     font-size: 1.6rem;
