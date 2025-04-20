@@ -1,11 +1,13 @@
 #FuterConLast1{
     font-family: Georgia, 'Times New Roman', Times, serif;
     max-width: 1500px;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: none;
     width: 100%; 
+    height: 100%;
     align-items: start;
-    margin: 50px 0px;
+    margin: 0px 0px;
 }
 .ContenerLast{
     display: flex;
@@ -15,6 +17,7 @@
     background-color: var(--main-footer); 
     height: 230px;
     margin: 50px 0px 0px 0px;
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 .ConLastLogo{
     width: 140px;
@@ -25,13 +28,15 @@
     width: 75%;
     padding: 20px 0;
     border-radius: 12px;
-    background-color: var(--add-bg);
+    background-color: var(--main-bg);
     margin-top: 12px;
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 .FuterBlocks{
     min-width: 100px;
-    max-width: 500px;
     display: flex;
+    height: 100%;
+    justify-content: start;
     flex-direction: column;
     flex: 1;
     align-items: center;
@@ -50,6 +55,7 @@
     top: 25px;
     height: 150px; /* Общая высота борта (50px вверх и 50px вниз от центра) */
     background-color: var(--add-footer); /* Цвет борта */
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 .FuterBlockLogoMeseg{
     display: flex;
@@ -61,7 +67,7 @@
     text-decoration: none;
 }
 .FuterBlocks a:hover{
-    color: var(--white);
+    color: white;
 }
 .FuterBlocks p{
     margin: 12px 0px;
@@ -84,7 +90,7 @@
     align-items: center;
     width: 35px;
     height: 35px;
-    background-color: var(--white);
+    background-color: white;
     border-radius: 8px; 
     transition: background-color 0.2s ease-in-out;
 }
@@ -93,15 +99,23 @@
 }
 .FuterPodListBlocks{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex: 1;
+    flex-wrap: wrap;
     font-size: 1.2rem;
-    gap: 8px;
+    gap: 20px;
 }
 .LeftNa50px{
+    text-align: center;
     position: relative;
     margin: 0px auto;
+    color: var(--white);
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 .FuterMarginAuto{
+    display:flex;
+    flex-direction: column; 
+    gap: 50px;
     margin: 0 auto;
 }
 @media screen and (max-width: 1200px) {
@@ -134,7 +148,8 @@
         margin: 50px 0px 0px 0px;
     }
     #FuterConLast1{
-        flex-direction: column;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto;
         margin: 0px
     }
     .FuterBlocks{
@@ -156,7 +171,7 @@
         padding: 20px;
         box-sizing: border-box;
         border-radius: 0;
-        background-color: var(--add-bg);
+        background-color: var(--main-bg);
         margin-top: 0px;
 
     }
@@ -166,29 +181,24 @@
         gap: 20px;
         right: 20px;
         top: 30%;
-        background-color: var(--white);
+        background-color: white;
         border-radius: 8px; 
-    }
-    .FuterCon1DivsIcon{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 35px;
-        height: 35px;
-        background-color: var(--white);
-        border-radius: 8px; 
-        transition: background-color 0.2s ease-in-out;
     }
     .FuterPodListBlocks{
         position: relative;
         display: flex;
-        flex-direction: column;
+        flex-wrap: nowrap;
+        flex: auto;
+        flex-direction: column ;
         gap: 15px;
         margin: 0px 0px;
         overflow: hidden; /* Скрывает содержимое, выходящее за пределы блока */
         height: 0px; /* Начальная высота */
         transition: height 0.5s ease-in-out;
+    }
+    .FuterMarginAuto{
+        width: 100%;
+        gap: 20px;
     }
     .FuterLineBord::before{
         content: "";
@@ -199,8 +209,12 @@
         height: 2px; /* Общая высота борта (50px вверх и 50px вниз от центра) */
         background-color: var(--main-footer); /* Цвет борта */
     }
+    .LeftNa50px{
+        text-align: start;
+    }
     .FuterMarginAuto{
         margin: 0 11px;
+        gap: 0;
     }
     .FuterBlocks p{
         margin: 20px 0px;

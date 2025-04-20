@@ -56,7 +56,7 @@
 }
 #ProfilMenuRight a{
     text-decoration: none;
-    color: black;
+    color: var(--black);
 }
 .ProfilMenuItem{
     display: flex;
@@ -95,6 +95,7 @@
     width: 100%;
 }
 #ProfilMenuLeft{
+    position: relative;
     margin: 0px 30px;
     height: auto;
     display: flex;
@@ -106,8 +107,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 45%;
-    max-width: 970px;
+    width: 100%;
     transition: opacity 0.5s ease-in-out;
 }
 .ProfilInfo{
@@ -138,12 +138,12 @@
 .ProfilEdit label{
     cursor: pointer;
     font-size: 1.2rem;
-    color: black;
+    color: var(--black);
     transition: color 0.3s ease-in-out;
-    text-decoration: underline #ff879d 1px;
+    text-decoration: underline var(--black) 1px;
 }
 .ProfilEdit:hover label{
-    color: #ff879d;
+    color: var(--shadow);
 }
 .ProfilEdit img{
     width: 20px;
@@ -154,6 +154,7 @@
 #ProfilLeftChanchInfo{
     width: 100%;
     opacity: 0;
+    position: absolute;
     display: none;
     transition: opacity 0.5s ease-in-out;
 }
@@ -269,7 +270,8 @@
 #ProfilLeftAddAddress{
     width: 100%;
     opacity: 0;
-    display: flex;
+    position: absolute;
+    display: none;
     transition: opacity 0.5s ease-in-out;
     flex-direction: column;
 }
@@ -320,6 +322,7 @@ position: absolute;
     pointer-events: none;
     box-shadow: 0px 0px 25px 25px var(--main-bg),
     inset 0px 0px 5px 1px var(--main-bg);
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 #ProfilAddDiv label{
     overflow-wrap:  break-word;
@@ -606,6 +609,7 @@ position: absolute;
     background-color: var(--main-bg);
     pointer-events: none;
     box-shadow: 0px 0px 5px 25px var(--main-bg);
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 #prodictObertka2::before{
     content: "";
@@ -617,6 +621,7 @@ position: absolute;
     background-color: var(--main-bg);
     pointer-events: none;
     box-shadow: 0px 0px 2px 2px var(--main-bg);
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 .productImg1{
     opacity: 1;

@@ -9,7 +9,7 @@
     margin: 0px 50px;
     position: relative;
 }
-#basketRight{
+#basketRight{    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
     margin: 0px 50px;
     width: 40%;
 }
@@ -175,6 +175,7 @@
     pointer-events: none;
     box-shadow: 0px 0px 25px 25px var(--main-bg),
     inset 0px 0px 5px 1px var(--main-bg);
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
     
 @media screen and (max-width: 1450px) {

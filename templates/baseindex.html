@@ -11,16 +11,49 @@
     <link rel="stylesheet" href="/static/css/footer.css" />
   </head>
   <body>
-    <div id="divMessegeBox"></div>
     <div id="menu-placeholder"></div>
     <div id="loader">Загрузка</div>
     <div id="Body">
+      <div id="divMessegeBox"></div>
+      <div id="theme">
+        <label
+          href="/admin/deshboard"
+          style="
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            bottom: 15%;
+            right: 10%;
+            z-index: 1000;
+            border-radius: 50%;
+            background-color: var(--add-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px var(--grey);
+          "
+        >
+          <img
+            src="/static/image/menu/sun.png"
+            style="width: 35px; height: 35px; position: absolute; opacity: 0; display: none;"
+            alt="Светлая тема"
+            id="bthLight"
+          />
+          <img
+            src="/static/image/menu/moon.png"
+            style="width: 35px; height: 35px; position: absolute; opacity: 1; display: flex;"
+            alt="Темная тема"
+            id="bthDark"
+          />
+        <label>
+      </div>
       {% block body %} {% endblock %}
       <div id="futer-block"></div>
     </div>
-
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/static/js/base.js"></script>
     {% block script %} {% endblock %}
   </body>
-</html>
+  </html>
+  

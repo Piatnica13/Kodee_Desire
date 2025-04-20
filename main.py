@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, render_template, request, redirect, session, flash, url_for, jsonify
+from flask import Flask, render_template, request, redirect, session, flash, jsonify
 from sqlalchemy.orm.attributes import flag_modified
 from models import db, Address, Person, Product, Product_image
 from slugify import slugify

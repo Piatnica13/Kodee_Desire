@@ -59,6 +59,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    color: black;
 }
 #Con1GlText{
     font-size: 1.5rem;
@@ -110,7 +111,7 @@
     cursor: pointer;
     text-decoration: underline var(--shadow);
     height: 35px;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, text-decoration 0.5s ease-in-out;
 }
 #Divfiltr:hover{
     color: var(--shadow);

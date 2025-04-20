@@ -123,26 +123,12 @@ function WidthPoisk(){
 }
 WidthPoisk();
 
-let HoverMenu1 = document.querySelector('#DivNovinki');
-let HoverMenu2 = document.querySelector('#DivBraslets')
-let HoverMenu3 = document.querySelector('#DivIndividual')
-let HoverMenu4 = document.querySelector('#DivPresent')
-let HoverMenu5 = document.querySelector('#DivInstagram')
-let MenuDiv1 = document.querySelector('#PodRNovinki');
+let HoverMenu2 = document.querySelector('#DivBraslets');
+let HoverMenu5 = document.querySelector('#DivInstagram');
+
 let MenuDiv2 = document.querySelector('#PodRBraslets');
-let MenuDiv3 = document.querySelector('#PodRIndiv');
-let MenuDiv4 = document.querySelector('#PodRPresent');
 let MenuDiv5 = document.querySelector('#PodRInstagram');
 
-HoverMenu1.addEventListener('mouseover', () =>{
-    let query = menuInp.value.trim();
-    if (query.length == 0) {
-        MenuDiv1.style.opacity = "1";
-    }
-})
-HoverMenu1.addEventListener('mouseout', () =>{
-    MenuDiv1.style.opacity = "0";
-})
 HoverMenu2.addEventListener('mouseover', () =>{
     let query = menuInp.value.trim();
     if (query.length == 0) {
@@ -152,24 +138,7 @@ HoverMenu2.addEventListener('mouseover', () =>{
 HoverMenu2.addEventListener('mouseout', () =>{
     MenuDiv2.style.opacity = "0";
 })
-HoverMenu3.addEventListener('mouseover', () =>{
-    let query = menuInp.value.trim();
-    if (query.length == 0) {
-        MenuDiv3.style.opacity = "1";
-    }
-})
-HoverMenu3.addEventListener('mouseout', () =>{
-    MenuDiv3.style.opacity = "0";
-})
-HoverMenu4.addEventListener('mouseover', () =>{
-    let query = menuInp.value.trim();
-    if (query.length == 0) {
-        MenuDiv4.style.opacity = "1";
-    }
-})
-HoverMenu4.addEventListener('mouseout', () =>{
-    MenuDiv4.style.opacity = "0";
-})
+
 HoverMenu5.addEventListener('mouseover', () =>{
     let query = menuInp.value.trim();
     if (query.length == 0) {

@@ -137,7 +137,60 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error('Ошибка загрузки меню:', error));
 
+
+
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.body.dataset.theme = savedTheme;
+
+    const theme = savedTheme === "light" ? {
+        "--main-bg": "#fffaf5",
+        "--add-bg": "#e5d7cc",
+        "--black": "#3a3a3a",
+        "--white": "#000",
+        "--grey": "#b8ada6",
+        "--border": "#decabc",
+        "--shadow": "#f2e0d5",
+        "--gradient": "linear-gradient(145deg, #f7eee7, #fffaf5, #f1e8dd)",
+        "--main-footer": "#e5d7cc",
+        "--add-footer": "#d2c2b5",
+    } : {
+        "--main-bg": "#2e2e2e",
+        "--add-bg": "#3e3e3e",
+        "--black": "#ffffff",
+        "--white": "#ffffff",
+        "--grey": "#999999",
+        "--border": "#5a5a5a",
+        "--shadow": "#1a1a1a",
+        "--gradient": "linear-gradient(145deg, #383838, #2e2e2e)",
+        "--main-footer": "#1c1c1c",
+        "--add-footer": "#292929",
+    };
+
+    for (let key in theme) {
+        if (key.startsWith("--")) {
+            document.documentElement.style.setProperty(key, theme[key]);
+        }
+    }
+
+    // Отображаем нужную кнопку
+    if (savedTheme === "dark") {
+        darkMod.style.display = "flex";
+        lightMod.style.display = "none";
+        lightMod.style.opacity = "0";
+        setTimeout(() => {
+            darkMod.style.opacity = "1";
+            
+        }, 10);
+    } else {
+        lightMod.style.display = "flex";
+        darkMod.style.opacity = "0";
+        darkMod.style.display = "none";
+        setTimeout(() => {
+            lightMod.style.opacity = "1";
+        }, 10);
+    }
 });
+
 
 
 
@@ -158,7 +211,7 @@ function updateSecondBlockPosition() {
 
 
 function showToast(text, timeForLoad = 10, timeForLook=2500) {
-
+    
     messageQueue.push({text, timeForLoad, timeForLook});
     if (!isMessageShowing) {
         processQueue();
@@ -190,8 +243,9 @@ function processQueue() {
         message.style.opacity = `1`;
         message.style.transform = `translateX(0px)`;
     }, timeForLoad);
-
+    
     // Прячем и удаляем сообщение
+    
     setTimeout(() => {
         message.style.opacity = '0';
         message.style.transform = `translateX(400px)`;
@@ -270,36 +324,78 @@ const allProducts = [
     { id: 56, name: "Гравировка в серебре", price: 15000, concept: "Минимализм и красота", category: "Монеточка", image: "/static/image/productImgs/gravirovka-v-serebre/img1.jpg", slug: "gravirovka-v-serebre" }
 ];
 
+let darkMod = document.querySelector("#bthDark");
+let lightMod = document.querySelector("#bthLight");
 
-let allColors = [
-    { name: "Pink", "--main-bg": "#ffe4e9", "--add-bg": "#ffd0d9" },
-    { name: "Sky Blue", "--main-bg": "#cceeff", "--add-bg": "#b3daff" },
-    { name: "Mint", "--main-bg": "#ccffe0", "--add-bg": "#b2ffd6" },
-    { name: "Lavender", "--main-bg": "#e6ccff", "--add-bg": "#d1b3ff" },
-    { name: "Peach", "--main-bg": "#ffddb3", "--add-bg": "#ffe6cc" },
-    { name: "Light Gray", "--main-bg": "#f2f2f2", "--add-bg": "#e6e6e6" },
-    { name: "Sand", "--main-bg": "#f5f5dc", "--add-bg": "#e0d9b5" },
-    { name: "Cool Blue", "--main-bg": "#a3c9f1", "--add-bg": "#d1e6ff" },
-    { name: "Coral", "--main-bg": "#ffb3ab", "--add-bg": "#ffcfc7" },
-    { name: "Night Mode", "--main-bg": "#1e1e2f", "--add-bg": "#2e2e3f" }
-  ];
+lightMod.style.transition = "opacity 0.4s ease";
+darkMod.style.transition = "opacity 0.4s ease";
 
-function colorSwitcher() {
-    allColors.forEach(theme => {
-        const btn = document.createElement("button");
-        btn.textContent = theme.name;
-        btn.style.margin = "5px";
+darkMod.addEventListener("click", () => {
+    theme = {
+        "--main-bg": "#fffaf5",
+        "--add-bg": "#e5d7cc",
+        "--black": "#3a3a3a", // мягкий тёплый чёрный
+        "--white": "#000",
+        "--grey": "#b8ada6", // теплый пепельно-бежевый
+        "--border": "#decabc", // карамельный крем
+        "--shadow": "#f2e0d5", // светлая пудра
+        "--gradient": "linear-gradient(145deg, #f7eee7, #fffaf5, #f1e8dd)",
+        "--main-footer": "#e5d7cc", // утончённый кофе с молоком
+        "--add-footer": "#d2c2b5",  // светлая карамель
+    }
+    for (let key in theme) {
+        if (key.startsWith("--")) {
+            document.documentElement.style.setProperty(key, theme[key]);
+        }
+    }
 
-        btn.onclick = () => {
-            for (let key in theme) {
-                if (key.startsWith("--")) {
-                    document.documentElement.style.setProperty(key, theme[key]);
-                }
-            }
-        };
+    const current = document.body.dataset.theme;
+    const nextTheme = current === "light" ? "dark" : "light";
+  
+    document.body.dataset.theme = nextTheme;
+    localStorage.setItem("theme", nextTheme); // ← сохраняем в браузер
 
-        document.body.appendChild(btn); // или MainContener.appendChild(btn), если у тебя есть контейнер
-    });
-}
+    darkMod.style.opacity = "0";
+    setTimeout(() => {
+        darkMod.style.display = "none";
+        lightMod.style.display = "flex";
+        setTimeout(() => {
+            lightMod.style.opacity = "1";
+        }, 10);
+    }, 200);
+})
 
-colorSwitcher();
+lightMod.addEventListener("click", () => {
+    theme = {
+        "--main-bg": "#2e2e2e",       // основной фон — глубокий тёмно-серый
+        "--add-bg": "#3e3e3e",        // дополнительный фон — чуть светлее, для карточек и блоков
+        "--black": "#ffffff",         // текст белый
+        "--white": "#ffffff",         // белый где надо
+        "--grey": "#999999",          // для второстепенного текста и иконок
+        "--border": "#5a5a5a",        // границы — матовый серый
+        "--shadow": "#1a1a1a",        // тень — еле заметная, почти чёрная
+        "--gradient": "linear-gradient(145deg, #383838, #2e2e2e)", // скромный объемный эффект
+        "--main-footer": "#1c1c1c",   // подвал — почти черный
+        "--add-footer": "#292929",    // подвал 2 — глубокий графит
+    }
+    for (let key in theme) {
+        if (key.startsWith("--")) {
+            document.documentElement.style.setProperty(key, theme[key]);
+        }
+    }
+
+    const current = document.body.dataset.theme;
+    const nextTheme = current === "light" ? "dark" : "light";
+  
+    document.body.dataset.theme = nextTheme;
+    localStorage.setItem("theme", nextTheme); // ← сохраняем в браузер
+
+    lightMod.style.opacity = "0";
+    setTimeout(() => {
+        lightMod.style.display = "none";
+        darkMod.style.display = "flex";
+        setTimeout(() => {
+            darkMod.style.opacity = "1";
+        }, 10);
+    }, 200);
+})
