@@ -12,13 +12,6 @@
     font-family: 'Courier New', Courier, monospace;
     transition: background-color 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
-#MainBody{
-    opacity: 1;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: opacity 1s ease-in-out;
-}
 /*1 Contener*/
 #Contener1{
     position: relative;
@@ -58,6 +51,7 @@
 }
 /*2 Contener*/
 #Contener2 {
+    margin: 50px 0;
     position: relative;
     width: 100%;
     height: 100vh; /* Пусть слайдер занимает всю высоту */
@@ -127,8 +121,10 @@
     left: 50px;
 }
 .Con3Imgs{
+    transition: opacity 0.4s ease-in-out;
     width: auto;
-    max-height: 250px;
+    max-height: 200px;
+    aspect-ratio: 1 / 1;
 }
 .con3Btn {
     text-align: center;
@@ -159,16 +155,15 @@
 }
 .Con3Divs{
     background-color: var(--add-bg);
-    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out, opacity 0.4s ease-in-out;
     width: 100%;
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
-.Con3Divs h2, h3{
+.Con3Divs h5, h3{
     margin: 4px;
 }
 .Con3Text{
@@ -179,12 +174,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
-#Con4Part1, #Con4Part2{
+#Con4Part1{
     gap: 25px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
 }
 #Con4Part1{
@@ -196,6 +192,7 @@
     height: 450px;
     border-radius: 20px;
     background-color: #000; 
+
 }
 .Con4Imgs{
     z-index: 0;
@@ -215,6 +212,9 @@
 .Con4Divs:hover .Con4Text{
     color: transparent;
     user-select: none;
+}
+.Con4Divs:hover .con3ImgShow{
+    opacity: 0;
 }
 .Con4Text{
     position: relative;
@@ -253,6 +253,28 @@
 #ConLast2{
     margin: 50px 0px;
 }
+.con3ImgShow{
+    opacity: 0;
+    display: none;
+}
+.con4galochka{
+    opacity: 0;
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+@media screen and (max-width: 950px) {
+    .Con4Divs{
+        width: 300px;
+        height: 230px;
+    }
+    .Con4Text{
+        top: -220px;
+        margin: 20px 0px;
+    }
+    .Con4TextVt{
+        padding-top: 20px;        
+    }
+}
 @media screen and (max-width: 767px) {
     #Contener1{
         flex-direction: column;
@@ -271,21 +293,53 @@
         right: 0px;
         width: 90%;
     }
-    .Con4Divs{
-        width: 300px;
-        height: 230px;
-    }
-    .Con4Text{
-        top: -220px;
-        margin: 20px 0px;
-    }
-    .Con4TextVt{
-        padding-top: 20px;        
-    }
 }
 @media screen and (max-width: 625px) {
-    .Con4Divs{
-        width: 70%;
+    #Contener2{
+        display: none;
+    }
+    #con4galochki{
+        width: 80%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .con4galochka{
+        opacity: 1;
+        display: flex;
+        width: 25px;
+        height: 25px;
+        position: relative;
+    }
+    .con4circle{
+        z-index: 10;    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--white);
+        opacity: 0.4;
+    }
+
+    #Con4Part1{
+        max-width: 90vw;
+        flex-wrap: nowrap;
+        /* auto */
+        overflow-x: hidden; 
+        padding: 20px 20px 20px 20px;
+        gap: 25px;
+        scrollbar-width: none; /* Firefox */
+        justify-content: start;
+        scroll-behavior: smooth;
+    }
+    
+    .Con4Divs {
+        flex: 0 0 auto;
+        width: 100%;
     }
 }
 @media screen and (max-width: 550px) {
@@ -299,14 +353,45 @@
     }
 }
 @media screen and (max-width: 450px) {
-    .Con4Divs{
-        width: 100%;
-    }
-    .Con3Imgs{
-        height: 200px;
-        width: 160px;
-    }
     #text1{
         padding: 10px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .Con3Divs{
+        z-index: 10;
+        background-color: transparent;
+        height: 200px;
+        width: 200px;
+        position: relative;
+    }
+    .Con3Imgs{
+        position: absolute;
+        opacity: 0.5;
+        border-radius: 5px;
+    }
+    .Con3Divs:hover{
+        opacity: 0;
+    }
+    .Con3grup1, .Con3grup2{
+        width: 100%;
+        justify-content: center;
+        position: relative;
+    }
+    .Con3grup1:hover .Con3Imgs, .Con3grup2:hover .Con3Imgs{
+        opacity: 1;
+    }
+    .Con3grup1:hover .Con3Divs, .Con3grup2:hover .Con3Divs, .Con3grup1:hover .con3ImgShow, .Con3grup2:hover .con3ImgShow{
+        opacity: 0;
+    }
+    .con3ImgShow{
+        transition: opacity 0.4s ease-in-out;
+        z-index: 2; 
+        width: 25px; 
+        opacity: 0.8; 
+        position: absolute; 
+        right: 25%; 
+        top: 10px;
+        display: flex;
     }
 }
