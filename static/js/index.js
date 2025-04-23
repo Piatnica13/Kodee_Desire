@@ -122,11 +122,11 @@ back.addEventListener("click", () => {
 })
 
 let masFromCon4 = [
-    {title: "Комфорт", info: "Лёгкий и удобный, он не ощущается на запястье, но всегда с тобой"},
-    {title: "Долговечность", info: "Мы используем качественные материалы, чтобы браслет радовал вас долгие годы"},
-    {title: "Минимализм", info: "Лаконичный дизайн, который подходит к любому образу — от повседневного до вечернего"},
-    {title: "Символика", info: "Браслет — это больше, чем украшение. Это история твоих мечтаний и стремлений"},
-    {title: "Надежность", info: "Каждый браслет создан с заботой, чтобы стать твоим верным спутником в любой ситуации"},
+    {title: "Комфорт", info: "Лёгкий и удобный, он не ощущается на запястье"},
+    {title: "Долговечность", info: "Мы используем качественные материалы"},
+    {title: "Минимализм", info: "Лаконичный дизайн, который подходит к любому образу"},
+    {title: "Символика", info: "Браслет — это больше, чем украшение"},
+    {title: "Надежность", info: "Каждый браслет создан с заботой"},
 ];
 
 function con4func(mas){
@@ -148,21 +148,21 @@ masFromCon4.forEach((e)=>{
 })
 
 let masFromCon5 = [
-    {title: "Родных", a_filter: "", a_img: ""},
-    {title: "Любимых", a_filter: "", a_img: ""},
-    {title: "Творческих", a_filter: "", a_img: ""},
-    {title: "Пушистых", a_filter: "", a_img: ""},
-    {title: "Спортивных", a_filter: "", a_img: ""},
-    {title: "Миролюбивых", a_filter: "", a_img: ""}
+    {title: "Родных", a_filter: "", a_img: "/static/image/productImgs/klever/img1.jpg"},
+    {title: "Любимых", a_filter: "", a_img: "/static/image/productImgs/serdtse-kontur/img3.jpg"},
+    {title: "Творческих", a_filter: "", a_img: "/static/image/productImgs/skripichnyi-kliuch/img3.jpg"},
+    {title: "Пу&shy;те&shy;шест&shy;ву&shy;ющих", a_filter: "", a_img: "/static/image/productImgs/shturval/img1.jpg"},
+    {title: "Спортивных", a_filter: "", a_img: "/static/image/productImgs/raketka/img2.jpg"},
+    {title: "Пушистых", a_filter: "", a_img: "/static/image/productImgs/lapka/img1.jpg"}
 ]
 
 function con5func(mas){
     let con5 = document.querySelector("#con5grid");
     con5.innerHTML += `
-    <div class="">
-      <a href="${mas.a_filter}">
-        <p>${mas.title}</p>
-        <img src="${mas.a_img}" alt="">
+    <div class="con5Divs">
+      <a href="${mas.a_filter}" style="color:var(--black); text-decoration: none;">
+        <p class="con5Text">${mas.title}</p>
+        <img src="${mas.a_img}" class="con5Imgs">
       </a>
     </div>
     `
@@ -171,3 +171,47 @@ function con5func(mas){
 masFromCon5.forEach((e)=>{
     con5func(e);
 })
+
+let con6 = document.querySelector("#Contener6");
+
+let masFromCon6 = [
+    { name: "Мария", icon: "/static/image/productImgs/klever/img1.jpg", text: "Очень стильный браслет! Заказала брату — носит не снимая. Спасибо!" },
+    { name: "Алексей", icon: "/static/image/productImgs/klever/img1.jpg", text: "Качество просто супер, доставка быстрая. Закажу ещё!" },
+    { name: "Настя", icon: "/static/image/productImgs/klever/img1.jpg", text: "Подарила подруге на день рождения — она плакала от счастья. Очень душевный подарок." }
+];
+
+function con6func(mas){
+    con6.innerHTML += `
+    <div class="con6Divs">
+        <div class="con6head">
+            <img src="${mas.icon}" class="con6imgs alt="Иконка профиля">
+            <p class="con6name">${mas.name}</p>
+            <label style="color: yellow">★★★★★</label>
+        </div>
+        <div class="con6main">
+            <p class="con6text">${mas.text}</p>
+        </div>
+    </div>
+    `
+}
+
+masFromCon6.forEach((e)=>{
+    con6func(e);
+})
+
+// Дублируем содержимое
+con6.innerHTML += con6.innerHTML;
+
+function autoScroll() {
+    con6.scrollLeft += 0.728;
+
+    if (con6.scrollLeft >= (con6.scrollWidth) / 1.988) {
+        con6.scrollLeft = 0; // сбрасываем плавно, без скачков
+    }
+    setTimeout(() => {
+        autoScroll()
+        
+    }, 20);
+}
+
+autoScroll();
