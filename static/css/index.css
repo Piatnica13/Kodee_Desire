@@ -269,6 +269,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
+    gap: 25px;
     flex-direction: column;
 }
 .con5Divs{
@@ -294,6 +295,9 @@
     width: 140px;
     height: 140px;
     border-radius: 5px;
+}
+#con5img{
+    display: flex;
 }
 
 /* Contener6 */
@@ -341,7 +345,11 @@
     width: 100%;
 }
 
-
+@media screen and (max-width: 1024px) {
+    #con5img{
+        display: none;
+    }
+}
 @media screen and (max-width: 950px) {
     .Con4Divs{
         width: 300px;
@@ -420,6 +428,9 @@
     .Con4Divs {
         flex: 0 0 auto;
         width: 100%;
+    }
+    #con5grid{
+        gap: 0px;
     }
 }
 @media screen and (max-width: 550px) {

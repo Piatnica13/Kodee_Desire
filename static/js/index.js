@@ -148,19 +148,19 @@ masFromCon4.forEach((e)=>{
 })
 
 let masFromCon5 = [
-    {title: "Родных", a_filter: "", a_img: "/static/image/productImgs/klever/img1.jpg"},
-    {title: "Любимых", a_filter: "", a_img: "/static/image/productImgs/serdtse-kontur/img3.jpg"},
-    {title: "Творческих", a_filter: "", a_img: "/static/image/productImgs/skripichnyi-kliuch/img3.jpg"},
-    {title: "Пу&shy;те&shy;шест&shy;ву&shy;ющих", a_filter: "", a_img: "/static/image/productImgs/shturval/img1.jpg"},
-    {title: "Спортивных", a_filter: "", a_img: "/static/image/productImgs/raketka/img2.jpg"},
-    {title: "Пушистых", a_filter: "", a_img: "/static/image/productImgs/lapka/img1.jpg"}
+    {title: "Родных", a_filter: "/shop?filter=Жизнь и процветание,Любовь и семья,Природа,Минимализм и красота", a_img: "/static/image/productImgs/klever/img1.jpg"},
+    {title: "Любимых", a_filter: "/shop?filter=Любовь и романтика,Сила и успех,Жизнь и процветание", a_img: "/static/image/productImgs/serdtse-kontur/img3.jpg"},
+    {title: "Творческих", a_filter: "/shop?filter=Природа,Музыка и искусство,Минимализм и красота", a_img: "/static/image/productImgs/skripichnyi-kliuch/img3.jpg"},
+    {title: "Пу&shy;те&shy;шест&shy;ву&shy;ющих", a_filter: "/shop?filter=Мир и свобода,Путешествия и приключения,Сила и успех", a_img: "/static/image/productImgs/shturval/img1.jpg"},
+    {title: "Спортивных", a_filter: "/shop?filter=Спорт,Сила и успех,Минимализм и красота", a_img: "/static/image/productImgs/raketka/img2.jpg"},
+    {title: "Пушистых", a_filter: "/shop?filter=Любовь к животным,Природа,Мир и свобода", a_img: "/static/image/productImgs/lapka/img1.jpg"}
 ]
 
 function con5func(mas){
     let con5 = document.querySelector("#con5grid");
     con5.innerHTML += `
     <div class="con5Divs">
-      <a href="${mas.a_filter}" style="color:var(--black); text-decoration: none;">
+      <a href="${mas.a_filter}" style="color:var(--black); text-decoration: none; display: flex; align-items: center; flex-direction: column">
         <p class="con5Text">${mas.title}</p>
         <img src="${mas.a_img}" class="con5Imgs">
       </a>
@@ -177,6 +177,9 @@ let con6 = document.querySelector("#Contener6");
 let masFromCon6 = [
     { name: "Мария", icon: "/static/image/productImgs/klever/img1.jpg", text: "Очень стильный браслет! Заказала брату — носит не снимая. Спасибо!" },
     { name: "Алексей", icon: "/static/image/productImgs/klever/img1.jpg", text: "Качество просто супер, доставка быстрая. Закажу ещё!" },
+    { name: "Настя", icon: "/static/image/productImgs/klever/img1.jpg", text: "Подарила подруге на день рождения — она плакала от счастья. Очень душевный подарок." },
+    { name: "Настя", icon: "/static/image/productImgs/klever/img1.jpg", text: "Подарила подруге на день рождения — она плакала от счастья. Очень душевный подарок." },
+    { name: "Настя", icon: "/static/image/productImgs/klever/img1.jpg", text: "Подарила подруге на день рождения — она плакала от счастья. Очень душевный подарок." },
     { name: "Настя", icon: "/static/image/productImgs/klever/img1.jpg", text: "Подарила подруге на день рождения — она плакала от счастья. Очень душевный подарок." }
 ];
 

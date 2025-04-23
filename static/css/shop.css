@@ -243,7 +243,7 @@
 }
 #BockMenuBthSbros{
     cursor: pointer;
-    color: black;
+    color: var(--black);
     text-decoration:underline var(--shadow);
     padding: 20px 30px;
 }

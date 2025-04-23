@@ -278,6 +278,20 @@ function bthOpacity(bool) {
   }
 }
 
+const params = new URLSearchParams(window.location.search);
+    const filter = params.get("filter");
+    
+    if (filter) {
+      const filters = filter.split(',');
+      filters.forEach(f => {
+          const cb = document.querySelector(`input[type="checkbox"][data-value="${f}"]`);
+          if (cb) {
+              cb.checked = true;
+              cb.dispatchEvent(new Event('change'));
+          }
+      });
+    }
+
 FuncFilters(true);
 ReHeight()
 
