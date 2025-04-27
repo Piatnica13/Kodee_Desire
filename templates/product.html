@@ -9,16 +9,18 @@
     <div id="productImgsDiv">
       <div id="productGalochkas">
         <img
-          src="/static/image/menu/galochka.png"
+          src="/static/icon/black/galochka.png"
           style="width: 50px; height: 50px"
           alt="Назад"
           id="profilGalochka1"
+          data-icon="galochka.png"
         />
         <img
-          src="/static/image/menu/galochka.png"
+          src="/static/icon/black/galochka.png"
           style="width: 50px; height: 50px"
           alt="Вперед"
           id="profilGalochka2"
+          data-icon="galochka.png"
         />
       </div>
       {% for image in product.images %}
@@ -43,9 +45,10 @@
               <div id="productHowSize">
                 <h3>Как определить размер?</h3>
                 <img
-                  src="/static/image/productImgs/question.png"
+                  src="/static/icon/black/question.png"
                   style="width: 25px; height: 25px"
                   alt="Вопрос"
+                  data-icon="question.png"
                 />
               </div>
               <h2>Размер</h2>
@@ -76,17 +79,19 @@
         <div id="productDivSaleBth">
           <div id="productHeard">
             <img
-              src="/static/image/productImgs/heart.png"
+              src="/static/icon/black/heart.png"
               alt="Нравиться"
               class="productHeardImgs"
               id="productLike"
               style="display: none"
+              data-icon="heart.png"
             />
             <img
-              src="/static/image/productImgs/blackHeart.png"
+              src="/static/icon/black/blackHeart.png"
               alt="Поставить Нравиться"
               class="productHeardImgs"
               id="productGetLike"
+              data-icon="blackHeart.png"
             />
             <input type="hidden" id="d" value="{{ product.id }}" />
             <input type="hidden" id="f" value="{{ favarite }}" />

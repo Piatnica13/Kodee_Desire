@@ -1,60 +1,20 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block title %} {% endblock %}
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    {% block style %} {% endblock %}
-    <link rel="stylesheet" href="/static/css/base.css" />
-    <link rel="stylesheet" href="/static/css/menu.css" />
-    <link rel="stylesheet" href="/static/css/footer.css" />
-  </head>
-  <body>
-    <div id="menu-placeholder"></div>
-    <div id="loader">Загрузка</div>
-    <div id="Body">
-      <div id="divMessegeBox"></div>
-      <div id="theme">
-        <label
-          href="/admin/deshboard"
-          style="
-            width: 50px;
-            height: 50px;
-            position: fixed;
-            bottom: 15%;
-            right: 10%;
-            z-index: 1000;
-            border-radius: 50%;
-            background-color: var(--add-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 15px var(--grey);
-            transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
-          "
-        >
-          <img
-            src="/static/image/menu/sun.png"
-            style="width: 35px; height: 35px; position: absolute; opacity: 0; display: none;"
-            alt="Светлая тема"
-            id="bthLight"
-          />
-          <img
-            src="/static/image/menu/moon.png"
-            style="width: 35px; height: 35px; position: absolute; opacity: 1; display: flex;"
-            alt="Темная тема"
-            id="bthDark"
-          />
-        <label>
-      </div>
-      {% block body %} {% endblock %}
-      <div id="futer-block"></div>
-    </div>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="/static/js/base.js"></script>
-    {% block script %} {% endblock %}
-  </body>
-  </html>
-  
+{% extends "baseAll.html" %} {% block titlee %}
+<meta
+  http-equiv="Cache-Control"
+  content="no-cache, no-store, must-revalidate"
+/>
+{% block style %} {% endblock %}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link rel="stylesheet" href="/static/css/base.css" />
+<link rel="stylesheet" href="/static/css/menu.css" />
+<link rel="stylesheet" href="/static/css/footer.css" />
+{% block title %} {% endblock %} {% endblock %} {% block bodyy %}
+<div id="menu-placeholder"></div>
+<div id="loader">Загрузка</div>
+<div id="Body">
+  {% block body %} {% endblock %}
+  <div id="futer-block"></div>
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="/static/js/base.js"></script>
+{% block script %} {% endblock %} {% endblock %}

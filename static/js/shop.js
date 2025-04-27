@@ -93,7 +93,7 @@ function renderProducts(products, bool) {
           <div class="test">
             <p class="product-price">${products[i].price}тг</p>
             <div class="DivInfo">
-              <img src = "/static/image/menu/sumka.png" class = "Con2Icon" alt = "Сумка">
+              <img src = "/static/icon/black/sumka.png" data-icon="sumka.png" class = "Con2Icon" alt = "Сумка">
               <p class="BthInfo"><ins style="text-decoration: line">Подробнее</ins></p>
             </div>
           </div>
@@ -114,7 +114,7 @@ function renderProducts(products, bool) {
         <div class="test">
           <p class="product-price">${products[i].price}тг</p>
           <div class="DivInfo">
-            <img src = "/static/image/menu/sumka.png" class = "Con2Icon" alt = "Сумка">
+            <img src = "/static/icon/black/sumka.png" data-icon="sumka.png" class = "Con2Icon" alt = "Сумка">
             <p class="BthInfo"><ins>Подробнее</ins></p>
           </div>
           </a>

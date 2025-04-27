@@ -82,6 +82,7 @@
 /* Цвет фона полосы прокрутки */    
 .basketNoCheckboxImg::-webkit-scrollbar-track {
     background: var(--main-bg); /* Цвет фона */
+    transition: background 0.2s ease-in-out;  /* не работает */
 }
 /* Цвет ползунка (скроллбара) */
 .basketNoCheckboxImg::-webkit-scrollbar-thumb {
@@ -93,6 +94,7 @@
 /* Изменение цвета при наведении */
 .basketNoCheckboxImg::-webkit-scrollbar-thumb:hover {
     background-color: var(--shadow); 
+    transition: background-color 0.2s ease-in-out;
 }
 .productImgs{
     display: flex;
@@ -116,11 +118,11 @@
     width: calc(100% - 31px);
 }
 .customCheckbox span{
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
 }
 .customCheckbox input[type="checkbox"]:checked + span::after {
-    font-size: 35px;
+    font-size: 35px !important;
 }
 .basketproductImgs{
     width: 100%; 
@@ -249,8 +251,8 @@
         
     }
     .customCheckbox span{
-        width: 20px;
-        height: 20px;
+        width: 20px !important;
+        height: 20px !important;
         flex-shrink: 0;
     }
     .customCheckbox{
@@ -278,7 +280,7 @@
         justify-content: space-between;
     }
     .customCheckbox input[type="checkbox"]:checked + span::after {
-        font-size: 16px;
+        font-size: 16px !important;
     }
     .basketDivLabel{
         flex-direction: row;

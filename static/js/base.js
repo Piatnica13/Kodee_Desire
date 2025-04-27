@@ -136,12 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
         AOS.init();
     })
     .catch(error => console.error('Ошибка загрузки меню:', error));
-
-
-
+    
+    
+    
     const savedTheme = localStorage.getItem("theme") || "light";
+    
     document.body.dataset.theme = savedTheme;
-
+    
     const theme = savedTheme === "light" ? {
         "--main-bg": "#fffaf5",
         "--add-bg": "#e5d7cc",
@@ -165,13 +166,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "--main-footer": "#1c1c1c",
         "--add-footer": "#292929",
     };
-
+    
     for (let key in theme) {
         if (key.startsWith("--")) {
             document.documentElement.style.setProperty(key, theme[key]);
         }
     }
-
+    
     // Отображаем нужную кнопку
     if (savedTheme === "dark") {
         darkMod.style.display = "flex";
@@ -189,8 +190,34 @@ document.addEventListener("DOMContentLoaded", () => {
             lightMod.style.opacity = "1";
         }, 10);
     }
+
+    setTimeout(() => {
+        
+        updateIconsByTheme(true);
+    }, 500);
 });
 
+function updateIconsByTheme(bool) {
+
+    const theme = document.body.dataset.theme || 'light';
+    
+    const icons = document.querySelectorAll('img[data-icon]');
+    
+    icons.forEach(img => {
+      const filename = img.dataset.icon;
+      img.style.transition = "opacity 0.25s ease-in-out";
+      img.style.opacity = `0`;
+      setTimeout(() => {
+        if(bool == true){
+            img.src = `/static/icon/${theme === 'light' ? 'black' : 'white'}/${filename}`;
+        }
+        else{
+            img.src = `/static/icon/${theme === 'dark' ? 'black' : 'white'}/${filename}`;
+        }
+          img.style.opacity = `1`;
+      }, 250);
+    });
+}
 
 
 
@@ -331,6 +358,14 @@ lightMod.style.transition = "opacity 0.4s ease";
 darkMod.style.transition = "opacity 0.4s ease";
 
 darkMod.addEventListener("click", () => {
+    lightMod.style.pointerEvents = `none`;
+    darkMod.style.pointerEvents = `none`;
+    setTimeout(() => {
+        lightMod.style.pointerEvents = `all`;
+        darkMod.style.pointerEvents = `all`;
+    }, 600);
+    updateIconsByTheme(false);
+
     theme = {
         "--main-bg": "#fffaf5",
         "--add-bg": "#e5d7cc",
@@ -366,6 +401,14 @@ darkMod.addEventListener("click", () => {
 })
 
 lightMod.addEventListener("click", () => {
+    darkMod.style.pointerEvents = `none`;
+    lightMod.style.pointerEvents = "none";
+    setTimeout(() => {
+        darkMod.style.pointerEvents = `all`;
+        lightMod.style.pointerEvents = "all";
+    }, 600);
+    updateIconsByTheme(false);
+
     theme = {
         "--main-bg": "#2e2e2e",       // основной фон — глубокий тёмно-серый
         "--add-bg": "#3e3e3e",        // дополнительный фон — чуть светлее, для карточек и блоков

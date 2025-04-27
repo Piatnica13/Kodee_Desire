@@ -5,23 +5,23 @@ let user_size = 0;
 
 let size1 = document.querySelector("#productChoose1")
 size1.addEventListener("click", () => {
-  size1.style.color = "var(--shadow)";
-  size2.style.color = "var(--black)";
-  size3.style.color = "var(--black)";
+  size1.style.color = "var(--add-bg)";
+  size2.style.color = "black";
+  size3.style.color = "black";
   user_size = 1;
 })
 let size2 = document.querySelector("#productChoose2")
 size2.addEventListener("click", () => {
-  size2.style.color = "var(--shadow)";
-  size1.style.color = "var(--black)";
-  size3.style.color = "var(--black)";
+  size2.style.color = "var(--add-bg)";
+  size1.style.color = "black";
+  size3.style.color = "black";
   user_size = 2;
 })
 let size3 = document.querySelector("#productChoose3")
 size3.addEventListener("click", () => {
-  size3.style.color = "var(--shadow)";
-  size2.style.color = "var(--black)";
-  size1.style.color = "var(--black)";
+  size3.style.color = "var(--add-bg)";
+  size2.style.color = "black";
+  size1.style.color = "black";
   user_size = 3;
 })
 

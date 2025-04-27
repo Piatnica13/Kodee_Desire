@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/icon/black/favo.png" sizes="32x32" />
+    {% block titlee %}{% endblock %}
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K2TX71HYVP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-K2TX71HYVP");
+    </script>
+    <!-- Google tag -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(101431606, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: "ShopGrid",
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/101431606"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body>
+    <div id="theme">
+      <label
+        href="/admin/deshboard"
+        style="
+          width: 50px;
+          height: 50px;
+          position: fixed;
+          bottom: 15%;
+          right: 10%;
+          z-index: 1000;
+          border-radius: 50%;
+          background-color: var(--add-bg);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 0 15px var(--grey);
+          transition: background 0.5s ease-in-out;
+        "
+      >
+        <img
+          src="/static/icon/black/sun.png"
+          style="width: 35px; height: 35px; position: absolute"
+          alt="Светлая тема"
+          id="bthLight"
+        />
+        <img
+          src="/static/icon/white/moon.png"
+          style="width: 35px; height: 35px; position: absolute"
+          alt="Темная тема"
+          id="bthDark"
+        />
+      </label>
+    </div>
+    <div id="divMessegeBox"></div>
+    {% block bodyy %} {% endblock %}
+  </body>
+</html>
