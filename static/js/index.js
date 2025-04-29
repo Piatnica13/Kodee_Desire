@@ -220,3 +220,80 @@ function autoScroll() {
 }
 
 autoScroll();
+
+// Contener 7
+function con4resize() {
+    let Y = window.innerWidth;
+
+    // Удаляем все старые ScrollTrigger'ы
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    let tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#Contener7",
+            start: "top 100px",
+            end: "+=300%",
+            scrub: true,
+            pin: ".con7wrapper",
+        }
+    });
+
+    if (Y <= 767) {
+        tl.to("#image1", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power1.out"
+        })
+        .to("#image2", {
+            y: 50,
+            opacity: 1,
+            duration: 1,
+            ease: "power1.out"
+        }, "-=0.8")
+        .to("#image2", {
+            opacity: 0,
+            duration: 0.5
+        })
+        .to("#image3", {
+            y: 25,
+            opacity: 1,
+            duration: 1,
+            ease: "power1.out"
+        }, "-=0.8");
+        
+    } else {
+
+
+        tl.to("#image1", {
+            y: 0,
+            x: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power1.out"
+        })
+        .to("#image2", {
+            y: 0,
+            x: 50,
+            opacity: 1,
+            duration: 1,
+            ease: "power1.out"
+        }, "-=0.8")
+        .to("#image2", {
+            opacity: 0,
+            duration: 0.5
+        })
+        .to("#image3", {
+            y: 0,
+            x: 50,
+            opacity: 1,
+            duration: 1,
+            ease: "power1.out"
+        }, "-=0.8");
+    }
+}
+
+con4resize();
+window.addEventListener("resize", con4resize);

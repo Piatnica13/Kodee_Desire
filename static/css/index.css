@@ -344,6 +344,62 @@
     align-items: start;
     width: 100%;
 }
+/* Contener 7 */
+.con7sticky {
+    position: relative;
+    height: 300vh; /* Высота больше экрана, чтобы было где скроллить */
+  }
+  
+.con7wrapper {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 100px);
+  width: 100%;
+  overflow: hidden;
+  background: var(--main-bg);
+  display: grid;
+  justify-content : center;
+  align-items: center;
+  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 100%;
+}
+.con7images {
+  position: relative;
+  height: 100%;
+  max-width: 300px;
+  opacity: 1;
+  aspect-ratio: 1 / 1;
+}
+#image1{
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#image2{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    top: -30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#image3{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+    top: -60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
 
 @media screen and (max-width: 1024px) {
     #con5img{
@@ -381,6 +437,8 @@
         right: 0px;
         width: 90%;
     }
+
+
 }
 @media screen and (max-width: 625px) {
     #Contener2{
@@ -412,7 +470,7 @@
         background-color: var(--white);
         opacity: 0.4;
     }
-
+    
     #Con4Part1{
         max-width: 90vw;
         flex-wrap: nowrap;
@@ -484,5 +542,40 @@
         right: 25%; 
         top: 10px;
         display: flex;
+    }
+}
+@media screen and (min-width: 767px) {
+    .con7sticky {
+        position: relative;
+        height: 300vh; /* Высота больше экрана, чтобы было где скроллить */
+    }
+    .con7wrapper {
+        position: sticky;
+        top: 0;
+        height: calc(100vh - 100px);
+        width: 100%;
+        overflow: hidden;
+        background: var(--main-bg);
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 100%;
+    }    
+    .con7images {
+        width: 100%;
+        height: auto;
+    }
+    #image1{
+        justify-content: center;
+        margin-top: 0px;
+    }
+    #image2{
+        justify-content: center;
+        top: 0px;
+        right: 25px;
+    }
+    #image3{
+        justify-content: center;
+        top: 0px;
+        right: 50px;
     }
 }
