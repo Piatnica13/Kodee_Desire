@@ -92,7 +92,7 @@ bthRechangee.addEventListener("click", () => {
     password.style.opacity = "0";
     favorite.style.opacity = "0";
     address.style.opacity = "0";
-    rechange.style.display = "flex";
+    rechange.style.display = "block";
     setTimeout(() => {
         favorite.style.display = "none";
         address.style.display = "none"
@@ -166,14 +166,10 @@ let buttonSave = document.querySelector("#ProfilDivButtonAdd");
 let deletedAddresses = [];
 
 function showButton() {
-    if (buttonSave) {
         buttonSave.style.display = "flex";
         setTimeout(() => {
             buttonSave.style.opacity = "1";
         }, 1);
-    } else {
-        console.error("Кнопка сохранения не найдена!");
-    }
 }
 
 function markForDeletion(addressId) {

@@ -180,11 +180,12 @@
 #ProfilChangeInfoButton{
     width: 200px;
     height: 100px;
-    font-size: 30px;
+    font-size: 2rem;
     font-family: 'Courier New', Courier, monospace;
     background-color: #ffd0d9;
     border: none;
     transition: scale 0.2s;
+    margin-left: 25px;
 }
 #ProfilChangeInfoButton:hover{
     scale: 1.02;
@@ -652,6 +653,9 @@ position: absolute;
         align-items: start;
         gap: 25px;
         height: 174px;
+    }
+    #ProfilChangeInfoButton{
+        font-size: 1.5rem;
     }
 }
 @media screen and (max-width: 860px) {

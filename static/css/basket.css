@@ -82,7 +82,6 @@
 /* Цвет фона полосы прокрутки */    
 .basketNoCheckboxImg::-webkit-scrollbar-track {
     background: var(--main-bg); /* Цвет фона */
-    transition: background 0.2s ease-in-out;  /* не работает */
 }
 /* Цвет ползунка (скроллбара) */
 .basketNoCheckboxImg::-webkit-scrollbar-thumb {
@@ -94,7 +93,6 @@
 /* Изменение цвета при наведении */
 .basketNoCheckboxImg::-webkit-scrollbar-thumb:hover {
     background-color: var(--shadow); 
-    transition: background-color 0.2s ease-in-out;
 }
 .productImgs{
     display: flex;
@@ -179,7 +177,28 @@
     inset 0px 0px 5px 1px var(--main-bg);
     transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
-    
+#basketWhatsAppBth{
+    width: 90%;
+    height: 25px;
+}
+#basketBhtWhatsAppDiv{
+    height: 30px;
+    width: 100%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.ProfilAddImgs{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    opacity: 0.5;
+    top: 5.5px;
+    left: 7.5px;
+}
+.ProfilAddDivInps{
+    position: relative;
+}
 @media screen and (max-width: 1450px) {
     .productName{
         font-size: 1.4rem;
@@ -216,7 +235,7 @@
     }
     #basketRight{
         margin: 0px 25px;
-        width: calc(100% - 100px);
+        width: calc(100% - 50px);
     }
     .basketProduct{
         grid-template-columns: 40% 60%;
@@ -249,8 +268,8 @@
         width: 25px;
         opacity: 0.8;
         
-    }
-    .customCheckbox span{
+    }    
+    .customCheckbox span {
         width: 20px !important;
         height: 20px !important;
         flex-shrink: 0;
@@ -310,6 +329,15 @@
         box-shadow: 0px 0px 20px 20px var(--main-bg),
         inset 0px 0px 5px 1px var(--main-bg);
     }
+    #basketWhatsAppBth{
+        width: 50%;
+    }
+    #basketBhtWhatsAppDiv{
+        justify-content: start;
+    }
+    #backetRightBottom{
+        flex-direction: row;
+    }
 }
 @media screen and (max-width: 700px) {
     .basketProductDescript{
@@ -322,5 +350,16 @@
 
     .basketDivLabel{
         gap: 50px;
+    }
+    #basketWhatsAppBth{
+        width: 90%;
+    }
+    
+    #basketBhtWhatsAppDiv{ 
+        justify-content: center;
+    }
+    
+    #backetRightBottom{
+        flex-direction: column;
     }
 }

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
     let checkboxs = document.querySelectorAll(".basketcheckboxItem");
     let selected = JSON.parse(localStorage.getItem("selectedItems"));
     
@@ -165,4 +165,49 @@ function rightProduct() {
         }
     });
     basketPay.innerHTML = `<h3 style = "font-size: 1.5rem">К оплате — ${sum}тг</h3>`;
+}
+
+let messageBth = document.querySelector("#basketWhatsAppBth");
+messageBth.addEventListener("click", messageBthFunc)
+
+function messageBthFunc(){
+    let checkedProductF = document.querySelectorAll(".basketRightProducts");
+
+    let checkedProductS = [];
+
+    checkedProductF.forEach((e)=>{
+        checkedProductS.push(e.innerText.split(" — ")[0].split(". ")[1]);
+    })
+
+    let allName = document.querySelectorAll(".productName");
+    let allColor = document.querySelectorAll(".basketColor");
+    let allSize = document.querySelectorAll(".basketSize");
+    let allMat = document.querySelectorAll(".basketmaterial");
+
+    let chet = 1;
+    let address = document.querySelector("#basketAddress").value;
+    let name = document.querySelector("#basketName").value;
+    let num = 77003360024;
+    let text = `Здраствуйте! Меня зовут ${name}. Хочу оформить заказ.%0a`;
+    
+
+    for(let i = 0; i < allName.length; i++){
+        for(let j = 0; j < checkedProductS.length; j++){
+            if(allName[i].innerText == checkedProductS[j]){
+                text += ` 
+${chet}) ${allName[i].innerText},%0a
+Цвет нити: ${allColor[i].innerText.split(`Цвет нити
+`)[1]},%0a
+Размер: ${allSize[i].innerText.split(`Размер
+`)[1]},%0a
+Материал: ${allMat[i].innerText.split(`Материал
+`)[1]}%0a
+`
+                chet++;
+            }
+        }
+    }
+    text += `Удобна доставка на адрес ${address}`
+
+    window.open(`https://wa.me/${num}?text="${text}"`, '_blank');
 }

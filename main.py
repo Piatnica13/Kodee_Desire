@@ -72,17 +72,7 @@ def profil():
                     return render_template("profil.html", user=user, errors=errors, favorite_products = favorite_products)
             #добавления адресов
             elif "add_address" in request.form:
-                name = request.form.get("name")
-                city = request.form.get("city")
-                street = request.form.get("street")
-                home = request.form.get("home")
-                flat = request.form.get("flat")
-                person_id = session["user_id"]
-
-                new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
-                db.session.add(new_address)
-                db.session.commit()
-                
+                addAddress()
                 
             #выбор или удаления адресов
             elif "work_with_address" in request.form:
@@ -139,7 +129,7 @@ def product(slug):
     
     return render_template('product.html', product=product, user=person, address=address, favarite=person.favourites)
 
-@app.route('/basket')
+@app.route('/basket', methods=["GET", "POST"])
 def basket():
     user_id = session.get('user_id')
     if not user_id:
@@ -149,7 +139,10 @@ def basket():
     for i in user.basket:
         product = Product.query.filter_by(id = i[0]).first()
         products.append(product)
-    return render_template('basket.html', basket=products, description=user.basket, favorite = user.favourites)
+    if request.method == 'POST':
+        addAddress()
+    return render_template('basket.html', basket=products, user=user)
+
 
 @app.route('/add_basket', methods=['POST'])
 def add_basket():
@@ -421,6 +414,17 @@ addProducts(Product(name="Гравировка монетки 1.1г", price=6800
 addProducts(Product(name="Кулон из серебра", price=10000, concept="Минимализм и универсальность", category="Кулон", descriptions="Кулон из серебра – Лаконичный и элегантный кулон, который станет отражением твоего характера и стиля. Чистота серебра подчеркнёт изящество и добавит образу утончённости.", slug=slugify("Кулон из серебра")))
 addProducts(Product(name="Гравировка в серебре", price=15000, concept="Минимализм и универсальность", category="Монеточка", descriptions="Гравировка в серебре – Персонализируй своё украшение! Гравировка на серебряной поверхности придаст ему уникальность и сделает символом чего-то важного лично для тебя.", slug=slugify("Гравировка в серебре")))
 
+def addAddress():
+                    name = request.form.get("name")
+                    city = request.form.get("city")
+                    street = request.form.get("street")
+                    home = request.form.get("home")
+                    flat = request.form.get("flat")
+                    person_id = session["user_id"]
+
+                    new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
+                    db.session.add(new_address)
+                    db.session.commit()
 
 def add_admin():
     admin = Person.query.filter_by(email=os.getenv("ADMIN_EMAIL")).first()
