@@ -110,9 +110,19 @@ nolike.forEach(element => {
 });
 
 let delete_product= document.querySelectorAll(".basketDelete");
+let checkboxs = document.querySelectorAll(".basketcheckboxItem");
 function deleteFunc(){
     let element = event.currentTarget;
     let Id = element.dataset.id; 
+
+    checkboxs.forEach((el) => {
+        if (el.dataset.id == Id){
+            el.checked = false;
+        }
+    });
+
+    rightProduct();
+    
 
     fetch("/delete_basket", {
         method: "POST",
@@ -142,7 +152,6 @@ delete_product.forEach(element => {
 let divForProduct = document.querySelector("#basketProductsPay");
 function rightProduct() {
     let basketPay = document.querySelector("#basketPay");
-    let checkboxs = document.querySelectorAll(".basketcheckboxItem");
     let num = 1;
     let sum = 0;
     checkboxs.forEach(box => {
@@ -171,43 +180,86 @@ let messageBth = document.querySelector("#basketWhatsAppBth");
 messageBth.addEventListener("click", messageBthFunc)
 
 function messageBthFunc(){
-    let checkedProductF = document.querySelectorAll(".basketRightProducts");
-
-    let checkedProductS = [];
-
-    checkedProductF.forEach((e)=>{
-        checkedProductS.push(e.innerText.split(" — ")[0].split(". ")[1]);
-    })
-
-    let allName = document.querySelectorAll(".productName");
-    let allColor = document.querySelectorAll(".basketColor");
-    let allSize = document.querySelectorAll(".basketSize");
-    let allMat = document.querySelectorAll(".basketmaterial");
-
-    let chet = 1;
-    let address = document.querySelector("#basketAddress").value;
-    let name = document.querySelector("#basketName").value;
-    let num = 77003360024;
-    let text = `Здраствуйте! Меня зовут ${name}. Хочу оформить заказ.%0a`;
+    if (document.querySelector("#basketAddress").value != ``) {
+        
+        let checkedProductF = document.querySelectorAll(".basketRightProducts");
     
-
-    for(let i = 0; i < allName.length; i++){
-        for(let j = 0; j < checkedProductS.length; j++){
-            if(allName[i].innerText == checkedProductS[j]){
-                text += ` 
+        let checkedProductS = [];
+    
+        checkedProductF.forEach((e)=>{
+            checkedProductS.push(e.innerText.split(" — ")[0].split(". ")[1]);
+        })
+    
+        let allName = document.querySelectorAll(".productName");
+        let allColor = document.querySelectorAll(".basketColor");
+        let allSize = document.querySelectorAll(".basketSize");
+        let allMat = document.querySelectorAll(".basketmaterial");
+        
+    
+        let chet = 1;
+        let name = document.querySelector("#basketNamehidden").value;
+        let num = 77003360024;
+        let text = `Здраствуйте! Меня зовут ${name}. Хочу оформить заказ.%0a`;
+        
+    
+        for(let i = 0; i < allName.length; i++){
+            for(let j = 0; j < checkedProductS.length; j++){
+                if(allName[i].innerText == checkedProductS[j]){
+                    text += `
 ${chet}) ${allName[i].innerText},%0a
-Цвет нити: ${allColor[i].innerText.split(`Цвет нити
-`)[1]},%0a
-Размер: ${allSize[i].innerText.split(`Размер
-`)[1]},%0a
-Материал: ${allMat[i].innerText.split(`Материал
-`)[1]}%0a
+Цвет нити: ${allColor[i].innerText.split(`Цвет нити`)[1]},%0a
+Размер: ${allSize[i].innerText.split(`Размер`)[1]},%0a
+Материал: ${allMat[i].innerText.split(`Материал`)[1]}%0a
 `
-                chet++;
+                    chet++;
+                }
             }
         }
+        text += `Удобна доставка на адрес ${document.querySelector("#basketAddress").value}`
+    
+        window.open(`https://wa.me/${num}?text="${text}"`, '_blank');
     }
-    text += `Удобна доставка на адрес ${address}`
-
-    window.open(`https://wa.me/${num}?text="${text}"`, '_blank');
+    else{
+        formAddress.style.display=`block`;
+        setTimeout(() => {
+            formAddress.style.opacity = `1`;
+            showToast("Адрес не указан");
+        }, 1);
+    }
 }
+
+let bthAdd = document.querySelector("#ProfilAddBth");
+bthAdd.addEventListener('click', ()=>{
+    formAddress.style.opacity = `0`;
+    setTimeout(() => {
+        formAddress.style.display = `none`;
+    }, 300);
+
+
+    let name = document.querySelector("#basketName");
+    let city = document.querySelector("#basketCity");
+    let street = document.querySelector("#basketStreet");
+    let home = document.querySelector("#basketHome");
+    let flat = document.querySelector("#basketFlat");
+
+    fetch('/add_address', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({name: name.value, city: city.value, street: street.value, home: home.value, flat: flat.value})
+      })
+        .then(response =>response.json())
+        .then(data => {
+          if(data.success){
+            document.querySelector("#basketAddress").value = data.address;
+            showToast(data.message);
+          }
+          else{
+            showToast(data.error)
+          }
+    })
+})
+
+let formAddress = document.querySelector("#ProfilAddSplit");
+formAddress.style.opacity = `0`;
+formAddress.style.display = `none`;
+formAddress.style.transition = `opacity 0.3s ease-in-out`

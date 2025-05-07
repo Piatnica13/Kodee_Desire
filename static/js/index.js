@@ -234,7 +234,7 @@ function con4resize() {
         scrollTrigger: {
             trigger: "#Contener7",
             start: "top 100px",
-            end: "+=300%",
+            end: "+=100%",
             scrub: true,
             pin: ".con7wrapper",
         }

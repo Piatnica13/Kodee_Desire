@@ -225,3 +225,27 @@ function NotTach() {
         bthAddress.style.pointerEvents = `auto`;
     }, 600);
 }
+
+let bthAdd = document.querySelector("#ProfilAddBth");
+bthAdd.addEventListener("click", () => {
+    let name = document.querySelector("#profilName");
+    let city = document.querySelector("#profilCity");
+    let street = document.querySelector("#profilStreet");
+    let home = document.querySelector("#profilHome");
+    let flat = document.querySelector("#profilFlat");
+
+    fetch('/add_address', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({name: name.value, city: city.value, street: street.value, home: home.value, flat: flat.value})
+      })
+        .then(response =>response.json())
+        .then(data => {
+          if(data.success){
+            showToast(data.message);
+          }
+          else{
+            showToast(data.error)
+          }
+    })
+})

@@ -268,3 +268,4 @@ document.querySelector("#productMaterial").addEventListener('change', function()
     showToast("Изделия из жёлтого золота 585 изготавливается на заказ, до 2 недель", 10, 5000)
   }
 })
+

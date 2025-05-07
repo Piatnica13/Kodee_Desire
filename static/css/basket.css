@@ -9,7 +9,8 @@
     margin: 0px 50px;
     position: relative;
 }
-#basketRight{    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+#basketRight{
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
     margin: 0px 50px;
     width: 40%;
 }

@@ -70,10 +70,6 @@ def profil():
                     errors['comparisons'] = "Ошибка, пароли не совпадают или пароль меньше 6 символов"
                     flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error") 
                     return render_template("profil.html", user=user, errors=errors, favorite_products = favorite_products)
-            #добавления адресов
-            elif "add_address" in request.form:
-                addAddress()
-                
             #выбор или удаления адресов
             elif "work_with_address" in request.form:
                 deleted_addresses = request.form.get("deleted_addresses")
@@ -139,8 +135,6 @@ def basket():
     for i in user.basket:
         product = Product.query.filter_by(id = i[0]).first()
         products.append(product)
-    if request.method == 'POST':
-        addAddress()
     return render_template('basket.html', basket=products, user=user)
 
 
@@ -414,17 +408,31 @@ addProducts(Product(name="Гравировка монетки 1.1г", price=6800
 addProducts(Product(name="Кулон из серебра", price=10000, concept="Минимализм и универсальность", category="Кулон", descriptions="Кулон из серебра – Лаконичный и элегантный кулон, который станет отражением твоего характера и стиля. Чистота серебра подчеркнёт изящество и добавит образу утончённости.", slug=slugify("Кулон из серебра")))
 addProducts(Product(name="Гравировка в серебре", price=15000, concept="Минимализм и универсальность", category="Монеточка", descriptions="Гравировка в серебре – Персонализируй своё украшение! Гравировка на серебряной поверхности придаст ему уникальность и сделает символом чего-то важного лично для тебя.", slug=slugify("Гравировка в серебре")))
 
+@app.route('/add_address', methods=["POST"])
 def addAddress():
-                    name = request.form.get("name")
-                    city = request.form.get("city")
-                    street = request.form.get("street")
-                    home = request.form.get("home")
-                    flat = request.form.get("flat")
-                    person_id = session["user_id"]
-
-                    new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
-                    db.session.add(new_address)
-                    db.session.commit()
+    data = request.get_json()
+    print("Полученные данные: ", data)
+    
+    name = data.get("name")
+    city = data.get("city")
+    street = data.get("street")
+    home = data.get("home")
+    flat = data.get("flat")
+    person_id = session["user_id"]
+    
+    if not city or not street or not home:
+        return jsonify({"success": False, "error": "Не все обязательные поля заполнены"})
+    
+    new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
+    db.session.add(new_address)
+    db.session.commit()
+    
+    address_count = Address.query.filter_by(person_id=person_id).count()
+    if address_count == 1:
+        user = Person.query.get(person_id)
+        user.address = f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
+        db.session.commit()
+    return jsonify({"success": True, "message": "Адрес успешно добавлен",  "address": f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"})
 
 def add_admin():
     admin = Person.query.filter_by(email=os.getenv("ADMIN_EMAIL")).first()

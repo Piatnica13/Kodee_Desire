@@ -347,7 +347,7 @@
 /* Contener 7 */
 .con7sticky {
     position: relative;
-    height: 300vh; /* Высота больше экрана, чтобы было где скроллить */
+    height: 100vh; /* Высота больше экрана, чтобы было где скроллить */
   }
   
 .con7wrapper {

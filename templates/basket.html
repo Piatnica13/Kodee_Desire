@@ -93,8 +93,26 @@
   <div id="basketRight">
     <div id="basketProductsPay"><h2>Товары</h2></div>
     <div id="basketPay"></div>
-    <form method="POST" id="ProfilAddSplit">
-      <div id="ProfilAddInps">
+    <div id="basketBhtWhatsAppDiv">
+      <button type="button" id="basketWhatsAppBth">
+        Оформить через WhatsApp
+      </button>
+    </div>
+    <div method="POST" id="ProfilAddSplit">
+      <div
+        style="
+          text-align: center;
+          font-size: 2rem;
+          width: 100%;
+          margin: 25px 0 10px;
+        "
+      >
+        Добавить адрес
+      </div>
+      <div
+        id="ProfilAddInps"
+        style="display: flex; flex-direction: column; gap: 10px"
+      >
         <div class="ProfilAddDivInps">
           <img
             src="/static/icon/black/tochka.png"
@@ -106,6 +124,7 @@
             placeholder="Название (можете видеть только вы)"
             class="ProfilAddInp"
             name="name"
+            id="basketName"
           />
         </div>
         <div class="ProfilAddDivInps">
@@ -119,6 +138,7 @@
             placeholder="Город"
             class="ProfilAddInp"
             name="city"
+            id="basketCity"
           />
         </div>
         <div class="ProfilAddDivInps">
@@ -132,6 +152,7 @@
             placeholder="Улица"
             class="ProfilAddInp"
             name="street"
+            id="basketStreet"
           />
         </div>
         <div class="ProfilAddDivInps">
@@ -145,6 +166,7 @@
             placeholder="Дом"
             class="ProfilAddInp"
             name="home"
+            id="basketHome"
           />
         </div>
         <div class="ProfilAddDivInps">
@@ -158,24 +180,34 @@
             placeholder="Квартира (не обязательно)"
             class="ProfilAddInp"
             name="flat"
+            id="basketFlat"
           />
         </div>
       </div>
-      <div id="ProfilAddDivBth">
-        <button id="ProfilAddBth" name="add_address" value="1" type="submit">
+      <div
+        id="ProfilAddDivBth"
+        style="
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin: 10px 0;
+        "
+      >
+        <button
+          id="ProfilAddBth"
+          name="add_address"
+          value="1"
+          type="button"
+          style="width: 90%"
+        >
           Добавить
         </button>
       </div>
-    </form>
-    <div id="basketBhtWhatsAppDiv">
-      <button type="button" id="basketWhatsAppBth">
-        Оформить через WhatsApp
-      </button>
     </div>
   </div>
 </div>
+<input type="hidden" value="{{ user.name }}" id="basketNamehidden" />
 <input type="hidden" value="{{user.address}}" id="basketAddress" />
-<input type="hidden" value="{{user.name}}" id="basketName" />
 {% endblock body %} {% block script %}
 <script src="/static/js/basket.js" defer></script>
 {% endblock script %}
