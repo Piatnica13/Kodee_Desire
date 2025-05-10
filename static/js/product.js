@@ -193,8 +193,8 @@ function resize() {
     }
   };
 
-  let BthLike = document.querySelector("#productLike")
-  let BthGetLike = document.querySelector("#productGetLike");
+let BthLike = document.querySelector("#productLike")
+let BthGetLike = document.querySelector("#productGetLike");
 BthGetLike.addEventListener("click", BthLikes)
 function BthLikes() {
   fetch("/add_favorite", {
@@ -222,17 +222,21 @@ function BthLikes() {
 BthLike.addEventListener('click', BthLikes)
 
 function FuncBthGetLike(){
+  BthLike.style.transition = `opacity 0s ease-in-out`;
+  BthLike.style.opacity = "0";
+  BthLike.style.transition = `opacity 0.25s ease-in-out`;
   BthLike.style.display = "flex";
+  BthGetLike.style.opacity = "0";
   setTimeout(() => {
     BthLike.style.opacity = "1";
-  }, 1);
-  BthGetLike.style.opacity = "0";
+  }, 10);
   setTimeout(() => {
     BthGetLike.style.display = "none";
   }, 200);
 }
 
 function FuncBthLike() {
+  
   BthLike.style.opacity = "0";
   BthGetLike.style.display = "flex";
   setTimeout(() => {
@@ -245,7 +249,6 @@ function FuncBthLike() {
 
 function chek(){
   let value = f.value.slice(1).slice(0, -1).split(', '); 
-  
   for(let i = 0; i < value.length; i++){
     if (d.value == value[i]){
       FuncBthGetLike()
@@ -256,11 +259,11 @@ chek();
 resize();
 
 document.querySelector("#productMaterial").addEventListener('change', function(){
-
+  
   const selectedValue = this.value;
   console.log(selectedValue);
   
-
+  
   if (selectedValue === "Золото 585 (Белое)") {
     showToast("Изделия из белого золота 585 изготавливается на заказ, до 2 недель", 10, 5000)
   }
@@ -268,4 +271,3 @@ document.querySelector("#productMaterial").addEventListener('change', function()
     showToast("Изделия из жёлтого золота 585 изготавливается на заказ, до 2 недель", 10, 5000)
   }
 })
-

@@ -1,34 +1,33 @@
 let MainContener = document.querySelector('#Body');
 const footerBlock = document.querySelector('#futer-block');
-const toast = document.getElementById('divMessegeBox');
-let messageQueue = [];
-let isMessageShowing = false;
 
-document.addEventListener("DOMContentLoaded", () => {   
-    showMainContainer();
-
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Подключение футера
     fetch('/static/html/footer.html')
     .then(response => response.text())
     .then(html => {
         document.getElementById('futer-block').innerHTML = html;
-        const script = document.createElement('script');
+        const script = document.createElement('script'); // Подключение js для футер
         script.src = '/static/js/footer.js';
         document.body.appendChild(script);
     })
-    .catch(error => console.error('Ошибка загрузки futer:', error));
+    .catch(error => console.error('Ошибка загрузки footer:', error));
     
+    // Подключение меню
     fetch('/static/html/menu.html')
     .then(response => response.text())
     .then(html => {
         document.getElementById('menu-placeholder').innerHTML = html;
-        // После загрузки меню подключаем script.js
-        const script = document.createElement('script');
+        const script = document.createElement('script');// Подключение js для меню
         script.src = '/static/js/menu.js';
         document.body.appendChild(script);
         
+        let menu = document.querySelector("#MenuFixed");
+        showMainContainer(menu)
+        
         script.onload = () => {
             // Этот код выполнится после загрузки script.js
-            let ContenerMenu = document.querySelector("#MenuFixed");
             let Logo = document.querySelector("#logo");
             let checkBox = document.querySelector("#checkboxMain");
             let poiskImgOnMenu = document.querySelector("#poisk");
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             PlaseForPoisk.style.opacity = "1";
                         }, 1);
                         chetchik = false;
-                        ContenerMenu.style.backgroundColor = 'var(--main-bg)';
+                        menu.style.backgroundColor = 'var(--main-bg)';
                     }
                     else if(chetchik == false){
                         PlaseForPoisk.style.opacity = "0";
@@ -59,22 +58,22 @@ document.addEventListener("DOMContentLoaded", () => {
                         }, 300);
                         if (chetchik ==false){
                             chetchik = true;
-                            ContenerMenu.style.backgroundColor = 'transparent';
+                            menu.style.backgroundColor = 'transparent';
                             Logo.style.backgroundColor = 'transparent';
                         }   
                     }
                 }
             }
-
+            
             checkBox.addEventListener('click', handleScroll)
             function handleScroll(){
                 
                 if (checkBox.checked && window.scrollY === 0 || !checkBox.checked && window.scrollY != 0){
-                    ContenerMenu.style.backgroundColor = 'var(--main-bg)';
+                    menu.style.backgroundColor = 'var(--main-bg)';
                 }
                 else if(!checkBox.checked && window.scrollY === 0 && chetchik == true){
                     
-                    ContenerMenu.style.backgroundColor = 'transparent';
+                    menu.style.backgroundColor = 'transparent';
                     Logo.style.backgroundColor = 'transparent';
                 }
                 if(window.innerWidth < 767 && chetchik == false){
@@ -145,17 +144,20 @@ document.addEventListener("DOMContentLoaded", () => {
             lightMod.style.opacity = "1";
         }, 10);
     }
-
+    
     setTimeout(() => {
-        
         updateIconsByTheme(true);
     }, 500);
+
+
+    // Все добавления events
+    window.addEventListener('load', updateSecondBlockPosition);
+    window.addEventListener('resize', updateSecondBlockPosition);
 });
 
-
-function showMainContainer() {
+// Проявление меню, основного контейнера и футера
+function showMainContainer(menu) {
     setTimeout(() => {
-        let menu = document.querySelector("#MenuFixed");
         menu.classList.remove("hidden");
         menu.classList.add("visible");
         MainContener.style.opacity = "1";
@@ -164,9 +166,10 @@ function showMainContainer() {
         setTimeout(() => {
             MainContener.style.transition = `opacity 0.3s ease-in-out`;
         }, 1001);
-    }, 600);
+    }, 1);
 }
 
+// Скрыть меню, основной контейнер и футер
 function inShowPage(){
     let menu = document.querySelector("#MenuFixed");    
     MainContener.style.transition = `opacity 0.3s ease-in-out`;
@@ -176,16 +179,19 @@ function inShowPage(){
     footerBlock.style.opacity = "0";
 }
 
+// При переходе на другую страницу срабатывает функция
 window.addEventListener('beforeunload', () => {
     inShowPage()
 });
 
+// При загрузке страницы срабатывает функция
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) { 
         showMainContainer();
     }
 });
 
+// При переходе на страницу, переход происходит не сразу
 document.addEventListener("click", function(e){
     let link = e.target.closest("a");
     if(link && link.href && link.target !== "_blank" && link.href.indexOf("javascript:") !== 0){
@@ -197,34 +203,32 @@ document.addEventListener("click", function(e){
     }
 });
 
-
+// Меняются иконки чб и белые
 function updateIconsByTheme(bool) {
-
     const theme = document.body.dataset.theme || 'light';
-    
-    const icons = document.querySelectorAll('img[data-icon]');
+    const icons = document.querySelectorAll('img[data-icon]'); // Все img с параметром data-icon
     
     icons.forEach(img => {
-      const filename = img.dataset.icon;
-      img.style.transition = "opacity 0.25s ease-in-out";
-      img.style.opacity = `0`;
-      setTimeout(() => {
-        if(bool == true){
-            img.src = `/static/icon/${theme === 'light' ? 'black' : 'white'}/${filename}`;
-        }
-        else{
-            img.src = `/static/icon/${theme === 'dark' ? 'black' : 'white'}/${filename}`;
-        }
-          img.style.opacity = `1`;
-      }, 250);
+        const filename = img.dataset.icon;
+        img.style.transition = "opacity 0.25s ease-in-out";
+        img.style.opacity = `0`;
+        setTimeout(() => {
+            if(bool == true){
+                img.src = `/static/icon/${theme === 'light' ? 'black' : 'white'}/${filename}`; 
+            }
+            else{
+                img.src = `/static/icon/${theme === 'dark' ? 'black' : 'white'}/${filename}`; 
+            }
+            img.style.opacity = `1`;
+        }, 250);
     });
 }
 
 
-
+// Цепляется футер к экрану или нет, смотря на высоту экрана
 function updateSecondBlockPosition() {
-    const firstBlockHeight = MainContener.offsetHeight;
-    const windowHeight = window.innerHeight;
+    const firstBlockHeight = MainContener.offsetHeight; // Высота контейнера
+    const windowHeight = window.innerHeight; // Высота окна
     
     if (windowHeight - 280 > firstBlockHeight) {
         footerBlock.style.position = 'fixed';
@@ -237,17 +241,21 @@ function updateSecondBlockPosition() {
     }
 }
 
+// УВЕДОМЛЕНИЯ
+const toast = document.getElementById('divMessegeBox');
+let messageQueue = [];
+let isMessageShowing = false;
 
+// Создание и добавление в очередь уведомлений
 function showToast(text, timeForLoad = 10, timeForLook=2500) {
-    
     messageQueue.push({text, timeForLoad, timeForLook});
-    if (!isMessageShowing) {
+    if (!isMessageShowing) { // Если сейчас не показывается, то функция 
         processQueue();
     }
 }
-
+// Показ уведомления
 function processQueue() {
-    if (messageQueue.length === 0) {
+    if (messageQueue.length === 0) { // если очереди нет, то отмена функции 
         isMessageShowing = false;
         return;
     }
@@ -286,13 +294,13 @@ function processQueue() {
     }, timeForLook + timeForLoad);
 }
 
+// 
 
-window.addEventListener('load', updateSecondBlockPosition);
-window.addEventListener('resize', updateSecondBlockPosition);
+// функция срабатывает при некоторых тригерах
+const observer = new MutationObserver(updateSecondBlockPosition); // Отслеживания 
+observer.observe(MainContener, { attributes: true, childList: true, subtree: true }); // Тригеры 
 
-const observer = new MutationObserver(updateSecondBlockPosition);
-observer.observe(MainContener, { attributes: true, childList: true, subtree: true });
-
+// Все продукты
 const allProducts = [
     { id: 1, name: "Кулон «Бесконечность»",  price:28500, concept: "Мир и свобода", category: "Кулон", image: "/static/image/productImgs/beskonechnost/img1.jpg", slug: "beskonechnost" },
     { id: 2, name: "Кулон «Голубь»", price: 30500, concept: "Мир и свобода", category: "Кулон", image: "/static/image/productImgs/golub/img1.jpg", slug: "golub" },

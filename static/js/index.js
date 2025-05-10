@@ -159,7 +159,7 @@ let masFromCon5 = [
 function con5func(mas){
     let con5 = document.querySelector("#con5grid");
     con5.innerHTML += `
-    <div class="con5Divs">
+    <div class="con5Divs" data-aos="fade-up" data-aos-delay="100">
       <a href="${mas.a_filter}" style="color:var(--black); text-decoration: none; display: flex; align-items: center; flex-direction: column">
         <p class="con5Text">${mas.title}</p>
         <img src="${mas.a_img}" class="con5Imgs">
@@ -234,7 +234,7 @@ function con4resize() {
         scrollTrigger: {
             trigger: "#Contener7",
             start: "top 100px",
-            end: "+=100%",
+            end: "+=150%",
             scrub: true,
             pin: ".con7wrapper",
         }
@@ -242,27 +242,27 @@ function con4resize() {
 
     if (Y <= 767) {
         tl.to("#image1", {
-            y: 50,
+            y: 100,
             opacity: 0,
             duration: 1,
             ease: "power1.out"
         })
         .to("#image2", {
-            y: 50,
+            y: 100,
             opacity: 1,
             duration: 1,
             ease: "power1.out"
-        }, "-=0.8")
+        }, "-=0.6")
         .to("#image2", {
             opacity: 0,
             duration: 0.5
         })
         .to("#image3", {
-            y: 25,
+            y: 0,
             opacity: 1,
             duration: 1,
             ease: "power1.out"
-        }, "-=0.8");
+        }, "-=0.6");
         
     } else {
 

@@ -1,6 +1,60 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+    <script>
+      const savedTheme = localStorage.getItem("theme") || "light";
+
+      document.documentElement.dataset.themee = savedTheme;
+
+      const themee =
+        savedTheme === "light"
+          ? {
+              "--main-bg": "#fffaf5",
+              "--add-bg": "#e5d7cc",
+              "--black": "#3a3a3a",
+              "--white": "#000",
+              "--grey": "#b8ada6",
+              "--border": "#decabc",
+              "--shadow": "#f2e0d5",
+              "--gradient":
+                "linear-gradient(145deg, #f7eee7, #fffaf5, #f1e8dd)",
+              "--main-footer": "#e5d7cc",
+              "--add-footer": "#d2c2b5",
+            }
+          : {
+              "--main-bg": "#2e2e2e",
+              "--add-bg": "#3e3e3e",
+              "--black": "#ffffff",
+              "--white": "#ffffff",
+              "--grey": "#999999",
+              "--border": "#5a5a5a",
+              "--shadow": "#1a1a1a",
+              "--gradient": "linear-gradient(145deg, #383838, #2e2e2e)",
+              "--main-footer": "#1c1c1c",
+              "--add-footer": "#292929",
+            };
+
+      for (let key in themee) {
+        if (key.startsWith("--")) {
+          document.documentElement.style.setProperty(key, themee[key]);
+        }
+      }
+    </script>
+    <style>
+      html {
+        background-color: var(--main-bg);
+        color: var(--white);
+        transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--main-bg);
+        color: var(--white);
+        transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+        font-family: sans-serif;
+      }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/static/icon/black/favo.png" sizes="32x32" />

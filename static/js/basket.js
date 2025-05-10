@@ -217,7 +217,7 @@ ${chet}) ${allName[i].innerText},%0a
         }
         text += `Удобна доставка на адрес ${document.querySelector("#basketAddress").value}`
     
-        window.open(`https://wa.me/${num}?text="${text}"`, '_blank');
+        window.open(`https://wa.me/${num}?text=${text}`, '_blank');
     }
     else{
         formAddress.style.display=`block`;

@@ -344,12 +344,7 @@
     align-items: start;
     width: 100%;
 }
-/* Contener 7 */
-.con7sticky {
-    position: relative;
-    height: 100vh; /* Высота больше экрана, чтобы было где скроллить */
-  }
-  
+/* Contener 7 */  
 .con7wrapper {
   position: sticky;
   top: 0;
@@ -362,6 +357,7 @@
   align-items: center;
   grid-template-rows: 33% 33% 33%;
   grid-template-columns: 100%;
+  transition: background-color 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 .con7images {
   position: relative;
@@ -399,7 +395,69 @@
     flex-direction: column;
 }
 
+.con7icons {
+    position: absolute;
+    animation: floatIcon 8s ease-in-out infinite;
+    opacity: 0.6 !important;
+}
 
+/* Contener8 */
+#Contener8{
+    width: 100%;
+    margin: 25px;
+    display: flex;
+    width: 100%;
+    max-width:  700px;
+    flex-direction: column;
+    justify-content: center;
+}
+#con8title{
+    text-align: center;
+}
+#con8div{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 25px;
+}
+.con8divs{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    height: 100%;
+}
+.con8text{
+    position: absolute;
+    top: 25px;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 50px;
+    color: white;
+}
+.con8imgs{
+    width: 100%;
+    border-radius: 5px;
+}
+.con8bth{
+    color: var(--black); 
+    width: 100%; 
+    position: absolute; 
+    bottom: 0;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    text-decoration: none;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+@keyframes floatIcon {
+    0%   { transform: translateY(25px) rotate(-25deg) scale(1.3); }
+    50%  { transform: translateY(-25px) rotate(25deg) scale(1); }
+    100% { transform: translateY(25px) rotate(-25deg) scale(1.3); }
+}
 
 @media screen and (max-width: 1024px) {
     #con5img{
@@ -437,10 +495,12 @@
         right: 0px;
         width: 90%;
     }
-
-
+    
 }
 @media screen and (max-width: 625px) {
+    .con7iconsPh{
+        opacity: 0 !important;
+    }
     #Contener2{
         display: none;
     }

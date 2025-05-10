@@ -13,6 +13,10 @@ KnopkaShow.addEventListener("click", () => {
   FuncFilters(true);       
 });
 function FuncFilters(bool){
+
+  setTimeout(() => {
+    AOS.refreshHard();  // жесткий ресет — пересчитывает всё
+  }, 100);
   
   BockMenu.style.transform = "translateX(-1000px)";
   BockMenu.style.opacity = "0";
@@ -86,7 +90,7 @@ function renderProducts(products, bool) {
     for (let i = 0; i < products.length && i < 12; i++){
       
       const productCard = `
-      <div class="product-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
         <a href="/product/${products[i].slug}" style="color: var(--black); text-decoration: none;">
           <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
           <p class="product-title">${products[i].name}</p>
@@ -107,7 +111,7 @@ function renderProducts(products, bool) {
     for (let i = 0; i < products.length; i++){
       
       const productCard = `
-      <div class="product-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
         <a href="/product/${products[i].slug}" style="color: var(--black); text-decoration: none;">
         <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
         <p class="product-title">${products[i].name}</p>
@@ -294,5 +298,7 @@ const params = new URLSearchParams(window.location.search);
 
 FuncFilters(true);
 ReHeight()
+
+
 
 window.addEventListener('resize', ReHeight);

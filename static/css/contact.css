@@ -16,12 +16,12 @@
     font-size: 1.2rem;
     bottom: 10%;
 }
-#Instagram{
+#Instagram, #contactNum{
     font-style: italic;
     transition: color 0.3s ease-in-out;
     color: var(--black);
 }
-#Instagram:hover{
+#Instagram:hover, #contactNum:hover{
     color: var(--shadow);
 }
 .InDivText{

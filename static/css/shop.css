@@ -33,6 +33,8 @@
 } 
 .product-image{
     width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
     background-color: var(--add-bg);
     border-radius: 3px;
 }
