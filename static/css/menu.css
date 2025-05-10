@@ -179,6 +179,7 @@ body{
 .img{
   width: 25px;
   margin: 5px;
+  transition: all 0.45s ease-in-out !important;
 }
 #logo{
   width: 160px;

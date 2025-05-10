@@ -439,7 +439,7 @@
     width: 100%;
     border-radius: 5px;
 }
-.con8bth{
+.con8bthDiv{
     color: var(--black); 
     width: 100%; 
     position: absolute; 
@@ -550,6 +550,9 @@
     #con5grid{
         gap: 0px;
     }
+    .con8text{
+    margin: 50px 25px;
+    }
 }
 @media screen and (max-width: 550px) {
     .Con3grup1, .Con3grup2{
@@ -559,6 +562,23 @@
     }
     .Con3Divs{
         height: 100%;
+    }
+    .con8bth{
+       padding: 15px 0px;
+       margin: 5px;
+    }
+    .con8bthDiv{
+        height: 100px;
+        bottom: 5px;
+    }
+    .con8text{
+        font-size: 1.2rem;
+
+    }
+}
+@media screen and (max-width: 500px) {
+    .con8text{
+    margin: 0px;
     }
 }
 @media screen and (max-width: 450px) {

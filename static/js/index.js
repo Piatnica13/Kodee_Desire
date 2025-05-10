@@ -225,6 +225,15 @@ autoScroll();
 function con4resize() {
     let Y = window.innerWidth;
 
+    if (Y <= 500){
+        con8text1.innerText = "Гравировка на монетке";
+        con8text2.innerText = "Объединение браслетов";
+    }
+    else{
+        con8text1.innerText = `Мы можем нанести на монетку любую фразу, дату или имя`;
+        con8text2.innerText = `Объединяем браслеты по первой прозбе`;
+    }
+
     // Удаляем все старые ScrollTrigger'ы
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
@@ -295,5 +304,10 @@ function con4resize() {
     }
 }
 
+let con8text1 = document.querySelector("#con8text1");
+let con8text2 = document.querySelector("#con8text2");
+
 con4resize();
-window.addEventListener("resize", con4resize);
+window.addEventListener("resize", () => {
+    con4resize();
+});

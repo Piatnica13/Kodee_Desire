@@ -10,16 +10,19 @@ from functools import wraps
 import os
 import json
 
-#Создание flask приложения
+# Создание flask приложения
 app = Flask(__name__)
+app.logger.info("Flask-приложение создано.")
 
-#Логи (log.py)
+# Логи (log.py)
 setup_logging(app)
+app.logger.info("Логирование настроено.")
 
-#Подключение .env файла
+# Подключение .env файла
 load_dotenv('password.env')
+app.logger.info("Файл .env загружен.")
 
-#скрипт для pythonanywhere
+# скрипт для pythonanywhere
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
 #     username="Piatnica13",
 #     password="Dima2014",
@@ -27,486 +30,540 @@ load_dotenv('password.env')
 #     databasename="Piatnica13$Kodee_Desire",
 # )
 
-#Подключение базы данных
+# Подключение базы данных
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app) # Иницилизация, соединения
+app.logger.info("Настройки базы данных заданы (SQLite).")
 
-#Создание ключа
+db.init_app(app)  # Инициализация соединения
+app.logger.info("База данных инициализирована.")
+
+# Создание ключа
 app.secret_key = os.getenv("SECRET_KEY")
+app.logger.info("Секретный ключ загружен из .env.")
 
-#Главный маршрут
+# Главный маршрут
 @app.route('/')
 def index():
-    # Выводим страницу
     return render_template('index.html')
 
-#ПРОФИЛЬ
+# ПРОФИЛЬ
+# ПРОФИЛЬ
 @app.route('/profil', methods=["POST", "GET"])
 def profil():
-    errors={}
-    # Находим пользователя
-    user_id = session.get('user_id') 
+    app.logger.debug("Обработка запроса к /profil.")
+
+    errors = {}
+    user_id = session.get('user_id')
     if not user_id:
+        app.logger.warning("Попытка доступа к профилю без авторизации.")
         return redirect('/login')
+
     user = Person.query.get(int(user_id))
-    
-    # Находим все избранные товары пользователя
+    if not user:
+        app.logger.error(f"Пользователь с ID {user_id} не найден.")
+        return redirect('/login')
+
     favorite_products = Product.query.filter(Product.id.in_(user.favourites)).all()
-    
-    # Проверям работать нам с бд или просто отобразить страницу
+    app.logger.debug(f"Избранные товары пользователя ID {user.id}: {[p.id for p in favorite_products]}")
+
     if request.method == "POST":
-        # Обновления информации о пользователе
-        if "update_info" in request.form:
-            update_info(user)
-            
-        # Обновления пароля
-        elif "update_password" in request.form:
-            update_password(user, errors, favorite_products)
-
-        # Выбор или удаления адресов
-        elif "work_with_address" in request.form:
-            work_with_address(user)
-
-        # Обновления бд
         try:
+            if "update_info" in request.form:
+                update_info(user)
+                app.logger.info(f"Пользователь ID {user.id} обновил личную информацию.")
+
+            elif "update_password" in request.form:
+                update_password(user, errors, favorite_products)
+                app.logger.info(f"Пользователь ID {user.id} попытался сменить пароль.")
+
+            elif "work_with_address" in request.form:
+                work_with_address(user)
+                app.logger.info(f"Пользователь ID {user.id} изменил адреса.")
+
             db.session.commit()
-            return render_template("profil.html", errors=errors, user=user, favorite_products = favorite_products)
-        except:
+            app.logger.debug(f"Изменения пользователя ID {user.id} успешно сохранены в БД.")
+            return render_template("profil.html", errors=errors, user=user, favorite_products=favorite_products)
+
+        except Exception as e:
             db.session.rollback()
+            app.logger.error(f"Ошибка при сохранении данных профиля пользователя ID {user.id}: {str(e)}")
             return "Ошибка обновления данных"
-    else:
-        return render_template("profil.html", user=user, errors=errors, favorite_products = favorite_products)
 
-#Функция обновления данных пользователя
+    return render_template("profil.html", user=user, errors=errors, favorite_products=favorite_products)
+
+# Обновление информации
 def update_info(user: Person) -> None:
-                # Сбор информации с полей
-                name = request.form.get("name")
-                last_name = request.form.get("last_name", "")
-                phone = request.form.get("phone", "")
-                email = request.form.get("email")
-                address = request.form.get("address", "")
-                
-                # Обновление информации пользователя
-                user.name = name.strip() if name else user.name
-                user.email = email.strip() if email else user.email
-                user.last_name = last_name.strip() if last_name else user.last_name
-                user.phone = phone.strip() if phone else user.phone
-                user.address = address.strip() if address else user.address
+    name = request.form.get("name")
+    last_name = request.form.get("last_name", "")
+    phone = request.form.get("phone", "")
+    email = request.form.get("email")
+    address = request.form.get("address", "")
 
-#Функция обновления пароля
+    user.name = name.strip() if name else user.name
+    user.email = email.strip() if email else user.email
+    user.last_name = last_name.strip() if last_name else user.last_name
+    user.phone = phone.strip() if phone else user.phone
+    user.address = address.strip() if address else user.address
+
+    app.logger.debug(f"Обновлена информация для пользователя ID {user.id}: имя={user.name}, email={user.email}")
+
+# Обновление пароля
 def update_password(user: Person, errors, favorite_products):
-    # Сбор информации с полей
     new_pass = request.form.get("newPass")
     re_new_pass = request.form.get("reNewPass")
-    
-    # Проверка: введён, совпадает, не короче 6 символов
+
     if new_pass and new_pass == re_new_pass and len(new_pass) >= 6:
-        # Хешируем новый пароль
-        heshed_pass = generate_password_hash(request.form.get("newPass"))
-        
-        # Обновляем пароль
+        heshed_pass = generate_password_hash(new_pass)
         user.password = heshed_pass
+        app.logger.debug(f"Пароль пользователя ID {user.id} успешно обновлён.")
     else:
-        # Добавляем ошибку
         errors['comparisons'] = "Ошибка, пароли не совпадают или пароль меньше 6 символов"
-        flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error") 
+        flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error")
+        app.logger.warning(f"Ошибка при смене пароля у пользователя ID {user.id}: несовпадение или короткий пароль.")
 
-    # Выводим страницу
-    return render_template("profil.html", user=user, errors=errors, favorite_products = favorite_products)
+    return render_template("profil.html", user=user, errors=errors, favorite_products=favorite_products)
 
-#Функция удаления адресов
+# Работа с адресами
 def work_with_address(user: Person) -> None:
-    # Определям все адреса которые пользователь хочет удалить
     deleted_addresses = request.form.get("deleted_addresses")
-
-    # Разделям строку deleted_addresses на массив с id адресов
     deleted_ids = [int(id) for id in deleted_addresses.split(",") if id.isdigit()]
     
-    # Удаляем только те адреса, которые принадлежат текущему пользователю
-    Address.query.filter(Address.id.in_(deleted_ids), Address.person_id == user.id).delete(synchronize_session=False)
+    if deleted_ids:
+        Address.query.filter(Address.id.in_(deleted_ids), Address.person_id == user.id).delete(synchronize_session=False)
+        app.logger.info(f"Пользователь ID {user.id} удалил адреса: {deleted_ids}")
+    else:
+        app.logger.debug(f"Нет адресов для удаления у пользователя ID {user.id}.")
 
-    # Определям адрес который будет отображаться
     addressFromForm = request.form.get("addresses")
-    
-    # Если адрес есть, то устанавливается как базовый
-    if addressFromForm != None:
+    if addressFromForm is not None:
         user.address = addressFromForm
+        app.logger.debug(f"Пользователь ID {user.id} установил основной адрес: {addressFromForm}")
     else:
         user.address = ""
+        app.logger.debug(f"Пользователь ID {user.id} очистил основной адрес.")
 #
 
-#КОРЗИНА
-#Маршрут для корзины
+# КОРЗИНА
+# Маршрут для корзины
 @app.route('/basket', methods=["GET", "POST"])
 def basket():
-    # Определяем пользователя
+    app.logger.debug("Обработка запроса к /basket.")
+    
     user_id = session.get('user_id')
     if not user_id:
         return redirect('/login')
     user = Person.query.get(int(user_id))
-    
-    # Определяем все добавленые в корзину товары пользователя, добавлем в массив
+    if not user:
+        app.logger.error(f"Пользователь с ID {user_id} не найден.")
+        return redirect('/login')
+
     products = []
     for i in user.basket:
-        product = Product.query.filter_by(id = i[0]).first()
-        products.append(product)
-        
-    # Выводим страницу
+        product = Product.query.filter_by(id=i[0]).first()
+        if product:
+            products.append(product)
+        else:
+            app.logger.warning(f"Товар с ID {i[0]} из корзины не найден в базе.")
+
+    app.logger.info(f"Пользователь ID {user.id} открыл корзину. Всего товаров: {len(products)}")
     return render_template('basket.html', basket=products, user=user)
 
 # Добавление товара в корзину
 @app.route('/add_basket', methods=['POST'])
 def add_basket():
-    # Получаем даные с js
-    data = request.get_json()
-    color = data.get('color')
-    size = data.get('size')
-    material = data.get('material')
-
-    # Определяем товар
-    product_id = data.get('product_id')
+    app.logger.debug("Обработка запроса к /add_basket.")
     
-    # Определяем пользователя
-    user_id = session.get('user_id')
-    if not user_id:
-        return jsonify({"success": False, "error": "Пользователь не авторизован"})
-    user = Person.query.get(int(user_id))
-    
-    # Проверяем, есть ли товар в корзине
-    for i in user.basket:
-        # Если нету, то...
-        if product_id != i[0]:  
-            # Добавляем массив с товаром в корзину
-            user.basket.append([product_id, color, size, material])
+    try:
+        data = request.get_json()
+        color = data.get('color')
+        size = data.get('size')
+        material = data.get('material')
+        product_id = data.get('product_id')
 
-            # Обозначаем обновление поля
-            flag_modified(user, "basket")  
+        app.logger.debug(f"Данные из запроса: product_id={product_id}, color={color}, size={size}, material={material}")
 
-            # Обновляем бд
-            db.session.commit()
-            
-            # Выводим страницу
-            return jsonify({"success": True, "message": "Товар успешно добавлен в корзину"})
-        return jsonify({"success": False, "error": "Товар уже в корзине"})
+        user_id = session.get('user_id')
+        if not user_id:
+            app.logger.warning("Попытка добавить товар в корзину без авторизации.")
+            return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
+        user = Person.query.get(int(user_id))
+        if not user:
+            app.logger.error(f"Пользователь с ID {user_id} не найден.")
+            return jsonify({"success": False, "error": "Пользователь не найден"})
 
+        for i in user.basket:
+            if product_id == i[0]:
+                app.logger.info(f"Товар ID {product_id} уже в корзине пользователя ID {user.id}.")
+                return jsonify({"success": False, "error": "Товар уже в корзине"})
+
+        user.basket.append([product_id, color, size, material])
+        flag_modified(user, "basket")
+        db.session.commit()
+
+        app.logger.info(f"Пользователь ID {user.id} добавил товар ID {product_id} в корзину.")
+        return jsonify({"success": True, "message": "Товар успешно добавлен в корзину"})
+
+    except Exception as e:
+        app.logger.error(f"Ошибка при добавлении товара в корзину: {str(e)}")
+        return jsonify({"success": False, "error": "Ошибка сервера"})
+
+# Удаление товара из корзины
 @app.route('/delete_basket', methods=['POST'])
 def delete_basket():
-    # Сбор информации с полей
-    data = request.get_json()
+    app.logger.debug("Обработка запроса к /delete_basket.")
     
-    # Определяем товар
-    product_id = data.get("product_id")
-    
-    # Определяем пользователя
-    user_id = session.get("user_id")
-    if not user_id:
-        return jsonify({"success": False, "error": "Пользователь не авторизован"})
-    user = Person.query.filter_by(id = user_id).first()
+    try:
+        data = request.get_json()
+        product_id = data.get("product_id")
+        app.logger.debug(f"Получен product_id для удаления: {product_id}")
 
-    # Определяем корзину пользователя
-    basket = user.basket
+        user_id = session.get("user_id")
+        if not user_id:
+            app.logger.warning("Попытка удалить товар из корзины без авторизации.")
+            return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-    # Удаляем товар с корзины
-    new_basket = [item for item in basket if item[0] != product_id]
-    user.basket = new_basket  
+        user = Person.query.filter_by(id=user_id).first()
+        if not user:
+            app.logger.error(f"Пользователь с ID {user_id} не найден.")
+            return jsonify({"success": False, "error": "Пользователь не найден"})
 
-    # Обновляем бд
-    db.session.add(user)
-    db.session.commit()
-    
-    # Выводим страницу 
-    return jsonify({"success": True, "message": f"Товар успешно удален"})
-# 
+        old_len = len(user.basket)
+        user.basket = [item for item in user.basket if item[0] != product_id]
+        db.session.add(user)
+        db.session.commit()
+        new_len = len(user.basket)
 
-#ВСПОМОГАТЕЛЬНЫЕ МАРШРУТЫ
-#Добавление адреса в бд
+        if new_len < old_len:
+            app.logger.info(f"Пользователь ID {user.id} удалил товар ID {product_id} из корзины.")
+        else:
+            app.logger.warning(f"Товар ID {product_id} не найден в корзине пользователя ID {user.id}.")
+
+        return jsonify({"success": True, "message": "Товар успешно удален"})
+
+    except Exception as e:
+        app.logger.error(f"Ошибка при удалении товара из корзины: {str(e)}")
+        return jsonify({"success": False, "error": "Ошибка сервера"})
+#
+
+# ДОБАВЛЕНИЕ АДРЕСА
 @app.route('/add_address', methods=["POST"])
 def addAddress():
+    app.logger.debug("Обработка запроса на добавление адреса.")
+    
+    try:
+        data = request.get_json() 
+        name = data.get("name")
+        city = data.get("city")
+        street = data.get("street")
+        home = data.get("home")
+        flat = data.get("flat")
+        person_id = session.get("user_id")
+        
+        if not person_id:
+            app.logger.warning("Добавление адреса без авторизации.")
+            return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-    # Получаем даные с js
-    data = request.get_json() 
-    name = data.get("name")
-    city = data.get("city")
-    street = data.get("street")
-    home = data.get("home")
-    flat = data.get("flat")
-    person_id = session["user_id"] # Определям пользователя
-    
-    # Проверка все ли поля заполнены
-    if not city or not street or not home: 
-        return jsonify({"success": False, "error": "Не все обязательные поля заполнены"})
-    
-    # Создание нового адреса
-    new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
-
-    # Добавление в бд
-    db.session.add(new_address) 
-    db.session.commit()
-    
-    # Обновление информации у пользователя для поля address
-    address_count = Address.query.filter_by(person_id=person_id).count() # Считает сколько адресов добавлено
-    if address_count == 1: # Если адрес один, то обновляет информацию
-        user = Person.query.get(person_id)
-        user.address = f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
+        if not city or not street or not home: 
+            app.logger.warning("Не все обязательные поля заполнены при добавлении адреса.")
+            return jsonify({"success": False, "error": "Не все обязательные поля заполнены"})
+        
+        new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
+        db.session.add(new_address)
         db.session.commit()
-    return jsonify({"success": True, "message": "Адрес успешно добавлен",  "address": f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"})
+        app.logger.info(f"Добавлен новый адрес для пользователя ID {person_id}.")
+        
+        address_count = Address.query.filter_by(person_id=person_id).count()
+        if address_count == 1:
+            user = Person.query.get(person_id)
+            user.address = f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
+            db.session.commit()
+            app.logger.debug(f"Основной адрес установлен для пользователя ID {person_id}.")
+        
+        return jsonify({
+            "success": True,
+            "message": "Адрес успешно добавлен",
+            "address": f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
+        })
 
-#Добаления продукта в избранное
+    except Exception as e:
+        app.logger.error(f"Ошибка при добавлении адреса: {str(e)}")
+        return jsonify({"success": False, "error": "Ошибка сервера"})
+
+
+# ДОБАВЛЕНИЕ ИЛИ УДАЛЕНИЕ ИЗБРАННОГО
 @app.route('/add_favorite', methods=['POST'])
 def add_favorite():
-    # Получаем данные с js
-    data = request.get_json()  
+    app.logger.debug("Обработка запроса на добавление в избранное.")
 
-    # Определяем пользователя
-    user_id = session.get('user_id')
-    if not user_id: # Если нет в сессии, то...
-        return jsonify({"success": False, "error": "Пользователь не авторизован"})
-    user = Person.query.get(int(user_id))
+    try:
+        data = request.get_json()
+        user_id = session.get('user_id')
+        if not user_id:
+            app.logger.warning("Попытка работы с избранным без авторизации.")
+            return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-    # Определям продукт
-    product_id = data.get("product_id")
+        user = Person.query.get(int(user_id))
+        product_id = data.get("product_id")
 
-    if product_id in user.favourites:
-        # Удалям товар из списка
-        new_favorites = [pid for pid in user.favourites if pid != product_id]
-        
-        # Создаем сообщение для уведомления
-        message = "Товар удален из избранных"
-    else:
-        # Добавлям товар в список
-        new_favorites = user.favourites + [product_id]
-        
-        # Создаем сообщение для уведомления
-        message = "Товар добавлен в избранные"
-    
-    # Обновляем информацию 
-    user.favourites = new_favorites  
-    db.session.add(user)
-    db.session.commit()  # Сохраняем изменения
-    
-    # Выводим страницу
-    return jsonify({"success": True, "message": message})
+        if not product_id:
+            app.logger.warning("Нет product_id в запросе избранного.")
+            return jsonify({"success": False, "error": "Товар не найден"})
 
-#Поиск
+        if product_id in user.favourites:
+            user.favourites = [pid for pid in user.favourites if pid != product_id]
+            message = "Товар удален из избранных"
+            app.logger.info(f"Товар ID {product_id} удалён из избранного пользователя ID {user_id}.")
+        else:
+            user.favourites.append(product_id)
+            message = "Товар добавлен в избранные"
+            app.logger.info(f"Товар ID {product_id} добавлен в избранное пользователя ID {user_id}.")
+
+        db.session.add(user)
+        db.session.commit()
+
+        return jsonify({"success": True, "message": message})
+
+    except Exception as e:
+        app.logger.error(f"Ошибка при работе с избранным: {str(e)}")
+        return jsonify({"success": False, "error": "Ошибка сервера"})
+
+
+# ПОИСК
 @app.route("/search")
 def search():
-    # Получение запроса
-    query = request.args.get("query", "").strip()
-    
-    # Если пустой запрос, возвращаем пустой список
-    if not query:
-        return jsonify([])  
+    app.logger.debug("Обработка запроса поиска.")
 
-    # Ищем совпадения в id и названии
-    products = Product.query.filter(
-        # Убираем ilike(регистр) для id 
-        (Product.id.ilike(f"%{query}%")) |
-        (Product.name.ilike(f"%{query.capitalize()}%"))
-    ).limit(10).all() # Максимум найденых товаров 10
-    
-    # Оформляем результаты поиска в массив с кортежами с найдеными карточками 
-    results = [{
-        "id": p.id,
-        "name": p.name,
-        "price": p.price,
-        "slug": p.slug,
-        "image": p.image()
-    } for p in products]
+    try:
+        query = request.args.get("query", "").strip()
+        if not query:
+            app.logger.debug("Пустой поисковый запрос.")
+            return jsonify([])
 
-    # Возврощаем найденые карточки
-    return jsonify(results)
+        products = Product.query.filter(
+            (Product.id.ilike(f"%{query}%")) |
+            (Product.name.ilike(f"%{query.capitalize()}%"))
+        ).limit(10).all()
+
+        app.logger.info(f"Найдено {len(products)} товаров по запросу '{query}'.")
+
+        results = [{
+            "id": p.id,
+            "name": p.name,
+            "price": p.price,
+            "slug": p.slug,
+            "image": p.image()
+        } for p in products]
+
+        return jsonify(results)
+
+    except Exception as e:
+        app.logger.error(f"Ошибка при выполнении поиска: {str(e)}")
+        return jsonify([])
 #
 
-#ОБЫЧНЫЕ МАРШРУТЫ
-#Магазин
+# МАГАЗИН
 @app.route('/shop')
 def shop():
+    app.logger.debug("Открыта страница магазина.")
     return render_template('shop.html')
 
-#Контакты
+
+# КОНТАКТЫ
 @app.route('/contact')
 def contact():
+    app.logger.debug("Открыта страница контактов.")
     return render_template('contact.html')
-#
 
-#ВХОД
-#Регистрация
+
+# РЕГИСТРАЦИЯ
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     errors = {}
     if request.method == "POST":
-        # Сбор информации с полей
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
 
-        # Тянем все email с бд
         emails = db.session.query(Person.email).all()
         emails = [email[0] for email in emails]
 
-        # Проверка на ошибки
-        if len(password) < 6: # Если пороль меньше 6 символов
+        if len(password) < 6:
             errors['len'] = "Пароль меньше 6 символов"
+            app.logger.warning("Регистрация не удалась: короткий пароль.")
             return render_template('register.html', errors=errors)
-        for i in emails: # Если этот email уже занят
-            if email == i:
-                errors['have'] = "Аккаунт с данным Email уже зарегестрирован"
-                return render_template('register.html', errors=errors)
-        
-        # Хэшируем пароль
-        hashed_password = generate_password_hash(password)
-        
-        # Создаем пользователя
-        person = Person(name=name, email=email, password=hashed_password) # Создаем пользоватея
 
-        # Пробуем внеси в бд
+        if email in emails:
+            errors['have'] = "Аккаунт с данным Email уже зарегистрирован"
+            app.logger.warning(f"Регистрация не удалась: Email {email} уже используется.")
+            return render_template('register.html', errors=errors)
+
+        hashed_password = generate_password_hash(password)
+        person = Person(name=name, email=email, password=hashed_password)
+
         try:
-            # Обновляем бд
             db.session.add(person)
             db.session.commit()
-            
-            # Определям пользователя
+            app.logger.info(f"Успешная регистрация: {email}")
+
             user = Person.query.filter_by(email=email).first()
-
-            # Сравниваем хэш
             if user and check_password_hash(user.password, password):
-                # Присваиваим статус пользователя
                 session['user_id'] = user.id
-            # Выводим страницу
-            return render_template("index.html", messageForReg = True)
-        except:
-            return render_template("index.html", messageNoReg = True)
+                app.logger.debug(f"Пользователь {email} вошел после регистрации.")
+            return render_template("index.html", messageForReg=True)
+        except Exception as e:
+            app.logger.error(f"Ошибка при регистрации пользователя {email}: {str(e)}")
+            return render_template("index.html", messageNoReg=True)
     else:
-        return render_template('register.html', errors=errors, messageNoReg = True)
+        app.logger.debug("Открыта страница регистрации.")
+        return render_template('register.html', errors=errors, messageNoReg=True)
 
-#Вход в аккаунт
+
+# ВХОД В АККАУНТ
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     errors = {}
-    # Работать с бд или отрисовать страницу
     if request.method == 'POST':
-        
-        # Сбор информации с полей
         email = request.form['email']
         password = request.form['password']
-        
-        # Тянем зашифрованную информацию с password.env для проверки на админа
+
         admin_email = os.getenv("ADMIN_EMAIL")
         admin_password = os.getenv("ADMIN_PASSWORD")
 
-        # Проверка на ошибки в вводе данных
         if not email or not password:
             errors["error"] = "Ошибка, обязательные поля пустые"
-            app.logger.warning(f"{errors['error']}")
+            app.logger.warning("Попытка входа с пустыми полями.")
         if len(password) < 6:
             errors["len"] = "Ошибка, длина пароля меньше 6 символов"
-            app.logger.warning(f"{errors['len']}")
-        
-        # Находим пользователя по email в бд
-        user = Person.query.filter_by(email=email).first() 
+            app.logger.warning("Попытка входа с коротким паролем.")
 
-        # Проверка на данные админа
+        user = Person.query.filter_by(email=email).first()
+
         if email == admin_email and password == admin_password:
-            # Придача сессии статуса админа и пользователя
             session['admin'] = True
-            session['user_id'] = user.id
-            return redirect("/admin/deshboard")
-        
-        # Проверяем на данные пользователя 
+            if user:
+                session['user_id'] = user.id
+                app.logger.info(f"Администратор {email} вошел в систему.")
+                return redirect("/admin/deshboard")
+            else:
+                app.logger.warning("Попытка входа администратора, но пользователь не найден.")
+                errors["notfound"] = "Аккаунт не найден"
+                return render_template("login.html", errors=errors)
+
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
-            return render_template("index.html", messageForLog = True)
+            app.logger.info(f"Пользователь {email} успешно вошел.")
+            return render_template("index.html", messageForLog=True)
         else:
-            errors["comparisons"] = "Ошибка ввода, не правильно введен пароль или email"
-            return render_template("login.html", errors=errors, messageForNoLog = True)
-    return render_template('login.html', errors=errors, messageForNoLog = True)
+            errors["comparisons"] = "Ошибка ввода, неправильно введен пароль или email"
+            app.logger.warning(f"Неудачная попытка входа: {email}")
+            return render_template("login.html", errors=errors, messageForNoLog=True)
+    else:
+        app.logger.debug("Открыта страница входа.")
+        return render_template('login.html', errors=errors, messageForNoLog=True)
 
-#Выход из аккаунта
+
+# ВЫХОД ИЗ АККАУНТА
 @app.route('/logout')
 def logout():
-    session.pop('user_id', None)  # Удаляем ID пользователя у сессии
-    session.pop('admin', None) # Удаляем статус админа у сессии
+    user_id = session.get('user_id')
+    admin = session.get('admin')
+    
+    session.pop('user_id', None)
+    session.pop('admin', None)
+
+    app.logger.info(f"Пользователь ID {user_id} {'(админ)' if admin else ''} вышел из аккаунта.")
     return redirect('/')
 #
 
-#АДМИН
-#Создаем админ аккаунт
+# СОЗДАЕМ АДМИН АККАУНТ
 def add_admin():
-    # Находим админ аккаунт
     admin = Person.query.filter_by(email=os.getenv("ADMIN_EMAIL")).first()
-
-    # Если не нашли...
     if not admin:
-        # Создаем админ аккаунт
-        new_admin = Person(name = "admin", password= generate_password_hash(os.getenv("ADMIN_PASSWORD")), email=os.getenv("ADMIN_EMAIL"))
-        
-        # Добавлеям в бд
-        db.session.add(new_admin)
-        db.session.commit()
+        new_admin = Person(
+            name="admin",
+            password=generate_password_hash(os.getenv("ADMIN_PASSWORD")),
+            email=os.getenv("ADMIN_EMAIL")
+        )
+        try:
+            db.session.add(new_admin)
+            db.session.commit()
+            app.logger.info("Создан новый админ аккаунт.")
+        except Exception as e:
+            app.logger.error(f"Ошибка при создании админа: {str(e)}")
+    else:
+        app.logger.debug("Админ уже существует, создание не требуется.")
 
-#Проверка на админ доступ 
+
+# ПРОВЕРКА НА АДМИН ДОСТУП
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not session.get('admin'):
+            app.logger.warning("Попытка доступа к админке без прав.")
             return redirect('/')
         return f(*args, **kwargs)
     return decorated_function
 
-#Маршрут админки
-@app.route('/admin/deshboard')
-@admin_required # Проверям на админа
-def admin_deshboard():
-    return render_template('admin.html')
-#
 
-#ПРОДУКТ
-#Маршрут страниц с продуктами
+# АДМИН ПАНЕЛЬ
+@app.route('/admin/deshboard')
+@admin_required
+def admin_deshboard():
+    app.logger.info("Админ вошел в админку.")
+    return render_template('admin.html')
+
+
+# СТРАНИЦА ПРОДУКТА
 @app.route('/product/<slug>')
 def product(slug):
-    # Определям пользователя
     user_id = session.get('user_id')
-    if not user_id:
-        return redirect('/login')
-    person = Person.query.get(int(user_id))
-    
-    # Определям продукт и адрес пользователя
     product = Product.query.filter_by(slug=slug).first()
-    if not product:
-        return "Товар не найден", 404
-    address = Address.query.filter_by(person_id = person.id).first()
     
-    # Выводим страницу
-    return render_template('product.html', product=product, user=person, address=address, favarite=person.favourites)
+    if user_id:
+        person = Person.query.get(int(user_id)) or ''
 
-#Добавление всей продукции в бд
+        if not product:
+            app.logger.warning(f"Продукт со slug '{slug}' не найден.")
+            return "Товар не найден", 404
+
+        address = Address.query.filter_by(person_id=person.id).first()
+        app.logger.debug(f"Загружена страница продукта '{slug}' пользователем {person.email}")
+
+        return render_template('product.html', product=product, user=person, address=address, favarite=person.favourites)
+    else:
+        return render_template('product.html', product=product, user='', address='', favarite='')
+
+
+# ДОБАВЛЕНИЕ ВСЕЙ ПРОДУКЦИИ В БД
 def addProducts(product: Product):
     with app.app_context():
-        # Находим продукт в бд
         chekProduct = Product.query.filter_by(name=product.name).first()
-        
-        # Проверка есть ли продукт в бд
-        if chekProduct: 
+        if chekProduct:
+            app.logger.debug(f"Продукт '{product.name}' уже есть в базе.")
             return
-        else:
-            # Добавляем продукт в бд 
+        
+        try:
             db.session.add(product)
             db.session.commit()
-            
-            # Создаем изображения для этого продукста
-            imagePak1 = Product_image(1 ,product.id, f"/static/image/productImgs/{ product.slug }/img1.jpg")
-            imagePak2 = Product_image(2 ,product.id, f"/static/image/productImgs/{ product.slug }/img2.jpg")
-            imagePak3 = Product_image(3 ,product.id, f"/static/image/productImgs/{ product.slug }/img3.jpg")
-            imagePak4 = Product_image(4 ,product.id, f"/static/image/productImgs/{ product.slug }/img4.jpg")
-            
-            # Добавлеям изображения привязанные к продукту в бд
-            db.session.add(imagePak1)
-            db.session.add(imagePak2)
-            db.session.add(imagePak3)
-            db.session.add(imagePak4)
+            app.logger.info(f"Добавлен продукт: {product.name}")
+        except Exception as e:
+            app.logger.error(f"Ошибка при добавлении продукта '{product.name}': {str(e)}")
+            return
+        
+        try:
+            imagePak1 = Product_image(1, product.id, f"/static/image/productImgs/{product.slug}/img1.jpg")
+            imagePak2 = Product_image(2, product.id, f"/static/image/productImgs/{product.slug}/img2.jpg")
+            imagePak3 = Product_image(3, product.id, f"/static/image/productImgs/{product.slug}/img3.jpg")
+            imagePak4 = Product_image(4, product.id, f"/static/image/productImgs/{product.slug}/img4.jpg")
+
+            db.session.add_all([imagePak1, imagePak2, imagePak3, imagePak4])
             db.session.commit()
+            app.logger.info(f"Изображения для продукта '{product.name}' успешно добавлены.")
+        except Exception as e:
+            app.logger.error(f"Ошибка при добавлении изображений для продукта '{product.name}': {str(e)}")
+
 
 addProducts(Product(name="Кулон «Бесконечность»", price=28500, concept="Мир и свобода", category="Кулон", descriptions="Кулон «Бесконечность» - Символ бесконечности отражает постоянство, силу духа и неограниченные возможности. Этот знак напоминает, что в мире нет границ для тех, кто верит в себя. Он поможет своему владельцу обрести гармонию, мудрость и вдохновение на новые достижения.", slug=slugify("Бесконечность")))
 addProducts(Product(name="Кулон «Голубь»", price=30500, concept="Мир и свобода", category="Кулон", descriptions="Кулон «Голубь» - Голубь испокон веков является символом мира, любви и чистоты. Он приносит в жизнь спокойствие и умиротворение, охраняет семейное счастье и дарит надежду. Этот кулон подойдет тем, кто стремится к гармонии и свету в своём сердце.", slug=slugify("Голубь")))

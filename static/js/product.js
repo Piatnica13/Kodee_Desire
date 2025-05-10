@@ -206,17 +206,17 @@ function BthLikes() {
   .then(data => {
     if (data.success){
       showToast(data.message)
+      if (BthLike.style.display == "flex"){
+        FuncBthLike();
+      }
+      else{
+        FuncBthGetLike();
+      }
     }
     else{
       showToast(data.error)
     }
   })
-  if (BthLike.style.display == "flex"){
-    FuncBthLike();
-  }
-  else{
-    FuncBthGetLike();
-  }
 }
 
 BthLike.addEventListener('click', BthLikes)
@@ -236,7 +236,6 @@ function FuncBthGetLike(){
 }
 
 function FuncBthLike() {
-  
   BthLike.style.opacity = "0";
   BthGetLike.style.display = "flex";
   setTimeout(() => {

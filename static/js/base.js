@@ -23,8 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
         script.src = '/static/js/menu.js';
         document.body.appendChild(script);
         
-        let menu = document.querySelector("#MenuFixed");
-        showMainContainer(menu)
+        let menu;
+        
+        // Ждем появления #MenuFixed в DOM
+        waitForElement("#MenuFixed", (menuu) => {
+            showMainContainer(menuu);
+            menu = document.querySelector("#MenuFixed");
+        });
         
         script.onload = () => {
             // Этот код выполнится после загрузки script.js
@@ -157,16 +162,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Проявление меню, основного контейнера и футера
 function showMainContainer(menu) {
+    if (!menu) return; // Если menu не передан, выходим
     setTimeout(() => {
         menu.classList.remove("hidden");
         menu.classList.add("visible");
         MainContener.style.opacity = "1";
-        MainContener.style.transition = `opacity 1s ease-in-out`;
+        MainContener.style.transition = "opacity 1s ease-in-out";
         footerBlock.style.opacity = "1";
         setTimeout(() => {
-            MainContener.style.transition = `opacity 0.3s ease-in-out`;
+            MainContener.style.transition = "opacity 0.3s ease-in-out";
         }, 1001);
-    }, 1);
+    }, 100);
+}
+
+function waitForElement(selector, callback) {
+    const element = document.querySelector(selector);
+    if (element) {
+        callback(element);
+        return;
+    }
+
+    const observer = new MutationObserver(() => {
+        const element = document.querySelector(selector);
+        if (element) {
+            observer.disconnect();
+            callback(element);
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 }
 
 // Скрыть меню, основной контейнер и футер
@@ -186,8 +213,10 @@ window.addEventListener('beforeunload', () => {
 
 // При загрузке страницы срабатывает функция
 window.addEventListener('pageshow', (event) => {
-    if (event.persisted) { 
-        showMainContainer();
+    if (event.persisted) {
+        waitForElement("#MenuFixed", (menu) => {
+            showMainContainer(menu);
+        });
     }
 });
 

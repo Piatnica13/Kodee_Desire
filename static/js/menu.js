@@ -267,6 +267,28 @@ menuInpp.addEventListener("input", () => {
     }, 300); // Задержка в 300 мс
 });
 
+let phone = document.querySelector("#num");
+phone.addEventListener("click", (e) => {
+    e.preventDefault(); // Отменяем стандартное поведение
+    
+    window.location.href = "tel:87003360024";
+
+    setTimeout(() => {
+        window.location.href = "/";
+    }, 1000);
+})
+
+let podPhone = document.querySelector("#Podnum");
+podPhone.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    window.location.href="tel:87003360024";
+
+    setTimeout(() => {
+        window.location.href="/";
+    }, 1000);
+})
+
 // Проверка при изменении размера окна
 window.addEventListener('resize', checkWidth);
 
