@@ -10,37 +10,38 @@ from functools import wraps
 import os
 import json
 
+
 # Создание flask приложения
 app = Flask(__name__)
 app.logger.info("Flask-приложение создано.")
 
-# Логи (log.py)
-setup_logging(app)
-app.logger.info("Логирование настроено.")
-
 # Подключение .env файла
-load_dotenv('password.env')
+load_dotenv('Kodee_Desire/password.env')
 app.logger.info("Файл .env загружен.")
 
 # скрипт для pythonanywhere
+# Подключение базы данных
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
 #     username="Piatnica13",
 #     password="Dima2014",
 #     hostname="Piatnica13.mysql.pythonanywhere-services.com",
 #     databasename="Piatnica13$Kodee_Desire",
 # )
-
-# Подключение базы данных
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.logger.info("Настройки базы данных заданы (SQLite).")
 
-db.init_app(app)  # Инициализация соединения
-app.logger.info("База данных инициализирована.")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.logger.info("Настройки базы данных заданы (Lite).")
 
 # Создание ключа
 app.secret_key = os.getenv("SECRET_KEY")
-app.logger.info("Секретный ключ загружен из .env.")
+app.logger.info(f"Секретный ключ загружен из .env.")
+
+# Логи (log.py)
+setup_logging(app)
+app.logger.info("Логирование настроено.")
+
+db.init_app(app)  # Инициализация соединения
+app.logger.info("База данных инициализирована.")
 
 # Главный маршрут
 @app.route('/')
@@ -128,7 +129,7 @@ def update_password(user: Person, errors, favorite_products):
 def work_with_address(user: Person) -> None:
     deleted_addresses = request.form.get("deleted_addresses")
     deleted_ids = [int(id) for id in deleted_addresses.split(",") if id.isdigit()]
-    
+
     if deleted_ids:
         Address.query.filter(Address.id.in_(deleted_ids), Address.person_id == user.id).delete(synchronize_session=False)
         app.logger.info(f"Пользователь ID {user.id} удалил адреса: {deleted_ids}")
@@ -149,7 +150,7 @@ def work_with_address(user: Person) -> None:
 @app.route('/basket', methods=["GET", "POST"])
 def basket():
     app.logger.debug("Обработка запроса к /basket.")
-    
+
     user_id = session.get('user_id')
     if not user_id:
         return redirect('/login')
@@ -173,7 +174,7 @@ def basket():
 @app.route('/add_basket', methods=['POST'])
 def add_basket():
     app.logger.debug("Обработка запроса к /add_basket.")
-    
+
     try:
         data = request.get_json()
         color = data.get('color')
@@ -213,7 +214,7 @@ def add_basket():
 @app.route('/delete_basket', methods=['POST'])
 def delete_basket():
     app.logger.debug("Обработка запроса к /delete_basket.")
-    
+
     try:
         data = request.get_json()
         product_id = data.get("product_id")
@@ -251,36 +252,36 @@ def delete_basket():
 @app.route('/add_address', methods=["POST"])
 def addAddress():
     app.logger.debug("Обработка запроса на добавление адреса.")
-    
+
     try:
-        data = request.get_json() 
+        data = request.get_json()
         name = data.get("name")
         city = data.get("city")
         street = data.get("street")
         home = data.get("home")
         flat = data.get("flat")
         person_id = session.get("user_id")
-        
+
         if not person_id:
             app.logger.warning("Добавление адреса без авторизации.")
             return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-        if not city or not street or not home: 
+        if not city or not street or not home:
             app.logger.warning("Не все обязательные поля заполнены при добавлении адреса.")
             return jsonify({"success": False, "error": "Не все обязательные поля заполнены"})
-        
+
         new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
         db.session.add(new_address)
         db.session.commit()
         app.logger.info(f"Добавлен новый адрес для пользователя ID {person_id}.")
-        
+
         address_count = Address.query.filter_by(person_id=person_id).count()
         if address_count == 1:
             user = Person.query.get(person_id)
             user.address = f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
             db.session.commit()
             app.logger.debug(f"Основной адрес установлен для пользователя ID {person_id}.")
-        
+
         return jsonify({
             "success": True,
             "message": "Адрес успешно добавлен",
@@ -430,6 +431,7 @@ def login():
 
         admin_email = os.getenv("ADMIN_EMAIL")
         admin_password = os.getenv("ADMIN_PASSWORD")
+        app.logger.info(f"admin_email: {admin_email}, admin_password: {admin_password}")
 
         if not email or not password:
             errors["error"] = "Ошибка, обязательные поля пустые"
@@ -469,7 +471,7 @@ def login():
 def logout():
     user_id = session.get('user_id')
     admin = session.get('admin')
-    
+
     session.pop('user_id', None)
     session.pop('admin', None)
 
@@ -520,7 +522,7 @@ def admin_deshboard():
 def product(slug):
     user_id = session.get('user_id')
     product = Product.query.filter_by(slug=slug).first()
-    
+
     if user_id:
         person = Person.query.get(int(user_id)) or ''
 
@@ -543,7 +545,7 @@ def addProducts(product: Product):
         if chekProduct:
             app.logger.debug(f"Продукт '{product.name}' уже есть в базе.")
             return
-        
+
         try:
             db.session.add(product)
             db.session.commit()
@@ -551,7 +553,7 @@ def addProducts(product: Product):
         except Exception as e:
             app.logger.error(f"Ошибка при добавлении продукта '{product.name}': {str(e)}")
             return
-        
+
         try:
             imagePak1 = Product_image(1, product.id, f"/static/image/productImgs/{product.slug}/img1.jpg")
             imagePak2 = Product_image(2, product.id, f"/static/image/productImgs/{product.slug}/img2.jpg")
@@ -621,11 +623,11 @@ addProducts(Product(name="Гравировка монетки 0.7г", price=4700
 addProducts(Product(name="Гравировка монетки 1.1г", price=68000, concept="Минимализм и универсальность", category="Монеточка", descriptions="Гравировка монетки 1.1г – Уникальный штрих в твоём стиле. Гравировка на монетке весом 1.1 г подчеркнёт твою индивидуальность, сделав украшение особенным и личным.", slug=slugify("Гравировка монетки 1.1г")))
 addProducts(Product(name="Кулон из серебра", price=10000, concept="Минимализм и универсальность", category="Кулон", descriptions="Кулон из серебра – Лаконичный и элегантный кулон, который станет отражением твоего характера и стиля. Чистота серебра подчеркнёт изящество и добавит образу утончённости.", slug=slugify("Кулон из серебра")))
 addProducts(Product(name="Гравировка в серебре", price=15000, concept="Минимализм и универсальность", category="Монеточка", descriptions="Гравировка в серебре – Персонализируй своё украшение! Гравировка на серебряной поверхности придаст ему уникальность и сделает символом чего-то важного лично для тебя.", slug=slugify("Гравировка в серебре")))
-# 
+#
 
 #Запуск
 if __name__ == "__main__":
     with app.app_context():
-        db.create_all() # Создаем бд 
+        db.create_all() # Создаем бд
         add_admin() # Создаем акк админа
     app.run(debug=False, port=5000) # Запуск
