@@ -16,7 +16,7 @@
     color: var(--main-bg);
     background-color: var(--main-footer); 
     height: 230px;
-    margin: 50px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 .ConLastLogo{
@@ -118,6 +118,16 @@
     gap: 50px;
     margin: 0 auto;
 }
+#Footerimg{
+    display: none;
+    width: 30px; 
+    height: 30px; 
+    margin: 0 25px;
+    transition: transform 0.3s ease-in-out, opacity 0.25s ease-in-out !important;
+}
+#FooterDivImg{
+    display: block;
+}
 @media screen and (max-width: 1200px) {
     .FuterCon1DivImg{
         width: 100%;
@@ -145,7 +155,6 @@
         color: var(--white);
         background-color: var(--main-footer); 
         height: auto;
-        margin: 50px 0px 0px 0px;
     }
     #FuterConLast1{
         grid-template-columns: 100%;
@@ -219,6 +228,15 @@
     .FuterBlocks p{
         margin: 20px 0px;
         font-size: 1.5rem;
+    }
+    #Footerimg{
+        display: flex;
+    }
+    #FooterDivImg{
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: center;
     }
 }
 @media screen and (max-width: 340px) {

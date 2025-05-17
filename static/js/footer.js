@@ -1,12 +1,15 @@
 // Переменные для отслеживания состояния
 let chetForBlockNavig = false;
-let chetForBlockInfo = false;
-let chetForBlockHelps = false;
+
+let degrees = 180;
+let rotate = 0;
 
 // Элементы DOM
 const blockWithNavig = document.querySelector("#FuterPodNavig");
 
 const listWithNavig = document.querySelector("#FuterPodListBlockNavig");
+
+const strelka = document.querySelector("#Footerimg");
 
 function Time(){
     interval = setInterval(()=>{
@@ -20,23 +23,15 @@ function toggleNavig() {
     listWithNavig.style.display = chetForBlockNavig ? "flex" : Time();
     // Устанавливаем высоту равной полной высоте контента
     listWithNavig.style.height = chetForBlockNavig ? listWithNavig.scrollHeight + "px" : "0";
-}
 
-function toggleInfo() {
-    chetForBlockInfo = !chetForBlockInfo;
-    listWithInfo.style.display = chetForBlockInfo ? "flex" : Time();
-    listWithInfo.style.height = chetForBlockInfo ? listWithInfo.scrollHeight + "px" : "0";
-}
-
-function toggleHelps() {
-    chetForBlockHelps = !chetForBlockHelps;
-    listWithHelps.style.display = chetForBlockHelps ? "flex" : Time();
-    listWithHelps.style.height = chetForBlockHelps ? listWithHelps.scrollHeight + "px" : "0";
+    rotate += degrees;
+    strelka.style.transform = `rotate(${rotate}deg)`;
 }
 
 // Функция для управления обработчиками событий в зависимости от ширины экрана
 function manageEventListeners() {
     if (window.innerWidth <= 767) {
+        
         // Меньше или равно 767px — добавляем обработчики событий
         blockWithNavig.addEventListener("click", toggleNavig);
 

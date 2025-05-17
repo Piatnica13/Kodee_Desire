@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %}
+<title>Справка</title>
+{% endblock title %}{% block style %}
+<link rel="stylesheet" href="/static/css/help.css" />
+{% endblock %}{% block body %}
+<div style="width: 100%; height: 100px; flex-shrink: 0"></div>
+
+<div id="bodyHelp">
+    <section id="helpAbout">
+        <h1 id="helpTitle">О нас</h1>
+        <p id="helpText">
+            <b>KoDee Desire</b> — это больше, чем украшения. Мы создаём кулоны желаний из золота и серебра, в которых сочетаются красота, символизм и сила намерения. Каждый кулон — это личная история, маленькая мечта, которую вы всегда носите с собой. <br>
+
+            Мы верим, что настоящее желание имеет силу, особенно когда оно запечатлено в особом украшении. <br>
+
+            <b>KoDee Desire</b> — носите не просто кулон. Носите своё желание.
+        </p>
+    </section>
+    <div id="HelpDiv"></div>
+</div>
+
+{% endblock %} {% block script %}
+<script src="/static/js/help.js"></script>
+{% endblock%}

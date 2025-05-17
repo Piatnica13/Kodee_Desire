@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% block title%}
+<title>Индивидуальные заказы</title>
+{% endblock %} {% block style %}
+<link rel="stylesheet" href="/static/css/individual.css" />
+{% endblock style %} {% block body %}
+<div id="indiv100px"></div>
+<div id="bodyIndiv">
+  <div id="indivTitle">
+    <h1>Индивидуаль&shy;ность — не&nbspтренд, а&nbspвыбор.</h1>
+    <h2>Создаём&nbspукрашения, которые рассказывают твою историю.</h2>
+  </div>
+  <div id="indiv1">
+    <div id="indiv1Div" class="indiv1Divs" style="margin-top: 50px">
+      <div class="indiv1divText">
+        <p class="indiv1text">
+          Маленькая монета — большая история. <br />
+          Гравируем дату, слово, имя или фразу, которая значит что-то только для
+          тебя. Металл навсегда сохранит смысл, важный именно тебе.
+        </p>
+      </div>
+      <img
+        src="/static/image/productImgs/monetochka/img1.jpg"
+        id="indiv1img"
+        alt="Гравировка на монетке"
+        class="indiv1imgs"
+      />
+    </div>
+    <div class="indiv1Divs indivSec">
+      <p>
+        Маленькая монета — большая история. <br />
+        Гравируем дату, слово, имя или фразу, которая значит что-то только для
+        тебя. Металл навсегда сохранит смысл, важный именно тебе.
+      </p>
+    </div>
+    <div
+      class="indiv1Divs"
+      style="
+        width: 100%;
+        transform: translateX(100px);
+        background-color: transparent;
+      "
+    >
+      <div class="indiv2Div" id="indiv2Div">
+        <img
+          src="/static/image/body/obedinenie.jpeg"
+          class="indiv1imgs"
+          id="indiv2img"
+          alt="Объединение браслетов"
+        />
+        <div class="indiv1divText">
+          <p class="indiv1text">
+            Браслеты с историей не всегда должны быть порознь. <br />
+            Мы объединяем два (или больше) браслета в один: смысл, стиль и
+            энергия прошлых украшений — теперь в новом воплощении.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="indiv1Divs indivSec"
+      style="
+        width: 100%;
+        transform: translateX(100px);
+        background-color: transparent;
+      "
+    >
+      <div class="indiv2Div">
+        <div class="indiv1divText">
+          <p>
+            Браслеты с историей не всегда должны быть порознь. <br />
+            Мы объединяем два (или больше) браслета в один: смысл, стиль и
+            энергия прошлых украшений — теперь в новом воплощении.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="indiv3Div" class="indiv1Divs">
+      <div class="indiv1divText">
+        <p class="indiv1text">
+          Хочешь браслет, которого точно нет ни у кого? <br />
+          Расскажи свою идею — мы воплотим её в металл, кожу и форму. От
+          3D-эскиза до живого изделия — под тебя, про тебя, с тобой.
+        </p>
+      </div>
+      <img
+        src="/static/image/productImgs/monetochka/img2.jpg"
+        class="indiv1imgs"
+        id="indiv3img"
+        alt="Индивидуальный заказ"
+      />
+    </div>
+    <div class="indiv1Divs indivSec">
+      <p>
+        Хочешь браслет, которого точно нет ни у кого? <br />
+        Расскажи свою идею — мы воплотим её в металл и форму. От 3D-эскиза до
+        живого изделия — под тебя, про тебя, с тобой.
+      </p>
+    </div>
+  </div>
+  <a
+    href="https://wa.me/+77003360024"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-aos="fade-up"
+    data-aos-delay="500"
+  >
+    <div class="con3Btn" style="color: var(--white)">
+      Продолжить через WhatsApp >
+    </div>
+  </a>
+  <a href="/shop" data-aos="fade-up" data-aos-delay="500">
+    <div class="con3Btn" style="color: var(--white); margin-top: 0">
+      Каталог >
+    </div>
+  </a>
+</div>
+{% endblock body %} {% block script %}
+<script src="/static/js/individual.js" defer></script>
+{% endblock script %}

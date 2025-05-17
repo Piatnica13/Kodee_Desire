@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.logger.info("Flask-приложение создано.")
 
 # Подключение .env файла
-load_dotenv('Kodee_Desire/password.env')
+load_dotenv('password.env')
 app.logger.info("Файл .env загружен.")
 
 # скрипт для pythonanywhere
@@ -66,6 +66,7 @@ def profil():
         return redirect('/login')
 
     favorite_products = Product.query.filter(Product.id.in_(user.favourites)).all()
+    print("favoriteee", favorite_products)
     app.logger.debug(f"Избранные товары пользователя ID {user.id}: {[p.id for p in favorite_products]}")
 
     if request.method == "POST":
@@ -317,7 +318,10 @@ def add_favorite():
             message = "Товар удален из избранных"
             app.logger.info(f"Товар ID {product_id} удалён из избранного пользователя ID {user_id}.")
         else:
-            user.favourites.append(product_id)
+            favs = user.favourites
+            favs = favs + [product_id]
+            user.favourites = favs
+            
             message = "Товар добавлен в избранные"
             app.logger.info(f"Товар ID {product_id} добавлен в избранное пользователя ID {user_id}.")
 
@@ -364,6 +368,7 @@ def search():
         return jsonify([])
 #
 
+
 # МАГАЗИН
 @app.route('/shop')
 def shop():
@@ -376,6 +381,20 @@ def shop():
 def contact():
     app.logger.debug("Открыта страница контактов.")
     return render_template('contact.html')
+
+
+# СПРАВКА
+@app.route('/help')
+def help():
+    app.logger.debug("Открыта страница справки.")
+    return render_template('help.html')
+
+
+# ИНДИВИДУАЛЬНЫЙ ЗАКАЗ
+@app.route('/individual')
+def individual_order():
+    app.logger.debug("Открыта страница индивидуального заказа.")
+    return render_template('individual.html')
 
 
 # РЕГИСТРАЦИЯ
@@ -419,6 +438,7 @@ def register():
     else:
         app.logger.debug("Открыта страница регистрации.")
         return render_template('register.html', errors=errors, messageNoReg=True)
+
 
 
 # ВХОД В АККАУНТ

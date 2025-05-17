@@ -298,19 +298,6 @@
     width: 100%;
     height: 100%;
 }
-#ProfilObertka1::after{
-content: "";
-position: absolute;
-    bottom: 0;
-    z-index: 100;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background-color: var(--main-bg);
-    pointer-events: none;
-    box-shadow: 0px 0px 25px 25px var(--main-bg),
-    inset 0px 0px 5px 1px var(--main-bg);
-}
 #ProfilObertka1::before{
     content: "";
     position: absolute;
@@ -508,6 +495,7 @@ position: absolute;
 }
 .ProfilForPhone{
     display: flex;
+    transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 #ProfilLeftFavorites{
     opacity: 0;
@@ -610,18 +598,6 @@ position: absolute;
     background-color: var(--main-bg);
     pointer-events: none;
     box-shadow: 0px 0px 5px 25px var(--main-bg);
-    transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-}
-#prodictObertka2::before{
-    content: "";
-    position: absolute;
-    z-index: 100;
-    left: 12;
-    height: 100%;
-    width: 1px;
-    background-color: var(--main-bg);
-    pointer-events: none;
-    box-shadow: 0px 0px 2px 2px var(--main-bg);
     transition: color 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 .productImg1{
