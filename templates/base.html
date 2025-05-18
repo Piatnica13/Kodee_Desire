@@ -1,8 +1,8 @@
 {% extends "baseAll.html" %} {% block titlee %}
-<meta
+<!-- <meta
   http-equiv="Cache-Control"
   content="no-cache, no-store, must-revalidate"
-/>
+/> -->
 {% block style %} {% endblock %}
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 <link rel="stylesheet" href="/static/css/base.css" />
@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/static/css/footer.css" />
 {% block title %} {% endblock %} {% endblock %} {% block bodyy %}
 <div id="menu-placeholder"></div>
-<div id="Body">{% block body %} {% endblock %}</div>
+<main id="Body">{% block body %} {% endblock %}</main>
 <div id="futer-block"></div>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="/static/js/base.js" defer></script>

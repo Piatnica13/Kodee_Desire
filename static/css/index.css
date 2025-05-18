@@ -47,6 +47,7 @@
     font-size: 25px;
 }
 #text2{
+    margin-bottom: 25px;
     font-size: 20px;
 }
 /*2 Contener*/
@@ -78,7 +79,7 @@
     text-align: center;
     opacity: 0;
     transition: opacity 0.4s ease-in-out, transform 0.8s ease-in-out;
-    color: white;
+    color: black;
 }
 
 .OverlayTitle {

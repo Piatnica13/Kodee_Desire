@@ -1,231 +1,224 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu</title>
-    <link rel="stylesheet" href="/static/css/menu.css" />
-  </head>
-  <body>
-    <nav>
-      <div id="MenuFixed">
-        <div id="PodBody">
-          <div id="contenerMenu">
-            <div id="rihgt">
-              <div id="menu" class="flex-item">
-                <div class="container nav-container">
-                  <input
-                    class="checkbox"
-                    type="checkbox"
-                    name=""
-                    id="checkboxMain"
-                  />
-                  <div class="hamburger-lines">
-                    <span class="line line1" id="line1"></span>
-                    <span class="line line2" id="line2"></span>
-                    <span class="line line3" id="line3"></span>
-                  </div>
+<header>
+  <nav>
+    <div id="MenuFixed">
+      <div id="PodBody" aria-label="Main menu">
+        <section id="contenerMenu" aria-label="Pc menu">
+          <div id="rihgt">
+            <div id="menu" class="flex-item">
+              <div class="container nav-container">
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  name=""
+                  id="checkboxMain"
+                />
+                <div class="hamburger-lines" aria-label="Close menu">
+                  <span class="line line1" id="line1"></span>
+                  <span class="line line2" id="line2"></span>
+                  <span class="line line3" id="line3"></span>
                 </div>
               </div>
-              <div id="number" class="flex-item hi">
-                <a style="cursor: pointer;" id="num">700 336 00 24</a>
-              </div>
-              <div id="divStrelka" class="hi">
-                <input type="checkbox" id="checkboxx" />
-                <img
-                  src="/static/icon/black/galochka.png"
-                  alt="Phone Icon"
-                  class="img"
-                  id="strelka"
-                  loading="lazy"
-                  data-icon="galochka.png"
-                />
-              </div>
             </div>
-            <div id="divLogo" class="flex-item">
-              <a href="/">
-                <img data-icon="logo.png" src="/static/icon/white/logo.png" alt="Kodee_Desire" id="logo">
-              </a>
+            <div id="number" class="flex-item hi">
+              <a style="cursor: pointer;" id="num">700 336 00 24</a>
             </div>
-            <div id="left">
-              <div id="poisk" class="flex-item">
-                <img
-                  src="/static/icon/black/poisk.png"
-                  alt="Search Icon"
-                  class="img"
-                  data-icon="poisk.png"
-                />
-              </div>
-              <div id="izbranoe" class="flex-item">
-                <img
-                  src="/static/icon/black/like.png"
-                  alt="Favorite Icon"
-                  class="img"
-                  id="sumka"
-                  data-icon="like.png"
-                />
-              </div>
-              <div id="profil" class="flex-item">
-                <a href="/profil">
-                  <img
-                    src="/static/icon/black/profil.png"
-                    alt="Profile Icon"
-                    class="img hi"
-                    data-icon="profil.png"
-                  />
-                </a>
-              </div>
-              <div id="moiPokupki" class="flex-item">
-                <a href="/basket"
-                  ><img
-                    src="/static/icon/black/sumka.png"
-                    alt="Purchases Icon"
-                    class="img hi"
-                    data-icon="sumka.png"
-                /></a>
-              </div>
+            <div id="divStrelka" class="hi">
+              <input type="checkbox" id="checkboxx" />
+              <img
+                src="/static/icon/black/galochka.png"
+                alt="Phone Icon"
+                class="img"
+                id="strelka"
+                loading="lazy"
+                data-icon="galochka.png"
+              />
             </div>
           </div>
-          <div id="strelkaMenuOp">
-            <p id="treugol"></p>
-            <div id="strelkaMenu">
-              <div id="imgPhone">
-                <img
-                  src="/static/icon/black/phone.png"
-                  alt="Phone"
-                  class="imgPh"
-                  data-icon="phone.png"
-                />
-              </div>
-              <div id="infoNum">
-                <a href="tel:87003360024" id="Podnum">8 700 336 00 24</a>
-                <p id="NumPhone">Номер телефона</p>
-              </div>
-            </div>
+          <div id="divLogo" role="banner" class="flex-item">
+            <a href="/">
+              <img data-icon="logo.png" src="/static/icon/white/logo.png" alt="Kodee_Desire" id="logo">
+            </a>
           </div>
-          <div id="PodMenu">
-            <div id="PodLeft">
-              <ul id="spisokUl">
-                <li>
-                  <a href="/shop" class="PodText">
-                    <div class="PodNazMenu" id="DivBraslets">
-                      <div class="PodBox">
-                        <img
-                          src="/static/icon/black/products.png"
-                          alt=""
-                          class="Podimg"
-                          data-icon="products.png"
-                        />
-                        <p class="PodText">Каталог</p>
-                      </div>
-                      <img
-                        src="/static/icon/black/galochka.png"
-                        alt="Phone Icon"
-                        class="Gimg"
-                        data-icon="galochka.png"
-                      />
-                    </div>
-                  </a>
-                </li>
-                
-                <li>
-                  <a href="/contact" class="PodText">
-                    <div class="PodNazMenu" id="DivInstagram">
-                      <div class="PodBox">
-                        <img
-                          src="/static/icon/black/Instagram.png"
-                          alt=""
-                          class="Podimg"
-                          data-icon="Instagram.png"
-                        />
-                        <p class="PodText">Контакты</p>
-                      </div>
-                      <img
-                        src="/static/icon/black/galochka.png"
-                        alt="Открыть"
-                        class="Gimg"
-                        data-icon="galochka.png"
-                      />
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div id="PodRight">
-              <div id="menuPlaseForPoisk">
-                <img
-                  src="/static/icon/black/poisk.png"
-                  alt="Изображения Поиска"
-                  id="menuPoiskImg"
-                />
-                <input type="text" id="menuPoisk" />
-                <div id="menuPlaseForResult"></div>
-              </div>
-              <div id="PodRNovinki" class="PodRDivs">
-                <div class="PodRTexts">
-                  <p>Знаки зодиака - афигенная новинка, я скорпион кстати!!!</p>
-                </div>
-              </div>
-              <div id="PodRBraslets" class="PodRDivs">
-                <div class="PodRTexts">
-                  <p>
-                    Браслеты Kodee – это не только украшения. Это ваше
-                    настроение, чувства и истории, которые вы будете
-                    рассказывать миру именно сегодня. Наслаждайтесь вашей
-                    индивидуальностью каждый день.
-                  </p>
-                </div>
-              </div>
-              <div id="PodRIndiv" class="PodRDivs">
-                <div class="PodRTexts">
-                  <p>Ну серьги эти конечно огонь</p>
-                </div>
-              </div>
-              <div id="PodRPresent" class="PodRDivs">
-                <div class="PodRTexts">
-                  <p>Подарки на нг это база</p>
-                </div>
-              </div>
-              <div id="PodRInstagram" class="PodRDivs">
-                <div class="PodRTexts">
-                  <p>Instagram, номер телефона</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="PodMenuPh">
-            <div style="flex-shrink: 0" id="menuHeightPh"></div>
-            <div class="PodTextDiv">
-              <a href="/" class="PodTextPh">Главная</a>
-            </div>
-            <div class="PodTextDiv">
-              <a href="/shop" class="PodTextPh">Изделия</a>
-            </div>
-            <div class="PodTextDiv">
-              <a href="/profil" class="PodTextPh">Профиль</a>
-            </div>
-            <div class="ProdTextDiv">
-              <a href="/basket" class="PodTextPh">Корзина</a>
-            </div>
-            <div class="PodTextDiv">
-              <a href="/contact" class="PodTextPh">Контакты</a>
-            </div>
-          </div>
-          <div id="PodPoiskPh">
-            <div id="menuPlaseForPoiskk">
+          <div id="left">
+            <div id="poisk" class="flex-item">
               <img
                 src="/static/icon/black/poisk.png"
-                alt="Поиск"
-                id="menuPoiskImgg"
+                alt="Search Icon"
+                class="img"
                 data-icon="poisk.png"
               />
-              <input type="text" id="menuPoiskk" />
-              <div id="menuPlaseForResultt"></div>
+            </div>
+            <div id="izbranoe" class="flex-item">
+              <img
+                src="/static/icon/black/like.png"
+                alt="Favorite Icon"
+                class="img"
+                id="sumka"
+                data-icon="like.png"
+              />
+            </div>
+            <div id="profil" class="flex-item">
+              <a href="/profil">
+                <img
+                  src="/static/icon/black/profil.png"
+                  alt="Profile Icon"
+                  class="img hi"
+                  data-icon="profil.png"
+                />
+              </a>
+            </div>
+            <div id="moiPokupki" class="flex-item">
+              <a href="/basket"
+                ><img
+                  src="/static/icon/black/sumka.png"
+                  alt="Purchases Icon"
+                  class="img hi"
+                  data-icon="sumka.png"
+              /></a>
             </div>
           </div>
-        </div>
+        </section>
+        <aside id="strelkaMenuOp">
+          <p id="treugol"></p>
+          <div id="strelkaMenu">
+            <article id="imgPhone">
+              <img
+                src="/static/icon/black/phone.png"
+                alt="Phone"
+                class="imgPh"
+                data-icon="phone.png"
+              />
+            </article>
+            <article id="infoNum">
+              <a href="tel:87003360024" id="Podnum">8 700 336 00 24</a>
+              <p id="NumPhone">Номер телефона</p>
+            </article>
+          </div>
+        </aside>
+        <section id="PodMenu" aria-label="Ph menu">
+          <article id="PodLeft">
+            <ul id="spisokUl">
+              <li>
+                <a href="/shop" class="PodText">
+                  <div class="PodNazMenu" id="DivBraslets">
+                    <div class="PodBox">
+                      <img
+                        src="/static/icon/black/products.png"
+                        alt=""
+                        class="Podimg"
+                        data-icon="products.png"
+                      />
+                      <p class="PodText">Каталог</p>
+                    </div>
+                    <img
+                      src="/static/icon/black/galochka.png"
+                      alt="Phone Icon"
+                      class="Gimg"
+                      data-icon="galochka.png"
+                    />
+                  </div>
+                </a>
+              </li>
+  
+              <li>
+                <a href="/contact" class="PodText">
+                  <div class="PodNazMenu" id="DivInstagram">
+                    <div class="PodBox">
+                      <img
+                        src="/static/icon/black/Instagram.png"
+                        alt=""
+                        class="Podimg"
+                        data-icon="Instagram.png"
+                      />
+                      <p class="PodText">Контакты</p>
+                    </div>
+                    <img
+                      src="/static/icon/black/galochka.png"
+                      alt="Открыть"
+                      class="Gimg"
+                      data-icon="galochka.png"
+                    />
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </article>
+          <article id="PodRight">
+            <form role="search" id="menuPlaseForPoisk">
+              <img
+                src="/static/icon/black/poisk.png"
+                alt="Изображения Поиска"
+                id="menuPoiskImg"
+              />
+              <input type="text" id="menuPoisk" />
+              <div id="menuPlaseForResult"></div>
+            </form >
+            <article  id="PodRNovinki" class="PodRDivs">
+              <div class="PodRTexts">
+                <p>Знаки зодиака - афигенная новинка, я скорпион кстати!!!</p>
+              </div>
+            </article >
+            <article  id="PodRBraslets" class="PodRDivs">
+              <div class="PodRTexts">
+                <p>
+                  Браслеты Kodee – это не только украшения. Это ваше
+                  настроение, чувства и истории, которые вы будете
+                  рассказывать миру именно сегодня. Наслаждайтесь вашей
+                  индивидуальностью каждый день.
+                </p>
+              </div>
+            </article >
+            <article  id="PodRIndiv" class="PodRDivs">
+              <div class="PodRTexts">
+                <p>Ну серьги эти конечно огонь</p>
+              </div>
+            </article >
+            <article  id="PodRPresent" class="PodRDivs">
+              <div class="PodRTexts">
+                <p>Подарки на нг это база</p>
+              </div>
+            </article >
+            <article  id="PodRInstagram" class="PodRDivs">
+              <div class="PodRTexts">
+                <p>Instagram, номер телефона</p>
+              </div>
+            </article >
+          </article>
+        </section>
+        <nav id="PodMenuPh">
+          <div style="flex-shrink: 0" id="menuHeightPh"></div>
+          <ul>
+            <li class="PodTextDiv">
+              <a href="/" class="PodTextPh">Главная</a>
+            </li>
+            <li class="PodTextDiv">
+              <a href="/shop" class="PodTextPh">Изделия</a>
+            </li>
+            <li class="PodTextDiv">
+              <a href="/profil" class="PodTextPh">Профиль</a>
+            </li>
+            <li class="ProdTextDiv">
+              <a href="/basket" class="PodTextPh">Корзина</a>
+            </li>
+            <li class="PodTextDiv">
+              <a href="/contact" class="PodTextPh">Контакты</a>
+            </li>
+          </ul>
+        </nav>
+        <section id="PodPoiskPh">
+          <div id="menuPlaseForPoiskk">
+            <img
+              src="/static/icon/black/poisk.png"
+              alt="Поиск"
+              id="menuPoiskImgg"
+              data-icon="poisk.png"
+            />
+            <input type="text" id="menuPoiskk" />
+            <div id="menuPlaseForResultt"></div>
+          </div>
+        </section>
       </div>
-    </nav>
-    <script src="/static/js/menu.js"></script>
-  </body>
-</html>
+    </div>
+  </nav>
+  <script src="/static/js/menu.js"></script>
+</header>

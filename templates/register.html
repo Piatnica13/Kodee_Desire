@@ -1,5 +1,6 @@
 {% extends "baseForReg.html" %} {% block title%}
-<title>Sign Up</title>
+<title>Регистрация — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО
+      585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ | КАРАГАНДА</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/register.css" />
 {% endblock %} {% block body %} {% if messageForNoReg %}
@@ -46,7 +47,7 @@
       </div>
     </a>
     <div>
-      <h1 id="MainText">SIGN UP</h1>
+      <h1 id="MainText">РЕГИСТРАЦИЯ</h1>
     </div>
     <form method="post" id="regForm">
       <div id="UserInp">
@@ -109,12 +110,12 @@
         {% elif errors.get('have') %}
         <div id="messageForErrorHave">{{ errors['have'] }}</div>
         {% endif %}
-        <button type="submit" id="ButtonSignIn">Sign Up</button>
+        <button type="submit" id="ButtonSignIn">Регистрация</button>
       </div>
     </form>
     <div>
       <p id="regP">
-        Already have an account? <a href="/login" id="LogIn">Log in</a>
+        Уже есть аккаунт? <a href="/login" id="LogIn">Вход</a>
       </p>
     </div>
   </div>

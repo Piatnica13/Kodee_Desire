@@ -1,16 +1,89 @@
-{% extends "baseindex.html" %} {% block title %}
-<title>
-  Kodee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ |
-  КАРАГАНДА
-</title>
-{% endblock %} {% block style %}
+{% extends "baseindex.html" %}
+
+{% block title %}
+<title>KoDee Desire — авторские кулоны желаний из золота 585 и серебра 925 | Караганда</title>
+
+<meta name="description" content="KoDee Desire — ювелирная мастерская в Караганде. Создаем кулоны желаний из золота 585 и серебра 925 с индивидуальной гравировкой. Браслеты на нити, колье, эксклюзивные украшения. Бесплатная подарочная упаковка. Доставка по Казахстану.">
+<meta name="keywords" content="кулоны желаний, золото 585 пробы, серебро 925, ювелирные изделия Караганда, именная гравировка, подарок с смыслом, браслеты на нити">
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:title" content="KoDee Desire — авторские ювелирные украшения в Караганде">
+<meta property="og:description" content="Эксклюзивные кулоны желаний из золота 585 и серебра 925 с гравировкой. Ручная работа, доставка по РК.">
+<meta property="og:image" content="https://kodee-desire.kz/static/image/social-preview.jpg">
+<meta property="og:url" content="https://kodee-desire.kz">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KoDee Desire">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KoDee Desire — ювелирные изделия с душой">
+<meta name="twitter:description" content="Авторские кулоны из золота и серебра с индивидуальной гравировкой в Караганде">
+<meta name="twitter:image" content="https://kodee-desire.kz/static/image/twitter-preview.jpg">
+
+<!-- Гео-метатеги -->
+<meta name="geo.region" content="KZ-KAR">
+<meta name="geo.placename" content="Караганда">
+<meta name="geo.position" content="49.803763;73.103562">
+<meta name="ICBM" content="49.803763, 73.103562">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JewelryStore",
+  "name": "KoDee Desire",
+  "description": "Мастерская авторских украшений из золота 585 и серебра 925 в Караганде. Специализация: кулоны желаний, браслеты на нити, индивидуальная гравировка.",
+  "image": "https://kodee-desire.kz/static/image/logo.jpg",
+  "url": "https://kodee-desire.kz",
+  "telephone": "+77003360024",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ул. Муканова, 32",
+    "addressLocality": "Караганда",
+    "addressRegion": "Карагандинская область",
+    "postalCode": "36000",
+    "addressCountry": "KZ"
+  },
+  "openingHours": "Mo-Su 06:00-22:00",
+  "priceRange": "10000-70000",
+  "sameAs": [
+    "https://www.instagram.com/kodee_jewellery",
+    "https://wa.me/77003360024"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Ювелирные изделия",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Кулоны из золота",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Кулон 'Бесконечность'",
+              "image": "/static/image/productImgs/beskonechnost/img1.png",
+              "offers": {
+                "@type": "Offer",
+                "price": "28500",
+                "priceCurrency": "KZT"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+</script>
+{% endblock %}{% block style %}
 <link rel="stylesheet" href="/static/css/index.css" />
 {% endblock %} {% block body %} {% if messageForReg == True %}
-<div id="messageForReg"></div>
+<aside id="messageForReg"></aside>
 {% endif %} {% if messageForLog == True %}
-<div id="messageForLog"></div>
+<aside id="messageForLog"></aside>
 {% endif %} {% if messageForNoReg == True %}
-<div id="messageForNoReg"></div>
+<aside id="messageForNoReg"></aside>
 {% endif %} {% if admin %}
 <a
   href="/admin/deshboard"
@@ -40,121 +113,228 @@
 <div
   style="width: 100%; height: 100px; flex-shrink: 0; position: relative"
 ></div>
-<div id="Contener1" data-aos="fade-up" data-aos-delay="0">
+
+<section id="Contener1" data-aos="fade-up" data-aos-delay="0">
+  <h2 class="visually-hidden">Основатель <strong>KoDee Desire</strong>, компании по изготовлению и продаже <strong>кулонов желаний</strong> и <strong>браслетов на нити</strong></h2>
   <div id="Con1Img">
     <img
       src="static/image/body/Starter.jpg"
-      alt="Фото Основателя"
+      alt="Юлия - основатель, держит в руках браслет."
       id="Con1Img1"
     />
   </div>
-  <div id="Con1Text">
+  <blockquote id="Con1Text" style="margin: 0">
     <p id="text1">
-      “Каждый браслет, который мы создаем, — это не просто украшение. Это
-      напоминание о ваших мечтах и вере в то, что они сбудутся„
+      “Каждый <strong>браслет</strong>, который мы создаем, — это не просто <strong>украшение</strong>. Это
+      напоминание о ваших <strong>мечтах</strong> и <strong>вере</strong> в то, что они сбудутся„
     </p>
-    <p id="text2"><em>-Юлия, Основатель Kodee&nbspDesire</em></p>
-  </div>
-</div>
+    <cite id="text2"
+      ><em>-Юлия, Основатель <span lang="en">Kodee&nbspDesire</span></em></cite
+    >
+  </blockquote>
+</section>
 
-<div id="Contener3">
-  <div class="Con3grup1" data-aos="fade-up" data-aos-delay="0">
+
+<section id="Contener3">
+  <h2 class="visually-hidden">Хиты <strong>браслетов желаний</strong></h2>
+  <article
+    class="Con3grup1"
+    data-aos="fade-up"
+    data-aos-delay="0"
+    itemscope
+    itemtype="http://schema.org/Product"
+    aria-labelledby="product-beskonechnost-title"
+  >
+  <meta itemprop="name" content="Кулон 'Бесконечность' из золота 585 пробы">
+  <meta itemprop="image" content="/static/image/productImgs/beskonechnost/img1.jpg"/>
+  <meta itemprop="sku" content="KD-BSK-001">
+  <meta itemprop="mpn" content="KD-BSK-001">
     <img
       src="/static/image/auth/show.png"
       class="con3ImgShow"
-      alt="Посмотреть"
+      alt=""
+      aria-hidden="true"
+      aria-label="Увидеть кулон Бесконечность"
     />
     <img
       src="/static/image/productImgs/beskonechnost/img1.jpg"
-      alt=""
+      alt="Золотой Кулон 'Бесконечность' 585 пробы"
       class="Con3Imgs"
     />
-    <div class="Con3Divs">
+    <div
+      class="Con3Divs"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer"
+    >
+    <link itemprop="url" href="https://kodee-desire.kz/product/beskonechnost">
+    <meta itemprop="availability" content="https://schema.org/InStock">
+    <meta itemprop="priceValidUntil" content="2025-12-31">
       <div class="Con3Text">
-        <h3>Кулон "Бес&shy;конечно&shy;сть"</h3>
-        <h5>Символ&nbspпос&shy;то&shy;ян&shy;ства и силы духа.</h5>
-        <h5>-28500тг</h5>
+        <p style="font-size: 1.33em"><strong>Кулон</strong> "Бес&shy;конечно&shy;сть"</p>
+        <p style="font-size: 0.83em" itemprop="description">
+          <strong>Символ</strong>&nbspпос&shy;то&shy;ян&shy;ства и силы духа.
+        </p>
+        <p style="font-size: 0.83em">
+          <span itemprop="price" content="28500">-28 500</span>
+          <span itemprop="priceCurrency" content="KZT">тг</span>
+        </p>
       </div>
     </div>
-  </div>
+  </article>
   <a href="/product/beskonechnost" style="color: var(--black)">
-    <div class="con3Btn">Подробнее ></div>
+    <div class="con3Btn">
+      Подробнее<span aria-hidden="true">></span> <br />
+      <span>о <strong>кулоне</strong> "Бесконечность"</span>
+    </div>
   </a>
 
-  <div class="Con3grup2" data-aos="fade-up" data-aos-delay="0">
+  <article
+    class="Con3grup2"
+    data-aos="fade-up"
+    data-aos-delay="0"
+    itemscope
+    itemtype="http://schema.org/Product"
+    aria-labelledby="product-solntse-title"
+  >
+  <meta itemprop="name" content="Кулон 'Солнце' из золота 585 пробы">
+  <meta itemprop="image" content="/static/image/productImgs/solntse/img1.jpg"
     <img
       src="/static/image/auth/show.png"
       class="con3ImgShow"
-      alt="Посмотреть"
+      alt=""
+      aria-hidden="true"
+      aria-label="Увидеть кулон Солнце"
     />
-    <div class="Con3Divs">
+    <div
+      class="Con3Divs"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer"
+    >
       <div class="Con3Text">
-        <h3>Кулон "Солнце"</h3>
-        <h5>Солнце — источник жизни, тепла и света.</h5>
-        <h5>-36000тг</h5>
+        <p style="font-size: 1.33em"><strong>Кулон</strong> "Солнце"</p>
+        <p style="font-size: 0.83em" itemprop="description">
+          Солнце — источник жизни, тепла и света.
+        </p>
+        <p style="font-size: 0.83em">
+          <span itemprop="price" content="36000">-36 000</span>
+          <span itemprop="priceCurrency" content="KZT">тг</span>
+        </p>
       </div>
     </div>
     <img
       src="/static/image/productImgs/solntse/img4.jpg"
-      alt=""
       class="Con3Imgs"
+      alt="Золотой Кулон 'Солнце' 585 пробы"
     />
-  </div>
+  </article>
   <a href="/product/solntse" style="color: var(--black)">
-    <div class="con3Btn">Подробнее ></div>
+    <div class="con3Btn">
+      Подробнее<span aria-hidden="true">></span> <br />
+      <span>о <strong>кулоне</strong> "Солнце"</span>
+    </div>
   </a>
 
-  <div class="Con3grup1" data-aos="fade-up" data-aos-delay="0">
+  <article
+    class="Con3grup1"
+    data-aos="fade-up"
+    data-aos-delay="0"
+    itemscope
+    itemtype="http://schema.org/Product"
+    aria-labelledby="product-samolet-title"
+  >
+  <meta itemprop="name" content="Кулон 'Самолёт' из золота 585 пробы">
+  <meta itemprop="image" content="/static/image/productImgs/samolet/img1.jpg"
+
     <img
       src="/static/image/auth/show.png"
       class="con3ImgShow"
-      alt="Посмотреть"
+      alt=""
+      aria-hidden="true"
+      aria-label="Увидеть кулон Самолёт"
     />
     <img
       src="/static/image/productImgs/samolet/img3.jpg"
-      alt=""
+      alt="Золотой Кулон 'Самолёт' 585 пробы"
       class="Con3Imgs"
     />
-    <div class="Con3Divs">
+    <div
+      class="Con3Divs"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer"
+    >
       <div class="Con3Text">
-        <h3>Кулон "Самолёт"</h3>
-        <h5>
+        <p style="font-size: 1.33em"><strong>Кулон</strong> "Самолёт"</p>
+        <p style="font-size: 0.83em" itemprop="description">
           Для меч&shy;та&shy;те&shy;лей и
           пу&shy;те&shy;шест&shy;ве&shy;нни&shy;ков.
-        </h5>
-        <h5>-46500тг</h5>
+        </p>
+        <p style="font-size: 0.83em">
+          <span itemprop="price" content="46500">-46 500</span>
+          <span itemprop="priceCurrency" content="KZT">тг</span>
+        </p>
       </div>
     </div>
-  </div>
+  </article>
   <a href="/product/samolet" style="color: var(--black)">
-    <div class="con3Btn">Подробнее ></div>
+    <div class="con3Btn">
+      Подробнее<span aria-hidden="true">></span> <br />
+      <span>о <strong>кулоне</strong> "Самолёт"</span>
+    </div>
   </a>
 
-  <div class="Con3grup2" data-aos="fade-up" data-aos-delay="0">
+  <article
+    class="Con3grup2"
+    data-aos="fade-up"
+    data-aos-delay="0"
+    itemscope
+    itemtype="http://schema.org/Product"
+    aria-labelledby="product-derevo-title"
+  >
+  <meta itemprop="name" content="Кулон 'Дерево' из золота 585 пробы">
+  <meta itemprop="image" content="/static/image/productImgs/derevo/img1.jpg"
     <img
       src="/static/image/auth/show.png"
       class="con3ImgShow"
-      alt="Посмотреть"
+      alt=""
+      aria-hidden="true"
+      aria-label="Увидеть кулон Дерево"
     />
-    <div class="Con3Divs">
+    <div
+      class="Con3Divs"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer"
+    >
       <div class="Con3Text">
-        <h3>Кулон "Дерево"</h3>
-        <h5>Древо жизни символ&nbspмудрости.</h5>
-        <h5>-33500тг</h5>
+        <p style="font-size: 1.33em"><strong>Кулон</strong> "Дерево"</p>
+        <p style="font-size: 0.83em" itemprop="description">
+          Древо жизни символ&nbspмудрости.
+        </p>
+        <p style="font-size: 0.83em">
+          <span itemprop="price" content="33500">-33 500</span>
+          <span itemprop="priceCurrency" content="KZT">тг</span>
+        </p>
       </div>
     </div>
     <img
       src="/static/image/productImgs/derevo/img1.jpg"
-      alt=""
+      alt="Золотой Кулон 'Дерево' 585 пробы"
       class="Con3Imgs"
     />
-  </div>
+  </article>
   <a href="/product/derevo" style="color: var(--black)">
-    <div class="con3Btn">Подробнее ></div>
+    <div class="con3Btn">
+      Подробнее<span aria-hidden="true">></span> <br />
+      <span>о <strong>кулоне</strong> "Дерево"</span>
+    </div>
   </a>
-</div>
+</section>
 
-<div id="Contener4">
+<section id="Contener4">
+  <h2 class="visually-hidden"><strong>Комфорт</strong>,<strong>Долговечность</strong>,<strong>Минимализм</strong>,<strong>Символика</strong>,<strong>Надежность</strong></h2>
   <div id="con4galochki">
     <div class="con4circle">
       <img
@@ -178,66 +358,75 @@
     </div>
   </div>
   <div id="Con4Part1"></div>
-</div>
+</section>
 
-<div id="Contener2">
-  <div class="Con2DivImg">
+<section id="Contener2" aria-label="Галерея наших работ">
+  <h2 class="visually-hidden">Галереия <strong>ювелирных изделий</strong> <strong>KoDee Desire</strong></h2>
+  <figure class="Con2DivImg" style="margin: 0">
     <img
       src="static/image/slider/SImg5.jpg"
-      alt=""
+      alt="Подарочный сертификат KoDee Desire"
       class="SliderImgs"
       id="Con2Imgs5"
     />
-    <div id="Con2Img4" class="Con2ImgsText">
-      <h2 class="OverlayTitle">Браслетики во льду</h2>
-      <p class="OverlayText">Ну это да конечно</p>
-    </div>
-  </div>
-  <div class="Con2DivImg">
+    <figcaption id="Con2Img4" class="Con2ImgsText">
+      <h2 class="OverlayTitle">Подарочный <strong>сертификат</strong></h2>
+      <p class="OverlayText">
+        <strong>KoDee Disere</strong> предлогает приобрести <strong>подарочный сертификат</strong> на
+        сумму от 10 000 тг
+      </p>
+    </figcaption>
+  </figure>
+
+  <figure class="Con2DivImg" style="margin: 0">
     <img
       src="static/image/slider/SImg6.jpg"
       alt=""
       class="SliderImgs"
       id="Con2Imgs2"
     />
-    <div id="Con2Img2" class="Con2ImgsText">
+    <figcaption id="Con2Img2" class="Con2ImgsText">
       <h2 class="OverlayTitle">Опять что ли</h2>
       <p class="OverlayText">Ну красиво все таки</p>
-    </div>
-  </div>
-  <div class="Con2DivImg">
+    </figcaption>
+  </figure>
+
+  <figure class="Con2DivImg" style="margin: 0">
     <img
       src="static/image/slider/SImg7.jpg"
       alt=""
       class="SliderImgs"
       id="Con2Imgs3"
     />
-    <div id="Con2Img3" class="Con2ImgsText">
+    <figcaption id="Con2Img3" class="Con2ImgsText">
       <h2 class="OverlayTitle">Ой да поновой браслетики</h2>
       <p class="OverlayText">НУ по новой так по новой</p>
-    </div>
-  </div>
-  <div class="Con2DivImg">
+    </figcaption>
+  </figure>
+
+  <figure class="Con2DivImg" style="margin: 0">
     <img
       src="static/image/slider/SImg11.jpg"
       alt=""
       class="SliderImgs"
       id="Con2Imgs1"
     />
-    <div id="Con2Img1" class="Con2ImgsText">
+    <figcaption id="Con2Img1" class="Con2ImgsText">
       <h2 class="OverlayTitle">Браслетики</h2>
       <p class="OverlayText">У красивые какие</p>
-    </div>
-  </div>
-</div>
+    </figcaption>
+  </figure>
+</section>
 
-<div id="Contener5" style="display: flex; flex-direction: column">
-  <div style="text-align: center; font-size: 2rem">Подарки для самых</div>
+<section id="Contener5" style="display: flex; flex-direction: column">
+  <section style="text-align: center; font-size: 2rem">
+    <strong>Подарки</strong> для самых
+  </section>
   <div
     style="display: flex; flex-direction: row; align-items: center; gap: 20%"
   >
-    <div id="con5grid"></div>
-    <div style="position: relative" id="con5img">
+    <section id="con5grid"></section>
+    <section style="position: relative" id="con5img">
       <img
         src="/static/image/body/Julia.jpg"
         style="width: 400px; height: 600px; border-radius: 5px"
@@ -252,13 +441,13 @@
           color: black;
         "
       >
-        <b>А&nbspтак&nbspже не забывайте радовать&nbspсебя</b>
+        <b>А&nbspтак&nbspже не забывайте радовать&nbsp<strong>себя</strong></b>
       </p>
-    </div>
+    </section>
   </div>
-</div>
+</section>
 
-<div id="Contener7" style="width: 100%">
+<section id="Contener7" style="width: 100%" itemscope itemtype="http://schema.org/ImageGallery" style="width: 100%">
   <div class="con7wrapper" style="width: 100%">
     <img
       src="/static/icon/white/sumka.png"
@@ -396,42 +585,41 @@
       "
       class="con7icons con7iconsPh"
     />
-    <!-- Хочу поставить 2 фотки, на первой гравировка, на второй индивидуальный заказ, с верху над фотками надписи, после того как пользователь долистал до низа фотки, фото затемняется и на самой фотки появляется надпись подробнее -->
-
-    <div id="image1">
+    <h2 class="visually-hidden"><strong>Упаковка</strong>, открытие упоковки <strong>Kodee Desire</strong> и <strong>эмоции</strong> которые вы получите</h2>
+    <article id="image1">
       <img
         src="/static/image/ypokovka/1.png"
         class="con7images"
-        alt="Упоковка"
+        alt="Кравтовый конверт с пожеланием и бантиком"
       />
       <p style="width: 100%; text-align: center">
         Первая эмоция начинается здесь.
       </p>
-    </div>
-    <div id="image2">
+    </article>
+    <article id="image2">
       <img
         src="/static/image/ypokovka/2.png"
         class="con7images"
-        alt="Упоковка"
+        alt="Раскладывающаяся упоковка с кулоном внутри"
       />
       <p style="width: 100%; text-align: center">Упоковка внушающая доверие</p>
-    </div>
-    <div id="image3">
+    </article>
+    <article id="image3">
       <img
         src="/static/image/ypokovka/3.png"
         class="con7images"
-        alt="Упоковка"
+        alt="Вкладышь на котором лежит кулон на ниточке"
       />
       <p style="width: 100%; text-align: center">
-        Подарок, который останется в сердце
+        <strong>Подарок</strong>, который останется в сердце
       </p>
-    </div>
+    </article>
   </div>
-</div>
+</section>
 
-<div id="Contener8">
-  <h2 id="con8title">Хочешь сделать браслет особенным?</h2>
-  <div
+<section id="Contener8" aria-labelledby="custom-orders-heading">
+  <h2 id="con8title">Хочешь сделать <strong>браслет</strong> <strong>особенным</strong>?</h2>
+  <article
     style="
       position: relative;
       max-height: 500px;
@@ -441,7 +629,7 @@
     "
   >
     <p class="con8text">
-      Уникальные заказы, которые будут только у вас и ваших близких
+      <strong>Уникальные заказы</strong>, которые будут только у вас и ваших близких
     </p>
     <a
       href="/individual"
@@ -454,12 +642,13 @@
     <img
       class="con8imgs"
       src="/static/image/productImgs/monetochka/img2.jpg"
-      alt=""
+      alt="Пример индивидуального заказа - гравировка на монетке"
     />
-  </div>
+  </article>
 
   <div id="con8div">
-    <div class="con8divs">
+    <article class="con8divs">
+      <h3 itemprop="name" style="text-align: center"><strong>Гравировка на монетке</strong></h3>
       <p class="con8text" id="con8text1">
         Мы можем нанести на монетку любую фразу, дату или имя
       </p>
@@ -475,10 +664,11 @@
       <img
         class="con8imgs"
         src="/static/image/body/monetki.jpg"
-        alt="Монетка с гравировкой"
+        alt="Золотые монеты с гравировкой"
       />
-    </div>
-    <div class="con8divs">
+    </article>
+    <article class="con8divs">
+      <h3 itemprop="name" style="text-align: center"><strong>Объединение браслетов</strong></h3>
       <p class="con8text" id="con8text2">
         Объединяем браслеты по первой прозбе
       </p>
@@ -491,12 +681,16 @@
       >
         <div class="con3Btn con8bth" style="color: white">Подробнее ></div>
       </a>
-      <img src="/static/image/body/obedinenie.jpeg" class="con8imgs" alt="" />
-    </div>
+      <img
+        src="/static/image/body/obedinenie.jpeg"
+        class="con8imgs"
+        alt="Объединение 2 кулонов - кулон самолёт и кулон роза ветров"
+      />
+    </article>
   </div>
-</div>
+</section>
 
-<div id="Contener6"></div>
+<section id="Contener6"></section>
 
 {% endblock %} {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

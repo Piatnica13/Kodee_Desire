@@ -66,7 +66,6 @@ def profil():
         return redirect('/login')
 
     favorite_products = Product.query.filter(Product.id.in_(user.favourites)).all()
-    print("favoriteee", favorite_products)
     app.logger.debug(f"Избранные товары пользователя ID {user.id}: {[p.id for p in favorite_products]}")
 
     if request.method == "POST":

@@ -1,5 +1,8 @@
 {% extends "base.html" %} {% block title %}
-<title>Профиль</title>
+<title>
+  Профиль — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ
+  | КАРАГАНДА
+</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/profil.css" />
 {% endblock %} {% block body %}
@@ -80,7 +83,7 @@
               <div id="prodilGridCardd">
                 {% if favorite_products == []%}
                 <div id="productNoProduct">
-                  <h1>товары пока не добавлены</h1>
+                  <h1>Товары пока не добавлены</h1>
                 </div>
                 {% else %} {% for product in favorite_products %}
                 <a

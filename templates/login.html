@@ -1,5 +1,6 @@
 {% extends "baseForReg.html" %} {% block title %}
-<title>Log In</title>
+<title>Вход — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО
+      585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ | КАРАГАНДА</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/login.css" />
 {% endblock %} {% block body %}
@@ -13,7 +14,7 @@
       </div>
     </a>
     <div>
-      <h1 id="MainText">LOG IN</h1>
+      <h1 id="MainText">ВХОД</h1>
     </div>
     <form method="post" id="loginForm">
       <div id="UserInp">
@@ -64,11 +65,11 @@
         {% elif errors.get('comparisons') %}
         <div id="messageForErrorComparisons">{{ errors['comparisons'] }}</div>
         {% endif %}
-        <button id="ButtonSignIn" type="submit" style="width: 100%">Log in</button>
+        <button id="ButtonSignIn" type="submit" style="width: 100%">Вход</button>
       </div>
     </form>
     <div>
-      <p id="loginP">Don't have an account? <a href="/register" id="LogIn">Sign up</a></p>
+      <p id="loginP">Еще нет аккаунта? <a href="/register" id="LogIn">Регистрация</a></p>
     </div>
   </div>
 </div>
