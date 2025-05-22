@@ -1,14 +1,25 @@
 {% extends "base.html" %} {% block title %}<title>
   Каталог — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ
-  | КАРАГАНДА</title
->{% endblock %} {% block style %}
+  | КАРАГАНДА
+</title>
+
+<script type="application/ld+json">
+  {{ {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": products_json
+  }|tojson(indent=2) }}
+</script>
+
+{% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/shop.css" />
 {% endblock %} {% block body %}
-<div id="Darker"></div>
-<div id="BockMenu">
+<section id="Darker"></section>
+<section id="Shop100px"></section>
+<section id="BockMenu">
   <div id="FilterHeight">
     <div id="BockMenuTitle">
-      <p>Фильтр</p>
+      <h1>Фильтр</h1>
       <div id="BockMenuDivImg">
         <img
           src="/static/icon/black/close.png"
@@ -20,38 +31,38 @@
     </div>
     <div id="BockMenuMain"></div>
     <div id="BockMenuDivFuter">
-      <p>Выбраны все товары</p>
+      <h2>Выбраны все товары</h2>
       <div id="BockMenuDivButtons">
-        <div id="BockMenuBthSbros">Сбросить</div>
+        <div id="BockMenuBthSbros"><span>Сбросить</span></div>
         <div id="BockMenuDivBthShow">
-          <p>Показать</p>
+          <span>Показать</span>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div id="ShopBody">
-  <div id="PodShopBody">
-    <div class="Contener1">
+<section id="ShopBody">
+  <article id="PodShopBody">
+    <section class="Contener1">
       <div class="Con1Text">
-        <p id="Con1GlText">Браслеты</p>
+        <h1 id="Con1GlText">Браслеты</h1>
         <div class="Con1DivVtText">
           <p id="Con1VtText">
-            Браслеты Kodee – это не только украшения. Это ваше настроение,
-            чувства и истории, которые вы будете рассказывать миру
+            <strong>Браслеты Kodee</strong> – это не только украшения. Это ваше
+            настроение, чувства и истории, которые вы будете рассказывать миру
             именно&nbsp;сегодня. <br />
             Наслаждайтесь вашей индивидуальностью каждый день.
           </p>
         </div>
       </div>
       <img
-        src="/static/image/imgShop/BrasletsAndEgg.jpg"
+        src="/static/image/imgShop/BrasletsAndEgg.webp"
         class="imgs"
         alt="Фото браслета Kodee"
       />
-    </div>
-    <div id="TablMenu">
+    </section>
+    <section id="TablMenu">
       <div id="Divfiltr">
         <img
           src="/static/icon/black/control.png"
@@ -59,15 +70,15 @@
           class="ShopImgControl"
           data-icon="control.png"
         />
-        <p>фильтры</p>
+        <span>фильтры</span>
       </div>
-    </div>
-    <div id="productGrid" name="ShopGrid"></div>
-    <div id="shopDivBthMore" data-aos="fade-up" data-aos-delay="0">
-      <button id="shopBthMore">Еще</button>
-    </div>
-  </div>
+    </section>
+    <section id="productGrid" name="ShopGrid"></section>
+    <section id="shopDivBthMore" data-aos="fade-up" data-aos-delay="0">
+      <button id="shopBthMore"><span>Еще</span></button>
+    </section>
+  </article>
   {% endblock %} {% block script %}
   <script src="/static/js/shop.js" defer></script>
   {% endblock %}
-</div>
+</section>

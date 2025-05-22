@@ -65,7 +65,7 @@ def profil():
         app.logger.error(f"Пользователь с ID {user_id} не найден.")
         return redirect('/login')
 
-    favorite_products = Product.query.filter(Product.id.in_(user.favourites)).all()
+    favorite_products = Product.query.filter(Product.id.in_(user.favourites)).all() 
     app.logger.debug(f"Избранные товары пользователя ID {user.id}: {[p.id for p in favorite_products]}")
 
     if request.method == "POST":
@@ -371,8 +371,29 @@ def search():
 # МАГАЗИН
 @app.route('/shop')
 def shop():
+    products = Product.query.limit(4).all()
+    products_json = []
+    for p in products:
+        products_json.append({
+            "@type": "Product",
+            "name": p.name,
+            "image": p.image(),  # должен возвращать строку
+            "description": p.descriptions,
+            "brand": {
+                "@type": "Brand",
+                "name": "KoDee Desire"
+            },
+            "offers": {
+                "@type": "Offer",
+                "priceCurrency": "KZT",
+                "price": p.price,
+                "availability": "https://schema.org/InStock"
+            }
+        })
+
     app.logger.debug("Открыта страница магазина.")
-    return render_template('shop.html')
+    return render_template("shop.html", products_json=products_json)
+
 
 
 # КОНТАКТЫ
@@ -574,10 +595,10 @@ def addProducts(product: Product):
             return
 
         try:
-            imagePak1 = Product_image(1, product.id, f"/static/image/productImgs/{product.slug}/img1.jpg")
-            imagePak2 = Product_image(2, product.id, f"/static/image/productImgs/{product.slug}/img2.jpg")
-            imagePak3 = Product_image(3, product.id, f"/static/image/productImgs/{product.slug}/img3.jpg")
-            imagePak4 = Product_image(4, product.id, f"/static/image/productImgs/{product.slug}/img4.jpg")
+            imagePak1 = Product_image(1, product.id, f"/static/image/productImgs/{product.slug}/img1.webp")
+            imagePak2 = Product_image(2, product.id, f"/static/image/productImgs/{product.slug}/img2.webp")
+            imagePak3 = Product_image(3, product.id, f"/static/image/productImgs/{product.slug}/img3.webp")
+            imagePak4 = Product_image(4, product.id, f"/static/image/productImgs/{product.slug}/img4.webp")
 
             db.session.add_all([imagePak1, imagePak2, imagePak3, imagePak4])
             db.session.commit()

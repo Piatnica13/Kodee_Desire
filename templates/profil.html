@@ -7,33 +7,32 @@
 <link rel="stylesheet" href="/static/css/profil.css" />
 {% endblock %} {% block body %}
 
-<div id="ProfilBody">
+<section id="ProfilBody">
   <div id="ProfilMain">
-    <div id="Px100bottom"></div>
-    <div id="ProfilTop">
-      <p>Добро пожаловать</p>
-    </div>
-    <div id="ProfilMenuBottom">
+    <section id="Px100bottom"></section>
+    <section id="ProfilTop">
+      <h1>Добро пожаловать</h1>
+    </section>
+    <section id="ProfilMenuBottom">
       <div id="ProfilMenu">
-        <div></div>
-        <div id="ProfilMenuRight">
-          <div class="ProfilMenuItem Profillinia" id="ProdilMenuItemFavorites">
+        <section id="ProfilMenuRight">
+          <article class="ProfilMenuItem Profillinia" id="ProdilMenuItemFavorites">
             <img
               src="/static/icon/black/like.png"
               data-icon="like.png"
               alt="Избранные товары"
             />
             <label for="Избранное" class="ProfilForPhone">Избранное</label>
-          </div>
-          <div class="ProfilMenuItem" id="ProfilMenuItemProfil">
+          </article>
+          <article class="ProfilMenuItem" id="ProfilMenuItemProfil">
             <img
               src="/static/icon/black/profil.png"
               data-icon="profil.png"
               alt="Профиль"
             />
             <label for="Профиль" class="ProfilForPhone">Профиль</label>
-          </div>
-          <div class="ProfilMenuItem ProfilMenuItemPass" id="ProfilEdit">
+          </article>
+          <article class="ProfilMenuItem ProfilMenuItemPass" id="ProfilEdit">
             <img
               src="/static/icon/black/pen.png"
               data-icon="pen.png"
@@ -42,8 +41,8 @@
             <label for="Изменить профиль" class="ProfilForPhone"
               >Изменить профиль</label
             >
-          </div>
-          <div class="ProfilMenuItem" id="ProfilMenuItemPassword">
+          </article>
+          <article class="ProfilMenuItem" id="ProfilMenuItemPassword">
             <img
               src="/static/icon/black/rotation-lock.png"
               alt="Изменить пароль"
@@ -52,17 +51,17 @@
             <label for="Изменить пароль" class="ProfilForPhone"
               >Изменить пароль</label
             >
-          </div>
-          <div class="ProfilMenuItem Profillinia" id="ProfilMenuItemAddress">
+          </article>
+          <article class="ProfilMenuItem Profillinia" id="ProfilMenuItemAddress">
             <img
               src="/static/icon/black/tochka.png"
               data-icon="tochka.png"
               alt="Адрес"
             />
             <label for="Адрес" class="ProfilForPhone">Адрес доставки</label>
-          </div>
+          </article>
           <a href="/logout">
-            <div class="ProfilMenuItem ProfilExit">
+            <article class="ProfilMenuItem ProfilExit">
               <img
                 src="/static/icon/black/logout.png"
                 class="ProfilInvisibolImg"
@@ -71,11 +70,11 @@
               <label for="Выход" class="ProfilForPhone"
                 >Выйти из аккаунта</label
               >
-            </div>
+            </article>
           </a>
-        </div>
-        <div id="ProfilMenuLeft">
-          <div id="ProfilLeftFavoritess" class="ProfilOb">
+        </section>
+        <section id="ProfilMenuLeft">
+          <article id="ProfilLeftFavoritess" class="ProfilOb">
             <div class="ProfilTitle">
               <h1>Избранные товары</h1>
             </div>
@@ -110,7 +109,7 @@
                           alt="Сумка"
                           data-icon="sumka.png"
                         />
-                        <p class="BthInfo"><ins>Подробнее</ins></p>
+                        <p class="BthInfo"><ins><span>Подробнее</span></ins></p>
                       </div>
                     </div>
                   </div>
@@ -118,8 +117,8 @@
                 {% endfor %} {% endif %}
               </div>
             </div>
-          </div>
-          <div id="ProfilLeftProfil" class="ProfilOb">
+          </article>
+          <article id="ProfilLeftProfil" class="ProfilOb">
             <div id="ProfilLeftProfilTitle" class="ProfilTitle">
               <h1>Профиль пользователя</h1>
             </div>
@@ -180,8 +179,8 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div id="ProfilLeftChanchPass" class="ProfilOb">
+          </article>
+          <article id="ProfilLeftChanchPass" class="ProfilOb">
             <div class="ProfilTitle"><h1>Изменение пароля</h1></div>
             <form id="ProfilMainPass" method="POST">
               <div id="ProfilInpsPass">
@@ -189,7 +188,7 @@
                   <label for="" class="ProfilLabels">Новый пароль</label>
                   <div>
                     <img
-                      src="/static/image/auth/pass.png"
+                      src="/static/icon/black/pass.png"
                       class="ProfilImgsS"
                       alt="Password"
                     />
@@ -206,7 +205,7 @@
                   >
                   <div>
                     <img
-                      src="/static/image/auth/pass.png"
+                      src="/static/icon/black/pass.png"
                       class="ProfilImgsS"
                       alt=""
                     />
@@ -229,14 +228,14 @@
                 </button>
               </div>
             </form>
-          </div>
-          <div id="ProfilLeftChanchInfo" class="ProfilOb">
+          </article>
+          <article id="ProfilLeftChanchInfo" class="ProfilOb">
             <div class="ProfilTitle"><h1>Изменение информации</h1></div>
             <form id="ProfilSplit" method="post">
               <div id="ProfilChangeInfoDivInp">
                 <div class="ProfilDivImgs">
                   <img
-                    src="/static/image/auth/accoutn-auth.png"
+                    src="/static/icon/black/accoutn-auth.png"
                     alt=""
                     class="ProfilImgs"
                   />
@@ -249,7 +248,7 @@
                 </div>
                 <div class="ProfilDivImgs">
                   <img
-                    src="/static/image/auth/accoutn-auth.png"
+                    src="/static/icon/black/accoutn-auth.png"
                     alt=""
                     class="ProfilImgs"
                   />
@@ -276,7 +275,7 @@
                 </div>
                 <div class="ProfilDivImgs">
                   <img
-                    src="/static/image/auth/pass.png"
+                    src="/static/icon/black/pass.png"
                     alt="Емаил"
                     class="ProfilImgs"
                   />
@@ -295,17 +294,17 @@
                   value="1"
                   type="submit"
                 >
-                  Сохранить
+                  <span>Сохранить</span>
                 </button>
               </div>
             </form>
-          </div>
-          <div id="ProfilLeftAddAddress">
+          </article>
+          <article id="ProfilLeftAddAddress">
             <div class="ProfilTitle"><h1>Адреса доставки</h1></div>
             <div id="ProfilObertka1">
               <div id="PrfilMatch">
                 <div id="ProfilAddAdd">
-                  <button id="ProfilBthAddAdd">Добавить</button>
+                  <button id="ProfilBthAddAdd"><span>Добавить</span></button>
                 </div>
                 <form id="ProfilAddMain" method="POST">
                   {% for address in user.addresses %}
@@ -365,7 +364,7 @@
                       name="work_with_address"
                       value="1"
                     >
-                      Сохранить
+                      <span>Сохранить</span>
                     </button>
                   </div>
                 </form>
@@ -449,22 +448,22 @@
                       value="1"
                       type="button"
                     >
-                      Добавить
+                      <span>Добавить</span>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
       </div>
     </div>
-  </div>
+  </section>
   {% with messages = get_flashed_messages(with_categories=true) %} {% if
   messages %} {% for category, message in messages %}
   <div class="message-box {{ category }}">{{ message }}</div>
   {% endfor %} {% endif %} {% endwith %}
-</div>
+</section>
 {% endblock %} {% block script %}
 <script src="/static/js/profil.js"></script>
 {% endblock %}

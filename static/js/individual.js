@@ -28,7 +28,7 @@ window.addEventListener("resize", Width);
 
 function Width(){
     const W = window.innerWidth;
-    if(W <= 500){
+    if(W <= 610){
         indiv1sec.forEach((el) => {
             el.style.display = `flex`;
         })

@@ -45,10 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function add(el){
         HelpDiv.innerHTML += `
-        <div class="helpDivs">
+        <article class="helpDivs">
             <h2 class="helpTitle">${el.title}<h2>
             <p class="helpText">${el.text}</p>
-        </div>
+        </article>
         `
     }
 })

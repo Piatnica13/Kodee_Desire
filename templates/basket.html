@@ -6,15 +6,15 @@
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/basket.css" />
 {% endblock style %} {% block body %}
-<div id="basket100px"></div>
-<div id="bodyBasket">
-  <div id="basketLeft">
+<section id="basket100px"></section>
+<section id="bodyBasket">
+  <section id="basketLeft">
     <div id="basketBasket">
-      <h2>Корзина</h2>
+      <h1 style="font-size: 2rem">Корзина</h1>
       {% if basket != []%} {% for product in basket %}
-      <div class="basketProduct" id="card-{{product.id}}">
-        <div class="basketFirstDiv">
-          <div class="basketDivLabel">
+      <article class="basketProduct" id="card-{{product.id}}">
+        <section class="basketFirstDiv">
+          <article class="basketDivLabel">
             <label class="basketCheckbox customCheckbox">
               <input
                 type="checkbox"
@@ -49,10 +49,10 @@
               id="basketDelete{{product.id}}"
               data-icon="delete.png"
             />
-          </div>
+          </article>
           <div class="basketproductImg">
             <img
-              src="/static/image/productImgs/{{ product.slug }}/img1.jpg"
+              src="/static/image/productImgs/{{ product.slug }}/img1.webp"
               class="basketproductImgs"
               alt="Продукция"
             />
@@ -62,10 +62,10 @@
             id="basketFavoriteProduct"
             value="{{ user.favourites }}"
           />
-        </div>
-        <div class="basketObertka3">
+        </section>
+        <section class="basketObertka3">
           <div class="basketNoCheckboxImg">
-            <p class="productName" style="margin: 0px">{{ product.name }}</p>
+            <h3 class="productName" style="margin: 0px">{{ product.name }}</h3>
             <div class="basketProductDescript">
               {%for desc in user.basket %} {%if product.id == desc[0] %}
               <div class="basketProductDescriptions">
@@ -86,22 +86,24 @@
               {% endif %} {% endfor %}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
       {% endfor %} {% else %}
-      <div style="font-size: 1.5rem">Товары пока не добавлены</div>
+      <div style="font-size: 1.5rem"><h2>Товары пока не добавлены</h2></div>
       {% endif %}
     </div>
-  </div>
-  <div id="basketRight">
-    <div id="basketProductsPay"><h2>Товары</h2></div>
-    <div id="basketPay"></div>
-    <div id="basketBhtWhatsAppDiv">
+  </section>
+  <section id="basketRight">
+    <article id="basketProductsPay">
+      <h2 style="font-size: 2rem">Товары</h2>
+    </article>
+    <article id="basketPay"></article>
+    <article id="basketBhtWhatsAppDiv">
       <button type="button" id="basketWhatsAppBth">
-        Оформить через WhatsApp
+        <span>Оформить через WhatsApp</span>
       </button>
-    </div>
-    <div method="POST" id="ProfilAddSplit">
+    </article>
+    <form method="POST" id="ProfilAddSplit">
       <div
         style="
           text-align: center;
@@ -110,7 +112,7 @@
           margin: 25px 0 10px;
         "
       >
-        Добавить адрес
+        <h2 style="font-size: 2rem">Добавить адрес</h2>
       </div>
       <div
         id="ProfilAddInps"
@@ -203,12 +205,12 @@
           type="button"
           style="width: 90%"
         >
-          Добавить
+          <span>Добавить</span>
         </button>
       </div>
-    </div>
-  </div>
-</div>
+    </form>
+  </section>
+</section>
 <input type="hidden" value="{{ user.name }}" id="basketNamehidden" />
 <input type="hidden" value="{{user.address}}" id="basketAddress" />
 {% endblock body %} {% block script %}

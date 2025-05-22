@@ -6,21 +6,21 @@
 {% endblock %} {% block body %}
 
 {% if messageForNoLog == True %}<div id="messageForNoLog"></div>{% endif %}
-<div id="Contener">
+<section id="Contener">
   <div id="Forma">
     <a href="/">
       <div id="ImgLogo">
         <img src="/static/icon/black/logo.png" data-icon="logo.png" alt="Kodee_Desire" id="Logo" />
       </div>
     </a>
-    <div>
+    <article>
       <h1 id="MainText">ВХОД</h1>
-    </div>
+    </article>
     <form method="post" id="loginForm">
       <div id="UserInp">
-        <div class="ImgInp">
+        <article class="ImgInp">
           <img
-            src="/static/image/auth/mail.png"
+            src="/static/icon/black/mail.png"
             alt="Email"
             class="ImgInInput"
           />
@@ -31,10 +31,10 @@
             name="email"
             class="test {%if errors.get('error') or errors.get('comparisons') %}loginError{% endif %}"
           />
-        </div>
-        <div class="ImgInp">
+        </article>
+        <article class="ImgInp">
           <img
-            src="/static/image/auth/pass.png"
+            src="/static/icon/black/pass.png"
             alt="Password"
             class="ImgInInput"
           />
@@ -46,18 +46,19 @@
             class="test {%if errors.get('error') or errors.get('comparisons') or errors.get('len') %}loginError{% endif %}"
           />
           <img
-            src="/static/image/auth/hide.png"
+            src="/static/icon/black/hide.png"
             alt="Hide Password"
             id="Hide"
             class="ImgPass"
           />
           <img
-            src="/static/image/auth/show.png"
+            src="/static/icon/black/show.png"
             alt="Show Password"
             id="Show"
             class="ImgPass"
           />
-        </div>
+        </article>
+        <button id="ButtonSignIn" type="submit" style="width: %">Вход</button>
         {% if errors.get('error') %}
         <div id="messageForErrorError">{{ errors['error'] }}</div>
         {% elif errors.get('len') %}
@@ -65,14 +66,13 @@
         {% elif errors.get('comparisons') %}
         <div id="messageForErrorComparisons">{{ errors['comparisons'] }}</div>
         {% endif %}
-        <button id="ButtonSignIn" type="submit" style="width: 100%">Вход</button>
       </div>
     </form>
     <div>
       <p id="loginP">Еще нет аккаунта? <a href="/register" id="LogIn">Регистрация</a></p>
     </div>
   </div>
-</div>
+</section>
 {% endblock %} {% block script %}
 <script src="/static/js/login.js"></script>
 {% endblock %}

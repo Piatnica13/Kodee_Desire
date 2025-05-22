@@ -133,12 +133,12 @@ function con4func(mas){
     con4part.innerHTML += 
     `
     <div class="Con4Divs" data-aos="fade-up" data-aos-delay="0">
-      <img src="/static/image/auth/show.png" class="con3ImgShow" alt="Посмотреть" style="right: 5%; top: 5%;">
-      <img src="static/image/con4/33784.jpg" alt="" class="Con4Imgs" />
-      <p class="Con4Text Con4TextGl">${mas.title}</p>
-      <p class="Con4Text Con4TextVt">
+      <img src="/static/icon/black/show.png" class="con3ImgShow" data-icon="show.png" alt="Посмотреть" style="right: 5%; top: 5%;">
+      <img src="static/image/con4/33784.webp" alt="" class="Con4Imgs" />
+      <h3 class="Con4Text Con4TextGl">${mas.title}</h3>
+      <h4 class="Con4Text Con4TextVt">
         ${mas.info}
-      </p>
+      </h4>
     </div>
     `;
 };
@@ -148,12 +148,12 @@ masFromCon4.forEach((e)=>{
 })
 
 let masFromCon5 = [
-    {title: "Родных", a_filter: "/shop?filter=Жизнь и процветание,Любовь и семья,Природа,Минимализм и красота", a_img: "/static/image/productImgs/klever/img1.jpg"},
-    {title: "Любимых", a_filter: "/shop?filter=Любовь и романтика,Сила и успех,Жизнь и процветание", a_img: "/static/image/productImgs/serdtse-kontur/img3.jpg"},
-    {title: "Творческих", a_filter: "/shop?filter=Природа,Музыка и искусство,Минимализм и красота", a_img: "/static/image/productImgs/skripichnyi-kliuch/img3.jpg"},
-    {title: "Пу&shy;те&shy;шест&shy;ву&shy;ющих", a_filter: "/shop?filter=Мир и свобода,Путешествия и приключения,Сила и успех", a_img: "/static/image/productImgs/shturval/img1.jpg"},
-    {title: "Спортивных", a_filter: "/shop?filter=Спорт,Сила и успех,Минимализм и красота", a_img: "/static/image/productImgs/raketka/img2.jpg"},
-    {title: "Пушистых", a_filter: "/shop?filter=Любовь к животным,Природа,Мир и свобода", a_img: "/static/image/productImgs/lapka/img1.jpg"}
+    {title: "Родных", a_filter: "/shop?filter=Жизнь и процветание,Любовь и семья,Природа,Минимализм и красота", a_img: "/static/image/productImgs/klever/img1.webp"},
+    {title: "Любимых", a_filter: "/shop?filter=Любовь и романтика,Сила и успех,Жизнь и процветание", a_img: "/static/image/productImgs/serdtse-kontur/img3.webp"},
+    {title: "Творческих", a_filter: "/shop?filter=Природа,Музыка и искусство,Минимализм и красота", a_img: "/static/image/productImgs/skripichnyi-kliuch/img3.webp"},
+    {title: "Пу&shy;те&shy;шест&shy;ву&shy;ющих", a_filter: "/shop?filter=Мир и свобода,Путешествия и приключения,Сила и успех", a_img: "/static/image/productImgs/shturval/img1.webp"},
+    {title: "Спортивных", a_filter: "/shop?filter=Спорт,Сила и успех,Минимализм и красота", a_img: "/static/image/productImgs/raketka/img2.webp"},
+    {title: "Пушистых", a_filter: "/shop?filter=Любовь к животным,Природа,Мир и свобода", a_img: "/static/image/productImgs/lapka/img1.webp"}
 ]
 
 function con5func(mas){

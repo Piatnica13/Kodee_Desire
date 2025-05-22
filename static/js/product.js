@@ -260,7 +260,6 @@ resize();
 document.querySelector("#productMaterial").addEventListener('change', function(){
   
   const selectedValue = this.value;
-  console.log(selectedValue);
   
   
   if (selectedValue === "Золото 585 (Белое)") {

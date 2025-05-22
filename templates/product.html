@@ -3,13 +3,34 @@
   {{ product.name }} — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ |
   КОЛЬЕ НА ЛЕСКЕ | КАРАГАНДА
 </title>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ product.name }}",
+    "image": "{{ product.image() }}",
+    "description": "{{ product.descriptions}}",
+    "brand": {
+      "@type": "Brand",
+      "name": "KoDee Desire"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "KZT",
+      "price": "{{ product.price }}",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+</script>
+
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/product.css" />
 {% endblock %} {% block body%}
-<div id="productBody">
-  <div id="product100Px"></div>
-  <div id="productMainDiv">
-    <div id="productImgsDiv">
+<section id="productBody">
+  <section id="product100Px"></section>
+  <section id="productMainDiv">
+    <article id="productImgsDiv">
       <div id="productGalochkas">
         <img
           src="/static/icon/black/galochka.png"
@@ -34,12 +55,12 @@
         id="productImg{{ image.num }}"
       />
       {% endfor %}
-    </div>
-    <div id="productMenuDiv">
+    </article>
+    <article id="productMenuDiv">
       <div id="productMenuUp">
         <h1>{{ product.name }}</h1>
-        <h4>{{ product.id }}</h4>
-        <h1>{{ product.price }} тг</h1>
+        <h2 style="font-size: 0.83em; opacity: 0.7">{{ product.id }}</h2>
+        <h2>{{ product.price }} тг</h2>
       </div>
       <div id="productMenuMidle">
         <div id="productDivSize">
@@ -57,9 +78,9 @@
               <h2>Размер</h2>
             </div>
             <div id="productChooseSize">
-              <h2 id="productChoose1">1</h2>
-              <h2 id="productChoose2">2</h2>
-              <h2 id="productChoose3">3</h2>
+              <h3 style="font-size: 1em" id="productChoose1">1</h3>
+              <h3 style="font-size: 1em" id="productChoose2">2</h3>
+              <h3 style="font-size: 1em" id="productChoose3">3</h3>
             </div>
           </div>
         </div>
@@ -109,55 +130,55 @@
           </div>
         </div>
         <div id="CharactersRight">
-          <div id="productDescriptions">
+          <section id="productDescriptions">
             <h2>Описание</h2>
             <p style="font-size: 1.25rem">{{ product.descriptions }}</p>
-          </div>
-          <div id="productCharacter">
+          </section>
+          <section id="productCharacter">
             <div id="productAllCharacter">
-              <div class="DivsCharacters">
+              <article class="DivsCharacters">
                 <h3>Артикул</h3>
                 <p>{{ product.id }}</p>
-              </div>
-              <div class="DivsCharacters">
+              </article>
+              <article class="DivsCharacters">
                 <h3>Концепция</h3>
                 <p>{{ product.concept}}</p>
-              </div>
-              <div class="DivsCharacters">
+              </article>
+              <article class="DivsCharacters">
                 <h3>Категория</h3>
                 <p>{{ product.category }}</p>
-              </div>
+              </article>
             </div>
-          </div>
+          </section>
         </div>
       </div>
-    </div>
-  </div>
-  <div id="CharactersBottom">
-    <div id="productDescriptions">
+    </article>
+  </section>
+  <section id="CharactersBottom">
+    <article id="productDescriptions">
       <h2>Описание</h2>
-      <p style="font-size: 1.25rem">{{ product.descriptions }}</p>
-    </div>
-    <div id="productCharacter">
+      <h3 style="font-size: 1.25rem">{{ product.descriptions }}</h3>
+    </article>
+    <article id="productCharacter">
       <h2>Характеристики</h2>
       <div id="productAllCharacter">
-        <div>
+        <article>
           <h3>Артикул</h3>
           <p>{{ product.id }}</p>
-        </div>
-        <div>
+        </article>
+        <article>
           <h3>Концепция</h3>
           <p>{{ product.concept}}</p>
-        </div>
-        <div>
+        </article>
+        <article>
           <h3>Категория</h3>
           <p>{{ product.category }}</p>
-        </div>
+        </article>
       </div>
-    </div>
-  </div>
-  <div id="productPodDiv"></div>
-</div>
+    </article>
+  </section>
+  <section id="productPodDiv"></section>
+</section>
 {% endblock %} {% block script %}
 <script src="/static/js/product.js"></script>
 {% endblock %}

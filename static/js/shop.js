@@ -90,19 +90,19 @@ function renderProducts(products, bool) {
     for (let i = 0; i < products.length && i < 12; i++){
       
       const productCard = `
-      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+      <article class="product-card" data-aos="fade-up" data-aos-delay="100">
         <a href="/product/${products[i].slug}" style="color: var(--black); text-decoration: none;">
           <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
-          <p class="product-title">${products[i].name}</p>
+          <h2 class="product-title">${products[i].name}</h2>
           <div class="test">
-            <p class="product-price">${products[i].price}тг</p>
+            <h2 class="product-price">${products[i].price}тг</h2>
             <div class="DivInfo">
               <img src = "/static/icon/black/sumka.png" data-icon="sumka.png" class = "Con2Icon" alt = "Сумка">
-              <p class="BthInfo"><ins style="text-decoration: line">Подробнее</ins></p>
+              <p class="BthInfo"><ins style="text-decoration: line"><span>Подробнее</span></ins></p>
             </div>
           </div>
         </a>
-      </div>
+      </article>
       `;
       productContainer.innerHTML += productCard;
     }
@@ -111,20 +111,20 @@ function renderProducts(products, bool) {
     for (let i = 0; i < products.length; i++){
       
       const productCard = `
-      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+      <article class="product-card" data-aos="fade-up" data-aos-delay="100">
         <a href="/product/${products[i].slug}" style="color: var(--black); text-decoration: none;">
         <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
-        <p class="product-title">${products[i].name}</p>
+        <h2 class="product-title">${products[i].name}</h2>
         <div class="test">
-          <p class="product-price">${products[i].price}тг</p>
+          <h2 class="product-price">${products[i].price}тг</h2>
           <div class="DivInfo">
             <img src = "/static/icon/black/sumka.png" data-icon="sumka.png" class = "Con2Icon" alt = "Сумка">
-            <p class="BthInfo"><ins>Подробнее</ins></p>
+            <p class="BthInfo"><ins><span>Подробнее</span></ins></p>
           </div>
           </a>
         </div>
         </a>
-      </div>
+      </article>
       `;
       productContainer.innerHTML += productCard;
     }

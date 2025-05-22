@@ -239,8 +239,18 @@
         align-items: center;
     }
 }
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 390px) {
     .MesegIcons{
         gap: 3px;
+    }
+    
+}
+@media screen and (max-width: 340px) {
+    .MesegIcons{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+        top: 15%;
+        gap: 0;
     }
 }

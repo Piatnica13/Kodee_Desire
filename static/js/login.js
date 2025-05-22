@@ -299,6 +299,7 @@ darkMod.addEventListener("click", () => {
 })
 
 lightMod.addEventListener("click", () => {
+    
     back()
     darkMod.style.pointerEvents = `none`;
     lightMod.style.pointerEvents = "none";

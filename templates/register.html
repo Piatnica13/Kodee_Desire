@@ -1,59 +1,34 @@
 {% extends "baseForReg.html" %} {% block title%}
-<title>Регистрация — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО
-      585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ | КАРАГАНДА</title>
+<title>
+  Регистрация — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА
+  ЛЕСКЕ | КАРАГАНДА
+</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/register.css" />
 {% endblock %} {% block body %} {% if messageForNoReg %}
 <div id="messageForNoReg"></div>
 {% endif %}
 
-<div id="theme">
-  <label
-    style="
-      width: 50px;
-      height: 50px;
-      position: fixed;
-      bottom: 15%;
-      right: 10%;
-      z-index: 1000;
-      border-radius: 50%;
-      background-color: var(--add-bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 15px var(--grey);
-    "
-  >
-    <img
-      src="/static/icon/black/sun.png"
-      style="width: 35px; height: 35px; position: absolute;"
-      alt="Светлая тема"
-      id="bthLight"
-    />
-    <img
-      src="/static/icon/white/moon.png"
-      style="width: 35px; height: 35px; position: absolute;"
-      alt="Темная тема"
-      id="bthDark"
-    />
-  <label>
-</div>
-
-<div id="Contener">
+<section id="Contener">
   <div id="Forma">
     <a href="/">
       <div id="ImgLogo">
-        <img src="/static/icon/black/logo.png" data-icon="logo.png"alt="" id="Logo" />
+        <img
+          src="/static/icon/black/logo.png"
+          data-icon="logo.png"
+          alt=""
+          id="Logo"
+        />
       </div>
     </a>
-    <div>
+    <article>
       <h1 id="MainText">РЕГИСТРАЦИЯ</h1>
-    </div>
+    </article>
     <form method="post" id="regForm">
       <div id="UserInp">
-        <div class="ImgInp">
+        <article class="ImgInp">
           <img
-            src="/static/image/auth/accoutn-auth.png"
+            src="/static/icon/black/accoutn-auth.png"
             alt="Account Image"
             class="ImgInInput"
           />
@@ -64,10 +39,10 @@
             alt="Name"
             placeholder="Name"
           />
-        </div>
-        <div class="ImgInp">
+        </article>
+        <article class="ImgInp">
           <img
-            src="/static/image/auth/mail.png"
+            src="/static/icon/black/mail.png"
             alt="Email"
             class="ImgInInput"
           />
@@ -78,10 +53,10 @@
             placeholder="Email"
             id="email"
           />
-        </div>
-        <div class="ImgInp">
+        </article>
+        <article class="ImgInp">
           <img
-            src="/static/image/auth/pass.png"
+            src="/static/icon/black/pass.png"
             alt="Password"
             class="ImgInInput"
           />
@@ -93,18 +68,18 @@
             class="{% if errors.get('len') or errors.get('have') %}loginError{% endif %}"
           />
           <img
-            src="/static/image/auth/hide.png"
+            src="/static/icon/black/hide.png"
             alt="Hide Password"
             id="Hide"
             class="ImgPass"
           />
           <img
-            src="/static/image/auth/show.png"
+            src="/static/icon/black/show.png"
             alt="Show Password"
             id="Show"
             class="ImgPass"
           />
-        </div>
+        </article>
         {% if errors.get('len') %}
         <div id="messageForErrorLen">{{ errors['len'] }}</div>
         {% elif errors.get('have') %}
@@ -114,12 +89,10 @@
       </div>
     </form>
     <div>
-      <p id="regP">
-        Уже есть аккаунт? <a href="/login" id="LogIn">Вход</a>
-      </p>
+      <p id="regP">Уже есть аккаунт? <a href="/login" id="LogIn">Вход</a></p>
     </div>
   </div>
-</div>
+</section>
 {% endblock %} {% block script %}
 <script src="/static/js/register.js"></script>
 {%endblock%}

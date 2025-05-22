@@ -95,10 +95,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         }, 10);
     }
 
-    setTimeout(() => {
-        
-        updateIconsByTheme(true);
-    }, 150);
+    updateIconsByTheme(true);
 });
 
 form = document.querySelector("#regForm")
@@ -298,6 +295,7 @@ darkMod.addEventListener("click", () => {
 })
 
 lightMod.addEventListener("click", () => {
+    
     back()
     darkMod.style.pointerEvents = `none`;
     lightMod.style.pointerEvents = "none";
