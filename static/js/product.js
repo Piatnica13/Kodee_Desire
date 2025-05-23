@@ -5,21 +5,21 @@ let user_size = 0;
 
 let size1 = document.querySelector("#productChoose1")
 size1.addEventListener("click", () => {
-  size1.style.color = "var(--add-bg)";
+  size1.style.color = "var(--grey)";
   size2.style.color = "black";
   size3.style.color = "black";
   user_size = 1;
 })
 let size2 = document.querySelector("#productChoose2")
 size2.addEventListener("click", () => {
-  size2.style.color = "var(--add-bg)";
+  size2.style.color = "var(--grey)";
   size1.style.color = "black";
   size3.style.color = "black";
   user_size = 2;
 })
 let size3 = document.querySelector("#productChoose3")
 size3.addEventListener("click", () => {
-  size3.style.color = "var(--add-bg)";
+  size3.style.color = "var(--grey)";
   size2.style.color = "black";
   size1.style.color = "black";
   user_size = 3;
@@ -59,28 +59,6 @@ function urlBth(product, user_name, city, street, home) {
           showToast(data.error)
         }
       })
-
-
-    // if (city == "" || street == "" || home == ""){
-    //   sessionStorage.setItem("needAddressCheck", "true"); // Флаг, что нужно проверять адрес
-    //   let menu = document.querySelector("#MenuFixed");
-    //   MainContener.style.transition = `opacity 0.6s linear`;
-    //   MainContener.style.opacity = "0";
-    //   menu.classList.remove("visible");
-    //   menu.classList.add("hidden");
-      
-    //   setTimeout(() => {
-    //       MainContener.style.transition = `opacity 0.3s linear`;
-    //       window.location.href = "/profil";
-    //   }, 600);
-    // }
-    // else{
-    //   let user_color = document.querySelector("#productColor").value.toLowerCase();
-    //   const phoneNumber = "77003360024";  
-    //   const message = `Здравствуйте! Меня зовут ${user_name}. Интересуюсь позицией - ${product}, цвет нити - ${user_color}, размер - ${user_size}. Доставка на адрес: г.${city}, ул.${street}, д.${home}. Спасибо!`;  
-    //   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    //   window.open(url, "_blank");
-    // }
   }
 }
 

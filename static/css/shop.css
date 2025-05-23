@@ -122,7 +122,7 @@
     position: relative;
 }
 .product-title{
-    height: 75px !important;
+    height: 100px !important;
     display: flex;
     overflow-wrap: anywhere;
     position: relative;
@@ -154,19 +154,6 @@
     display: flex;
     justify-content: center;
     font-size: 2rem;
-}
-#BockMenuTitle::after{
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    z-index: 100;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background-color: var(--main-bg);
-    pointer-events: none;
-    box-shadow: 0px 0px 25px 25px var(--main-bg),
-    inset 0px 0px 15px 1px var(--main-bg);
 }
 #BockMenuDivImg{
     position: absolute;
@@ -232,8 +219,7 @@
     height: 100%;
     justify-content: space-around;
     align-items: center;
-    margin-top: 20px;
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     flex: 1;
 }
 #BockMenuDivBthShow{
@@ -374,8 +360,8 @@
 }
 @media screen and (max-width: 500px) {
     #productGrid{
-        grid-template-columns: repeat(2, 35%);
+        grid-template-columns: repeat(2, 45%);
         justify-content: center;
-        column-gap: 50px
+        column-gap: 25px;
     }
 }

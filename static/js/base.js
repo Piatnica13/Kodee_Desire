@@ -9,7 +9,6 @@ let poiskImgOnMenu = document.querySelector("#poisk");
 let PlaseForPoisk = document.querySelector("#menuPlaseForPoiskk");
 let chetchik = true;
 let Theme = localStorage.getItem("theme") || "light";
-const icons = document.querySelectorAll('img[data-icon]'); // Все img с параметром data-icon
 const footerBlock = document.querySelector('.ContenerLast');
 
 
@@ -130,6 +129,8 @@ function inShowPage(){
 
 // Меняются иконки чб и белые
 function updateIconsByTheme() {    
+    const icons = document.querySelectorAll('img[data-icon]'); // Все img с параметром data-icon
+
     icons.forEach(img => {
         const filename = img.dataset.icon;
         img.style.transition = "opacity 0.5s ease-in-out";
@@ -241,7 +242,6 @@ function processQueue() {
         }, 500);
     }, timeForLook + timeForLoad);
 }
-// 
 
 function SwitchLight() {
     lightMod.style.pointerEvents = `none`;

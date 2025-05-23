@@ -189,7 +189,8 @@ function con6func(mas){
     con6.innerHTML += `
     <div class="con6Divs">
         <div class="con6head">
-            <img src="${mas.icon}" class="con6imgs alt="Иконка профиля">
+            <img src="/static/image/ypokovka/face.jpg" class="con6imgs alt="Иконка профиля">
+            <!--<img src="${mas.icon}" class="con6imgs alt="Иконка профиля">-->
             <p class="con6name">${mas.name}</p>
             <label style="color: yellow">★★★★★</label>
         </div>
