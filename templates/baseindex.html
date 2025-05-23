@@ -4,17 +4,21 @@
   content="no-cache, no-store, must-revalidate"
 />
 {% block style %} {% endblock %}
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-<link rel="stylesheet" href="/static/css/base.css" />
-<link rel="stylesheet" href="/static/css/menu.css" />
-<link rel="stylesheet" href="/static/css/footer.css" />
+<link
+  href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+  media="all"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="/static/css/base.css" media="all" />
+<link rel="stylesheet" href="/static/css/menu.css" media="all" />
+<link rel="stylesheet" href="/static/css/footer.css" media="all" />
 {% block title %} {% endblock %} {% endblock %} {% block bodyy %}
 <section id="menu-placeholder"></section>
-<section id="loader">Загрузка</section>
+<section id="loader" style="display: none">Загрузка</section>
 <div id="Body">
   {% block body %} {% endblock %}
   <div id="futer-block"></div>
 </div>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="/static/js/base.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+<script src="/static/js/base.js" defer></script>
 {% block script %} {% endblock %} {% endblock %}

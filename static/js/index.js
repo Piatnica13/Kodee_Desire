@@ -1,28 +1,28 @@
 const images = document.querySelectorAll("img");
-let loader = document.querySelector('#loader');
+// let loader = document.querySelector('#loader');
 let loadedImages = 0;
 const totalImages = images.length;
-loader.style.opacity = "1";
-loader.style.backgroundColor = "var(--add-bg)";
-function checkImagesLoaded() {
-    loadedImages++;
-    if (loadedImages == totalImages) {
-        setTimeout(()=>{
-            loader.style.opacity = "0";
-            setTimeout(()=>{ 
-                loader.style.display = "none";
-                loader.style.zIndex = "0";
-            }, 600);
-        }, 1000)
-    }
-}
-images.forEach((img) => {
-    if (img.complete) {
-        checkImagesLoaded(); // Already loaded
-    } else {
-        img.onload = checkImagesLoaded; // Wait for load
-    }
-});
+// loader.style.opacity = "1";
+// loader.style.backgroundColor = "var(--add-bg)";
+// function checkImagesLoaded() {
+//     loadedImages++;
+//     if (loadedImages == totalImages) {
+//         setTimeout(()=>{
+//             loader.style.opacity = "0";
+//             setTimeout(()=>{ 
+//                 loader.style.display = "none";
+//                 loader.style.zIndex = "0";
+//             }, 600);
+//         }, 1000)
+//     }
+// }
+// images.forEach((img) => {
+//     if (img.complete) {
+//         checkImagesLoaded(); // Already loaded
+//     } else {
+//         img.onload = checkImagesLoaded; // Wait for load
+//     }
+// });
 
 function slider() {
     let Img1 = document.querySelector('#Con2Imgs1');

@@ -331,7 +331,27 @@ def add_favorite():
 
     except Exception as e:
         app.logger.error(f"Ошибка при работе с избранным: {str(e)}")
-        return jsonify({"success": False, "error": "Ошибка сервера"})
+        return jsonify({"success": False, "error": "Ошибка сервера"})    
+
+
+# ПЕРЕДАЧА ВСЕХ ТОВАРОВ В JS
+@app.route("/AllProductJS")
+def AllProductJS():
+    all_products = Product.query.all()
+
+    product_list = []
+    for product in all_products:
+        product_list.append({
+            "id": product.id,
+            "name": product.name,
+            "price": product.price,
+            "concept": product.concept,
+            "category": product.category,
+            "slug": product.slug,
+            "image": f"/static/image/productImgs/{product.slug}/img1.webp"
+        })
+
+    return jsonify(product_list)
 
 
 # ПОИСК
@@ -361,7 +381,6 @@ def search():
         } for p in products]
 
         return jsonify(results)
-
     except Exception as e:
         app.logger.error(f"Ошибка при выполнении поиска: {str(e)}")
         return jsonify([])
