@@ -45,9 +45,13 @@ function urlBth(product, user_name, city, street, home) {
     }, 500)
   }
   else{
+    let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
     fetch('/add_basket', {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "X-CSRFToken": token
+       },
       body: JSON.stringify({product_id: parseInt(d.value), color: document.querySelector("#productColor").value.toLowerCase(), size: user_size, material: document.querySelector("#productMaterial").value.toLowerCase()})
     })
       .then(response =>response.json())
@@ -175,9 +179,13 @@ let BthLike = document.querySelector("#productLike")
 let BthGetLike = document.querySelector("#productGetLike");
 BthGetLike.addEventListener("click", BthLikes)
 function BthLikes() {
+  let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
   fetch("/add_favorite", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "X-CSRFToken": token
+     },
     body: JSON.stringify({product_id: parseInt(d.value)})
   })
   .then(response => response.json())

@@ -183,7 +183,7 @@
           <article id="ProfilLeftChanchPass" class="ProfilOb">
             <div class="ProfilTitle"><h1>Изменение пароля</h1></div>
             <form id="ProfilMainPass" method="POST">
-              {{ form.hidden_tag() }}
+              <input type="hidden" name="csrf_token" value="{{ formPass.csrf_token._value() }}">
               <div id="ProfilInpsPass">
                 <div id="ProfilFInpPass" class="ProfilInpPass">
                   <label for="" class="ProfilLabels">Новый пароль</label>
@@ -233,7 +233,7 @@
           <article id="ProfilLeftChanchInfo" class="ProfilOb">
             <div class="ProfilTitle"><h1>Изменение информации</h1></div>
             <form id="ProfilSplit" method="post">
-              {{ form.hidden_tag() }}
+              <input type="hidden" name="csrf_token" value="{{ formSplit.csrf_token._value() }}">
               <div id="ProfilChangeInfoDivInp">
                 <div class="ProfilDivImgs">
                   <img
@@ -309,7 +309,7 @@
                   <button id="ProfilBthAddAdd"><span>Добавить</span></button>
                 </div>
                 <form id="ProfilAddMain" method="POST">
-                  {{ form.hidden_tag() }}
+                  <input type="hidden" name="csrf_token" value="{{ formAddress.csrf_token._value() }}">
                   {% for address in user.addresses %}
                   <div id="address-{{ address.id }}">
                     <div id="ProfilAddDivMain">
@@ -371,7 +371,8 @@
                     </button>
                   </div>
                 </form>
-                <div method="POST" id="ProfilAddSplit">
+                <form id="ProfilAddSplit">
+                  <input type="hidden" name="csrf_token" value="{{ formAdd.csrf_token._value() }}">
                   <div id="ProfilAddInps">
                     <div class="ProfilAddDivInps">
                       <img
@@ -445,6 +446,7 @@
                     </div>
                   </div>
                   <div id="ProfilAddDivBth">
+                    <meta name="csrf_token" content="{{ csrf_token() }}">
                     <button
                       id="ProfilAddBth"
                       name="add_address"
@@ -454,7 +456,7 @@
                       <span>Добавить</span>
                     </button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </article>

@@ -6,6 +6,7 @@ from log import setup_logging
 from dotenv import load_dotenv
 from functools import wraps
 from flask_wtf import CSRFProtect
+from forms import LoginForm, RegisterForm, ProfilMainPassForm, ProfilSplitForm, ProfilAddSplit, ProfilAddressForm
 import os
 
 
@@ -19,7 +20,7 @@ app.logger.info("Файл .env загружен.")
 
 # скрипт для pythonanywhere
 # Подключение базы данных
-pyPassword = os.getenv("ADMIN_EMAIL")
+pyPassword = os.getenv("PYTHONANYWHERE")
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
 #     username="Piatnica13",
 #     password=f"{pyPassword}",
@@ -64,6 +65,11 @@ def index():
 # ПРОФИЛЬ
 @app.route('/profil', methods=["POST", "GET"])
 def profil():
+    formSplit = ProfilSplitForm()
+    formPass = ProfilMainPassForm()
+    formAdd = ProfilAddSplit()
+    formAddress = ProfilAddressForm()
+    
     app.logger.debug("Обработка запроса к /profil.")
 
     errors = {}
@@ -96,14 +102,14 @@ def profil():
 
             db.session.commit()
             app.logger.debug(f"Изменения пользователя ID {user.id} успешно сохранены в БД.")
-            return render_template("profil.html", errors=errors, user=user, favorite_products=favorite_products)
+            return render_template("profil.html", errors=errors, user=user, favorite_products=favorite_products, formSplit=formSplit, formPass=formPass, formAdd=formAdd, formAddress=formAddress)
 
         except Exception as e:
             db.session.rollback()
             app.logger.error(f"Ошибка при сохранении данных профиля пользователя ID {user.id}: {str(e)}")
             return "Ошибка обновления данных"
 
-    return render_template("profil.html", user=user, errors=errors, favorite_products=favorite_products)
+    return render_template("profil.html", user=user, errors=errors, favorite_products=favorite_products, formSplit=formSplit, formPass=formPass, formAdd=formAdd, formAddress=formAddress)
 
 # Обновление информации
 def update_info(user: Person) -> None:
@@ -161,6 +167,7 @@ def work_with_address(user: Person) -> None:
 # Маршрут для корзины
 @app.route('/basket', methods=["GET", "POST"])
 def basket():
+    form = ProfilAddSplit()
     app.logger.debug("Обработка запроса к /basket.")
 
     user_id = session.get('user_id')
@@ -180,7 +187,7 @@ def basket():
             app.logger.warning(f"Товар с ID {i[0]} из корзины не найден в базе.")
 
     app.logger.info(f"Пользователь ID {user.id} открыл корзину. Всего товаров: {len(products)}")
-    return render_template('basket.html', basket=products, user=user)
+    return render_template('basket.html', basket=products, user=user, form=form)
 
 # Добавление товара в корзину
 @app.route('/add_basket', methods=['POST'])
@@ -451,6 +458,7 @@ def individual_order():
 # РЕГИСТРАЦИЯ
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    form = RegisterForm()
     errors = {}
     if request.method == "POST":
         name = request.form['name']
@@ -463,12 +471,12 @@ def register():
         if len(password) < 6:
             errors['len'] = "Пароль меньше 6 символов"
             app.logger.warning("Регистрация не удалась: короткий пароль.")
-            return render_template('register.html', errors=errors)
+            return render_template('register.html', errors=errors, form=form)
 
         if email in emails:
             errors['have'] = "Аккаунт с данным Email уже зарегистрирован"
             app.logger.warning(f"Регистрация не удалась: Email {email} уже используется.")
-            return render_template('register.html', errors=errors)
+            return render_template('register.html', errors=errors, form=form)
 
         hashed_password = generate_password_hash(password)
         person = Person(name=name, email=email, password=hashed_password)
@@ -488,13 +496,14 @@ def register():
             return render_template("index.html", messageNoReg=True)
     else:
         app.logger.debug("Открыта страница регистрации.")
-        return render_template('register.html', errors=errors, messageNoReg=True)
+        return render_template('register.html', errors=errors, messageNoReg=True, form=form)
 
 
 
 # ВХОД В АККАУНТ
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    form = LoginForm()
     errors = {}
     if request.method == 'POST':
         email = request.form['email']
@@ -521,19 +530,19 @@ def login():
             else:
                 app.logger.warning("Попытка входа администратора, но пользователь не найден.")
                 errors["notfound"] = "Аккаунт не найден"
-                return render_template("login.html", errors=errors)
+                return render_template("login.html", errors=errors, form=form)
 
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
             app.logger.info(f"Пользователь {email} успешно вошел.")
-            return render_template("index.html", messageForLog=True)
+            return render_template("index.html", messageForLog=True, form=form)
         else:
             errors["comparisons"] = "Ошибка ввода, неправильно введен пароль или email"
             app.logger.warning(f"Неудачная попытка входа: {email}")
-            return render_template("login.html", errors=errors, messageForNoLog=True)
+            return render_template("login.html", errors=errors, messageForNoLog=True, form=form)
     else:
         app.logger.debug("Открыта страница входа.")
-        return render_template('login.html', errors=errors, messageForNoLog=True)
+        return render_template('login.html', errors=errors, messageForNoLog=True, form=form)
 
 
 # ВЫХОД ИЗ АККАУНТА

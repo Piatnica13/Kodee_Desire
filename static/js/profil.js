@@ -234,9 +234,15 @@ bthAdd.addEventListener("click", () => {
     let home = document.querySelector("#profilHome");
     let flat = document.querySelector("#profilFlat");
 
+    let token = document.querySelector('meta[name="csrf_token"]').getAttribute('content');
+    
+
     fetch('/add_address', {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json",
+            "X-CSRFToken": token
+         },
         body: JSON.stringify({name: name.value, city: city.value, street: street.value, home: home.value, flat: flat.value})
       })
         .then(response =>response.json())

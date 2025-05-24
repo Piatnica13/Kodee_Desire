@@ -188,8 +188,6 @@ menuInp.addEventListener("input", () => {
                     return;
                 }
 
-                console.log("Ответ сервера:", data); // Логируем один раз!
-
                 data.forEach(product => {
                     let productDiv = document.createElement("div");
                     productDiv.classList.add("menuProductDiv");

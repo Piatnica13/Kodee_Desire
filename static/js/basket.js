@@ -148,9 +148,14 @@ function Like(event){
         }, 300);
     } 
 
+    let token = document.querySelector('meta[name="csrf_token"]').getAttribute('content');
+    
     fetch('/add_favorite', {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            "X-CSRFToken": token
+        },
         body: JSON.stringify({product_id: parseInt(Id)})
     })
     .then(response => response.json())
@@ -185,10 +190,13 @@ function deleteFunc(){
 
     rightProduct();
     
+    let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
 
     fetch("/delete_basket", {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            "X-CSRFToken": token },
         body: JSON.stringify({product_id: parseInt(Id)})
     })
     .then(response => response.json())
@@ -304,9 +312,15 @@ bthAdd.addEventListener('click', ()=>{
     let home = document.querySelector("#basketHome");
     let flat = document.querySelector("#basketFlat");
 
+    let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
+
+
     fetch('/add_address', {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json",
+            "X-CSRFToken": token
+         },
         body: JSON.stringify({name: name.value, city: city.value, street: street.value, home: home.value, flat: flat.value})
       })
         .then(response =>response.json())
