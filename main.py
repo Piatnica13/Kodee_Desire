@@ -19,12 +19,14 @@ app.logger.info("Файл .env загружен.")
 
 # скрипт для pythonanywhere
 # Подключение базы данных
+pyPassword = os.getenv("ADMIN_EMAIL")
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
 #     username="Piatnica13",
-#     password="Dima2014",
+#     password=f"{pyPassword}",
 #     hostname="Piatnica13.mysql.pythonanywhere-services.com",
 #     databasename="Piatnica13$Kodee_Desire",
 # )
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -500,7 +502,6 @@ def login():
 
         admin_email = os.getenv("ADMIN_EMAIL")
         admin_password = os.getenv("ADMIN_PASSWORD")
-        app.logger.info(f"admin_email: {admin_email}, admin_password: {admin_password}")
 
         if not email or not password:
             errors["error"] = "Ошибка, обязательные поля пустые"
