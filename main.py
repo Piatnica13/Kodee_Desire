@@ -1,10 +1,11 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, render_template, request, redirect, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, session, flash, jsonify, send_from_directory
 from sqlalchemy.orm.attributes import flag_modified
 from models import db, Address, Person, Product
 from log import setup_logging
 from dotenv import load_dotenv
 from functools import wraps
+from flask_wtf import CSRFProtect
 import os
 
 
@@ -39,6 +40,18 @@ app.logger.info("Логирование настроено.")
 
 db.init_app(app)  # Инициализация соединения
 app.logger.info("База данных инициализирована.")
+
+# CSRF Безопасность
+csrf = CSRFProtect(app)
+app.logger.info("CSRF настроено")
+
+# Cookie Безопасность
+app.config.update(
+    SESSION_COOKIE_SECURE=True,      # Только через HTTPS
+    SESSION_COOKIE_HTTPONLY=True,    # JS не получит доступ к cookie
+    SESSION_COOKIE_SAMESITE='Lax'    # Защита от CSRF
+)
+app.logger.info("Cookie настроено")
 
 # Главный маршрут
 @app.route('/')
@@ -576,10 +589,10 @@ def admin_deshboard():
 # СТРАНИЦА ПРОДУКТА
 @app.route('/product/<slug>')
 def product(slug):
-    user_id = session.get('user_id')
+    user_id = session.get('user_id') or ''
     product = Product.query.filter_by(slug=slug).first()
 
-    if user_id:
+    if user_id != '':
         person = Person.query.get(int(user_id)) or ''
 
         if not product:
@@ -592,3 +605,17 @@ def product(slug):
         return render_template('product.html', product=product, user=person, address=address, favarite=person.favourites)
     else:
         return render_template('product.html', product=product, user='', address='', favarite='')
+    
+
+@app.after_request
+def apply_security_headers(response):
+    # response.headers['Content-Security-Policy'] = "default-src 'self'; script-src 'self'"
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    response.headers['Referrer-Policy'] = 'no-referrer'
+    response.headers['X-Frame-Options'] = 'DENY'
+    return response
+
+@app.route('/.well-known/security.txt')
+def security_txt():
+    return send_from_directory('static/.well-known', 'security.txt')

@@ -183,6 +183,7 @@
           <article id="ProfilLeftChanchPass" class="ProfilOb">
             <div class="ProfilTitle"><h1>Изменение пароля</h1></div>
             <form id="ProfilMainPass" method="POST">
+              {{ form.hidden_tag() }}
               <div id="ProfilInpsPass">
                 <div id="ProfilFInpPass" class="ProfilInpPass">
                   <label for="" class="ProfilLabels">Новый пароль</label>
@@ -232,6 +233,7 @@
           <article id="ProfilLeftChanchInfo" class="ProfilOb">
             <div class="ProfilTitle"><h1>Изменение информации</h1></div>
             <form id="ProfilSplit" method="post">
+              {{ form.hidden_tag() }}
               <div id="ProfilChangeInfoDivInp">
                 <div class="ProfilDivImgs">
                   <img
@@ -307,6 +309,7 @@
                   <button id="ProfilBthAddAdd"><span>Добавить</span></button>
                 </div>
                 <form id="ProfilAddMain" method="POST">
+                  {{ form.hidden_tag() }}
                   {% for address in user.addresses %}
                   <div id="address-{{ address.id }}">
                     <div id="ProfilAddDivMain">
