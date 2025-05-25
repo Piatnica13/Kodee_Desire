@@ -1,5 +1,6 @@
 from main import app, db, add_admin
 from init import allProducts
+from models import Person, Product, Product_image, Address
 
 #Запуск
 if __name__ == "__main__":
