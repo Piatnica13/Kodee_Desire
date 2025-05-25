@@ -1,12 +1,13 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, redirect, session, flash, jsonify, send_from_directory
 from sqlalchemy.orm.attributes import flag_modified
-from models import db, Address, Person, Product
+from models import db, Address, Person, Product, Product_image
 from log import setup_logging
 from dotenv import load_dotenv
 from functools import wraps
 from flask_wtf import CSRFProtect
 from forms import LoginForm, RegisterForm, ProfilMainPassForm, ProfilSplitForm, ProfilAddSplit, ProfilAddressForm
+from init import allProducts
 import os
 import psycopg2
 
@@ -665,3 +666,10 @@ def method_not_allowed(error):
 def internal_server_error(error):
     app.logger.error(f"Ошибка 500: {error}")
     return render_template('error.html', code=500, title="Ошибка сервера", message="Что-то пошло не так на сервере. Повторите попытку"), 500
+
+
+# Создание всех таблиц и добавление админа
+with app.app_context():
+    db.create_all()
+    allProducts()
+    add_admin()
