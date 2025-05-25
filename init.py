@@ -1,9 +1,8 @@
 from slugify import slugify
-from main import app, db
 from models import Product, Product_image
 
 # ДОБАВЛЕНИЕ ВСЕЙ ПРОДУКЦИИ В БД
-def allProducts():
+def allProducts(db, app):
     def addProducts(product: Product):
         chekProduct = Product.query.filter_by(name=product.name).first()
         if chekProduct:

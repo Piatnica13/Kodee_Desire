@@ -671,5 +671,5 @@ def internal_server_error(error):
 # Создание всех таблиц и добавление админа
 with app.app_context():
     db.create_all()
-    allProducts()
+    allProducts(db, app)
     add_admin()
