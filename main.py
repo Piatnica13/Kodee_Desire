@@ -18,17 +18,9 @@ app.logger.info("Flask-приложение создано.")
 load_dotenv('password.env')
 app.logger.info("Файл .env загружен.")
 
-# скрипт для pythonanywhere
 # Подключение базы данных
-pyPassword = os.getenv("PYTHONANYWHERE")
-# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-#     username="Piatnica13",
-#     password=f"{pyPassword}",
-#     hostname="Piatnica13.mysql.pythonanywhere-services.com",
-#     databasename="Piatnica13$Kodee_Desire",
-# )
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
+pyPassword = os.getenv("POSTGRESSQL")
+app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
 
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_pre_ping': True
