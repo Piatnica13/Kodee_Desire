@@ -8,7 +8,7 @@ from functools import wraps
 from flask_wtf import CSRFProtect
 from forms import LoginForm, RegisterForm, ProfilMainPassForm, ProfilSplitForm, ProfilAddSplit, ProfilAddressForm
 import os
-
+import psycopg2
 
 # Создание flask приложения
 app = Flask(__name__)
@@ -27,7 +27,7 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
 }
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.logger.info("Настройки базы данных заданы (Lite).")
+app.logger.info("Настройки базы данных заданы (POSTGRES).")
 
 # Создание ключа
 app.secret_key = os.getenv("SECRET_KEY")
