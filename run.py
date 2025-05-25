@@ -8,4 +8,4 @@ if __name__ == "__main__":
         allProducts()
         add_admin()
     app.logger.info("Запуск с run.")
-    app.run()
+    # app.run()

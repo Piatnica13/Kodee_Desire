@@ -5,31 +5,30 @@ from models import Product, Product_image
 # ДОБАВЛЕНИЕ ВСЕЙ ПРОДУКЦИИ В БД
 def allProducts():
     def addProducts(product: Product):
-        with app.app_context():
-            chekProduct = Product.query.filter_by(name=product.name).first()
-            if chekProduct:
-                app.logger.debug(f"Продукт '{product.name}' уже есть в базе.")
-                return
+        chekProduct = Product.query.filter_by(name=product.name).first()
+        if chekProduct:
+            app.logger.debug(f"Продукт '{product.name}' уже есть в базе.")
+            return
 
-            try:
-                db.session.add(product)
-                db.session.commit()
-                app.logger.info(f"Добавлен продукт: {product.name}")
-            except Exception as e:
-                app.logger.error(f"Ошибка при добавлении продукта '{product.name}': {str(e)}")
-                return
+        try:
+            db.session.add(product)
+            db.session.commit()
+            app.logger.info(f"Добавлен продукт: {product.name}")
+        except Exception as e:
+            app.logger.error(f"Ошибка при добавлении продукта '{product.name}': {str(e)}")
+            return
 
-            try:
-                imagePak1 = Product_image(1, product.id, f"/static/image/productImgs/{product.slug}/img1.webp")
-                imagePak2 = Product_image(2, product.id, f"/static/image/productImgs/{product.slug}/img2.webp")
-                imagePak3 = Product_image(3, product.id, f"/static/image/productImgs/{product.slug}/img3.webp")
-                imagePak4 = Product_image(4, product.id, f"/static/image/productImgs/{product.slug}/img4.webp")
+        try:
+            imagePak1 = Product_image(1, product.id, f"/static/image/productImgs/{product.slug}/img1.webp")
+            imagePak2 = Product_image(2, product.id, f"/static/image/productImgs/{product.slug}/img2.webp")
+            imagePak3 = Product_image(3, product.id, f"/static/image/productImgs/{product.slug}/img3.webp")
+            imagePak4 = Product_image(4, product.id, f"/static/image/productImgs/{product.slug}/img4.webp")
 
-                db.session.add_all([imagePak1, imagePak2, imagePak3, imagePak4])
-                db.session.commit()
-                app.logger.info(f"Изображения для продукта '{product.name}' успешно добавлены.")
-            except Exception as e:
-                app.logger.error(f"Ошибка при добавлении изображений для продукта '{product.name}': {str(e)}")
+            db.session.add_all([imagePak1, imagePak2, imagePak3, imagePak4])
+            db.session.commit()
+            app.logger.info(f"Изображения для продукта '{product.name}' успешно добавлены.")
+        except Exception as e:
+            app.logger.error(f"Ошибка при добавлении изображений для продукта '{product.name}': {str(e)}")
 
 
     addProducts(Product(name="Кулон «Бесконечность»", price=28500, concept="Мир и свобода", category="Кулон", descriptions="Кулон «Бесконечность» - Символ бесконечности отражает постоянство, силу духа и неограниченные возможности. Этот знак напоминает, что в мире нет границ для тех, кто верит в себя. Он поможет своему владельцу обрести гармонию, мудрость и вдохновение на новые достижения.", slug=slugify("Бесконечность")))
