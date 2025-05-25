@@ -54,6 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
         inShowPage()
     });
 
+    window.addEventListener("pageshow", () =>{
+        showMainContainer(menu)
+    })
+
     // При переходе на страницу, переход происходит не сразу
     document.addEventListener("click", function(e){
         let link = e.target.closest("a");

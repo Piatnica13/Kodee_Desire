@@ -30,6 +30,10 @@ pyPassword = os.getenv("PYTHONANYWHERE")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_pre_ping': True
+}
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.logger.info("Настройки базы данных заданы (Lite).")
 
@@ -617,15 +621,55 @@ def product(slug):
         return render_template('product.html', product=product, user='', address='', favarite='')
     
 
+# ВСЕ СЕРВЕРНЫЕ МОМЕНТЫ
 @app.after_request
 def apply_security_headers(response):
     # response.headers['Content-Security-Policy'] = "default-src 'self'; script-src 'self'"
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
-    response.headers['Referrer-Policy'] = 'no-referrer'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     response.headers['X-Frame-Options'] = 'DENY'
     return response
 
 @app.route('/.well-known/security.txt')
 def security_txt():
     return send_from_directory('static/.well-known', 'security.txt')
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory('static', 'robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
+
+# ОБРАБОТКА ОШИБОК
+@app.errorhandler(400)
+def bad_request(error):
+    app.logger.error(f"Ошибка 400: {error}")
+    return render_template('error.html', code=400, title="Некорректный запрос", message="Похоже, вы отправили неправильные данные."), 400
+
+@app.errorhandler(401)
+def unauthorized(error):
+    app.logger.error(f"Ошибка 401: {error}")
+    return render_template('error.html', code=401, title="Не авторизован", message="Доступ доступен только после входа."), 401
+
+@app.errorhandler(403)
+def forbidden(error):
+    app.logger.error(f"Ошибка 403: {error}")
+    return render_template('error.html', code=403, title="Доступ запрещён", message="У вас нет прав на просмотр этой страницы."), 403
+
+@app.errorhandler(404)
+def page_not_found(error):
+    app.logger.error(f"Ошибка 404: {error}")
+    return render_template('error.html', code=404, title="Страница не найдена", message="Упс! Мы не смогли найти такую страницу."), 404
+
+@app.errorhandler(405)
+def method_not_allowed(error):
+    app.logger.error(f"Ошибка 405: {error}")
+    return render_template('error.html', code=405, title="Метод не разрешён", message="Этот метод не поддерживается для данного ресурса."), 405
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    app.logger.error(f"Ошибка 500: {error}")
+    return render_template('error.html', code=500, title="Ошибка сервера", message="Что-то пошло не так на сервере. Повторите попытку"), 500
