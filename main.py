@@ -10,6 +10,7 @@ from forms import LoginForm, RegisterForm, ProfilMainPassForm, ProfilSplitForm, 
 from init import allProducts
 import os
 import psycopg2
+from flask_cors import CORS
 
 # Создание flask приложения
 app = Flask(__name__)
@@ -21,7 +22,9 @@ app.logger.info("Файл .env загружен.")
 
 # Подключение базы данных
 pyPassword = os.getenv("POSTGRESSQL")
-app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
+# app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
+
 
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_pre_ping': True
@@ -52,6 +55,10 @@ app.config.update(
     SESSION_COOKIE_SAMESITE='Lax'    # Защита от CSRF
 )
 app.logger.info("Cookie настроено")
+
+# IOS Безопасность
+CORS(app, supports_credentials=True, origins=["https://kodee.kz"])
+
 
 # Главный маршрут
 @app.route('/')
@@ -187,167 +194,183 @@ def basket():
     return render_template('basket.html', basket=products, user=user, form=form)
 
 # Добавление товара в корзину
-@app.route('/add_basket', methods=['POST'])
+@app.route('/add_basket', methods=['POST', 'OPTIONS'])
 def add_basket():
-    app.logger.debug("Обработка запроса к /add_basket.")
+    if request.method == 'OPTIONS':
+        app.logger.debug("Получен OPTIONS запрос на /add_basket.")
+        return jsonify(), 200
+    elif request.method == 'POST':
+        app.logger.debug("Обработка запроса к /add_basket.")
 
-    try:
-        data = request.get_json()
-        color = data.get('color')
-        size = data.get('size')
-        material = data.get('material')
-        product_id = data.get('product_id')
+        try:
+            data = request.get_json()
+            color = data.get('color')
+            size = data.get('size')
+            material = data.get('material')
+            product_id = data.get('product_id')
 
-        app.logger.debug(f"Данные из запроса: product_id={product_id}, color={color}, size={size}, material={material}")
+            app.logger.debug(f"Данные из запроса: product_id={product_id}, color={color}, size={size}, material={material}")
 
-        user_id = session.get('user_id')
-        if not user_id:
-            app.logger.warning("Попытка добавить товар в корзину без авторизации.")
-            return jsonify({"success": False, "error": "Пользователь не авторизован"})
+            user_id = session.get('user_id')
+            if not user_id:
+                app.logger.warning("Попытка добавить товар в корзину без авторизации.")
+                return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-        user = Person.query.get(int(user_id))
-        if not user:
-            app.logger.error(f"Пользователь с ID {user_id} не найден.")
-            return jsonify({"success": False, "error": "Пользователь не найден"})
+            user = Person.query.get(int(user_id))
+            if not user:
+                app.logger.error(f"Пользователь с ID {user_id} не найден.")
+                return jsonify({"success": False, "error": "Пользователь не найден"})
 
-        for i in user.basket:
-            if product_id == i[0]:
-                app.logger.info(f"Товар ID {product_id} уже в корзине пользователя ID {user.id}.")
-                return jsonify({"success": False, "error": "Товар уже в корзине"})
+            for i in user.basket:
+                if product_id == i[0]:
+                    app.logger.info(f"Товар ID {product_id} уже в корзине пользователя ID {user.id}.")
+                    return jsonify({"success": False, "error": "Товар уже в корзине"})
 
-        user.basket.append([product_id, color, size, material])
-        flag_modified(user, "basket")
-        db.session.commit()
+            user.basket.append([product_id, color, size, material])
+            flag_modified(user, "basket")
+            db.session.commit()
 
-        app.logger.info(f"Пользователь ID {user.id} добавил товар ID {product_id} в корзину.")
-        return jsonify({"success": True, "message": "Товар успешно добавлен в корзину"})
+            app.logger.info(f"Пользователь ID {user.id} добавил товар ID {product_id} в корзину.")
+            return jsonify({"success": True, "message": "Товар успешно добавлен в корзину"})
 
-    except Exception as e:
-        app.logger.error(f"Ошибка при добавлении товара в корзину: {str(e)}")
-        return jsonify({"success": False, "error": "Ошибка сервера"})
+        except Exception as e:
+            app.logger.error(f"Ошибка при добавлении товара в корзину: {str(e)}")
+            return jsonify({"success": False, "error": "Ошибка сервера"})
 
 # Удаление товара из корзины
-@app.route('/delete_basket', methods=['POST'])
+@app.route('/delete_basket', methods=['POST', 'OPTIONS'])
 def delete_basket():
-    app.logger.debug("Обработка запроса к /delete_basket.")
+    if request.method == 'OPTIONS':
+        app.logger.debug("Получен OPTIONS запрос на /delete_basket.")
+        return jsonify(), 200
+    elif request.method == 'POST':
+        app.logger.debug("Обработка запроса к /delete_basket.")
 
-    try:
-        data = request.get_json()
-        product_id = data.get("product_id")
-        app.logger.debug(f"Получен product_id для удаления: {product_id}")
+        try:
+            data = request.get_json()
+            product_id = data.get("product_id")
+            app.logger.debug(f"Получен product_id для удаления: {product_id}")
 
-        user_id = session.get("user_id")
-        if not user_id:
-            app.logger.warning("Попытка удалить товар из корзины без авторизации.")
-            return jsonify({"success": False, "error": "Пользователь не авторизован"})
+            user_id = session.get("user_id")
+            if not user_id:
+                app.logger.warning("Попытка удалить товар из корзины без авторизации.")
+                return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-        user = Person.query.filter_by(id=user_id).first()
-        if not user:
-            app.logger.error(f"Пользователь с ID {user_id} не найден.")
-            return jsonify({"success": False, "error": "Пользователь не найден"})
+            user = Person.query.filter_by(id=user_id).first()
+            if not user:
+                app.logger.error(f"Пользователь с ID {user_id} не найден.")
+                return jsonify({"success": False, "error": "Пользователь не найден"})
 
-        old_len = len(user.basket)
-        user.basket = [item for item in user.basket if item[0] != product_id]
-        db.session.add(user)
-        db.session.commit()
-        new_len = len(user.basket)
+            old_len = len(user.basket)
+            user.basket = [item for item in user.basket if item[0] != product_id]
+            db.session.add(user)
+            db.session.commit()
+            new_len = len(user.basket)
 
-        if new_len < old_len:
-            app.logger.info(f"Пользователь ID {user.id} удалил товар ID {product_id} из корзины.")
-        else:
-            app.logger.warning(f"Товар ID {product_id} не найден в корзине пользователя ID {user.id}.")
+            if new_len < old_len:
+                app.logger.info(f"Пользователь ID {user.id} удалил товар ID {product_id} из корзины.")
+            else:
+                app.logger.warning(f"Товар ID {product_id} не найден в корзине пользователя ID {user.id}.")
 
-        return jsonify({"success": True, "message": "Товар успешно удален"})
+            return jsonify({"success": True, "message": "Товар успешно удален"})
 
-    except Exception as e:
-        app.logger.error(f"Ошибка при удалении товара из корзины: {str(e)}")
-        return jsonify({"success": False, "error": "Ошибка сервера"})
+        except Exception as e:
+            app.logger.error(f"Ошибка при удалении товара из корзины: {str(e)}")
+            return jsonify({"success": False, "error": "Ошибка сервера"})
 #
 
 # ДОБАВЛЕНИЕ АДРЕСА
-@app.route('/add_address', methods=["POST"])
+@app.route('/add_address', methods=["POST", "OPTIONS"])
 def addAddress():
-    app.logger.debug("Обработка запроса на добавление адреса.")
+    if request.method == 'OPTIONS':
+        app.logger.debug("Получен OPTIONS запрос на /add_address.")
+        return jsonify(), 200
+    elif request.method == 'POST':
+        app.logger.debug("Обработка запроса на добавление адреса.")
 
-    try:
-        data = request.get_json()
-        name = data.get("name")
-        city = data.get("city")
-        street = data.get("street")
-        home = data.get("home")
-        flat = data.get("flat")
-        person_id = session.get("user_id")
+        try:
+            data = request.get_json()
+            name = data.get("name")
+            city = data.get("city")
+            street = data.get("street")
+            home = data.get("home")
+            flat = data.get("flat")
+            person_id = session.get("user_id")
 
-        if not person_id:
-            app.logger.warning("Добавление адреса без авторизации.")
-            return jsonify({"success": False, "error": "Пользователь не авторизован"})
+            if not person_id:
+                app.logger.warning("Добавление адреса без авторизации.")
+                return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-        if not city or not street or not home:
-            app.logger.warning("Не все обязательные поля заполнены при добавлении адреса.")
-            return jsonify({"success": False, "error": "Не все обязательные поля заполнены"})
+            if not city or not street or not home:
+                app.logger.warning("Не все обязательные поля заполнены при добавлении адреса.")
+                return jsonify({"success": False, "error": "Не все обязательные поля заполнены"})
 
-        new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
-        db.session.add(new_address)
-        db.session.commit()
-        app.logger.info(f"Добавлен новый адрес для пользователя ID {person_id}.")
-
-        address_count = Address.query.filter_by(person_id=person_id).count()
-        if address_count == 1:
-            user = Person.query.get(person_id)
-            user.address = f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
+            new_address = Address(name=name, city=city, street=street, home=home, flat=flat, person_id=person_id)
+            db.session.add(new_address)
             db.session.commit()
-            app.logger.debug(f"Основной адрес установлен для пользователя ID {person_id}.")
+            app.logger.info(f"Добавлен новый адрес для пользователя ID {person_id}.")
 
-        return jsonify({
-            "success": True,
-            "message": "Адрес успешно добавлен",
-            "address": f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
-        })
+            address_count = Address.query.filter_by(person_id=person_id).count()
+            if address_count == 1:
+                user = Person.query.get(person_id)
+                user.address = f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
+                db.session.commit()
+                app.logger.debug(f"Основной адрес установлен для пользователя ID {person_id}.")
 
-    except Exception as e:
-        app.logger.error(f"Ошибка при добавлении адреса: {str(e)}")
-        return jsonify({"success": False, "error": "Ошибка сервера"})
+            return jsonify({
+                "success": True,
+                "message": "Адрес успешно добавлен",
+                "address": f"г.{new_address.city} ул.{new_address.street} д.{new_address.home} кв.{new_address.flat}"
+            })
+
+        except Exception as e:
+            app.logger.error(f"Ошибка при добавлении адреса: {str(e)}")
+            return jsonify({"success": False, "error": "Ошибка сервера"})
 
 
 # ДОБАВЛЕНИЕ ИЛИ УДАЛЕНИЕ ИЗБРАННОГО
-@app.route('/add_favorite', methods=['POST'])
+@app.route('/add_favorite', methods=['POST', 'OPTIONS'])
 def add_favorite():
-    app.logger.debug("Обработка запроса на добавление в избранное.")
+    if request.method == 'OPTIONS':
+        app.logger.debug("Получен OPTIONS запрос на /add_favorite.")
+        return jsonify(), 200
+    elif request.method == 'POST':
+        app.logger.debug("Обработка запроса на добавление в избранное.")
 
-    try:
-        data = request.get_json()
-        user_id = session.get('user_id')
-        if not user_id:
-            app.logger.warning("Попытка работы с избранным без авторизации.")
-            return jsonify({"success": False, "error": "Пользователь не авторизован"})
+        try:
+            data = request.get_json()
+            user_id = session.get('user_id')
+            if not user_id:
+                app.logger.warning("Попытка работы с избранным без авторизации.")
+                return jsonify({"success": False, "error": "Пользователь не авторизован"})
 
-        user = Person.query.get(int(user_id))
-        product_id = data.get("product_id")
+            user = Person.query.get(int(user_id))
+            product_id = data.get("product_id")
 
-        if not product_id:
-            app.logger.warning("Нет product_id в запросе избранного.")
-            return jsonify({"success": False, "error": "Товар не найден"})
+            if not product_id:
+                app.logger.warning("Нет product_id в запросе избранного.")
+                return jsonify({"success": False, "error": "Товар не найден"})
 
-        if product_id in user.favourites:
-            user.favourites = [pid for pid in user.favourites if pid != product_id]
-            message = "Товар удален из избранных"
-            app.logger.info(f"Товар ID {product_id} удалён из избранного пользователя ID {user_id}.")
-        else:
-            favs = user.favourites
-            favs = favs + [product_id]
-            user.favourites = favs
-            
-            message = "Товар добавлен в избранные"
-            app.logger.info(f"Товар ID {product_id} добавлен в избранное пользователя ID {user_id}.")
+            if product_id in user.favourites:
+                user.favourites = [pid for pid in user.favourites if pid != product_id]
+                message = "Товар удален из избранных"
+                app.logger.info(f"Товар ID {product_id} удалён из избранного пользователя ID {user_id}.")
+            else:
+                favs = user.favourites
+                favs = favs + [product_id]
+                user.favourites = favs
 
-        db.session.add(user)
-        db.session.commit()
+                message = "Товар добавлен в избранные"
+                app.logger.info(f"Товар ID {product_id} добавлен в избранное пользователя ID {user_id}.")
 
-        return jsonify({"success": True, "message": message})
+            db.session.add(user)
+            db.session.commit()
 
-    except Exception as e:
-        app.logger.error(f"Ошибка при работе с избранным: {str(e)}")
-        return jsonify({"success": False, "error": "Ошибка сервера"})    
+            return jsonify({"success": True, "message": message})
+
+        except Exception as e:
+            app.logger.error(f"Ошибка при работе с избранным: {str(e)}")
+            return jsonify({"success": False, "error": "Ошибка сервера"})    
 
 
 # ПЕРЕДАЧА ВСЕХ ТОВАРОВ В JS
@@ -453,7 +476,7 @@ def individual_order():
 
 
 # РЕГИСТРАЦИЯ
-@app.route('/register', methods=['POST', 'GET'])
+@app.route('/register', methods=['POST', 'GET', 'OPTIONS'])
 def register():
     form = RegisterForm()
     errors = {}
@@ -491,14 +514,17 @@ def register():
         except Exception as e:
             app.logger.error(f"Ошибка при регистрации пользователя {email}: {str(e)}")
             return render_template("index.html", messageNoReg=True)
-    else:
+    elif request.method == "GET":
         app.logger.debug("Открыта страница регистрации.")
         return render_template('register.html', errors=errors, messageNoReg=True, form=form)
+    elif request.method == 'OPTIONS':
+        app.logger.debug("Получен OPTIONS запрос на /register.")
+        return jsonify(), 200
 
 
 
 # ВХОД В АККАУНТ
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET', 'OPTIONS'])
 def login():
     form = LoginForm()
     errors = {}
@@ -537,9 +563,12 @@ def login():
             errors["comparisons"] = "Ошибка ввода, неправильно введен пароль или email"
             app.logger.warning(f"Неудачная попытка входа: {email}")
             return render_template("login.html", errors=errors, messageForNoLog=True, form=form)
-    else:
+    elif request.method == 'GET':
         app.logger.debug("Открыта страница входа.")
         return render_template('login.html', errors=errors, messageForNoLog=True, form=form)
+    elif request.method == 'OPTIONS':
+        app.logger.debug("Получен OPTIONS запрос на /login.")
+        return jsonify(), 200
 
 
 # ВЫХОД ИЗ АККАУНТА
@@ -617,11 +646,18 @@ def product(slug):
 # ВСЕ СЕРВЕРНЫЕ МОМЕНТЫ
 @app.after_request
 def apply_security_headers(response):
-    # response.headers['Content-Security-Policy'] = "default-src 'self'; script-src 'self'"
+    # Безопасность
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     response.headers['X-Frame-Options'] = 'DENY'
+    
+    # Если хочешь явно указать CORS-заголовки вручную (иногда нужно)
+    response.headers['Access-Control-Allow-Origin'] = 'https://kodee.kz'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    
     return response
 
 @app.route('/.well-known/security.txt')
@@ -673,3 +709,5 @@ with app.app_context():
     db.create_all()
     allProducts(db, app)
     add_admin()
+if __name__ == '__main__':
+    app.run(debug=True)

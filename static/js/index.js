@@ -214,13 +214,10 @@ function autoScroll() {
     if (con6.scrollLeft >= (con6.scrollWidth) / 1.988) {
         con6.scrollLeft = 0; // сбрасываем плавно, без скачков
     }
-    setTimeout(() => {
-        autoScroll()
-        
-    }, 20);
 }
-
-autoScroll();
+setInterval(() => {
+    autoScroll();
+}, 20);
 
 // Contener 7
 function con4resize() {

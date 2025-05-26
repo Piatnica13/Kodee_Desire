@@ -48,6 +48,7 @@ function urlBth(product, user_name, city, street, home) {
     let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
     fetch('/add_basket', {
       method: "POST",
+      credentials: "include",
       headers: { 
         "Content-Type": "application/json",
         "X-CSRFToken": token
@@ -182,6 +183,7 @@ function BthLikes() {
   let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
   fetch("/add_favorite", {
     method: "POST",
+    credentials: "include",
     headers: { 
       "Content-Type": "application/json",
       "X-CSRFToken": token

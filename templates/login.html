@@ -16,7 +16,7 @@
     <article>
       <h1 id="MainText">ВХОД</h1>
     </article>
-    <form method="post" id="loginForm">
+    <form method="post" id="loginForm" action="/login" autocomplete="on">
       {{ form.hidden_tag() }}
       <div id="UserInp">
         <article class="ImgInp">
@@ -26,6 +26,8 @@
             class="ImgInInput"
           />
           <input
+            autocomplete="email"
+            required
             type="email"
             placeholder="Email"
             id="email"
@@ -42,6 +44,8 @@
           <input
             type="password"
             placeholder="Password"
+            autocomplete="current-password"
+            required
             id="InpPass"
             name="password"
             class="test {%if errors.get('error') or errors.get('comparisons') or errors.get('len') %}loginError{% endif %}"

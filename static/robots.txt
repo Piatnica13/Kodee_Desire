@@ -1,3 +1,3 @@
 User-agent: *
 Disallow: /admin
-Sitemap: https://yourdomain.com/sitemap.xml 
+Sitemap: https://kodee.kz/sitemap.xml 

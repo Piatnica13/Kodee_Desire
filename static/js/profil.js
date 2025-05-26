@@ -239,6 +239,7 @@ bthAdd.addEventListener("click", () => {
 
     fetch('/add_address', {
         method: "POST",
+        credentials: "include",
         headers: { 
             "Content-Type": "application/json",
             "X-CSRFToken": token

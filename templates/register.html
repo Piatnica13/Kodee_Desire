@@ -24,7 +24,7 @@
     <article>
       <h1 id="MainText">РЕГИСТРАЦИЯ</h1>
     </article>
-    <form method="post" id="regForm">
+    <form method="post" id="regForm" action="/register" autocomplete="on">
       {{ form.hidden_tag() }}
       <div id="UserInp">
         <article class="ImgInp">
@@ -39,6 +39,8 @@
             name="name"
             alt="Name"
             placeholder="Name"
+            autocomplete="username"
+            required
           />
         </article>
         <article class="ImgInp">
@@ -53,6 +55,8 @@
             name="email"
             placeholder="Email"
             id="email"
+            autocomplete="email"
+            required
           />
         </article>
         <article class="ImgInp">
@@ -63,6 +67,8 @@
           />
           <input
             type="password"
+            autocomplete="password"
+            required
             id="password"
             name="password"
             placeholder="Password"

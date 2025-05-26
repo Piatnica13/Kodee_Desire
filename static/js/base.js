@@ -64,6 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if(link && link.href && link.target !== "_blank" && link.href.indexOf("javascript:") !== 0){
             e.preventDefault();
             inShowPage();
+            if (checkboxMain.checked == true){
+            checkboxMain.checked = false;
+            checkboxmainn()
+            handleScroll()
+            }
             setTimeout(() => {
                 window.location.href = link.href;
             }, 500);
@@ -152,7 +157,7 @@ function updateSecondBlockPosition() {
     const firstBlockHeight = MainContener.offsetHeight; // Высота контейнера
     const windowHeight = window.innerHeight; // Высота окна
 
-    if (windowHeight - 230 > firstBlockHeight) {
+    if (windowHeight - 217 > firstBlockHeight) {
         footerBlock.style.position = 'fixed';
         footerBlock.style.bottom = '0';
         footerBlock.style.left = '0';

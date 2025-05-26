@@ -152,6 +152,7 @@ function Like(event){
     
     fetch('/add_favorite', {
         method: "POST",
+        credentials: "include",
         headers: { 
             'Content-Type': 'application/json',
             "X-CSRFToken": token
@@ -194,6 +195,7 @@ function deleteFunc(){
 
     fetch("/delete_basket", {
         method: "POST",
+        credentials: "include",
         headers: { 
             'Content-Type': 'application/json',
             "X-CSRFToken": token },
@@ -317,6 +319,7 @@ bthAdd.addEventListener('click', ()=>{
 
     fetch('/add_address', {
         method: "POST",
+        credentials: "include",
         headers: { 
             "Content-Type": "application/json",
             "X-CSRFToken": token
