@@ -22,8 +22,8 @@ app.logger.info("Файл .env загружен.")
 
 # Подключение базы данных
 pyPassword = os.getenv("POSTGRESSQL")
-app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
+# app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 
 
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
@@ -709,5 +709,5 @@ with app.app_context():
     db.create_all()
     allProducts(db, app)
     add_admin()
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
