@@ -1,6 +1,6 @@
 /.vscode
 config.json
-.env
+env
 *.db
 plans.txt
 password.env
