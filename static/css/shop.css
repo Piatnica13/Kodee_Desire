@@ -122,7 +122,7 @@
     position: relative;
 }
 .product-title{
-    height: 100px !important;
+    height: 100px;
     display: flex;
     overflow-wrap: anywhere;
     position: relative;

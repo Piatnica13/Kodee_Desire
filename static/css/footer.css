@@ -62,7 +62,6 @@
     flex-direction: column;
 }
 .FuterBlocks a{
-    transition: color 0.2s ease-in-out;
     color: var(--white);
     text-decoration: none;
 }

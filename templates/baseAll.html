@@ -180,23 +180,24 @@
 
   <body>
     <section id="theme">
-      <label
-        href="/admin/deshboard"
+      <div
         style="
           width: 50px;
           height: 50px;
           position: fixed;
           bottom: 15%;
           right: 10%;
-          z-index: 1000;
+          z-index: 1005;
           border-radius: 50%;
           background-color: var(--add-bg);
-          display: flex;
+          display: none;
           justify-content: center;
           align-items: center;
           box-shadow: 0 0 15px var(--grey);
           transition: background 0.5s ease-in-out;
         "
+        ,
+        id="switchTheme"
       >
         <img
           src="/static/icon/black/sun.png"
@@ -210,7 +211,7 @@
           alt="Темная тема"
           id="bthDark"
         />
-      </label>
+      </div>
     </section>
 
     <section id="divMessegeBox"></section>

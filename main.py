@@ -641,7 +641,26 @@ def product(slug):
         return render_template('product.html', product=product, user=person, address=address, favarite=person.favourites)
     else:
         return render_template('product.html', product=product, user='', address='', favarite='')
-    
+
+
+# ВЫВОД ПРОДУКТОВ
+@app.route('/api/products')
+def get_product():
+    products = Product.query.all()
+    product_data = [
+        {
+        "id": p.id,
+        "name": p.name,
+        "price": p.price,
+        "concept": p.concept,
+        "category": p.category,
+        "image": p.image(),
+        "slug": p.slug
+        }
+        for p in products
+    ]
+    return jsonify(product_data)
+
 
 # ВСЕ СЕРВЕРНЫЕ МОМЕНТЫ
 @app.after_request

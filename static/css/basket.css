@@ -89,7 +89,7 @@
     background-color: var(--main-bg); 
     border-radius: 6px; /* Закругление углов */
     border: 2px solid var(--add-bg); /* Полоса вокруг ползунка */
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color ss ease-in-out;
 }
 /* Изменение цвета при наведении */
 .basketNoCheckboxImg::-webkit-scrollbar-thumb:hover {
@@ -98,13 +98,14 @@
 .productImgs{
     display: flex;
     flex-direction: column;
+    opacity: 1;
 }
 .productImg{
     width: 50px;
-    opacity: 0.8;
     z-index: 10;
     cursor: pointer;
     position: absolute;
+    transition: opacity 0s ease-in-out !important;
 }
 .basketproductImg{
     width: 100%;
@@ -152,11 +153,9 @@
 }
 .basketLike{
     opacity: 0;
-    transition: opcity 0.3s ease-in-out
 }
 .basketNoLike{
     opacity: 1;
-    transition: opcity 0.3s ease-in-out
 }
 .basketObertka3{
     width: 100%;
@@ -268,8 +267,6 @@
     }
     .productImg{
         width: 25px;
-        opacity: 0.8;
-        
     }    
     .customCheckbox span {
         width: 20px !important;

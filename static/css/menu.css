@@ -68,7 +68,7 @@ body{
   bottom: 0px;
   height: 0px;
   overflow: hidden; /* Скрытие содержимого при уменьшении высоты */
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out, color 0.5s ease-in-out, background-color 0.5s ease-in-out;
   z-index: 1;
   display: flex;
 }
@@ -82,6 +82,7 @@ body{
   top: 50%; /* Ставим в центр */
   left: 330px;/* Привязываем к правой стороне */
   transform: translateY(-50%); /* Смещаем вверх на половину высоты */
+  transition: background-color 0.5s ease-in-out;
   width: 1px; /* Толщина борта */
   height: 100%; /* Общая высота борта (50px вверх и 50px вниз от центра) */
   background-color: var(--add-bg); /* Цвет борта */
@@ -413,7 +414,7 @@ nav ul li{
 .test{
   position: relative;
 }
-.product-title{
+.product-title-menu{
   height: 50px;
   position: relative;
   margin: 10px 0px 0px 0px;

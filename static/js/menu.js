@@ -59,8 +59,10 @@ function checkboxmainn(){
         line1.style.transform = "rotate(45deg)";
         line2.style.transform = "scaleY(0)";
         line3.style.transform = "rotate(-45deg)";
+        switchTheme.style.display = "flex";
     }
     else{
+        
         chetPodMenu = false;
         PodMenu.style.height = `0px`;
         if (window.innerWidth <= 767){
@@ -70,11 +72,14 @@ function checkboxmainn(){
         }
         else{
             PodMenu.style.height = `0px`; 
+            PodMenuPh.style.opacity = "0";
+            body.style.opacity =  "1";
         }
         line1.style.transform = "rotate(0deg)";
         line2.style.transform = "scaleY(1)";
         line3.style.transform = "rotate(0deg)";
         PodMenuPh.style.pointerEvents = "none";
+        switchTheme.style.display = "none";
 
         checkboxMain.checked = false;
     }
@@ -103,7 +108,9 @@ function checkWidth() {
     else if (docHeight <=500){
         px100Height.style.height = '125px';
     }
-
+    if(chetPodMenu == true){
+        checkboxmainn()
+    }
     WidthPoisk();
 }
 function WidthPoisk(){
@@ -193,17 +200,17 @@ menuInp.addEventListener("input", () => {
                     productDiv.classList.add("menuProductDiv");
                     productDiv.innerHTML = `
                       <div class="product-card">
-                        <img src="${product.image}" alt="${product.name}" class="product-imagee">
-                        <p class="product-title">${product.name}</p>
-                        <div class="test">
-                          <p class="product-price">${product.price}тг</p>
-                          <a href="/product/${product.slug}" style="color: var(--black)">
-                          <div class="DivInfo">
-                            <img src="/static/icon/black/sumka.png" data-icon="sumka.png" class="Con2Icon" alt="Сумка">
-                            <p class="BthInfo"><ins>Подробнее</ins></p>
+                        <a href="/product/${product.slug}" style="color: var(--black)">
+                          <img src="${product.image}" alt="${product.name}" class="product-imagee">
+                          <p class="product-title-menu">${product.name}</p>
+                          <div class="test">
+                            <p class="product-price">${product.price}тг</p>
+                            <div class="DivInfo">
+                              <img src="/static/icon/black/sumka.png" data-icon="sumka.png" class="Con2Icon" alt="Сумка">
+                              <p class="BthInfo"><ins>Подробнее</ins></p>
+                            </div>
                           </div>
-                          </a>
-                        </div>
+                        </a>
                       </div>
                     `;
                     menuDiv.appendChild(productDiv);

@@ -50,13 +50,13 @@
               data-icon="delete.png"
             />
           </article>
-          <div class="basketproductImg">
+          <a class="basketproductImg" href="product/{{ product.slug }}">
             <img
               src="/static/image/productImgs/{{ product.slug }}/img1.webp"
               class="basketproductImgs"
               alt="Продукция"
             />
-          </div>
+          </a>
           <input
             type="hidden"
             id="basketFavoriteProduct"

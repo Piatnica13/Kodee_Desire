@@ -75,6 +75,9 @@ input[type="text"]:focus{
     align-items: center;
     transition: opacity 1s ease-in-out;
 }
+p, a, div, article, img{
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out, border 0.5s ease-in-out, before 0.5s ease-in-out;
+}
 #menu-placeholder{
     position: absolute;
     top: 0px;

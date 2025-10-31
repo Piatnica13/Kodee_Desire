@@ -210,28 +210,17 @@ function BthLikes() {
 BthLike.addEventListener('click', BthLikes)
 
 function FuncBthGetLike(){
-  BthLike.style.transition = `opacity 0s ease-in-out`;
-  BthLike.style.opacity = "0";
-  BthLike.style.transition = `opacity 0.25s ease-in-out`;
   BthLike.style.display = "flex";
   BthGetLike.style.opacity = "0";
-  setTimeout(() => {
-    BthLike.style.opacity = "1";
-  }, 10);
-  setTimeout(() => {
-    BthGetLike.style.display = "none";
-  }, 200);
+  BthLike.style.opacity = "1";
+  BthGetLike.style.display = "none";
 }
 
 function FuncBthLike() {
   BthLike.style.opacity = "0";
   BthGetLike.style.display = "flex";
-  setTimeout(() => {
-    BthGetLike.style.opacity = "1";
-  }, 1);
-  setTimeout(() => {
-    BthLike.style.display = "none";
-  }, 300);
+  BthGetLike.style.opacity = "1";
+  BthLike.style.display = "none";
 }
 
 function chek(){

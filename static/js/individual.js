@@ -60,3 +60,6 @@ function Width(){
         indiv3div.style.width = `90%`;
     }
 }
+window.addEventListener('load', () => {
+      AOS.refresh();
+    });
