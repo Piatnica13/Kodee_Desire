@@ -43,7 +43,11 @@ let nolike = document.querySelectorAll(".basketNoLike")
 
 
 function LikeorNo(){
-    favorites = document.querySelector("#basketFavoriteProduct").value.slice(1).slice(0, -1).split(', ');
+    let favorites = document.querySelector("#basketFavoriteProduct");
+    if(favorites){
+        favorites = favorites.value.slice(1).slice(0, -1).split(', ')
+    }
+    
     for(let i = 0; i < like.length; i++){
         id = like[i].dataset.id;
         
@@ -218,7 +222,6 @@ function messageBthFunc(){
         let num = 77003360024;
         let text = `Здраствуйте! Меня зовут ${name}. Хочу оформить заказ.%0a`;
         
-    
         for(let i = 0; i < allName.length; i++){
             for(let j = 0; j < checkedProductS.length; j++){
                 if(allName[i].innerText == checkedProductS[j]){
@@ -233,7 +236,8 @@ ${chet}) ${allName[i].innerText},%0a
             }
         }
         text += `Удобна доставка на адрес ${document.querySelector("#basketAddress").value}`
-    
+        console.log(text);
+        
         window.open(`https://wa.me/${num}?text=${text}`, '_blank');
     }
     else{

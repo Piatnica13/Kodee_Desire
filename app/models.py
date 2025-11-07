@@ -40,8 +40,8 @@ class Product(db.Model):
     concept = db.Column(db.String(50))
     category = db.Column(db.String(50))
     descriptions = db.Column(db.String(510))
-    slug = db.Column(db.String(100), unique=True, nullable=False)
-    images = relationship("Product_image", backref="product", lazy=True)
+    slug = db.Column(db.String(100), unique=True)
+    images = relationship("Product_image", backref="product", lazy=True, cascade="all, delete-orphan")
     
     def image(self):
         """Возвращает путь к первому изображению (где num=1) или стандартное"""

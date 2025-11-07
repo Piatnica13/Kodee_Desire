@@ -1,16 +1,18 @@
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, render_template, request, redirect, session, flash, jsonify, send_from_directory
+from flask import Flask, render_template, request, redirect, session, flash, jsonify, send_from_directory, current_app
+from flask_wtf import CSRFProtect
+from flask_cors import CORS
 from sqlalchemy.orm.attributes import flag_modified
-from models import db, Address, Person, Product, Product_image
-from log import setup_logging
+from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 from functools import wraps
-from flask_wtf import CSRFProtect
-from forms import LoginForm, RegisterForm, ProfilMainPassForm, ProfilSplitForm, ProfilAddSplit, ProfilAddressForm
-from init import allProducts
+from app.models import db, Address, Person, Product, Product_image
+from app.log import setup_logging
+from app.forms import LoginForm, RegisterForm, ProfilMainPassForm, ProfilSplitForm, ProfilAddSplit, ProfilAddressForm
+from app.init import allProducts
+from app.admin import admin
+from slugify import slugify
 import os
 import psycopg2
-from flask_cors import CORS
 
 # Создание flask приложения
 app = Flask(__name__)
@@ -41,8 +43,13 @@ app.logger.info(f"Секретный ключ загружен из .env.")
 setup_logging(app)
 app.logger.info("Логирование настроено.")
 
-db.init_app(app)  # Инициализация соединения
+# Инициализация соединения
+db.init_app(app) 
 app.logger.info("База данных инициализирована.")
+
+# Инициализация админ панели
+admin.init_app(app)
+app.logger.info("Админ панель инициализирована.")
 
 # CSRF Безопасность
 csrf = CSRFProtect(app)
@@ -63,9 +70,12 @@ CORS(app, supports_credentials=True, origins=["https://kodee.kz"])
 # Главный маршрут
 @app.route('/')
 def index():
-    return render_template('index.html')
+    admin = session.get('admin')
+    if admin:
+        return render_template('index.html', admin=True)
+    return render_template('index.html', admin=False)
+    
 
-# ПРОФИЛЬ
 # ПРОФИЛЬ
 @app.route('/profil', methods=["POST", "GET"])
 def profil():
@@ -462,10 +472,10 @@ def contact():
 
 
 # СПРАВКА
-@app.route('/help')
-def help():
+@app.route('/help/<theme>')
+def help(theme):
     app.logger.debug("Открыта страница справки.")
-    return render_template('help.html')
+    return render_template('help.html', theme=theme)
 
 
 # ИНДИВИДУАЛЬНЫЙ ЗАКАЗ
@@ -549,7 +559,7 @@ def login():
             if user:
                 session['user_id'] = user.id
                 app.logger.info(f"Администратор {email} вошел в систему.")
-                return redirect("/admin/deshboard")
+                return redirect("/admin")
             else:
                 app.logger.warning("Попытка входа администратора, но пользователь не найден.")
                 errors["notfound"] = "Аккаунт не найден"
@@ -613,14 +623,39 @@ def admin_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-
-# АДМИН ПАНЕЛЬ
-@app.route('/admin/deshboard')
+@app.route('/admin/panel')
 @admin_required
-def admin_deshboard():
-    app.logger.info("Админ вошел в админку.")
+def admin_panel():
     return render_template('admin.html')
 
+# Добавление изображений в созданную папку, админ
+@app.route('/admin/add_imgs', methods=['POST'])
+@admin_required
+def add_imgs():
+    try:
+        name = slugify(request.form.get('productName'))
+        base_path = os.path.join(current_app.root_path, 'static', 'image', 'productImgs', name)
+        
+        os.makedirs(base_path, exist_ok=True)
+        
+        img1 = request.files.get('img1')
+        img2 = request.files.get('img2')
+        img3 = request.files.get('img3')
+        img4 = request.files.get('img4')
+        
+        if img1:
+            img1.save(os.path.join(base_path, "img1.webp"))
+        if img2:
+            img2.save(os.path.join(base_path, "img2.webp"))
+        if img3:
+            img3.save(os.path.join(base_path, "img3.webp"))
+        if img4:
+            img4.save(os.path.join(base_path, "img4.webp"))
+        
+        app.logger.info(f"Файлы {img1} {img2} {img3} {img4} успешно добавлены в папку {base_path}")
+        return jsonify({"status": "ok"})
+    except Exception as e:
+        return jsonify({'error': f"Ошибка с файлами {e}"})
 
 # СТРАНИЦА ПРОДУКТА
 @app.route('/product/<slug>')
@@ -631,10 +666,14 @@ def product(slug):
     if user_id != '':
         person = Person.query.get(int(user_id)) or ''
 
+        if person == '':
+            return render_template('product.html', product=product, user='', address='', favarite='')
+
         if not product:
             app.logger.warning(f"Продукт со slug '{slug}' не найден.")
             return "Товар не найден", 404
 
+            
         address = Address.query.filter_by(person_id=person.id).first()
         app.logger.debug(f"Загружена страница продукта '{slug}' пользователем {person.email}")
 

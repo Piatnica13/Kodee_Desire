@@ -15,6 +15,8 @@ async function loadProducts() {
   allProducts = await response.json();
 
   FuncFilters(true);
+  
+  updateIconsByTheme()
 }
 
 

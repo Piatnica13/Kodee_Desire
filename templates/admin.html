@@ -4,7 +4,17 @@
 <link rel="stylesheet" href="/static/css/admin.css" />
 {% endblock %} {% block body %}
 <div id="Px100bottom"></div>
-<h1>Вы успешный Админ</h1>
+<h1>Добавить изображения</h1>
+<form id="product_form">
+    <input type="text" name="productName" />
+    <div>
+        <input type="file" name="img1" />
+        <input type="file" name="img2" />
+        <input type="file" name="img3" />
+        <input type="file" name="img4" />
+    </div>
+    <button id="adminAddImgsBth" type="submit">Добавить фотки</button>
+</form>
 {% endblock %} {% block script %}
 <script src="/static/js/admin.js" defer></script>
 {% endblock script %}

@@ -1,5 +1,5 @@
 from slugify import slugify
-from models import Product, Product_image
+from app.models import Product, Product_image
 
 # ДОБАВЛЕНИЕ ВСЕЙ ПРОДУКЦИИ В БД
 def allProducts(db, app):

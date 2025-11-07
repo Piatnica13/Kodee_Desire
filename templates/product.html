@@ -68,8 +68,8 @@
           <div id="productDivPodSize">
             <div id="productDivHowSize">
               <div id="productHowSize">
-                <h3>Как определить размер?</h3>
-                <a href="/help">
+                <a href="/help/size" id="productSizeA">
+                  <h3>Как определить размер?</h3>
                   <img
                     src="/static/icon/black/question.png"
                     style="width: 25px; height: 25px"
@@ -81,36 +81,13 @@
               <h2>Размер</h2>
             </div>
             <div id="productChooseSize">
-              <h3
-                style="
-                  font-size: 1.5em;
-                  cursor: pointer;
-                  transition: color 0.3s ease-in-out;
-                "
-                id="productChoose1"
-              >
-                1
-              </h3>
-              <h3
-                style="
-                  font-size: 1.5em;
-                  cursor: pointer;
-                  transition: color 0.3s ease-in-out;
-                "
-                id="productChoose2"
-              >
-                2
-              </h3>
-              <h3
-                style="
-                  font-size: 1.5em;
-                  cursor: pointer;
-                  transition: color 0.3s ease-in-out;
-                "
-                id="productChoose3"
-              >
-                3
-              </h3>
+              <select id="productSize" class="productSelects">
+                <option>Меньше 12 см</option>
+                <option>12-14 см</option>
+                <option>15-16 см</option>
+                <option>17-18 см</option>
+                <option>Больше 18 см</option>
+              </select>
             </div>
           </div>
         </div>

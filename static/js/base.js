@@ -12,6 +12,8 @@ let Theme = localStorage.getItem("theme") || "light";
 let switchTheme = document.querySelector("#switchTheme")
 const footerBlock = document.querySelector('.ContenerLast');
 
+let primaryWidth = window.innerWidth
+let primaryHeight = window.innerHeight
 
 
 // То что делается сразу при загрузке страницы
@@ -19,25 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // Плавное появление меню и боди
     showMainContainer(menu);
     // Цвет иконок
-    firstColor()
+    firstColor();
     // Чек на прозрачность меню
     handleScroll();
-
+    // Работа всех функций требующих размер экрана
+    get_resize();
+    // Устанавливаем тему для страницы и добавляем в localStorage
+    document.body.dataset.theme = Theme;
+    // Проверяем цвет иконок
+    updateIconsByTheme();
+    
     // Стили для кнопок смены темы
     lightMod.style.transition = "opacity 0.4s ease";
     darkMod.style.transition = "opacity 0.4s ease";
     
-    // Устанавливаем тему для страницы и добавляем в localStorage
-    document.body.dataset.theme = Theme;
-
+    
     // функция updateSecondBlockPosition срабатывает при некоторых тригерах
     const observer = new MutationObserver(updateSecondBlockPosition); // Отслеживания 
     observer.observe(MainContener, { attributes: true, childList: true, subtree: true }); // Тригеры 
-
-    // Меням цвет иконок через 0.1сек, что бы они успели отобразиться
-    setTimeout(() => {
-        updateIconsByTheme();
-    }, 100);
+    
     
     // ВСЕ EVENTS
     checkBox.addEventListener('click', handleScroll)
@@ -46,9 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lightMod.addEventListener("click", SwitchDark)
     darkMod.addEventListener("click", SwitchLight);
 
-
-    window.addEventListener('load', updateSecondBlockPosition);
-    window.addEventListener('resize', updateSecondBlockPosition);
+    window.addEventListener('resize', get_resize);
 
     // При переходе на другую страницу срабатывает функция
     window.addEventListener('beforeunload', () => {
@@ -60,24 +60,38 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // При переходе на страницу, переход происходит не сразу
-    document.addEventListener("click", function(e){
-        let link = e.target.closest("a");
-        if(link && link.href && link.target !== "_blank" && link.href.indexOf("javascript:") !== 0){
-            e.preventDefault();
-            inShowPage();
-            if (checkboxMain.checked == true){
-            checkboxMain.checked = false;
-            checkboxmainn()
-            handleScroll()
-            }
-            setTimeout(() => {
-                window.location.href = link.href;
-            }, 500);
-        }
+    document.addEventListener("click", (e) => {
+        laterLocation(e);
     });
     
     AOS.init();
 });
+
+// При переходе на страницу, переход происходит не сразу
+function laterLocation(e){
+    let link = e.target.closest("a");
+    if(link && link.href && link.target !== "_blank" && link.href.indexOf("javascript:") !== 0){
+        e.preventDefault();
+        inShowPage();
+        if (checkboxMain.checked == true){
+        checkboxMain.checked = false;
+        checkboxmainn()
+        handleScroll()
+        }
+        setTimeout(() => {
+            window.location.href = link.href;
+        }, 500);
+    }
+}
+
+// Все функции проверяющие размер экрана
+function get_resize(){
+    sizes = [window.innerWidth, window.innerHeight]
+    
+    updateSecondBlockPosition()
+    closePoiskonPhone(sizes)
+    return sizes
+}
 
 // Выводим либо солнце либо месяц
 function firstColor(){
@@ -155,9 +169,10 @@ function updateIconsByTheme() {
 // Цепляется футер к экрану или нет, смотря на высоту экрана
 function updateSecondBlockPosition() {
     const firstBlockHeight = MainContener.offsetHeight; // Высота контейнера
-    const windowHeight = window.innerHeight; // Высота окна
-
-    if (windowHeight - 217 > firstBlockHeight) {
+    const footerBlockHeight = footerBlock.offsetHeight; // Высота футера
+    const displayBlockHeight = window.innerHeight
+    
+    if (displayBlockHeight - footerBlockHeight > firstBlockHeight) {
         footerBlock.style.position = 'fixed';
         footerBlock.style.bottom = '0';
         footerBlock.style.left = '0';
@@ -165,19 +180,28 @@ function updateSecondBlockPosition() {
     } else {
         footerBlock.style.position = 'relative';
         footerBlock.style.bottom = 'auto';
-    }
+    }    
+}
 
-    // Закрытие меню поиска на телефонах при resize
-    if(chetchik == false){
-        PlaseForPoisk.style.opacity = "0";
-        setTimeout(() => {
-            PlaseForPoisk.style.display = "none";
-        }, 300);
-        chetchik = true;
+// Закрытие меню поиска на телефонах при resize
+function closePoiskonPhone(sizes){
+    if(primaryWidth != sizes[0]){
+        
+        if(chetchik == false){
+            PlaseForPoisk.style.opacity = "0";
+            setTimeout(() => {
+                PlaseForPoisk.style.display = "none";
+            }, 300);
+            chetchik = true;
 
-        handleScroll()
+            handleScroll();
+        }
+        primaryWidth = sizes[0];
     }
 }
+
+
+    
 
 // Открытие меню поиска
 function PoiskImgOn(){

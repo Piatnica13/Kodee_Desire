@@ -1,50 +1,11 @@
-let f = document.querySelector("#f");
-let d = document.querySelector("#d");  
+let favorite = document.querySelector("#f");
+let productId = document.querySelector("#d");  
 let b = document.querySelector("#b")
 let user_size = 0;
 
-let size1 = document.querySelector("#productChoose1")
-size1.addEventListener("click", () => {
-  size1.style.color = "var(--grey)";
-  size2.style.color = "black";
-  size3.style.color = "black";
-  user_size = 1;
-})
-let size2 = document.querySelector("#productChoose2")
-size2.addEventListener("click", () => {
-  size2.style.color = "var(--grey)";
-  size1.style.color = "black";
-  size3.style.color = "black";
-  user_size = 2;
-})
-let size3 = document.querySelector("#productChoose3")
-size3.addEventListener("click", () => {
-  size3.style.color = "var(--grey)";
-  size2.style.color = "black";
-  size1.style.color = "black";
-  user_size = 3;
-})
 
 
 function urlBth(product, user_name, city, street, home) {
-  if (user_size == 0) {
-    size3.style.color = "red";
-    size2.style.color = "red";
-    size1.style.color = "red";
-
-    size1.classList.add("shake");
-    size2.classList.add("shake");
-    size3.classList.add("shake");
-
-    showToast("Выберете пожалуйста размер")
-
-    setTimeout(() => {
-      size1.classList.remove("shake");
-      size2.classList.remove("shake");
-      size3.classList.remove("shake");
-    }, 500)
-  }
-  else{
     let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
     fetch('/add_basket', {
       method: "POST",
@@ -53,7 +14,7 @@ function urlBth(product, user_name, city, street, home) {
         "Content-Type": "application/json",
         "X-CSRFToken": token
        },
-      body: JSON.stringify({product_id: parseInt(d.value), color: document.querySelector("#productColor").value.toLowerCase(), size: user_size, material: document.querySelector("#productMaterial").value.toLowerCase()})
+      body: JSON.stringify({product_id: parseInt(productId.value), color: document.querySelector("#productColor").value.toLowerCase(), size: document.querySelector("#productSize").value, material: document.querySelector("#productMaterial").value.toLowerCase()})
     })
       .then(response =>response.json())
       .then(data => {
@@ -64,7 +25,6 @@ function urlBth(product, user_name, city, street, home) {
           showToast(data.error)
         }
       })
-  }
 }
 
 
@@ -188,7 +148,7 @@ function BthLikes() {
       "Content-Type": "application/json",
       "X-CSRFToken": token
      },
-    body: JSON.stringify({product_id: parseInt(d.value)})
+    body: JSON.stringify({product_id: parseInt(productId.value)})
   })
   .then(response => response.json())
   .then(data => {
@@ -224,9 +184,9 @@ function FuncBthLike() {
 }
 
 function chek(){
-  let value = f.value.slice(1).slice(0, -1).split(', '); 
+  let value = favorite.value.slice(1).slice(0, -1).split(', '); 
   for(let i = 0; i < value.length; i++){
-    if (d.value == value[i]){
+    if (productId.value == value[i]){
       FuncBthGetLike()
     }
   }

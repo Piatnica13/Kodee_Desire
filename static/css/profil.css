@@ -95,6 +95,9 @@
     justify-content: center;
     width: 100%;
 }
+.ProfilHeaderText{
+    font-size: 1.8rem;
+}
 #ProfilMenuLeft{
     position: relative;
     margin: 0px 30px;

@@ -1,6 +1,3 @@
-html{
-    overflow: hidden;
-}
 body{
     margin: 0px;
     padding: 0px;
@@ -183,9 +180,14 @@ body{
         position: relative;
     }
     #Forma{
-        height: 100vh;
+        height: 100%;
         width: 100vh;
         padding: 0rem 0rem;
         border-radius: 0px;
+    }
+}
+@media screen and (max-height: 565px) {
+    #Contener{
+        height: 100%;
     }
 }

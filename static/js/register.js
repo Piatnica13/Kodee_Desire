@@ -2,6 +2,7 @@ let body = document.querySelector("#Contener");
 const toast = document.getElementById('divMessegeBox');
 let messageQueue = [];
 let isMessageShowing = false;
+
 document.addEventListener("DOMContentLoaded", () =>{
 
 
