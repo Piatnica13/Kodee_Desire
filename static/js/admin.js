@@ -16,4 +16,6 @@ productForm.addEventListener("submit", async (event) => {
         })
     }
     catch{}
+
+    showToast(`Фотки товаров успешно добавлены ${document.querySelector('#productName').value}`);
 });

@@ -4,14 +4,26 @@
 <link rel="stylesheet" href="/static/css/admin.css" />
 {% endblock %} {% block body %}
 <div id="Px100bottom"></div>
-<h1>Добавить изображения</h1>
 <form id="product_form">
-    <input type="text" name="productName" />
-    <div>
-        <input type="file" name="img1" />
-        <input type="file" name="img2" />
-        <input type="file" name="img3" />
-        <input type="file" name="img4" />
+    <h1>Добавить изображения</h1>
+    <input type="text" name="productName" id="productName"/>
+    <div id="prodcutUploadDiv">
+        <div class="productUploadDivs">
+            <label for="adminUpload1">Загрузить фото</label>
+            <input id="adminUpload1" type="file" name="img1" />
+        </div style="position: relative">
+        <div class="productUploadDivs">
+            <label for="adminUpload2">Загрузить фото</label>
+            <input id="adminUpload2" type="file" name="img2" />
+        </div>
+        <div class="productUploadDivs">
+            <label for="adminUpload3">Загрузить фото</label>
+            <input id="adminUpload3" type="file" name="img3" />
+        </div>
+        <div class="productUploadDivs">
+            <label for="adminUpload4">Загрузить фото</label>
+            <input id="adminUpload4" type="file" name="img4" />
+        </div>
     </div>
     <button id="adminAddImgsBth" type="submit">Добавить фотки</button>
 </form>

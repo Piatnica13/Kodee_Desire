@@ -70,10 +70,12 @@ CORS(app, supports_credentials=True, origins=["https://kodee.kz"])
 # Главный маршрут
 @app.route('/')
 def index():
+    products = Product.query.all()
+    print(products)
     admin = session.get('admin')
     if admin:
-        return render_template('index.html', admin=True)
-    return render_template('index.html', admin=False)
+        return render_template('index.html', admin=True, products=products)
+    return render_template('index.html', admin=False, products=products)
     
 
 # ПРОФИЛЬ
