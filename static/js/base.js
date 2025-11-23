@@ -143,9 +143,9 @@ function showMainContainer(menu) {
 
 // Скрыть меню, основной контейнер и футер
 function inShowPage(){
-    let menu = document.querySelector("#MenuFixed");    
-    MainContener.style.transition = `opacity 0.3s ease-in-out`;
-    MainContener.style.opacity = "0";
+    let menu = document.querySelector("#MenuFixed");
+    document.body.style.transition = `opacity 0.3s ease-in-out`;
+    document.body.style.opacity = "0";
     menu.classList.remove("visible");
     menu.classList.add("hidden");
 }

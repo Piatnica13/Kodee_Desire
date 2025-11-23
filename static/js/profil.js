@@ -40,7 +40,9 @@ bthFavorite.addEventListener("click", PageFavorite)
 function PageFavorite() {
     NotTach()
     rechange.style.opacity = "0";
-    password.style.opacity = "0";
+    if (!document.querySelector("#profilNotUserPasswor")){
+        password.style.opacity = "0";
+    }
     address.style.opacity = "0";
     profil.style.opacity = "0";
     favorite.style.display = "flex";
@@ -48,7 +50,9 @@ function PageFavorite() {
     setTimeout(() => {
         address.style.display = "none"
         rechange.style.display = "none";
-        password.style.display = "none";
+        if (!document.querySelector("#profilNotUserPasswor")){
+            password.style.display = "none";
+        }
         profil.style.display = "none";
         favorite.style.opacity = "1";
         StilDobro();

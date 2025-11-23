@@ -251,19 +251,19 @@ menuInpp.addEventListener("input", () => {
                     let productDiv = document.createElement("div");
                     productDiv.classList.add("menuProductDiv");
                     productDiv.innerHTML = `
-                      <div class="product-card">
-                        <img src="${product.image}" alt="${product.name}" class="product-imagee">
-                        <p class="product-title">${product.name}</p>
-                        <div class="test">
-                          <p class="product-price">${product.price}тг</p>
-                          <a href="/product/${product.slug}" style="color: var(--black)">
-                          <div class="DivInfo">
-                            <img src="/static/icon/black/sumka.png" class="Con2Icon" data-icon="sumka.png" alt="Сумка">
-                            <p class="BthInfo"><ins>Подробнее</ins></p>
-                          </div>
-                          </a>
+                      <a href="/product/${product.slug}" style="color: var(--black)">
+                        <div class="product-card">
+                            <img src="${product.image}" alt="${product.name}" class="product-imagee">
+                            <p class="product-title">${product.name}</p>
+                            <div class="test">
+                                <p class="product-price">${product.price}тг</p>
+                                <div class="DivInfo">
+                                    <img src="/static/icon/black/sumka.png" class="Con2Icon" data-icon="sumka.png" alt="Сумка">
+                                    <p class="BthInfo"><ins>Подробнее</ins></p>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                      </a>
                     `;
                     menuDivv.appendChild(productDiv);
                 });

@@ -238,7 +238,7 @@ def add_basket():
             user_id = session.get('user_id')
             if not user_id:
                 app.logger.warning("Попытка добавить товар в корзину без авторизации.")
-                return jsonify({"success": False, "error": "Пользователь не авторизован"})
+                return jsonify({"success": False, "error": "Пользователь не авторизован<br><a style='color: var(--black)' href='/login'>Авторизация</a>"})
 
             user = Person.query.get(int(user_id))
             if not user:
@@ -248,14 +248,14 @@ def add_basket():
             for i in user.basket:
                 if product_id == i[0]:
                     app.logger.info(f"Товар ID {product_id} уже в корзине пользователя ID {user.id}.")
-                    return jsonify({"success": False, "error": "Товар уже в корзине"})
+                    return jsonify({"success": False, "error": "Товар уже в корзине<br><a style='color: var(--black)' href='/basket'>Корзина</a>"})
 
             user.basket.append([product_id, color, size, material])
             flag_modified(user, "basket")
             db.session.commit()
 
             app.logger.info(f"Пользователь ID {user.id} добавил товар ID {product_id} в корзину.")
-            return jsonify({"success": True, "message": "Товар успешно добавлен в корзину"})
+            return jsonify({"success": True, "message": "Товар успешно добавлен в корзину <br><a style='color: var(--black)' href='/basket'>Корзина</a>"})
 
         except Exception as e:
             app.logger.error(f"Ошибка при добавлении товара в корзину: {str(e)}")
@@ -323,7 +323,7 @@ def addAddress():
 
             if not person_id:
                 app.logger.warning("Добавление адреса без авторизации.")
-                return jsonify({"success": False, "error": "Пользователь не авторизован"})
+                return jsonify({"success": False, "error": "Пользователь не авторизован<br><a style='text-decoration: none; color: var(--black)' href='/login'>Авторизация</a>"})
 
             if not city or not street or not home:
                 app.logger.warning("Не все обязательные поля заполнены при добавлении адреса.")
@@ -366,7 +366,7 @@ def add_favorite():
             user_id = session.get('user_id')
             if not user_id:
                 app.logger.warning("Попытка работы с избранным без авторизации.")
-                return jsonify({"success": False, "error": "Пользователь не авторизован"})
+                return jsonify({"success": False, "error": "Пользователь не авторизован<br><a style='text-decoration: none; color: var(--black)' href='/login'>Авторизация</a>"})
 
             user = Person.query.get(int(user_id))
             product_id = data.get("product_id")
