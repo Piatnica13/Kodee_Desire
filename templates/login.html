@@ -63,7 +63,7 @@
             class="ImgPass"
           />
         </article>
-        <button id="ButtonSignIn" type="submit" style="width: %">Вход</button>
+        <button id="ButtonSignIn" type="submit">Вход</button>
         {% if errors.get('error') %}
         <div id="messageForErrorError">{{ errors['error'] }}</div>
         {% elif errors.get('len') %}
@@ -73,6 +73,9 @@
         {% endif %}
       </div>
     </form>
+    <div id="loginGoogleDiv">
+      <a href="/login/google"><button id="loginGoogleBth"><img src="/static/icon/static/google.png" alt="Вход через Google" id="loginGoogleImg"></button></a>
+    </div>
     <div>
       <p id="loginP">Еще нет аккаунта? <a href="/register" id="LogIn">Регистрация</a></p>
     </div>

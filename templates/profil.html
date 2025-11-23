@@ -42,6 +42,7 @@
               >Изменить профиль</label
             >
           </article>
+          {% if user.password %}
           <article class="ProfilMenuItem" id="ProfilMenuItemPassword">
             <img
               src="/static/icon/black/rotation-lock.png"
@@ -52,6 +53,9 @@
               >Изменить пароль</label
             >
           </article>
+          {% else %}
+          <label id="profilNotUserPasswor"></label>
+          {% endif %}
           <article class="ProfilMenuItem Profillinia" id="ProfilMenuItemAddress">
             <img
               src="/static/icon/black/tochka.png"
@@ -180,6 +184,7 @@
               </div>
             </div>
           </article>
+          {% if user.password %}
           <article id="ProfilLeftChanchPass" class="ProfilOb">
             <div class="ProfilTitle"><h1 class="ProfilHeaderText">Изменение пароля</h1></div>
             <form id="ProfilMainPass" method="POST">
@@ -230,6 +235,7 @@
               </div>
             </form>
           </article>
+          {% endif %}
           <article id="ProfilLeftChanchInfo" class="ProfilOb">
             <div class="ProfilTitle"><h1 class="ProfilHeaderText">Изменение информации</h1></div>
             <form id="ProfilSplit" method="post">

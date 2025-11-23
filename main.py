@@ -1,16 +1,17 @@
-from flask import Flask, render_template, request, redirect, session, flash, jsonify, send_from_directory, current_app
+from flask import Flask, render_template, request, redirect, session, flash, jsonify, send_from_directory, current_app, url_for
 from flask_wtf import CSRFProtect
 from flask_cors import CORS
 from sqlalchemy.orm.attributes import flag_modified
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 from functools import wraps
+from slugify import slugify
+from authlib.integrations.flask_client import OAuth
 from app.models import db, Address, Person, Product, Product_image
 from app.log import setup_logging
 from app.forms import LoginForm, RegisterForm, ProfilMainPassForm, ProfilSplitForm, ProfilAddSplit, ProfilAddressForm
 from app.init import allProducts
 from app.admin import admin
-from slugify import slugify
 import os
 import psycopg2
 
@@ -24,6 +25,7 @@ app.logger.info("Файл .env загружен.")
 
 # Подключение базы данных
 pyPassword = os.getenv("SQLITE")
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 
@@ -63,6 +65,19 @@ app.config.update(
 )
 app.logger.info("Cookie настроено")
 
+# OAuth google
+oauth = OAuth(app)
+app.logger.info("OAuth создано")
+
+# Настройка OAuth google
+oauth.register(
+    name='google',
+    client_id=os.getenv("GOOGLE_CLIENT_ID"),
+    client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_kwargs={'scope': 'openid email profile'}
+)
+
 # IOS Безопасность
 CORS(app, supports_credentials=True, origins=["https://kodee.kz"])
 
@@ -71,7 +86,6 @@ CORS(app, supports_credentials=True, origins=["https://kodee.kz"])
 @app.route('/')
 def index():
     products = Product.query.all()
-    print(products)
     admin = session.get('admin')
     if admin:
         return render_template('index.html', admin=True, products=products)
@@ -156,8 +170,6 @@ def update_password(user: Person, errors, favorite_products):
         errors['comparisons'] = "Ошибка, пароли не совпадают или пароль меньше 6 символов"
         flash("пароли не свопадают или пароль состоит менее чем из 6 символов", "error")
         app.logger.warning(f"Ошибка при смене пароля у пользователя ID {user.id}: несовпадение или короткий пароль.")
-
-    return render_template("profil.html", user=user, errors=errors, favorite_products=favorite_products)
 
 # Работа с адресами
 def work_with_address(user: Person) -> None:
@@ -582,6 +594,54 @@ def login():
         app.logger.debug("Получен OPTIONS запрос на /login.")
         return jsonify(), 200
 
+
+# ВХОД С ПОМОЩЬЮ GOOGLE
+@app.route('/login/google')
+def google_login():
+    redirect_url = url_for('authorize', _external=True)
+    return oauth.google.authorize_redirect(redirect_url)
+
+
+# ВХОД С ПОМОЩЬЮ GOOGLE 
+@app.route('/callback')
+def authorize():
+    # 1. Завершаем авторизацию и получаем токен доступа
+    token = oauth.google.authorize_access_token()
+    
+    # 2. Из токена ID получаем информацию о пользователе (email, name)
+    user_info = oauth.google.get('https://www.googleapis.com/oauth2/v3/userinfo').json()
+    
+    google_email = user_info.get("email")
+    google_name = user_info.get("name")
+    
+    user = Person.query.filter_by(email=google_email).first()
+    products = Product.query.all()
+
+    if user:
+        session['user_id'] = user.id
+        app.logger.info(f"Пользователь {google_email} успешно вошел.")
+
+        return render_template('index.html', admin=False, products=products)
+
+    else:
+        person = Person(name=google_name, email=google_email)
+        
+        try:
+            db.session.add(person)
+            db.session.commit()
+            app.logger.info(f"Пользователь {google_email} успешно доавблен")
+            
+            user = Person.query.filter_by(email=google_email).first()
+            
+            if user:
+                session['user_id'] = user.id
+                return render_template('index.html', admin=False, products=products)
+
+            
+        except Exception as e:
+            app.logger.error(f"Ошибка при регистрации пользователя {google_email}: {str(e)}")
+            return render_template("index.html", messageNoReg=True, products=products)
+    
 
 # ВЫХОД ИЗ АККАУНТА
 @app.route('/logout')

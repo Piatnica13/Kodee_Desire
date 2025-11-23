@@ -3,8 +3,12 @@ let profil = document.querySelector("#ProfilLeftProfil");
 let bthRechange = document.querySelector("#ProfilEdit");
 let bthRechangee = document.querySelector("#ProfilEditt");
 let rechange = document.querySelector("#ProfilLeftChanchInfo");
-let bthPassword = document.querySelector("#ProfilMenuItemPassword");
-let password = document.querySelector("#ProfilLeftChanchPass");
+
+if (!document.querySelector("#profilNotUserPasswor")){
+    var bthPassword = document.querySelector("#ProfilMenuItemPassword");
+    var password = document.querySelector("#ProfilLeftChanchPass");
+}
+
 let bthAddress = document.querySelector("#ProfilMenuItemAddress");
 let address = document.querySelector("#ProfilLeftAddAddress");
 let formToAddAddresses = document.querySelector("#ProfilAddSplit")
@@ -56,14 +60,18 @@ bthProfil.addEventListener("click", OpacityOfProfil)
 function OpacityOfProfil() {
     NotTach()
     rechange.style.opacity = "0";
-    password.style.opacity = "0";
+    if (!document.querySelector("#profilNotUserPasswor")){
+        password.style.opacity = "0";
+    }
     address.style.opacity = "0";
     favorite.style.opacity = "0";
     profil.style.display = "flex";
     setTimeout(() => {
         address.style.display = "none"
         rechange.style.display = "none";
-        password.style.display = "none";
+        if (!document.querySelector("#profilNotUserPasswor")){
+            password.style.display = "none";
+        }
         favorite.style.display = "none";
         profil.style.opacity = "1";
         StilDobro()
@@ -73,7 +81,9 @@ function OpacityOfProfil() {
 bthRechange.addEventListener("click", () => {
     NotTach()
     profil.style.opacity = "0";
-    password.style.opacity = "0";
+    if (!document.querySelector("#profilNotUserPasswor")){
+        password.style.opacity = "0";
+    }
     address.style.opacity = "0";
     favorite.style.opacity = "0";
     rechange.style.display = "block";
@@ -81,7 +91,9 @@ bthRechange.addEventListener("click", () => {
         address.style.display = "none"
         profil.style.display = "none";
         favorite.style.display = "none";
-        password.style.display = "none";
+        if (!document.querySelector("#profilNotUserPasswor")){
+            password.style.display = "none";
+        }
         rechange.style.opacity = "1";
         StilDobro()
     }, 500)
@@ -89,7 +101,9 @@ bthRechange.addEventListener("click", () => {
 bthRechangee.addEventListener("click", () => {
     NotTach()
     profil.style.opacity = "0";
-    password.style.opacity = "0";
+    if (!document.querySelector("#profilNotUserPasswor")){
+        password.style.opacity = "0";
+    }
     favorite.style.opacity = "0";
     address.style.opacity = "0";
     rechange.style.display = "block";
@@ -97,34 +111,40 @@ bthRechangee.addEventListener("click", () => {
         favorite.style.display = "none";
         address.style.display = "none"
         profil.style.display = "none";
-        password.style.display = "none";
+        if (!document.querySelector("#profilNotUserPasswor")){
+            password.style.display = "none";
+        }
         rechange.style.opacity = "1";
         StilDobro()
     }, 500)
 })
 
-bthPassword.addEventListener("click", () => {
-    NotTach()
-    profil.style.opacity = "0";
-    address.style.opacity = "0";
-    favorite.style.opacity = "0";
-    rechange.style.opacity = "0";
-    password.style.display = "flex";
-    setTimeout(() => {
-        favorite.style.display = "none";
-        address.style.display = "none"
-        profil.style.display = "none";
-        rechange.style.display = "none";
-        password.style.opacity = "1";
-        StilDobro()
-    }, 500);
-})
+if (!document.querySelector("#profilNotUserPasswor")){
+    bthPassword.addEventListener("click", () => {
+        NotTach()
+        profil.style.opacity = "0";
+        address.style.opacity = "0";
+        favorite.style.opacity = "0";
+        rechange.style.opacity = "0";
+        password.style.display = "flex";
+        setTimeout(() => {
+            favorite.style.display = "none";
+            address.style.display = "none"
+            profil.style.display = "none";
+            rechange.style.display = "none";
+            password.style.opacity = "1";
+            StilDobro()
+        }, 500);
+    })
+}
 
 bthAddress.addEventListener("click", PageAddress);
 function PageAddress(){
     NotTach()
     profil.style.opacity = "0";
-    password.style.opacity = "0";
+    if (!document.querySelector("#profilNotUserPasswor")){
+        password.style.opacity = "0";
+    }
     favorite.style.opacity = "0";
     rechange.style.opacity = "0";
     address.style.display = "flex";
@@ -132,7 +152,9 @@ function PageAddress(){
     setTimeout(() => {
         profil.style.display = "none";
         favorite.style.display = "none";
-        password.style.display = "none";
+        if (!document.querySelector("#profilNotUserPasswor")){
+            password.style.display = "none";
+        }
         rechange.style.display = "none";
         address.style.opacity = "1";
         StilDobro()
@@ -213,13 +235,17 @@ function NotTach() {
     }
     catch{}
     bthProfil.style.pointerEvents = `none`;
-    bthPassword.style.pointerEvents = `none`;
+    if (!document.querySelector("#profilNotUserPasswor")){
+        bthPassword.style.pointerEvents = `none`;
+    }
     bthFavorite.style.pointerEvents = `none`;
     bthRechange.style.pointerEvents = `none`;
     bthAddress.style.pointerEvents = `none`;
     interval = setTimeout(() => {
         bthProfil.style.pointerEvents = `auto`;
-        bthPassword.style.pointerEvents = `auto`;
+        if (!document.querySelector("#profilNotUserPasswor")){
+            bthPassword.style.pointerEvents = `auto`;
+        }
         bthFavorite.style.pointerEvents = `auto`;
         bthRechange.style.pointerEvents = `auto`;
         bthAddress.style.pointerEvents = `auto`;

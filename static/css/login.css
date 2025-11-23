@@ -53,7 +53,7 @@ body{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #loginP{
-    padding-top: 50px;
+    padding-top: 10px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #LogIn{
@@ -149,6 +149,20 @@ body{
     text-align: center;
     background-color: var(--border);
     transition: background 0.5s ease-in-out;
+}
+
+#loginGoogleDiv{
+    width: 100%;
+    height: 100%;
+}
+#loginGoogleImg{
+    width: 32px;
+    height: 32px;
+    padding: 3px 0 2.2px 0;
+}
+#loginGoogleBth{
+    background-color: var(--add-bg);
+    border-radius: 5px;
 }
 
 @media screen and (max-width: 1000px) {
