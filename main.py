@@ -26,8 +26,8 @@ app.logger.info("Файл .env загружен.")
 # Подключение базы данных
 pyPassword = os.getenv("POSTGRESSQL")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
+app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_pre_ping': True
