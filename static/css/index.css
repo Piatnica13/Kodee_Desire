@@ -34,11 +34,13 @@ html, body{
 }
 #text1{
     padding: 50px;
-    font-size: 25px;
+    font-size: 35px;
+    font-family: "anastasiascripts", sans-serif !important;
 }
 #text2{
     margin-bottom: 25px;
-    font-size: 20px;
+    font-size: 25px;
+    font-family: "anastasiascripts", sans-serif !important;
 }
 /*2 Contener*/
 #Contener2 {
@@ -538,7 +540,7 @@ html, body{
         width: 100%;
     }
     #Contener3{
-        padding-top: 25px;
+        padding: 25px 0;
     }
     .Con3grup1, .Con3grup2{
         left: 0px;
@@ -648,41 +650,26 @@ html, body{
     }
 }
 @media screen and (max-width: 400px) {
+    #Contener3{
+        display: grid;
+        grid-template-rows: 50% 50%;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        gap: 5px;
+    }
+    .con3a{
+        display: none;
+    }
     .Con3Divs{
-        z-index: 10;
-        background-color: transparent;
-        height: 200px;
-        width: 200px;
-        position: relative;
+        display: none;
     }
     .Con3Imgs{
-        position: absolute;
-        opacity: 0.5;
         border-radius: 5px;
-    }
-    .Con3Divs:hover{
-        opacity: 0;
+        width: 100%;
     }
     .Con3grup1, .Con3grup2{
-        width: 100%;
-        justify-content: center;
-        position: relative;
-    }
-    .Con3grup1:hover .Con3Imgs, .Con3grup2:hover .Con3Imgs{
-        opacity: 1;
-    }
-    .Con3grup1:hover .Con3Divs, .Con3grup2:hover .Con3Divs, .Con3grup1:hover .con3ImgShow, .Con3grup2:hover .con3ImgShow{
-        opacity: 0;
-    }
-    .con3ImgShow{
-        transition: opacity 0.4s ease-in-out;
-        z-index: 2; 
-        width: 25px; 
-        opacity: 0.8; 
-        position: absolute; 
-        right: 25%; 
-        top: 10px;
-        display: flex;
+        height: 100%;
+        max-height: none;
+        aspect-ratio: 1 / 1;
     }
 }
 @media screen and (min-width: 767px) {

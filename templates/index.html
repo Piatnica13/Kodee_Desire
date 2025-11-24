@@ -97,16 +97,16 @@
   <p class="visually-hidden">Основатель <strong>KoDee Desire</strong>, компании по изготовлению и продаже <strong>кулонов желаний</strong> и <strong>браслетов на нити</strong></p>
   <div id="Con1Img">
     <img
-      src="static/image/body/Starter.webp"
+      src="static/image/slider/img1.jpg"
       alt="Юлия - основатель, держит в руках браслет."
       id="Con1Img1"
     />
   </div>
   <blockquote id="Con1Text" style="margin: 0">
-    <h1 id="text1">
-      “Каждый <strong>браслет</strong>, который мы создаем, — это не просто <strong>украшение</strong>. Это
-      напоминание о ваших <strong>мечтах</strong> и <strong>вере</strong> в то, что они сбудутся„
-    </h1>
+    <p id="text1">
+      “Каждый браслет, который мы создаем, — это не просто украшение. Это
+      напоминание о ваших мечтах и вере в то, что они сбудутся„
+    </p>
     <cite id="text2"
       ><em>-Юлия, Основатель <span lang="en">Kodee&nbspDesire</span></em></cite
     >
@@ -128,11 +128,13 @@
   <meta itemprop="image" content="/static/image/productImgs/beskonechnost/img1.webp"/>
   <meta itemprop="sku" content="KD-BSK-001">
   <meta itemprop="mpn" content="KD-BSK-001">
-    <img
-      src="/static/image/productImgs/beskonechnost/img2.webp"
-      alt="Золотой Кулон 'Бесконечность' 585 пробы"
-      class="Con3Imgs"
-    />
+    <a href="/product/beskonechnost">
+      <img
+        src="/static/image/productImgs/beskonechnost/img2.webp"
+        alt="Золотой Кулон 'Бесконечность' 585 пробы"
+        class="Con3Imgs"
+      />
+    </a>
     <div
       class="Con3Divs"
       itemprop="offers"
@@ -148,14 +150,14 @@
             <strong>Символ</strong>&nbspпос&shy;то&shy;ян&shy;ства и силы духа.
           </h4>
           <h4 style="font-size: 0.83em">
-            <span itemprop="price" content="28500">-{{ products[0].price }}</span>
+            <span itemprop="price" content="{{ products[] }}">-{{ products[0].price }}</span>
             <span itemprop="priceCurrency" content="KZT">тг</span>
           </h4>
         </div>
       </div>
     </a>
   </article>
-  <a href="/product/beskonechnost" style="color: var(--black)">
+  <a class="con3a" href="/product/beskonechnost" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Бесконечность"</span>
@@ -185,19 +187,21 @@
             Источник жизни, тепла и света.
           </h4>
           <h4 style="font-size: 0.83em">
-            <span itemprop="price" content="36000">-36 000</span>
+            <span itemprop="price" content="{{ products[17].price }}">{{ products[17].price }}</span>
             <span itemprop="priceCurrency" content="KZT">тг</span>
           </h4>
         </div>
       </a>
     </div>
-    <img
-      src="/static/image/productImgs/solntse/img4.webp"
-      class="Con3Imgs"
-      alt="Золотой Кулон 'Солнце' 585 пробы"
-    />
+    <a href="/product/solntse">
+      <img
+        src="/static/image/productImgs/solntse/img4.webp"
+        class="Con3Imgs"
+        alt="Золотой Кулон 'Солнце' 585 пробы"
+      />
+    </a>
   </article>
-  <a href="/product/solntse" style="color: var(--black)">
+  <a class="con3a" href="/product/solntse" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Солнце"</span>
@@ -214,11 +218,13 @@
   >
   <meta itemprop="name" content="Кулон 'Самолёт' из золота 585 пробы">
   <meta itemprop="image" content="/static/image/productImgs/samolet/img1.webp">
-    <img
-      src="/static/image/productImgs/samolet/img3.webp"
-      alt="Золотой Кулон 'Самолёт' 585 пробы"
-      class="Con3Imgs"
-    />
+    <a href="/product/samolet">
+      <img
+        src="/static/image/productImgs/samolet/img3.webp"
+        alt="Золотой Кулон 'Самолёт' 585 пробы"
+        class="Con3Imgs"
+      />
+    </a>
     <div
       class="Con3Divs"
       itemprop="offers"
@@ -233,20 +239,20 @@
             пу&shy;те&shy;шест&shy;ве&shy;нни&shy;ков.
           </h4>
           <h4 style="font-size: 0.83em">
-            <span itemprop="price" content="46500">-46 500</span>
+            <span itemprop="price" content="{{ products[31].price }}">{{ products[31].price }}</span>
             <span itemprop="priceCurrency" content="KZT">тг</span>
           </h4>
         </div>
             </div>
       </a>
   </article>
-  <a href="/product/samolet" style="color: var(--black)">
+  <a class="con3a" href="/product/samolet" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Самолёт"</span>
     </div>
   </a>
-
+  
   <article
     class="Con3grup2"
     data-aos="fade-up"
@@ -271,22 +277,117 @@
             Древо жизни символ&nbspмудрости.
           </h4>
           <h4 style="font-size: 0.83em">
-            <span itemprop="price" content="33500">-33 500</span>
+            <span itemprop="price" content="{{ products[8].price }}">{{ products[8].price }}</span>
             <span itemprop="priceCurrency" content="KZT">тг</span>
           </h4>
         </div>
             </div>
       </a>
-    <img
-      src="/static/image/productImgs/derevo/img2.webp"
-      alt="Золотой Кулон 'Дерево' 585 пробы"
-      class="Con3Imgs"
-    />
+    <a href="/product/derevo">
+      <img
+        src="/static/image/productImgs/derevo/img2.webp"
+        alt="Золотой Кулон 'Дерево' 585 пробы"
+        class="Con3Imgs"
+      />
+    </a>
   </article>
-  <a href="/product/derevo" style="color: var(--black)">
+  <a class="con3a" href="/product/derevo" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Дерево"</span>
+    </div>
+  </a>
+
+  <article
+    class="Con3grup1"
+    data-aos="fade-up"
+    data-aos-delay="0"
+    itemscope
+    itemtype="http://schema.org/Product"
+    aria-labelledby="product-beskonechnost-title"
+  >
+  <meta itemprop="name" content="Кулон 'Бриллиант' из золота 585 пробы">
+  <meta itemprop="image" content="/static/image/productImgs/brilliant/img1.webp"/>
+    <a href="/product/brilliant">
+      <img
+        src="/static/image/productImgs/brilliant/img1.webp"
+        alt="Золотой Кулон 'Бриллиант' 585 пробы"
+        class="Con3Imgs"
+      />
+    </a>
+    <div
+      class="Con3Divs"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer"
+    >
+    <a itemprop="url" href="/product/brilliant" style="text-decoration: none; color: var(--black)">
+      <meta itemprop="availability" content="https://schema.org/InStock">
+      <meta itemprop="priceValidUntil" content="2025-12-31">
+        <div class="Con3Text">
+          <h3 style="font-size: 1.33em"><strong>Кулон</strong> "Бриллиант"</h3>
+          <h4 style="font-size: 0.83em" itemprop="description">
+            <strong>Символ</strong>ценности и статуса.
+          </h4>
+          <h4 style="font-size: 0.83em">
+            <span itemprop="price" content="{{ products[3] }}">-{{ products[3].price }}</span>
+            <span itemprop="priceCurrency" content="KZT">тг</span>
+          </h4>
+        </div>
+      </div>
+    </a>
+  </article>
+
+
+  <a class="con3a" href="/product/brilliant" style="color: var(--black)">
+    <div class="con3Btn">
+      Подробнее<span aria-hidden="true">></span> <br />
+      <span>о <strong>кулоне</strong> "Бриллиант"</span>
+    </div>
+  </a>
+
+  <article
+    class="Con3grup2"
+    data-aos="fade-up"
+    data-aos-delay="0"
+    itemscope
+    itemtype="http://schema.org/Product"
+    aria-labelledby="product-derevo-title"
+  >
+  <meta itemprop="name" content="Кулон 'Клевер' из золота 585 пробы">
+  <meta itemprop="image" content="/static/image/productImgs/klever/img1.webp">
+    <div
+      class="Con3Divs"
+      itemprop="offers"
+      itemscope
+      itemtype="http://schema.org/Offer"
+    >
+      <a itemprop="url" href="/product/klever" style="text-decoration: none; color: var(--black)">
+
+        <div class="Con3Text">
+          <h3 style="font-size: 1.33em"><strong>Кулон</strong> "Клевер"</h3>
+          <h4 style="font-size: 0.83em" itemprop="description">
+            Клевер символ&nbspудачи.
+          </h4>
+          <h4 style="font-size: 0.83em">
+            <span itemprop="price" content="{{ products[6].price }}">{{ products[6].price }}</span>
+            <span itemprop="priceCurrency" content="KZT">тг</span>
+          </h4>
+        </div>
+            </div>
+      </a>
+    <a href="/product/klever">
+      <img
+        src="/static/image/productImgs/klever/img2.webp"
+        alt="Золотой Кулон 'Клевер' 585 пробы"
+        class="Con3Imgs"
+      />
+    </a>
+  </article>
+  <a class="con3a" href="/product/klever" style="color: var(--black)">
+    <div class="con3Btn">
+      Подробнее<span aria-hidden="true">></span> <br />
+      <span>о <strong>кулоне</strong> "Клевер"</span>
     </div>
   </a>
 </section>
@@ -372,7 +473,7 @@
     <div id="con8div">
       <article class="con8divs">
         <h4 class="con8text" id="con8text1">
-          Мы можем нанести на монетку любую фразу, дату или имя
+          Гравировка на монетке
         </h4>
         <a
           href="/individual"
@@ -391,7 +492,7 @@
       </article>
       <article class="con8divs">
         <h4 class="con8text" id="con8text2">
-          Объединяем браслеты по первой прозбе
+          Объединение браслетов
         </h4>
         <a
           href="/individual"

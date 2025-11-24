@@ -115,6 +115,7 @@ function firstColor(){
 
 // Отслеживаем прозрачность меню
 function handleScroll(){
+
     if (checkBox.checked && window.scrollY === 0 || !checkBox.checked && window.scrollY != 0){
         menu.style.backgroundColor = 'var(--main-bg)';
     }
@@ -185,8 +186,7 @@ function updateSecondBlockPosition() {
 
 // Закрытие меню поиска на телефонах при resize
 function closePoiskonPhone(sizes){
-    if(primaryWidth != sizes[0]){
-        
+    if(primaryWidth != sizes[0] && primaryWidth > 765){
         if(chetchik == false){
             PlaseForPoisk.style.opacity = "0";
             setTimeout(() => {
@@ -196,8 +196,8 @@ function closePoiskonPhone(sizes){
 
             handleScroll();
         }
-        primaryWidth = sizes[0];
     }
+    primaryWidth = sizes[0];
 }
 
 
