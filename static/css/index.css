@@ -2,6 +2,13 @@ html, body{
     position: relative;
     z-index: -2 !important;
 }
+#index100px{
+    width: 100%; 
+    height: 100px; 
+    flex-shrink: 0; 
+    position: relative; 
+    background: var(--main-bg);
+}
 /*1 Contener*/
 #Contener1{
     position: relative;
@@ -33,7 +40,6 @@ html, body{
     max-width: 1000px;
 }
 #text1{
-    padding: 50px;
     font-size: 35px;
     font-family: "anastasiascripts", sans-serif !important;
 }
@@ -96,6 +102,22 @@ html, body{
     background-color: var(--main-bg);
     transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 
+}
+.con3a{
+    text-decoration: none;
+}
+#con3catalogDiv{
+    width: 100%; 
+    background: var(--main-bg); 
+    display: flex; 
+    justify-content: center; 
+    padding: 0 0 25px 0;
+}
+#con3more, #con3catalog{
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
 }
 .Con3grup2, .Con3grup1{
     max-width: 1100px;
@@ -520,7 +542,12 @@ html, body{
     50%  { transform: translateY(-25px) rotate(25deg) scale(1); }
     100% { transform: translateY(25px) rotate(-25deg) scale(1.3); }
 }
-
+@media screen and (max-width: 1300px) {
+    #Con4Part1{
+        gap: 15px;
+        padding: 30px;
+    }
+}
 @media screen and (max-width: 1024px) {
     #con5con{
         display: flex;
@@ -530,6 +557,9 @@ html, body{
     }
 }
 @media screen and (max-width: 767px) {
+    #index100px{
+        height: 65px;
+    }
     #Contener1{
         flex-direction: column;
     }
@@ -540,7 +570,7 @@ html, body{
         width: 100%;
     }
     #Contener3{
-        padding: 25px 0;
+        padding: 25px 0 25px 0;
     }
     .Con3grup1, .Con3grup2{
         left: 0px;
@@ -549,13 +579,7 @@ html, body{
     }
     
 }
-@media screen and (max-width: 625px) {
-    .con7iconsPh{
-        opacity: 0 !important;
-    }
-    #Contener2{
-        display: none;
-    }
+@media screen and (max-width: 675px) {
     #con4galochki{
         width: 95%;
         height: 100%;
@@ -599,6 +623,14 @@ html, body{
         flex: 0 0 auto;
         width: 100%;
     }
+}
+@media screen and (max-width: 625px) {
+    .con7iconsPh{
+        opacity: 0 !important;
+    }
+    #Contener2{
+        display: none;
+    }
     #con5grid{
         gap: 0px;
     }
@@ -615,30 +647,15 @@ html, body{
     }
 }
 @media screen and (max-width: 550px) {
-    .Con3grup1, .Con3grup2{
-        align-items: center;
-        width: 100%;
-        height: 200px;
-    }
-    .Con3Divs{
-        height: 100%;
-    }
     .con8bth{
        padding: 15px 0px;
        margin: 5px;
     }
     .con8bthDiv{
         height: 100px;
-        bottom: 5px;
     }
     .con8text{
         font-size: 1.2rem;
-
-    }
-}
-@media screen and (max-width: 500px) {
-    .con8text{
-    margin: 0px;
     }
 }
 @media screen and (max-width: 450px) {
@@ -649,12 +666,16 @@ html, body{
         max-width: 100%;
     }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
+    .con8text{
+    margin: 0px;
+    }
     #Contener3{
         display: grid;
-        grid-template-rows: 50% 50%;
+        grid-template-rows: auto auto;
         grid-template-columns: 33.33% 33.33% 33.33%;
-        gap: 5px;
+        gap: 0px;
+        justify-items: center;
     }
     .con3a{
         display: none;
@@ -667,9 +688,11 @@ html, body{
         width: 100%;
     }
     .Con3grup1, .Con3grup2{
-        height: 100%;
+        width: 95%;
+        height: 95%;
         max-height: none;
         aspect-ratio: 1 / 1;
+        display: block;
     }
 }
 @media screen and (min-width: 767px) {

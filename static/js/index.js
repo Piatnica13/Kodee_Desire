@@ -64,12 +64,12 @@ masFromCon4.forEach((e)=>{
 })
 
 let masFromCon5 = [
-    {title: "Любимых", a_filter: "/shop?filter=Любовь и романтика,Сила и успех,Жизнь и процветание", a_img: "/static/image/productImgs/serdtse-kontur/img3.webp"},
-    {title: "Родных", a_filter: "/shop?filter=Жизнь и процветание,Любовь и семья,Природа,Минимализм и красота", a_img: "/static/image/productImgs/derevo/img1.webp"},
-    {title: "Творческих", a_filter: "/shop?filter=Природа,Музыка и искусство,Минимализм и красота", a_img: "/static/image/productImgs/skripichnyi-kliuch/img1.webp"},
-    {title: "Пу&shy;те&shy;шест&shy;ву&shy;ющих", a_filter: "/shop?filter=Мир и свобода,Путешествия и приключения,Сила и успех", a_img: "/static/image/productImgs/shturval/img3.webp"},
-    {title: "Спортивных", a_filter: "/shop?filter=Спорт,Сила и успех,Минимализм и красота", a_img: "/static/image/productImgs/raketka/img2.webp"},
-    {title: "Пушистых", a_filter: "/shop?filter=Любовь к животным,Природа,Мир и свобода", a_img: "/static/image/productImgs/lapka/img1.webp"}
+    {title: "Кулоны", a_filter: "/shop?filter=Кулон", a_img: "/static/image/productImgs/serdtse-kontur/img3.webp"},
+    {title: "Монетки", a_filter: "/shop?filter=Монеточка", a_img: "/static/image/productImgs/derevo/img1.webp"},
+    {title: "Бегунки", a_filter: "/shop?filter=Бегунок", a_img: "/static/image/productImgs/skripichnyi-kliuch/img1.webp"},
+    {title: "Колье", a_filter: "/shop?filter=Колье", a_img: "/static/image/productImgs/shturval/img3.webp"}
+    // {title: "Спортивных", a_filter: "/shop?filter=Спорт,Сила и успех,Минимализм и красота", a_img: "/static/image/productImgs/raketka/img2.webp"},
+    // {title: "Пушистых", a_filter: "/shop?filter=Любовь к животным,Природа,Мир и свобода", a_img: "/static/image/productImgs/lapka/img1.webp"}
 ]
 
 function con5func(mas){
@@ -132,3 +132,48 @@ masFromCon6.forEach((e)=>{
 
 let con8text1 = document.querySelector("#con8text1");
 let con8text2 = document.querySelector("#con8text2");
+
+// Контейнер 3, логика кнопки ещё
+function con3(){
+    if (window.innerWidth > 500){
+        const moreBth = document.querySelector("#con3more");
+        const moreCard = document.querySelectorAll(".con3invis");
+        const moreCatalog = document.querySelector("#con3catalog");
+        const moreCatalogDiv = document.querySelector("#con3catalogDiv");
+    
+        moreCard.forEach(e => {
+            e.style.display = "none";
+        });
+        moreCatalog.style.display = "none";
+        moreCatalogDiv.style.display = "none";
+
+        moreBth.style.display = "flex";
+    
+        moreBth.addEventListener("click", ()=>{
+            moreBth.style.display = "none";
+    
+            moreCard.forEach(e => {
+                e.style.display = "flex";
+            })
+            moreCatalog.style.display = "flex";
+            moreCatalogDiv.style.display = "flex";
+        })
+    }
+    else{
+        const moreBth = document.querySelector("#con3more");
+        const moreCard = document.querySelectorAll(".con3invis");
+        const moreCatalog = document.querySelector("#con3catalog");
+        const moreCatalogDiv = document.querySelector("#con3catalogDiv");
+        moreBth.style.display = "none";
+        moreCard.forEach(e => {
+            if (e.nodeName != "A"){
+                e.style.display = "flex";
+            }
+        });
+        moreCatalog.style.display = "flex";
+        moreCatalogDiv.style.display = "flex";
+    }
+}
+con3()
+
+window.addEventListener("resize", con3);

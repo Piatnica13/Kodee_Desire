@@ -89,9 +89,7 @@
   />
 </a>
 {% endif %}
-<div
-  style="width: 100%; height: 100px; flex-shrink: 0; position: relative; background: var(--main-bg);"
-></div>
+<div id="index100px"></div>
 
 <section id="Contener1" data-aos="fade-up" data-aos-delay="0">
   <p class="visually-hidden">Основатель <strong>KoDee Desire</strong>, компании по изготовлению и продаже <strong>кулонов желаний</strong> и <strong>браслетов на нити</strong></p>
@@ -114,8 +112,11 @@
 </section>
 
 
+<div style="width: 100%; height: 100%; background: var(--main-bg); display: flex; justify-content: center;">
+  <h2 style="background: var(--main-bg); font-size: 1.7rem">Хиты <strong>браслетов желаний</strong></h2>
+</div>
+
 <section id="Contener3">
-  <h2 class="visually-hidden">Хиты <strong>браслетов желаний</strong></h2>
   <article
     class="Con3grup1"
     data-aos="fade-up"
@@ -208,8 +209,10 @@
     </div>
   </a>
 
+  <button id="con3more">Больше</button>
+
   <article
-    class="Con3grup1"
+    class="Con3grup1 con3invis"
     data-aos="fade-up"
     data-aos-delay="0"
     itemscope
@@ -246,7 +249,7 @@
             </div>
       </a>
   </article>
-  <a class="con3a" href="/product/samolet" style="color: var(--black)">
+  <a class="con3a  con3invis" href="/product/samolet" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Самолёт"</span>
@@ -254,7 +257,7 @@
   </a>
   
   <article
-    class="Con3grup2"
+    class="Con3grup2  con3invis"
     data-aos="fade-up"
     data-aos-delay="0"
     itemscope
@@ -291,7 +294,7 @@
       />
     </a>
   </article>
-  <a class="con3a" href="/product/derevo" style="color: var(--black)">
+  <a class="con3a  con3invis" href="/product/derevo" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Дерево"</span>
@@ -299,7 +302,7 @@
   </a>
 
   <article
-    class="Con3grup1"
+    class="Con3grup1  con3invis"
     data-aos="fade-up"
     data-aos-delay="0"
     itemscope
@@ -339,7 +342,7 @@
   </article>
 
 
-  <a class="con3a" href="/product/brilliant" style="color: var(--black)">
+  <a class="con3a  con3invis" href="/product/brilliant" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Бриллиант"</span>
@@ -347,7 +350,7 @@
   </a>
 
   <article
-    class="Con3grup2"
+    class="Con3grup2 con3invis"
     data-aos="fade-up"
     data-aos-delay="0"
     itemscope
@@ -384,13 +387,23 @@
       />
     </a>
   </article>
-  <a class="con3a" href="/product/klever" style="color: var(--black)">
+  <a class="con3a con3invis" href="/product/klever" style="color: var(--black)">
     <div class="con3Btn">
       Подробнее<span aria-hidden="true">></span> <br />
       <span>о <strong>кулоне</strong> "Клевер"</span>
     </div>
   </a>
+
 </section>
+<section id="con3catalogDiv">
+  <a href="/shop" style="text-decoration: none">
+    <button id="con3catalog">Каталог ></button>
+  </a>
+</section>
+
+<div style="width: 100%; height: 100%; background: var(--main-bg); display: flex; justify-content: center;">
+    <h2 style="background: var(--main-bg); font-size: 1.7rem">Характеристики</h2>
+</div>
 
 <section id="Contener4">
   <h2 class="visually-hidden">Комфорт и долговечность в каждой детали: наши <strong>браслеты</strong> — это не просто <strong>минимализм</strong> и символика, это надёжный <strong>аксессуар</strong> на каждый день.</h2>
@@ -422,9 +435,9 @@
 
 
 <section id="Contener5">
-  <section style="text-align: center; font-size: 2rem">
-    <strong>Подарки</strong> для самых
-  </section>
+  <h2 style="text-align: center; font-size: 1.7rem">
+    Категории
+  </h2>
   <div
     id="con5con"
   >
@@ -435,7 +448,7 @@
         style="width: 400px; height: 600px; border-radius: 5px"
       />
       <p id="con5textImg">
-        <b>А&nbspтак&nbspже не забывайте радовать&nbsp<strong>себя</strong></b>
+        <b>Не забывайте радовать&nbsp<strong>себя</strong></b>
       </p>
     </section>
   </div>
@@ -443,7 +456,7 @@
 
 <section id="Contener8" aria-labelledby="custom-orders-heading">
   <div id="con8wrap">
-    <h2 id="con8title">Хочешь сделать <strong>браслет</strong> <strong>особенным</strong>?</h2>
+    <h2 id="con8title" style="font-size: 1.7rem">Хочешь сделать <strong>браслет</strong> <strong>особенным</strong>?</h2>
     <article
       style="
         position: relative;
@@ -460,7 +473,7 @@
         href="/individual"
         class="con8bthDiv"
         data-aos="fade-up"
-        data-aos-delay="1000"
+        data-aos-delay="200"
       >
         <div class="con3Btn con8bth" style="color: white">Подробнее ></div>
       </a>
@@ -470,46 +483,6 @@
         alt="Пример индивидуального заказа - гравировка на монетке"
       />
     </article>
-    <div id="con8div">
-      <article class="con8divs">
-        <h4 class="con8text" id="con8text1">
-          Гравировка на монетке
-        </h4>
-        <a
-          href="/individual"
-          style="bottom: 4px"
-          class="con8bthDiv"
-          data-aos="fade-up"
-          data-aos-delay="1000"
-        >
-          <div class="con3Btn con8bth" style="color: white">Подробнее ></div>
-        </a>
-        <img
-          class="con8imgs"
-          src="/static/image/body/monetki.webp"
-          alt="Золотые монеты с гравировкой"
-        />
-      </article>
-      <article class="con8divs">
-        <h4 class="con8text" id="con8text2">
-          Объединение браслетов
-        </h4>
-        <a
-          href="/individual"
-          style="bottom: 4px"
-          class="con8bthDiv"
-          data-aos="fade-up"
-          data-aos-delay="1000"
-        >
-          <div class="con3Btn con8bth" style="color: white">Подробнее ></div>
-        </a>
-        <img
-          src="/static/image/body/obedinenie.webp"
-          class="con8imgs"
-          alt="Объединение 2 кулонов - кулон самолёт и кулон роза ветров"
-        />
-      </article>
-    </div>
   </div>
 </section>
 

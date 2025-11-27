@@ -37,7 +37,8 @@ body{
   align-items: center;
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: calc(20px + 100vh);
+  background-color: var(--main-bg);
   top: -20px;
   justify-content: center;
   overflow: hidden;
@@ -530,6 +531,12 @@ nav ul li{
   }
 }
 @media screen and (max-width: 767px){
+  #contenerMenu{
+    height: 65px;
+  }
+  #logo{
+    width: 100px;
+  }
   .product-imagee{
     width: 200px;
   }
@@ -543,21 +550,21 @@ nav ul li{
     display: none;
   }
   .img{
-    width: 50px;
+    width: 35px;
   }
   .nav-container .checkbox {
     position: absolute;
     display: block;
     height: 45px;
     width: 45px;
+    top: 10px;
     z-index: 5;
     opacity: 0;
     cursor: pointer;
   }
   .hamburger-lines {
     display: block;
-    height: 39px;
-    width: 50px;
+    width: 37px;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -565,7 +572,7 @@ nav ul li{
   }
   .hamburger-lines .line  {
     display: block;
-    height: 5px;
+    height: 2px;
     width: 100%;
     border-radius: 15px;
     background: var(--black);
