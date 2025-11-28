@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, flash, jso
 from flask_wtf import CSRFProtect
 from flask_cors import CORS
 from sqlalchemy.orm.attributes import flag_modified
+from sqlalchemy import cast, String
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 from functools import wraps
@@ -26,8 +27,8 @@ app.logger.info("Файл .env загружен.")
 # Подключение базы данных
 pyPassword = os.getenv("POSTGRESSQL")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
+# app.config['SQLALCHEMY_DATABASE_URI'] = pyPassword
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'pool_pre_ping': True
@@ -428,7 +429,7 @@ def search():
             return jsonify([])
 
         products = Product.query.filter(
-            (Product.id.ilike(f"%{query}%")) |
+            (cast(Product.id, String).ilike(f"%{query}%")) |
             (Product.name.ilike(f"%{query.capitalize()}%"))
         ).limit(10).all()
 
