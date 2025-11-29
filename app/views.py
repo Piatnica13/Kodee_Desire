@@ -30,7 +30,7 @@ class  PersonAdmin(SecurityAdmin):
 
 
 class ProductAdmin(SecurityAdmin):
-    column_list = ['id', 'name', 'price', 'concept', 'category', 'descriptions', 'slug', 'images']
+    column_list = ['id', 'name', 'price', 'weight', 'concept', 'category', 'descriptions', 'slug', 'images']
     column_searchable_list = ['name']
     can_delete = True
     can_edit = True

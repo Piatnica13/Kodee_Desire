@@ -263,7 +263,7 @@
         position: relative;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     #productAllCharacter{
         justify-content: space-between;
         gap: 20px;
@@ -286,10 +286,11 @@
         align-items: center;
     }
 }
-@media screen and (max-width: 355px) {
+@media screen and (max-width: 405px) {
     #productAllCharacter{
-        flex-direction: column;
-        gap: 0px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
     }
     .DivsCharacters{
         display: flex;

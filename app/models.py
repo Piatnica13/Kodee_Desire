@@ -37,6 +37,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     price = db.Column(db.Integer)
+    weight = db.Column(db.Integer)
     concept = db.Column(db.String(50))
     category = db.Column(db.String(50))
     descriptions = db.Column(db.String(510))
@@ -53,9 +54,10 @@ class Product(db.Model):
         )
         return first_image.img1 if first_image else "/static/image/defaultt.jpg"
     
-    def __init__(self, name, price, concept, category, descriptions, slug):
+    def __init__(self, name, price, weight, concept, category, descriptions, slug):
         self.name = name
         self.price = price
+        self.weight = weight
         self.concept = concept
         self.category = category
         self.descriptions = descriptions
