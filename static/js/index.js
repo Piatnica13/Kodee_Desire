@@ -13,6 +13,39 @@ if (document.querySelector('#messageForNoReg')){
     showToast("Ошибка авторизации, повторите позже!", 2000)
 }
 
+
+let con1div = document.querySelector("#Con1Img");
+let con1imgs = document.querySelectorAll(".Con1imgs");
+let con1chet = 0
+
+function Con1(){
+    // Con1Img1
+    
+    const count = con1imgs.length;
+    const widthcon1div = con1div.offsetWidth;
+    
+    if (con1chet == count - 1){
+        con1div.style.transition= "transform 0s ease-in-out";
+        con1div.style.transform = `translateX(0)`;
+        con1chet = 0;
+        setTimeout(() => {
+            con1div.style.transition= "transform 0.4s ease-in-out";
+            con1div.style.transform = `translateX(-${widthcon1div}px)`;
+        }, 1);
+        setTimeout(() => {
+            con1chet++;
+        }, 1);
+    }
+    else{
+        con1div.style.transition= "transform 0.4s ease-in-out";
+        con1chet++;
+    }
+    con1div.style.transform = `translateX(-${widthcon1div * con1chet}px)`;
+}
+setInterval(() => {
+    Con1();
+}, 5000);
+
 let back = document.querySelector("#con4galochkaBack"); 
 let lets = document.querySelector("#con4galochkaLet");
 

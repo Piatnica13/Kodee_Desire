@@ -18,54 +18,53 @@ let primaryHeight = window.innerHeight
 
 // То что делается сразу при загрузке страницы
 document.addEventListener("DOMContentLoaded", () => {
-    // Плавное появление меню и боди
+    Loader();
+});
+
+window.addEventListener("pageshow", () => {
+    Loader(true); // режим восстановления
+});
+
+// То что делается сразу при загрузке страницы
+function Loader(fromCache = false) {
+
+    if (fromCache === true) {
+        AOS.refreshHard();
+    }
+
+    // Добавляем события только один раз
+    if (!window.__eventsAdded) {
+        checkBox.addEventListener('click', handleScroll);
+        poiskImgOnMenu.addEventListener("click", PoiskImgOn);
+        window.addEventListener('scroll', handleScroll);
+        lightMod.addEventListener("click", SwitchDark);
+        darkMod.addEventListener("click", SwitchLight);
+        window.addEventListener('resize', get_resize);
+        document.addEventListener("click", laterLocation);
+
+        window.__eventsAdded = true;
+    }
+
+    // Создаём observer только один раз
+    if (!window.__observerAdded) {
+        const observer = new MutationObserver(updateSecondBlockPosition);
+        observer.observe(MainContener, { attributes: true, childList: true, subtree: true });
+        window.__observerAdded = true;
+    }
+
+    // Основная логика
     showMainContainer(menu);
-    // Цвет иконок
     firstColor();
-    // Чек на прозрачность меню
     handleScroll();
-    // Работа всех функций требующих размер экрана
     get_resize();
-    // Устанавливаем тему для страницы и добавляем в localStorage
     document.body.dataset.theme = Theme;
-    // Проверяем цвет иконок
     updateIconsByTheme();
-    
-    // Стили для кнопок смены темы
+
     lightMod.style.transition = "opacity 0.4s ease";
     darkMod.style.transition = "opacity 0.4s ease";
-    
-    
-    // функция updateSecondBlockPosition срабатывает при некоторых тригерах
-    const observer = new MutationObserver(updateSecondBlockPosition); // Отслеживания 
-    observer.observe(MainContener, { attributes: true, childList: true, subtree: true }); // Тригеры 
-    
-    
-    // ВСЕ EVENTS
-    checkBox.addEventListener('click', handleScroll)
-    poiskImgOnMenu.addEventListener("click", PoiskImgOn)
-    window.addEventListener('scroll', handleScroll);
-    lightMod.addEventListener("click", SwitchDark)
-    darkMod.addEventListener("click", SwitchLight);
 
-    window.addEventListener('resize', get_resize);
-
-    // При переходе на другую страницу срабатывает функция
-    window.addEventListener('beforeunload', () => {
-        inShowPage()
-    });
-
-    window.addEventListener("pageshow", () =>{
-        showMainContainer(menu)
-    })
-
-    // При переходе на страницу, переход происходит не сразу
-    document.addEventListener("click", (e) => {
-        laterLocation(e);
-    });
-    
     AOS.init();
-});
+}
 
 // При переходе на страницу, переход происходит не сразу
 function laterLocation(e){

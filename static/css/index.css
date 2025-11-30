@@ -1,6 +1,6 @@
 html, body{
     position: relative;
-    z-index: -2 !important;
+    background-color: var(--main-bg);
 }
 #index100px{
     width: 100%; 
@@ -13,23 +13,27 @@ html, body{
 #Contener1{
     position: relative;
     display: flex;
-    width: 100%;
     background-color: var(--add-bg);
     opacity: 1;
+    z-index: 0;
+    overflow: hidden;
     justify-content: center;
     transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 #Con1Img{
     width: 50%;
     max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    z-index: -1;
 }
-#Con1Img1{
+.Con1imgs{
     width: 1000px;
     height: 100%;
     max-width: 100%;
-    display: block;
 }
 #Con1Text{
+    z-index: 1;
     display:flex;
     flex-direction: column;
     width: 50%;
@@ -38,6 +42,7 @@ html, body{
     justify-content: center;
     align-items: center;
     max-width: 1000px;
+    background-color: var(--add-bg);
 }
 #text1{
     font-size: 35px;
@@ -197,19 +202,19 @@ html, body{
     position: relative;
     width: 100%;
     min-height: 100%;
+    overflow: hidden;
 }
-#Contener4::before{
+#Contener4::before {
     content: '';
-    position: fixed;
-    top: -150px;
-    left: 0;
-    width: 100%;
-    height: 140%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url(/static/image/con4/33784.webp);
-    background-position: center;
+    position: absolute;
+    inset: 0; /* top:0; left:0; width:100%; height:100% */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url(/static/image/con4/33784.webp);
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    z-index: -1;
+    background-attachment: fixed;
 }
 #Con4Part1{
     gap: 50px;
