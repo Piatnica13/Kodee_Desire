@@ -37,7 +37,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     price = db.Column(db.Integer)
-    weight = db.Column(db.Integer)
+    weight = db.Column(db.Float)
     concept = db.Column(db.String(50))
     category = db.Column(db.String(50))
     descriptions = db.Column(db.String(510))
