@@ -567,27 +567,34 @@ def login():
             app.logger.warning("Попытка входа с коротким паролем.")
 
         user = Person.query.filter_by(email=email).first()
+        
+        if user:
+            if not user.is_google:
+                if email == admin_email and password == admin_password:
+                    session['admin'] = True
+                    session['user_id'] = user.id
+                    app.logger.info(f"Администратор {email} вошел в систему.")
+                    return redirect("/admin")
 
-        if email == admin_email and password == admin_password:
-            session['admin'] = True
-            if user:
-                session['user_id'] = user.id
-                app.logger.info(f"Администратор {email} вошел в систему.")
-                return redirect("/admin")
+                if check_password_hash(user.password, password):
+                    products = Product.query.all()
+                    session['user_id'] = user.id
+                    app.logger.info(f"Пользователь {email} успешно вошел.")
+                    return render_template("index.html", messageForLog=True, form=form, products=products)
+                else:
+                    errors["comparisons"] = "Ошибка ввода, неправильно введен пароль или email"
+                    app.logger.warning(f"Неудачная попытка входа: {email}")
+                    return render_template("login.html", errors=errors, messageForNoLog=True, form=form)
             else:
-                app.logger.warning("Попытка входа администратора, но пользователь не найден.")
-                errors["notfound"] = "Аккаунт не найден"
-                return render_template("login.html", errors=errors, form=form)
-
-        if user and check_password_hash(user.password, password):
-            products = Product.query.all()
-            session['user_id'] = user.id
-            app.logger.info(f"Пользователь {email} успешно вошел.")
-            return render_template("index.html", messageForLog=True, form=form, products=products)
+                errors["google"] = "Аккаунт создан через Google. Войдите через Google или установите пароль в настройках."
+                return render_template("login.html", errors=errors, messageForNoLog=True, form=form)
         else:
-            errors["comparisons"] = "Ошибка ввода, неправильно введен пароль или email"
-            app.logger.warning(f"Неудачная попытка входа: {email}")
-            return render_template("login.html", errors=errors, messageForNoLog=True, form=form)
+            app.logger.warning("Попытка входа, но пользователь не найден.")
+            errors["notfound"] = "Аккаунт не найден"
+            return render_template("login.html", errors=errors, form=form)
+            
+        
+
     elif request.method == 'GET':
         app.logger.debug("Открыта страница входа.")
         return render_template('login.html', errors=errors, messageForNoLog=True, form=form)
@@ -633,6 +640,10 @@ def authorize():
             app.logger.info(f"Пользователь {google_email} успешно доавблен")
             
             user = Person.query.filter_by(email=google_email).first()
+            user.is_google = True
+            
+            db.session.add(user)
+            db.session.commit()
             
             if user:
                 session['user_id'] = user.id

@@ -70,6 +70,10 @@
         <div id="messageForErrorLen">{{ errors['len'] }}
         {% elif errors.get('comparisons') %}
         <div id="messageForErrorComparisons">{{ errors['comparisons'] }}</div>
+        {% elif errors.get('google') %}
+        <div id="messageForErrorGoogle">{{ errors['google'] }}</div>
+        {% elif errors.get('notfound') %}
+        <div id="messageForErrorNotFound">{{ errors['notfound'] }}</div>
         {% endif %}
       </div>
     </form>

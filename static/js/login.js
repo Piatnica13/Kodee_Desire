@@ -150,6 +150,12 @@ if (document.querySelector("#messageForErrorError")){
 if (document.querySelector("#messageForErrorComparisons")){
     showToast("Ошибка входа, не правильно введен пароль или email", 2000)
 }
+if (document.querySelector("#messageForErrorGoogle")){
+    showToast("Аккаунт создан через Google. Войдите через Google или установите пароль в настройках после входа в аккаунт.", 2000)
+}
+if (document.querySelector("#messageForErrorNotFound")){
+    showToast("Аккаунт не найден.", 2000)
+}
 if (document.querySelector("#messageForNoLog")){
     showToast("Ошибка входа, пожалуйста войдите в свой аккаунт!", 2000)
 }

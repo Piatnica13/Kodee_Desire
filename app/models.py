@@ -8,6 +8,7 @@ class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25), nullable=False)
     last_name = db.Column(db.String(40), nullable=True, default="")
+    is_google = db.Column(db.Boolean(), default=False)
     password = db.Column(db.String(255), nullable=True)
     phone = db.Column(db.String(11), nullable=True, default="")
     email = db.Column(db.String(75), nullable=False)
