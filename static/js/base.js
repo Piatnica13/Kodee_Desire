@@ -15,22 +15,21 @@ const footerBlock = document.querySelector('.ContenerLast');
 let primaryWidth = window.innerWidth
 let primaryHeight = window.innerHeight
 
+window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
 
 // То что делается сразу при загрузке страницы
 document.addEventListener("DOMContentLoaded", () => {
     Loader();
 });
 
-window.addEventListener("pageshow", () => {
-    Loader(true); // режим восстановления
-});
-
 // То что делается сразу при загрузке страницы
-function Loader(fromCache = false) {
+function Loader() {
 
-    if (fromCache === true) {
-        AOS.refreshHard();
-    }
+    AOS.refreshHard();
 
     // Добавляем события только один раз
     if (!window.__eventsAdded) {

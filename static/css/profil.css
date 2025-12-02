@@ -105,6 +105,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
+}
+#ProfilMenuLeft::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикальной полосы */
+    height: 10px; /* Высота горизонтальной полосы */
+}
+/* Цвет фона полосы прокрутки */
+#ProfilMenuLeft::-webkit-scrollbar-track {
+    background: var(--main-bg); /* Цвет фона */
+}
+/* Цвет ползунка (скроллбара) */
+#ProfilMenuLeft::-webkit-scrollbar-thumb {
+    background-color: var(--add-bg); 
+    border-radius: 6px; /* Закругление углов */
+    border: 2px solid var(--main-bg); /* Полоса вокруг ползунка */
+    transition: background-color 0.2s ease-in-out;
+}
+/* Изменение цвета при наведении */
+#ProfilMenuLeft::-webkit-scrollbar-thumb:hover {
+    background-color: var(--border); 
 }
 #ProfilLeftProfil{
     opacity: 1;

@@ -524,7 +524,7 @@ def register():
 
         hashed_password = generate_password_hash(password)
         person = Person(name=name, email=email, password=hashed_password)
-
+        products = Product.query.all()
         try:
             db.session.add(person)
             db.session.commit()
@@ -534,10 +534,10 @@ def register():
             if user and check_password_hash(user.password, password):
                 session['user_id'] = user.id
                 app.logger.debug(f"Пользователь {email} вошел после регистрации.")
-            return render_template("index.html", messageForReg=True)
+            return render_template("index.html", messageForReg=True, products=products)
         except Exception as e:
             app.logger.error(f"Ошибка при регистрации пользователя {email}: {str(e)}")
-            return render_template("index.html", messageNoReg=True)
+            return render_template("index.html", messageNoReg=True, products=products)
     elif request.method == "GET":
         app.logger.debug("Открыта страница регистрации.")
         return render_template('register.html', errors=errors, messageNoReg=True, form=form)
@@ -580,9 +580,10 @@ def login():
                 return render_template("login.html", errors=errors, form=form)
 
         if user and check_password_hash(user.password, password):
+            products = Product.query.all()
             session['user_id'] = user.id
             app.logger.info(f"Пользователь {email} успешно вошел.")
-            return render_template("index.html", messageForLog=True, form=form)
+            return render_template("index.html", messageForLog=True, form=form, products=products)
         else:
             errors["comparisons"] = "Ошибка ввода, неправильно введен пароль или email"
             app.logger.warning(f"Неудачная попытка входа: {email}")

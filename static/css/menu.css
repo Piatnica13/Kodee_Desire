@@ -50,10 +50,10 @@ body{
   text-align: center;
 }
 #PodMenuPh.open{
-  transform: translateY(-20px);
+  transform: translateY(-40px);
 }
 .PodTextPh{
-  font-size: 40px;
+  font-size: 2rem;
   margin: 10px;
   text-decoration: none;
   color: var(--black);
@@ -535,7 +535,7 @@ nav ul li{
     height: 65px;
   }
   #logo{
-    width: 100px;
+    width: 120px;
   }
   .product-imagee{
     width: 200px;
