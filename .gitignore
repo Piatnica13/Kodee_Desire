@@ -1,7 +1,0 @@
-/.vscode
-config.json
-env
-*.db
-plans.txt
-password.env
-logs/

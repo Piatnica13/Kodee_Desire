@@ -17,6 +17,15 @@
 		url('../fonts/caviar_dreams.ttf') format('truetype'), /* Safari, Android, iOS */
 		url('../fonts/caviar_dreams.svg#caviar_dreams') format('svg'); /* Chrome < 4, Legacy iOS */
 }
+@font-face {
+	font-family: 'Felidae-Regular';
+	src: url('../fonts/felidae-regular.eot'); /* IE 9 Compatibility Mode */
+	src: url('../fonts/felidae-regular.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('../fonts/felidae-regular.woff2') format('woff2'), /* Super Modern Browsers */
+		url('../fonts/felidae-regular.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('../fonts/felidae-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('../fonts/felidae-regular.svg#felidae-regular') format('svg'); /* Chrome < 4, Legacy iOS */
+}
 
 body, html{
     margin: 0px;
