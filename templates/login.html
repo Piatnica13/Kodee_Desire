@@ -1,22 +1,39 @@
 {% extends "baseForReg.html" %} {% block title %}
-<title>Вход — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО
-      585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ | КАРАГАНДА</title>
+<title>
+  Вход — KoDee Desire - БРАСЛЕТЫ ЖЕЛАНИЙ | ЗОЛОТО 585 ПРОБЫ | КОЛЬЕ НА ЛЕСКЕ |
+  КАРАГАНДА
+</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/login.css" />
 {% endblock %} {% block body %}
 
-{% if messageForNoLog == True %}<div id="messageForNoLog"></div>{% endif %}
+<!-- Обработчик сообщений -->
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%} {% for category, message in messages %}
+<div class="message-box">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
+
 <section id="Contener">
   <div id="Forma">
     <a href="/">
       <div id="ImgLogo">
-        <img src="/static/icon/black/logo.png" data-icon="logo.png" alt="Kodee_Desire" id="Logo" />
+        <img
+          src="/static/icon/black/logo.png"
+          data-icon="logo.png"
+          alt="Kodee_Desire"
+          id="Logo"
+        />
       </div>
     </a>
     <article>
       <h1 id="MainText">ВХОД</h1>
     </article>
-    <form method="post" id="loginForm" action="/login" autocomplete="on">
+    <form
+      method="post"
+      id="loginForm"
+      action="/login/log_user"
+      autocomplete="on"
+    >
       {{ form.hidden_tag() }}
       <div id="UserInp">
         <article class="ImgInp">
@@ -32,7 +49,7 @@
             placeholder="E-mail"
             id="email"
             name="email"
-            class="test {%if errors.get('error') or errors.get('comparisons') %}loginError{% endif %}"
+            class="test"
           />
         </article>
         <article class="ImgInp">
@@ -48,7 +65,7 @@
             required
             id="InpPass"
             name="password"
-            class="test {%if errors.get('error') or errors.get('comparisons') or errors.get('len') %}loginError{% endif %}"
+            class="test"
           />
           <img
             src="/static/icon/black/hide.png"
@@ -64,24 +81,22 @@
           />
         </article>
         <button id="ButtonSignIn" type="submit">Вход</button>
-        {% if errors.get('error') %}
-        <div id="messageForErrorError">{{ errors['error'] }}</div>
-        {% elif errors.get('len') %}
-        <div id="messageForErrorLen">{{ errors['len'] }}
-        {% elif errors.get('comparisons') %}
-        <div id="messageForErrorComparisons">{{ errors['comparisons'] }}</div>
-        {% elif errors.get('google') %}
-        <div id="messageForErrorGoogle">{{ errors['google'] }}</div>
-        {% elif errors.get('notfound') %}
-        <div id="messageForErrorNotFound">{{ errors['notfound'] }}</div>
-        {% endif %}
       </div>
     </form>
     <div id="loginGoogleDiv">
-      <a href="/login/google"><button id="loginGoogleBth"><img src="/static/icon/static/google.png" alt="Вход через Google" id="loginGoogleImg"></button></a>
+      <a href="/login/google"
+        ><button id="loginGoogleBth">
+          <img
+            src="/static/icon/static/google.png"
+            alt="Вход через Google"
+            id="loginGoogleImg"
+          /></button
+      ></a>
     </div>
     <div>
-      <p id="loginP">Еще нет аккаунта? <a href="/register" id="LogIn">Регистрация</a></p>
+      <p id="loginP">
+        Еще нет аккаунта? <a href="/register" id="LogIn">Регистрация</a>
+      </p>
     </div>
   </div>
 </section>

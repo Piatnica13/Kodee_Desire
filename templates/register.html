@@ -5,9 +5,13 @@
 </title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" href="/static/css/register.css" />
-{% endblock %} {% block body %} {% if messageForNoReg %}
-<div id="messageForNoReg"></div>
-{% endif %}
+{% endblock %} {% block body %}
+
+<!-- Обработчик сообщений -->
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%} {% for category, message in messages %}
+<div class="message-box">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
 
 <section id="Contener">
   <div id="Forma">
@@ -24,7 +28,12 @@
     <article>
       <h1 id="MainText">РЕГИСТРАЦИЯ</h1>
     </article>
-    <form method="post" id="regForm" action="/register" autocomplete="on">
+    <form
+      method="post"
+      id="regForm"
+      action="/register/add_user"
+      autocomplete="on"
+    >
       {{ form.hidden_tag() }}
       <div id="UserInp">
         <article class="ImgInp">
@@ -72,7 +81,6 @@
             id="password"
             name="password"
             placeholder="Пароль"
-            class="{% if errors.get('len') or errors.get('have') %}loginError{% endif %}"
           />
           <img
             src="/static/icon/black/hide.png"
@@ -87,11 +95,6 @@
             class="ImgPass"
           />
         </article>
-        {% if errors.get('len') %}
-        <div id="messageForErrorLen">{{ errors['len'] }}</div>
-        {% elif errors.get('have') %}
-        <div id="messageForErrorHave">{{ errors['have'] }}</div>
-        {% endif %}
         <button type="submit" id="ButtonSignIn">Регистрация</button>
       </div>
     </form>

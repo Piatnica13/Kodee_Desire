@@ -4,8 +4,6 @@ let messageQueue = [];
 let isMessageShowing = false;
 
 document.addEventListener("DOMContentLoaded", () =>{
-
-
     setTimeout(() => {
         body.style.transition = `opacity 0.6s linear, background 0.5s ease-in-out`;
         body.style.opacity = "1";
@@ -140,17 +138,6 @@ show.addEventListener('mousedown', (event) => {
 
 let Button = document.querySelector('#ButtonSignIn');
 
-if (document.querySelector("#messageForErrorLen")){
-    showToast("Ошибка авторизации, длинна пароля меньше 6 символов", 2000)
-}
-if (document.querySelector("#messageForErrorHave")){
-    
-    showToast("Ошибка авторизации, аккаунт с данным Email уже зарегестрирован", 2000)
-}
-if (document.querySelector("#messageForNoReg")){
-    showToast("Ошибка авторизации, повторите позже!", 2000)
-}
-
 function showToast(text, timeForLoad = 10, timeForLook=2500) {
 
     messageQueue.push({text, timeForLoad, timeForLook});
@@ -209,7 +196,11 @@ function removeMessage(message) {
     }, 500);
 }
 
-
+// Выводить меседж боксы с помощью flash and flask
+let messages = document.querySelectorAll(".message-box");
+messages.forEach(message => {
+    showToast(message.textContent);
+});
 
 function updateIconsByTheme(bool) {
 

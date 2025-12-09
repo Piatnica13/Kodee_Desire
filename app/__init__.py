@@ -74,7 +74,11 @@ def create_app():
 
     
     # IOS Безопасность
-    CORS(app, supports_credentials=True, origins=["https://kodee.kz"])
+    CORS(app, 
+        origins=["https://kodee.kz"],
+        supports_credentials=True,
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allow_headers=["Content-Type", "Authorization"])
     
     from app.routes import bp
     # Регистрация блюпринтов

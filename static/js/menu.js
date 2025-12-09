@@ -204,7 +204,7 @@ menuInp.addEventListener("input", () => {
                           <img src="${product.image}" alt="${product.name}" class="product-imagee">
                           <p class="product-title-menu">${product.name}</p>
                           <div class="test">
-                            <p class="product-price">${product.price}тг</p>
+                            <p class="product-price">${product.price}&#8376;</p>
                             <div class="DivInfo">
                               <img src="/static/icon/black/sumka.png" data-icon="sumka.png" class="Con2Icon" alt="Сумка">
                               <p class="BthInfo"><ins>Подробнее</ins></p>
@@ -254,7 +254,7 @@ menuInpp.addEventListener("input", () => {
                             <img src="${product.image}" alt="${product.name}" class="product-imagee">
                             <p class="product-title">${product.name}</p>
                             <div class="test">
-                                <p class="product-price">${product.price}тг</p>
+                                <p class="product-price">${product.price}&#8376;</p>
                                 <div class="DivInfo">
                                     <img src="/static/icon/black/sumka.png" class="Con2Icon" data-icon="sumka.png" alt="Сумка">
                                     <p class="BthInfo"><ins>Подробнее</ins></p>

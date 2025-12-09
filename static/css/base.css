@@ -165,6 +165,10 @@ input[type="checkbox"] {
     display: none;
 }
 
+.message-box{
+    display: none;
+}
+
 /* Стили контейнера */
 .customCheckbox {
     width: 25px;

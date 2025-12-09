@@ -59,25 +59,25 @@ function filterProducts(filters, bool) {
     );
   }
   if (filters["Цена"]){
-    if (filters["Цена"] == "Больше 64000тг") {
+    if (filters["Цена"] == "Больше 64000₸") {
       filteredProducts = filteredProducts.filter(product => product.price >= 64000);
     } 
-    else if (filters["Цена"] == "40000тг - 64000тг") {
+    else if (filters["Цена"] == "40000₸ - 64000₸") {
       filteredProducts = filteredProducts.filter(product => product.price >= 40000 && product.price <= 64000);
     } 
-    else if (filters["Цена"] == "10000тг - 40000тг") {
+    else if (filters["Цена"] == "10000₸ - 40000₸") {
       filteredProducts = filteredProducts.filter(product => product.price >= 10000 && product.price <= 40000);
     } 
-    else if (filters["Цена"].includes("10000тг - 40000тг") && filters["Цена"].includes("40000тг - 64000тг") && filters["Цена"].includes("Больше 64000тг")) {
+    else if (filters["Цена"].includes("10000₸ - 40000₸") && filters["Цена"].includes("40000₸ - 64000₸") && filters["Цена"].includes("Больше 64000₸")) {
       filteredProducts = filteredProducts.filter(product => product.price >= 10000);
     }     
-    else if (filters["Цена"].includes("10000тг - 40000тг") && filters["Цена"].includes("40000тг - 64000тг")) {
+    else if (filters["Цена"].includes("10000₸ - 40000₸") && filters["Цена"].includes("40000₸ - 64000₸")) {
       filteredProducts = filteredProducts.filter(product => product.price >= 10000 && product.price <= 64000);
     } 
-    else if (filters["Цена"].includes("10000тг - 40000тг") && filters["Цена"].includes("Больше 64000тг")) {
+    else if (filters["Цена"].includes("10000₸ - 40000₸") && filters["Цена"].includes("Больше 64000₸")) {
       filteredProducts = filteredProducts.filter(product => product.price >= 10000 && product.price <= 40000 || product.price >= 64000);
     } 
-    else if (filters["Цена"].includes("40000тг - 64000тг") && filters["Цена"].includes("Больше 64000тг")) {
+    else if (filters["Цена"].includes("40000₸ - 64000₸") && filters["Цена"].includes("Больше 64000₸")) {
       filteredProducts = filteredProducts.filter(product => product.price >= 40000);
     }
   }
@@ -103,7 +103,7 @@ function renderProducts(products, bool) {
       <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
       <h2 class="product-title">${products[i].name}</h2>
       <div class="test">
-      <h2 class="product-price">${products[i].price}тг</h2>
+      <h2 class="product-price">${products[i].price}&#8376;</h2>
       <div class="DivInfo">
       <img src = "/static/icon/black/sumka.png" data-icon="sumka.png" class = "Con2Icon" alt = "Сумка">
       <p class="BthInfo"><ins style="text-decoration: line"><span>Подробнее</span></ins></p>
@@ -124,7 +124,7 @@ function renderProducts(products, bool) {
       <img src="${products[i].image}" alt="${products[i].name}" class="product-image">
       <h2 class="product-title">${products[i].name}</h2>
       <div class="test">
-      <h2 class="product-price">${products[i].price}тг</h2>
+      <h2 class="product-price">${products[i].price}&#8376;</h2>
       <div class="DivInfo">
       <img src = "/static/icon/black/sumka.png" data-icon="sumka.png" class = "Con2Icon" alt = "Сумка">
       <p class="BthInfo"><ins><span>Подробнее</span></ins></p>
@@ -189,7 +189,7 @@ class BockMenuTabs {
 const myMenus = [
   new BockMenuTabs("Концепция", ["Путешествия и приключения", "Любовь и романтика", "Мир и свобода", "Сила и успех",  "Жизнь и процветание", "Духовность и вера", "Знаки зодиака", "Любовь и семья", "Спорт", "Любовь к животным", "Природа", "Музыка и искусство", "Минимализм и красота"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]),
   new BockMenuTabs("Категория", ["Кулон", "Колье", "Бегунок", "Монеточка"], [14, 15, 16, 17]),
-  new BockMenuTabs("Цена", ["10000тг - 40000тг", "40000тг - 64000тг", "Больше 64000тг"], [18, 19, 20]),
+  new BockMenuTabs("Цена", ["10000&#8376; - 40000&#8376;", "40000&#8376; - 64000&#8376;", "Больше 64000&#8376;"], [18, 19, 20]),
 ];
 
 // Рендеринг вкладок

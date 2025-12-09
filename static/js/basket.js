@@ -185,7 +185,7 @@ function rightProduct() {
         } catch (error) {}
         if (box.checked == true){
             let productShow = document.createElement("div");
-            productShow.innerHTML += `<p style = "font-size: 1.2rem">${num}. ${product.name} — ${product.price}тг</p>`;
+            productShow.innerHTML += `<p style = "font-size: 1.2rem">${num}. ${product.name} — ${product.price}&#8376;</p>`;
             productShow.classList.add("basketRightProducts");
             productShow.id = `basketRightProductId${productId}`;
 
@@ -194,7 +194,7 @@ function rightProduct() {
             sum += product.price;
         }
     });
-    basketPay.innerHTML = `<h3 style = "font-size: 1.5rem">К оплате — ${sum}тг</h3>`;
+    basketPay.innerHTML = `<h3 style = "font-size: 1.5rem">К оплате — ${sum}&#8376;</h3>`;
 }
 
 let messageBth = document.querySelector("#basketWhatsAppBth");

@@ -61,7 +61,7 @@
       <div id="productMenuUp">
         <h1 style="font-size: 1.5rem">{{ product.name }}</h1>
         <h2 style="font-size: 0.83em; opacity: 0.7">{{ product.id }}</h2>
-        <h2>{{ product.price }} тг</h2>
+        <h2>{{ product.price }}&#8376;</h2>
       </div>
       <div id="productMenuMidle">
         <div id="productDivSize">
@@ -115,6 +115,7 @@
               class="productHeardImgs"
               id="productLike"
               data-icon="heart.png"
+              data-name="{{ user.name }}"
             />
             <img
               src="/static/icon/black/blackHeart.png"
@@ -128,10 +129,7 @@
             <input type="hidden" id="b" value="{{ basket }}" />
           </div>
           <div id="productDivBth">
-            <button
-              id="productBth"
-              onclick="urlBth('{{product.name}}', '{{user.name}}', '{{address.city}}', '{{address.street}}', '{{address.home}}')"
-            >
+            <button id="productBth" onclick="urlBth('{{user.name}}')">
               Добавить
             </button>
           </div>

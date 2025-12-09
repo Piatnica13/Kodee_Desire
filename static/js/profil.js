@@ -174,20 +174,6 @@ bthAddAddresses.addEventListener("click", () => {
     }, 300);
 })
 
-
-// function saveAddress(addressId) {
-//     fetch('/select_address', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/x-www-form-urlencoded'
-//         },
-//         body: 'selected_address=' + addressId
-//     })
-//     .then(response => response.text())
-//     .then(data => showToast(data.message))
-//     .catch(error => console.error('Error:', error));
-// }
-
 let buttonSave = document.querySelector("#ProfilDivButtonAdd");
 let deletedAddresses = [];
 
@@ -255,34 +241,3 @@ function NotTach() {
         bthAddress.style.pointerEvents = `auto`;
     }, 600);
 }
-
-let bthAdd = document.querySelector("#ProfilAddBth");
-bthAdd.addEventListener("click", () => {
-    let name = document.querySelector("#profilName");
-    let city = document.querySelector("#profilCity");
-    let street = document.querySelector("#profilStreet");
-    let home = document.querySelector("#profilHome");
-    let flat = document.querySelector("#profilFlat");
-
-    let token = document.querySelector('meta[name="csrf_token"]').getAttribute('content');
-    
-
-    fetch('/add_address', {
-        method: "POST",
-        credentials: "include",
-        headers: { 
-            "Content-Type": "application/json",
-            "X-CSRFToken": token
-         },
-        body: JSON.stringify({name: name.value, city: city.value, street: street.value, home: home.value, flat: flat.value})
-      })
-        .then(response =>response.json())
-        .then(data => {
-          if(data.success){
-            showToast(data.message);
-          }
-          else{
-            showToast(data.error)
-          }
-    })
-})

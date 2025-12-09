@@ -284,6 +284,12 @@ function processQueue() {
     }, timeForLook + timeForLoad);
 }
 
+// Выводить меседж боксы с помощью flash and flask
+let messages = document.querySelectorAll(".message-box");
+messages.forEach(message => {
+    showToast(message.textContent);
+});
+
 function SwitchLight() {
     lightMod.style.pointerEvents = `none`;
     darkMod.style.pointerEvents = `none`;

@@ -105,7 +105,7 @@
                     </div>
                     <p class="product-title">{{product.name}}</p>
                     <div class="test">
-                      <p class="product-price">{{product.price}}тг</p>
+                      <p class="product-price">{{product.price}}&#8376;</p>
                       <div class="DivInfo">
                         <img
                           src="/static/icon/black/sumka.png"
@@ -187,7 +187,7 @@
           {% if user.password %}
           <article id="ProfilLeftChanchPass" class="ProfilOb">
             <div class="ProfilTitle"><h1 class="ProfilHeaderText">Изменение пароля</h1></div>
-            <form id="ProfilMainPass" method="POST">
+            <form id="ProfilMainPass" method="POST" action="/profil/update_password">
               <input type="hidden" name="csrf_token" value="{{ formPass.csrf_token._value() }}">
               <div id="ProfilInpsPass">
                 <div id="ProfilFInpPass" class="ProfilInpPass">
@@ -201,7 +201,7 @@
                     <input
                       type="password"
                       name="newPass"
-                      class="ProfilTextInp {% if errors.get('comparisons') %}loginError{% endif %}"
+                      class="ProfilTextInp"
                     />
                   </div>
                 </div>
@@ -218,7 +218,7 @@
                     <input
                       type="password"
                       name="reNewPass"
-                      class="ProfilTextInp {% if errors.get('comparisons') %}loginError{% endif %}"
+                      class="ProfilTextInp"
                     />
                   </div>
                 </div>
@@ -238,7 +238,7 @@
           {% endif %}
           <article id="ProfilLeftChanchInfo" class="ProfilOb">
             <div class="ProfilTitle"><h1 class="ProfilHeaderText">Изменение информации</h1></div>
-            <form id="ProfilSplit" method="post">
+            <form id="ProfilSplit" method="post" action="/profil/update_user">
               <input type="hidden" name="csrf_token" value="{{ formSplit.csrf_token._value() }}">
               <div id="ProfilChangeInfoDivInp">
                 <div class="ProfilDivImgs">
@@ -314,7 +314,7 @@
                 <div id="ProfilAddAdd">
                   <button id="ProfilBthAddAdd"><span>Добавить</span></button>
                 </div>
-                <form id="ProfilAddMain" method="POST">
+                <form id="ProfilAddMain" method="POST" action="/profil/change_address">
                   <input type="hidden" name="csrf_token" value="{{ formAddress.csrf_token._value() }}">
                   {% for address in user.addresses %}
                   <div id="address-{{ address.id }}">
@@ -377,7 +377,7 @@
                     </button>
                   </div>
                 </form>
-                <form id="ProfilAddSplit">
+                <form id="ProfilAddSplit" action="/profil/add_address" method="POST">
                   <input type="hidden" name="csrf_token" value="{{ formAdd.csrf_token._value() }}">
                   <div id="ProfilAddInps">
                     <div class="ProfilAddDivInps">
@@ -452,12 +452,10 @@
                     </div>
                   </div>
                   <div id="ProfilAddDivBth">
-                    <meta name="csrf_token" content="{{ csrf_token() }}">
                     <button
                       id="ProfilAddBth"
-                      name="add_address"
                       value="1"
-                      type="button"
+                      type="submit"
                     >
                       <span>Добавить</span>
                     </button>

@@ -5,7 +5,7 @@ let user_size = 0;
 
 
 
-function urlBth(product, user_name, city, street, home) {
+function urlBth(user_name) {
     let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
     fetch('/add_basket', {
       method: "POST",
@@ -14,7 +14,7 @@ function urlBth(product, user_name, city, street, home) {
         "Content-Type": "application/json",
         "X-CSRFToken": token
        },
-      body: JSON.stringify({product_id: parseInt(productId.value), color: document.querySelector("#productColor").value.toLowerCase(), size: document.querySelector("#productSize").value, material: document.querySelector("#productMaterial").value.toLowerCase()})
+      body: JSON.stringify({user_name: user_name, product_id: parseInt(productId.value), color: document.querySelector("#productColor").value.toLowerCase(), size: document.querySelector("#productSize").value, material: document.querySelector("#productMaterial").value.toLowerCase()})
     })
       .then(response =>response.json())
       .then(data => {
@@ -135,11 +135,14 @@ function resize() {
       img4.style.opacity = "1";
     }
   };
+  
+  let BthLike = document.querySelector("#productLike")
+  let BthGetLike = document.querySelector("#productGetLike");
+  BthLike.addEventListener('click', BthLikes)
+  BthGetLike.addEventListener("click", BthLikes)
 
-let BthLike = document.querySelector("#productLike")
-let BthGetLike = document.querySelector("#productGetLike");
-BthGetLike.addEventListener("click", BthLikes)
-function BthLikes() {
+  function BthLikes() {
+  let name = BthLike.dataset.name;
   let token = document.querySelector("meta[name='csrf_token']").getAttribute("content");
   fetch("/add_favorite", {
     method: "POST",
@@ -148,7 +151,7 @@ function BthLikes() {
       "Content-Type": "application/json",
       "X-CSRFToken": token
      },
-    body: JSON.stringify({product_id: parseInt(productId.value)})
+    body: JSON.stringify({user_name: name, product_id: parseInt(productId.value)})
   })
   .then(response => response.json())
   .then(data => {
@@ -167,7 +170,6 @@ function BthLikes() {
   })
 }
 
-BthLike.addEventListener('click', BthLikes)
 
 function FuncBthGetLike(){
   BthLike.style.display = "flex";

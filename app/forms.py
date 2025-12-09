@@ -26,7 +26,7 @@ class ProfilMainPassForm(FlaskForm):
     submit = SubmitField('Save')
 
 class ProfilAddSplit(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('Name')
     city = StringField('City', validators=[DataRequired()])
     street = StringField('Street', validators=[DataRequired()])
     home = StringField('Home', validators=[DataRequired()])

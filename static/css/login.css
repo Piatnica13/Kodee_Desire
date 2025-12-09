@@ -151,6 +151,10 @@ body{
     transition: background 0.5s ease-in-out;
 }
 
+.message-box{
+    display: none;
+}
+
 #loginGoogleDiv{
     width: 100%;
     height: 10%;

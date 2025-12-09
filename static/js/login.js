@@ -141,25 +141,6 @@ show.addEventListener('mousedown', (event) => {
 
 let Button = document.querySelector('#ButtonSignIn');
 
-if (document.querySelector("#messageForErrorLen")){
-    showToast("Ошибка входа, длина пароля меньше 6 символов", 2000)
-}
-if (document.querySelector("#messageForErrorError")){
-    showToast("Ошибка входа, обязательные поля пустые", 2000)
-}
-if (document.querySelector("#messageForErrorComparisons")){
-    showToast("Ошибка входа, не правильно введен пароль или email", 2000)
-}
-if (document.querySelector("#messageForErrorGoogle")){
-    showToast("Аккаунт создан через Google. Войдите через Google или установите пароль в настройках после входа в аккаунт.", 2000)
-}
-if (document.querySelector("#messageForErrorNotFound")){
-    showToast("Аккаунт не найден.", 2000)
-}
-if (document.querySelector("#messageForNoLog")){
-    showToast("Ошибка входа, пожалуйста войдите в свой аккаунт!", 2000)
-}
-
 function showToast(text, timeForLoad = 10, timeForLook=2500) {
 
     messageQueue.push({text, timeForLoad, timeForLook});
@@ -218,6 +199,11 @@ function removeMessage(message) {
     }, 500);
 }
 
+// Выводить меседж боксы с помощью flash and flask
+let messages = document.querySelectorAll(".message-box");
+messages.forEach(message => {
+    showToast(message.textContent);
+});
 
 
 function updateIconsByTheme(bool) {
